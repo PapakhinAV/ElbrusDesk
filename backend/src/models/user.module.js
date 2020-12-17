@@ -23,7 +23,26 @@ const UserSchema = mongoose.Schema({
 		type: String,
     required: true,
     minlength: 6,
-	}
+	},
+	tel: {
+		type: String,
+		match: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+	},
+	stydyGroup:[{
+    type: mongoose.Types.ObjectId,
+    ref: 'Group',
+  }],
+	gitHub: String,
+	linkidIn: String,
+	social: Array,
+	city: String,
+	workPlace: Array,
+	post:[{
+    type: mongoose.Types.ObjectId,
+    ref: 'Post',
+	}],
+	avatar: String,
+  birthday: Date,
 })
 
 module.exports = mongoose.model('User', UserSchema)
