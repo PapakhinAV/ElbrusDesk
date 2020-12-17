@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 
 const UserSchema = mongoose.Schema({
-  name: {
+  username: {
 		type: String,
     required: true,
     unique: true,
@@ -17,9 +17,11 @@ const UserSchema = mongoose.Schema({
 	},
   email: {
     type: String,
-    unique: true,
+    required: true,
+    minlength: 3,
+    match: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   },
-  pass: {
+  password: {
 		type: String,
     required: true,
     minlength: 6,
@@ -45,4 +47,4 @@ const UserSchema = mongoose.Schema({
   birthday: String,
 })
 
-module.exports = mongoose.model('User', UserSchema)
+export default mongoose.model('User', UserSchema)

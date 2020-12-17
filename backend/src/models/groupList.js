@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 
 const GroupSchema = mongoose.Schema({
   name:String,
@@ -8,4 +8,4 @@ const GroupSchema = mongoose.Schema({
   dateEnd: String
 })
 
-module.exports = mongoose.model('GroupList', GroupSchema)
+export default mongoose.model('GroupList', GroupSchema)
