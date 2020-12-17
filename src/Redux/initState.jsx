@@ -1,7 +1,5 @@
-// const initState = {
-//   notes: '',
-//   catUrl: '',
-//   dogUrl: '',
-// };
+const initState = {
+  news: '',
+};
 
-// export default initState;
+export default initState;
