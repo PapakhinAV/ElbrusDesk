@@ -1,2 +1,3 @@
-// export const ADD_NOTE = 'ADD_NOTE';
+export const ADD_NEWS = 'ADD_NEWS';
+export const smth = 'smth';
 
