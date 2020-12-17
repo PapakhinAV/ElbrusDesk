@@ -6,6 +6,8 @@ import session from 'express-session';
 import mongoStore from 'connect-mongo';
 import passport from 'passport';
 
+import GroupList from './src/models/groupList.js'
+
 //Для парсинга новостей
 import axios from "axios"
 import cheerio from "cheerio"
@@ -17,6 +19,7 @@ import passports from './src/routes/passport.js';
 import fetch from "node-fetch";
 dotenv.config()
 const app = express();
+
 
 
 const PORT = process.env.PORT ?? 0
@@ -119,6 +122,12 @@ app.get("/parthNews", async (req, res) => {
 })
 app.get('/', checkAuthentication, (req, res) => {
   res.send("Test")
+})
+
+app.get('/groupslist', async (req, res)=>{
+ const groupList = await GroupList.find()
+ console.log(groupList);
+ return res.json(groupList)
 })
 
 app.listen(PORT, () => {
