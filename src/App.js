@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthFirstPage from "./Components/AuthFirstPage/AuthFirstPage"
 import SignUp from "./Components/SignUp/SignUp"
 import Header from './Components/Header/Header';
@@ -15,6 +15,9 @@ function App() {
           </Route>
           <Route path="/SignUp">
             <SignUp />
+          </Route>
+          <Route >
+            <Redirect to='/' />
           </Route>
         </Switch>
       </BrowserRouter>

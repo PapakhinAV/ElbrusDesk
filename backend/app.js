@@ -38,7 +38,7 @@ const MongoStore = mongoStore(session);
 
 app.use(
   cors({
-    origin: process.env.HOST,
+    origin: 'http://localhost:3001',
     credentials: true,
   }));
   
@@ -50,7 +50,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(session({
   name: app.get('session cookie name'),
-  secret: process.env.SECRET,
+  secret: '9ps58uy9aerfah48yuaergv45he8gjae',
   // Если true, сохраняет сессию, даже если она не поменялась
   resave: false,
   // Если false, куки появляются только при установке req.session
@@ -92,7 +92,7 @@ function checkAuth(req, res, next) {
 app.use('/user', checkAuth, signinRouter);
 app.use('/user',checkAuth, signupRouter);
 
-app.get('/', checkAuthentication, (req, res) => {
+app.get('/', (req, res) => {
   res.send("Test")
 })
 
