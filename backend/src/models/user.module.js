@@ -42,7 +42,7 @@ const UserSchema = mongoose.Schema({
     ref: 'Post',
 	}],
 	avatar: String,
-  birthday: Date,
+  birthday: String,
 })
 
 module.exports = mongoose.model('User', UserSchema)
