@@ -45,7 +45,7 @@ const MongoStore = mongoStore(session);
 
 app.use(
   cors({
-    origin: process.env.HOST,
+    origin: 'http://localhost:3001',
     credentials: true,
   }));
 
@@ -114,14 +114,14 @@ app.get("/parthNews", async (req, res) => {
     const newsBody = $(element).text();
     news.push(newsBody);
   });
-
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
   console.log(newAllDada);
   res.json({ newAllDada })
 })
+
 app.get('/', checkAuthentication, (req, res) => {
-  res.send("Test")
+   res.send("Test")
 })
 
 app.get('/groupslist', async (req, res)=>{

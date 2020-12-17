@@ -32,7 +32,7 @@ const UserSchema = mongoose.Schema({
   },
   stydyGroup: [{
     type: mongoose.Types.ObjectId,
-    ref: 'Group',
+    ref: 'GroupList',
   }],
   gitHub: String,
   linkidIn: String,
@@ -41,7 +41,7 @@ const UserSchema = mongoose.Schema({
   workPlace: Array,
   post: [{
     type: mongoose.Types.ObjectId,
-    ref: 'Post',
+    ref: 'PostList',
   }],
   avatar: String,
   birthday: String,
