@@ -5,14 +5,14 @@ import mongoose from "mongoose";
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
 import passport from 'passport';
-
+import GroupList from './src/models/groupList.js'
 // Импорт маршрутов.
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
 dotenv.config()
 const app = express();
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 
 const PORT = process.env.PORT ?? 0
@@ -94,6 +94,12 @@ app.use('/user',checkAuth, signupRouter);
 
 app.get('/', checkAuthentication, (req, res) => {
   res.send("Test")
+})
+
+app.get('/groupslist', async (req, res)=>{
+ const groupList = await GroupList.find()
+ console.log(groupList);
+ return res.json(groupList)
 })
 
 app.listen(PORT, () => {
