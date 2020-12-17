@@ -1,7 +1,9 @@
 import './index.css';
 
-// const Wall = () => {
-//   return (  );
-// }
+const Wall = () => {
+  return (
+    <div>Тут будет что-нибудь интересное</div>
+  );
+}
 
-// export default Wall;
+export default Wall;
