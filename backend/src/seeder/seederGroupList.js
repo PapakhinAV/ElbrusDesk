@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import GroupList from '../models/groupList'
+import GroupList from '../models/groupList.js'
 import mongoose from 'mongoose'
 
 dotenv.config()

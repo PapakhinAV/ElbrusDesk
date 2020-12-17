@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import PostList from '../models/postList'
+import PostList from '../models/postList.js'
 import mongoose from 'mongoose'
 
 dotenv.config()
@@ -28,7 +28,7 @@ const postList = [{
 			title: "LUX POWERS INNOVATION",
 			text: 'We power innovation because we are innovators. Luxers are passionate about deep tech – our team is made up of engineers, scientists, and data scientists dedicated to working with clients in their quest to discover and deliver their next big innovative ideas.',
 			img: "https://images.unsplash.com/photo-1608131167772-c72708a6d971?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-				},
+				}
 ];
 
 PostList.insertMany(postList).then(() => {
