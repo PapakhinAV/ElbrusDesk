@@ -1,5 +1,5 @@
 import passportLocal from 'passport-local';
-import User from '../model/user.js';
+import User from '../models/user.module.js';
 import bcrypt from 'bcrypt';
 
 const LocalStrategy = passportLocal.Strategy;

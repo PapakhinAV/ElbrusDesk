@@ -12,7 +12,7 @@ import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
 dotenv.config()
 const app = express();
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 
 const PORT = process.env.PORT ?? 0

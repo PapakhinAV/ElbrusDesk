@@ -1,15 +1,8 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import User from '../model/user.js';
+import User from '../models/user.module.js';
 
 const router = express.Router();
-
-// function serializeUser(user) {
-//     return {
-//       id: user.id,
-//       username: user.username,
-//     };
-//   }
 
 router
   .route('/signup')
