@@ -1,8 +1,8 @@
-require('dotenv').config()
-const UserList = require('../models/user.module');
-const mongoose = require('mongoose');
+import dotenv from 'dotenv'
+import UserList from '../models/user.module'
+import mongoose from 'mongoose'
 
-
+dotenv.config()
 // mongoose options
 const options = {
   useNewUrlParser: true,
