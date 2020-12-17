@@ -68,8 +68,10 @@ const SignUp = () => {
           <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">FirstName</label>
-          <input onChange={handlerChange} name="firstname" value={firstname} type="text" className="form-control" id="name" aria-describedby="firstnameHelp" />
+
+          <label htmlFor="firstname" className="form-label">FirstName</label>
+          <input onChange={handlerChange} name="firstname" value={firstname} type="text" className="form-control" id="firstname" aria-describedby="firstnameHelp" />
+
         </div>
         <div className="mb-3">
           <label htmlFor="surname" className="form-label">Second Name</label>

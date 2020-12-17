@@ -3,6 +3,11 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthFirstPage from "./Components/AuthFirstPage/AuthFirstPage"
 import SignUp from "./Components/SignUp/SignUp"
 import Header from './Components/Header/Header';
+import HomePage from './Components/HomePage/HomePage';
+import Project from './Components/Project/Project';
+import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
+
+
 
 function App() {
   return (
@@ -16,8 +21,17 @@ function App() {
           <Route path="/SignUp">
             <SignUp />
           </Route>
-          <Route >
-            <Redirect to='/' />
+          <Route path="/TechNews">
+            <TechNewsPage />
+          </Route>
+          <Route path="/Project">
+            <Project />
+          </Route>
+          <Route path="/Home">
+            <HomePage />
+          </Route>
+          <Route path="/">
+            <Redirect to="/" />
           </Route>
         </Switch>
       </BrowserRouter>

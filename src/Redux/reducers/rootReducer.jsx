@@ -1,8 +1,8 @@
-// import { combineReducers } from 'redux';
-// import someReducer from './someReducer';
+import { combineReducers } from 'redux';
+import TechNewsReducer from './TechNewsReducer';
 
-// const rootReducer = combineReducers({
-//   notes: someReducer,
-// });
+const rootReducer = combineReducers({
+  news: TechNewsReducer,
+});
 
-// export default rootReducer;
+export default rootReducer;
