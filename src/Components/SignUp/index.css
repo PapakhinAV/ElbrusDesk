@@ -1,0 +1,15 @@
+.submBut{
+  display: flex;
+  justify-content: center;
+}
+.button{
+  width: 50%;
+}
+.mainFormBlock{
+  min-width: 350px;
+  width: 45vw;
+}
+.blockMain{
+  display: flex;
+  justify-content: center;
+}

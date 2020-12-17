@@ -1,8 +1,8 @@
-require('dotenv').config()
-const GroupList = require('../models/groupList');
-const mongoose = require('mongoose');
+import dotenv from 'dotenv'
+import GroupList from '../models/groupList.js'
+import mongoose from 'mongoose'
 
-
+dotenv.config()
 // mongoose options
 const options = {
   useNewUrlParser: true,
