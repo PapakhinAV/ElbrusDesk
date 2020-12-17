@@ -1,0 +1,48 @@
+.MainBlock{
+  width: 80vw;
+  border: solid black 1px;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  min-width: 1300px;
+  justify-content: space-between;
+}
+.leftColumn{
+  border: solid black 1px;
+width: 30%;
+margin: 5px;
+display: flex;
+flex-direction: column;
+min-width: 255px;
+align-items: center;}
+.fotoBlock{
+  border: solid black 1px;
+height: 250px;
+width: 250px;
+margin-top: 5px;
+}
+.userMenuBlock{
+  border: solid black 1px;
+  width: 95%;
+  height: 80%;
+  margin: 5px;
+}
+.rightColumn{
+  border: solid black 1px;
+width: 70%;
+margin: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;}
+.newPostBlock{
+  border: solid black 1px;
+  margin: 5px;
+  width: 98%;
+height: 160px;
+}
+.wallBlock{
+  border: solid black 1px;
+  width: 98%;
+  height: 98%;
+  margin: 5px;
+}
