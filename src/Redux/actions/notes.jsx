@@ -23,6 +23,7 @@ export const LoadGroups = (list) => ({
 })
 
 export const LoadGroupsFromBack = () => (dispatch, getState) => {
+	console.log("KKKKKKK");
   fetch(`${process.env.REACT_APP_URL}/groupslist`)
     .then(res => res.json())
     .then(data => dispatch(LoadGroups(data)))
