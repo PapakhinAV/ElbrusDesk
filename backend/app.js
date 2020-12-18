@@ -107,7 +107,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    // res.json({id: req.user.id})
+
     res.redirect(`/Home/${req.user.id}`)
   });
 

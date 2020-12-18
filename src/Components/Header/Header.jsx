@@ -12,6 +12,7 @@ const Header = () => {
           <Link to="/">Выпускники</Link>
           <Link to="/TechNews">Тех новости</Link>
           <Link to="/groupslist">Группы</Link>
+          <Link to="/logout">Выйти</Link>
         </nav>
       </div>
       <hr />

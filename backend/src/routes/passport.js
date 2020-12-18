@@ -49,6 +49,7 @@ function Passport(passport) {
           // console.log(gituser, 'user new');
         }
 
+        console.log(gituser);
         return done(null, gituser);
       });
     }
