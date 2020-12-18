@@ -1,5 +1,5 @@
 const initState = {
-  news: '',
+  news: [],
 };
 
 export default initState;
