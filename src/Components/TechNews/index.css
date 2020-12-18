@@ -1,0 +1,14 @@
+.newsBlock{
+  width: 80vw;
+  min-width: 500px;
+  display: flex;
+  border: solid black 1px;
+  margin: 20px 0px;
+  padding: 10px;
+  flex-direction: column;
+border-radius: 20px;
+    }
+.Title{
+  font-weight: bolder;
+  margin: 10px 0px 10px 0px;
+}

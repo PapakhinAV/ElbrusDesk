@@ -117,17 +117,17 @@ app.get("/parthNews", async (req, res) => {
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
   console.log(newAllDada);
-  res.json({ newAllDada })
+  res.json(newAllDada)
 })
 
 app.get('/', checkAuthentication, (req, res) => {
-   res.send("Test")
+  res.send("Test")
 })
 
-app.get('/groupslist', async (req, res)=>{
- const groupList = await GroupList.find()
- console.log(groupList);
- return res.json(groupList)
+app.get('/groupslist', async (req, res) => {
+  const groupList = await GroupList.find()
+  console.log(groupList);
+  return res.json(groupList)
 })
 
 app.listen(PORT, () => {
