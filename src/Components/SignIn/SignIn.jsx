@@ -1,8 +1,12 @@
 import './index.css';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { AddUserID } from '../../Redux/actions/notes';
 
 const SignIn = () => {
+
+  const dispatch = useDispatch()
 
   const history = useHistory();
   useEffect(() => {
@@ -37,8 +41,9 @@ const SignIn = () => {
       }),
       credentials: 'include'
     });
-  
+    const result = await response.json()
     if (response.status === 200) {
+      dispatch(AddUserID(result))
       setYes(true)
       setError('Вы успешно зарегистрированы!')
       return (
@@ -61,6 +66,7 @@ const SignIn = () => {
 
   return (
     <>
+
     { 
     !yes ?
     <form onSubmit={handlerSubmit}>
@@ -80,6 +86,7 @@ const SignIn = () => {
     </form> : <div>{error}</div>
   }
   </>
+
   );
 }
 
