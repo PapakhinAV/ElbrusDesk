@@ -117,14 +117,12 @@ app.get("/parthNews", async (req, res) => {
   });
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
-  // console.log(newAllDada);
   res.json({ newAllDada })
 })
 
 app.get('/', checkAuthentication, (req, res) => {
-   res.send("Test")
+  res.send("Test")
 })
-
 
 app.get('/groupslist', async (req, res)=>{
 	const groupList = await GroupList.find()
@@ -142,6 +140,7 @@ app.get('/groupslist', async (req, res)=>{
 	 }
 	 return res.sendStatus(406)
  })
+
 
 app.listen(PORT, () => {
   console.log('Server has been started on port ', PORT)

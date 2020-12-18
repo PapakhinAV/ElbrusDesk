@@ -1,14 +1,15 @@
 import * as TYPES from '../types/notes';
-import axios from "axios"
-export const TechNewsReducer = (text) => ({
+export const TechNewsReducer = (array) => ({
+
   type: TYPES.ADD_NEWS,
-  payload: text,
+  payload: array,
 });
 
 export const ParceNews = () => async (dispatch, getState) => {
   console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
-  // const response = await fetch("http://localhost:3000/parthNews", { method: "GET", credentials: "include" })
-  // const result = await response.json();
+  const response = await fetch("http://localhost:3000/parthNews")
+  const result = await response.json();
+  dispatch(TechNewsReducer(result))
   // console.log(result);
 
 

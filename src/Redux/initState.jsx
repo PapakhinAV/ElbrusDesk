@@ -1,5 +1,5 @@
 const initState = {
-	news: '',
+	news: [],
 	groups:[{name:'',
 		city: '',
 		avatar: '',
@@ -7,6 +7,7 @@ const initState = {
 		dateEnd: ''
 	}]
 	// users:''
+
 };
 
 export default initState;
