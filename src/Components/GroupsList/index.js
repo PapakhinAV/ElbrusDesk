@@ -11,15 +11,8 @@ useEffect(() => {
 	})()
 }, [])
 const groupList = useSelector(state=> state.groups)
-console.log(groupList);
 	return (
-		<>
-		{ 
-			groupList && groupList.map(el=>(
-			<GroupCard key={el._id} name={el.name} city={el.city} avatar={el.avatar} dateStart={el.dateStart} dateEnd={el.dateEnd}/>
-		))
-		}
-		</>
+			<GroupCard groupList={groupList}/>
 	)
 }
 
