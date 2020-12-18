@@ -21,7 +21,8 @@ const TechNewsPage = () => {
 
 
   return (
-    <div>
+    <div className="newsPage">
+        
       {store.map((element, index) => <TechNews index={index} key={element[0]} value={element} />)}
     </div>
   );
