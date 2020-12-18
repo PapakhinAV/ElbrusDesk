@@ -1,8 +1,8 @@
 import * as TYPES from '../types/notes';
 
-const GroupsReducer = (state = [], action) => {
+const UsersListReducer = (state = [], action) => {
   switch (action.type) {
-    case TYPES.ADD_GROUPS:
+    case TYPES.ADD_USERS_LIST:
       return (action.payload);
 
     default:
@@ -10,4 +10,4 @@ const GroupsReducer = (state = [], action) => {
   }
 };
 
-export default GroupsReducer;
+export default UsersListReducer;

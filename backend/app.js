@@ -152,17 +152,19 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
+ 
+ app.get('/students_list_in_group/:id', async (req, res)=>{
+	 let idGroup = req.params.id
+	 console.log(idGroup);
+	 
+	 if(idGroup){
+		 const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
+		 console.log(listOfPeopleInGroup);
+		 return res.status(200).json(listOfPeopleInGroup)
+	 }
+	 return res.sendStatus(406)
+ })
 
-app.get('/students_list_in_group/:id', async (req, res) => {
-  let idGroup = req.params.id
-  console.log(idGroup);
-  if (idGroup) {
-    const listOfPeopleInGroup = await User.findById(idGroup)
-    //  console.log(listOfPeopleInGroup);
-    return res.status(200).json(listOfPeopleInGroup)
-  }
-  return res.sendStatus(406)
-})
 
 
 app.listen(PORT, () => {

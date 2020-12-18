@@ -5,9 +5,22 @@ const initState = {
 		avatar: '',
 		dateStart: '',
 		dateEnd: ''
-	}]
-	// users:''
-
+	}],
+users: [{
+stydyGroup: [],
+social: [],	
+workPlace: [],
+post: [],
+firstname:'',
+surname:'',
+email:'',
+password: '',
+tel: '',
+gitHub: '',
+city: '',
+linkidIn: '',
+birthday: ''
+}]
 };
 
 export default initState;
