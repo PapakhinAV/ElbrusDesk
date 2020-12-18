@@ -88,7 +88,6 @@ function checkAuthentication(req, res, next) {
 
 }
 
-
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -108,8 +107,8 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    console.log(req.user.id);
-    res.redirect('/Home')
+    // res.json({id: req.user.id})
+    res.redirect(`/Home/${req.user.id}`)
   });
 
 app.get('/logout', function (req, res) {
@@ -158,7 +157,7 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 })
 
 
-  //root необходимо опустить в самый конец файла чтоб не было конфликтов 
+//root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
 app.use(express.static(root));
 app.get('*', (req, res) => {

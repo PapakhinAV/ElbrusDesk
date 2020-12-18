@@ -2,16 +2,21 @@ import './index.css';
 import { Link } from 'react-router-dom';
 import SignIn from "../SignIn/SignIn"
 import Logo from '../img/EBD.svg'
+import Git from '../img/git-icon.svg'
 
 
 const AuthFirstPage = () => {
   
 const github = ()=>{
-  console.log('>>>>>>');
+  console.log('>>>>>>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>');
   fetch("http://localhost:3000/auth/github", 
   {
     method: 'GET',
-    credentials: 'include'
+    credentials: 'include',
+    headers: {
+
+      'Access-Control-Allow-Origin': 'http://localhost:3000/auth/github/callback',
+    }
   }
   )
   .then(res=>res.json())
@@ -28,13 +33,19 @@ const github = ()=>{
             </div>
             <div className="signInForm">
               <div>
-              <h1>// Вход //</h1>
-            <p>Добро пожаловать!<br />
-Для входа укажите свои учетные данные.</p>
-                <SignIn />
+              <h1 className="hYellow"><span className="blueSymbols">//</span> Вход <span className="blueSymbols">//</span></h1>
+            <p className="pYellow">
+                  Добро пожаловать!<br />
+                  Для входа укажите свои учетные данные.</p>
+                  <div>
+                  <SignIn />
+                  </div>
+                
               </div>
-              <Link className="btn btn-danger button" to="/SignUp">SignUp</Link>
-          <a className="btn btn-primary" href="http://localhost:3000/auth/github">GIT_HUB</a>
+              <Link className="signUpButton" to="/SignUp">Создать аккаунт</Link>
+              {/* <button onClick={github} type="button" class="btn btn-primary"><img src={Git} alt="git-icon"/></button> */}
+
+          <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a>
             </div>
           </div>
 
