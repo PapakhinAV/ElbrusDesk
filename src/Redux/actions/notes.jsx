@@ -13,12 +13,12 @@ export const ParceNews = () => async (dispatch, getState) => {
 };
 
 export const LoadGroups = (list) => ({
-	type: TYPES.ADD_GROUPS,
+  type: TYPES.ADD_GROUPS,
   payload: list,
 })
 
 export const LoadGroupsFromBack = () => (dispatch, getState) => {
-fetch(`${process.env.REACT_APP_URL}/groupslist`)
-.then(res=> res.json())
-.then(data=> dispatch(LoadGroups(data)))
+  fetch(`${process.env.REACT_APP_URL}/groupslist`)
+    .then(res => res.json())
+    .then(data => dispatch(LoadGroups(data)))
 }
