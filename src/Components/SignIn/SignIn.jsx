@@ -65,16 +65,16 @@ const SignIn = () => {
     !yes ?
     <form onSubmit={handlerSubmit}>
       <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-        <input onChange={handlerChange} type="email" name="email"  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+        {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+        <input onChange={handlerChange} type="email" name="email"  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*"/>
       </div>
       <div className="mb-3">
-        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-        <input onChange={handlerChange} type="password" name="password" className="form-control" id="exampleInputPassword1" />
+        {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+        <input onChange={handlerChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Пароль*"/>
       </div>
+        <div id="emailHelp" className="req">Поля обязательные для заполнения<span>*</span></div>
       <div className="submBut">
-        <button type="submit" className="btn btn-primary button">Submit</button>
+        <button type="submit" className="btn btn-primary button">Войти</button>
       </div>
     </form> : <div>{error}</div>
   }
