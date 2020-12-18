@@ -16,8 +16,8 @@ function GroupCard({key, name, city, avatar, dateStart, dateEnd}) {
       <div className="card-body">
 			<h5 className="card-title">{name}   {city}</h5>
 
-        <p className="card-text"><small className="text-muted">{dateStart}</small></p>
-        <p className="card-text"><small className="text-muted">{dateEnd}</small></p>
+        <p className="card-text"><small className="text-muted">Начало обучения: {dateStart}</small></p>
+        <p className="card-text"><small className="text-muted">Окончание обучения: {dateEnd}</small></p>
 		    <Link to={`/students_list_in_group/${key}`}>Подробнее</Link>
       </div>
     </div>

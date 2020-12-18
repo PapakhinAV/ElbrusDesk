@@ -128,7 +128,6 @@ app.get('/', checkAuthentication, (req, res) => {
 
 app.get('/groupslist', async (req, res)=>{
 	const groupList = await GroupList.find()
-	console.log(groupList);
 	return res.json(groupList)
  })
  
