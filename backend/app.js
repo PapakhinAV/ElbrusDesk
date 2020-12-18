@@ -144,6 +144,7 @@ app.get("/parthNews", async (req, res) => {
 })
 
 
+
 app.get('/students_list_in_group/:id', async (req, res) => {
   let idGroup = req.params.id
   console.log(idGroup);
@@ -157,6 +158,7 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 })
 
 
+  //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
 app.use(express.static(root));
 app.get('*', (req, res) => {
@@ -166,3 +168,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log('Server has been started on port ', PORT)
 })
+
