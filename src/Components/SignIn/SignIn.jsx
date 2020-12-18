@@ -12,7 +12,7 @@ const SignIn = () => {
         credentials: 'include'
       })
       if (res.status === 401) {
-        history.push('/main')
+        history.push('/Home')
       }
     })()
   }, [])
@@ -43,7 +43,7 @@ const SignIn = () => {
       setError('Вы успешно зарегистрированы!')
       return (
         setTimeout(() => {
-          history.push('/main/questions')
+          history.push('/Home')
         }, 1000)
       )
     }
