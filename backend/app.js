@@ -123,6 +123,13 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
+app.get('/groupslist', async (req, res) => {
+	console.log("Handle grouplist");
+	const groupList = await GroupList.find()
+	console.log(groupList);
+  return res.json(groupList)
+})
+
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
   const result = response.data;
@@ -145,13 +152,6 @@ app.get("/parthNews", async (req, res) => {
 })
 
 
-
-app.get('/groupslist', async (req, res) => {
-	console.log("Handle grouplist");
-	const groupList = await GroupList.find()
-	console.log(groupList);
-  return res.json(groupList)
-})
 
  
  app.get('/students_list_in_group/:id', async (req, res)=>{

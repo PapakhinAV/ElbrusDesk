@@ -1,6 +1,5 @@
 import * as TYPES from '../types/notes';
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 export const TechNewsReducer = (array) => ({
 	
@@ -22,12 +21,11 @@ export const LoadGroups = (list) => ({
   payload: list,
 })
 
-export const LoadGroupsFromBack = () => (dispatch, getState) => {
-	console.log("KKKKKKK");
-  fetch(`${process.env.REACT_APP_URL}/groupslist`)
-    .then(res => res.json())
-    .then(data => dispatch(LoadGroups(data)))
-}
+export const LoadGroupsFromBack = () => async (dispatch, getState) => {
+    const res =  await fetch(`${process.env.REACT_APP_URL}/groupslist`)
+    const data = await res.json();
+    dispatch(LoadGroups(data))
+};
 
 //for usersList in group
 export const LoadUsersInGroup = (listUsers) => ({
