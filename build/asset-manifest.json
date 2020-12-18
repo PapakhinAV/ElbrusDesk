@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d19f7250.chunk.css",
+    "main.js": "/static/js/main.62da1495.chunk.js",
+    "main.js.map": "/static/js/main.62da1495.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3d2234b2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3d2234b2.js.map",
+    "static/js/2.a14f2191.chunk.js": "/static/js/2.a14f2191.chunk.js",
+    "static/js/2.a14f2191.chunk.js.map": "/static/js/2.a14f2191.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.d19f7250.chunk.css.map": "/static/css/main.d19f7250.chunk.css.map",
+    "static/js/2.a14f2191.chunk.js.LICENSE.txt": "/static/js/2.a14f2191.chunk.js.LICENSE.txt",
+    "static/media/EBD.cb50a73e.svg": "/static/media/EBD.cb50a73e.svg",
+    "static/media/App.css": "/static/media/RF-Rostin-Regular.44d99dd3.ttf",
+    "static/media/git-icon.537777e6.svg": "/static/media/git-icon.537777e6.svg",
+    "static/media/index.css": "/static/media/signin-bg.6bbf9037.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3d2234b2.js",
+    "static/js/2.a14f2191.chunk.js",
+    "static/css/main.d19f7250.chunk.css",
+    "static/js/main.62da1495.chunk.js"
+  ]
+}
