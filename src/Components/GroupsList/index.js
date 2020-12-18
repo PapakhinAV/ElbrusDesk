@@ -10,6 +10,7 @@ useEffect(() => {
 		dispatch(LoadGroupsFromBack())
 	})()
 }, [])
+
 const groupList = useSelector(state=> state.groups)
 console.log(groupList);
 	return (
