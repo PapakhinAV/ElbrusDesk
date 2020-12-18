@@ -47,7 +47,7 @@ const MongoStore = mongoStore(session);
 const host =
   app.use(
     cors({
-      origin: 'http://localhost:3001',
+      origin: 'http://localhost:3000',
       credentials: true,
     }));
 
@@ -139,11 +139,6 @@ app.get("/parthNews", async (req, res) => {
 })
 
 
- const root = path.join(process.env.PWD, '../', 'build');
-app.use(express.static(root));
-app.get('*', (req, res) => {
-  res.sendFile('index.html', { root });
-});
 
 
 
@@ -152,21 +147,29 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
- 
- app.get('/students_list_in_group/:id', async (req, res)=>{
-	 let idGroup = req.params.id
+
+app.get('/students_list_in_group/:id', async (req, res)=>{
+  let idGroup = req.params.id
 	 console.log(idGroup);
 	 
 	 if(idGroup){
-		 const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
+     const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
 		 console.log(listOfPeopleInGroup);
 		 return res.status(200).json(listOfPeopleInGroup)
 	 }
 	 return res.sendStatus(406)
- })
+  })
+  
+  
+  
+  app.listen(PORT, () => {
+    console.log('Server has been started on port ', PORT)
+  })
+  
 
-
-
-app.listen(PORT, () => {
-  console.log('Server has been started on port ', PORT)
-})
+  //root необходимо опустить в самый конец файла чтоб не было конфликтов 
+  const root = path.join(process.env.PWD, '../', 'build');
+  app.use(express.static(root));
+  app.get('*', (req, res) => {
+   res.sendFile('index.html', { root });
+  });

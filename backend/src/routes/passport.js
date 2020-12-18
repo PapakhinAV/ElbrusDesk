@@ -53,11 +53,12 @@ function Passport(passport) {
     });
   }
 ));
-
+//Записывает юзера в сессию по id
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
 
+// Находит юзера в БД по id, который записан в сессии
   passport.deserializeUser(function (id, done) {
     User.findById(id, function (err, user) {
       done(err, user);
