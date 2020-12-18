@@ -108,7 +108,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    console.log(req.user);
+    console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", req.user);
     res.redirect('/Home')
   });
 
@@ -158,7 +158,7 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 })
 
 
-  //root необходимо опустить в самый конец файла чтоб не было конфликтов 
+//root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
 app.use(express.static(root));
 app.get('*', (req, res) => {
