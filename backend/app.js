@@ -7,6 +7,7 @@ import mongoStore from 'connect-mongo';
 import passport from 'passport';
 
 import GroupList from './src/models/groupList.js'
+import User from './src/models/user.module.js'
 
 //Для парсинга новостей
 import axios from "axios"
@@ -42,7 +43,7 @@ mongoose.connect(process.env.MONGO_DB,
   });
 const MongoStore = mongoStore(session);
 
-
+const host = 
 app.use(
   cors({
     origin: 'http://localhost:3001',
@@ -116,19 +117,30 @@ app.get("/parthNews", async (req, res) => {
   });
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
-  console.log(newAllDada);
-  res.json(newAllDada)
+  res.json({ newAllDada })
 })
 
 app.get('/', checkAuthentication, (req, res) => {
   res.send("Test")
 })
 
-app.get('/groupslist', async (req, res) => {
-  const groupList = await GroupList.find()
-  console.log(groupList);
-  return res.json(groupList)
-})
+app.get('/groupslist', async (req, res)=>{
+	const groupList = await GroupList.find()
+	return res.json(groupList)
+ })
+ 
+ 
+ app.get('/students_list_in_group/:id', async (req, res)=>{
+	 let idGroup = req.params.id
+	 console.log(idGroup);
+	 if(idGroup){
+		 const listOfPeopleInGroup = await User.findById(idGroup)
+		//  console.log(listOfPeopleInGroup);
+		 return res.status(200).json(listOfPeopleInGroup)
+	 }
+	 return res.sendStatus(406)
+ })
+
 
 app.listen(PORT, () => {
   console.log('Server has been started on port ', PORT)

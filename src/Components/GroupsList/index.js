@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { LoadGroupsFromBack } from '../../Redux/actions/notes'
 import GroupCard from '../GroupCard'
 
 function GroupsList() {
-
-const [groupList, setGroupList] = useState('')
-
-useEffect(()=>{
-fetch(`${process.env.REACT_APP_URL}/groupslist`)
-.then(res=> res.json())
-.then(data=>setGroupList(data))
+const dispatch = useDispatch()
+useEffect(() => {
+	(() => {
+		dispatch(LoadGroupsFromBack())
+	})()
 }, [])
-console.log(groupList);
-
+const groupList = useSelector(state=> state.groups)
 	return (
-		<>
-		{ 
-			groupList && groupList.map(el=>(
-			<GroupCard key={el._id} name={el.name} city={el.city} avatar={el.avatar} dateStart={el.dateStart} dateEnd={el.dateEnd}/>
-		))
-		}
-		</>
+			<GroupCard groupList={groupList}/>
 	)
 }
 
