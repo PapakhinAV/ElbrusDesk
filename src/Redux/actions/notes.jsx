@@ -1,6 +1,9 @@
 import * as TYPES from '../types/notes';
-export const TechNewsReducer = (array) => ({
+import dotenv from 'dotenv'
+dotenv.config()
 
+export const TechNewsReducer = (array) => ({
+	
   type: TYPES.ADD_NEWS,
   payload: array,
 });
