@@ -5,3 +5,28 @@
 .button{
   width: 50%;
 }
+
+input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  outline: none;
+}
+
+.yellowButton {
+  background-color: #ffbc5b;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #4520AB;
+  font-family: 'RF Rostin';
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1; /* Firefox */
+}
