@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import UserList from '../models/user.module'
+import UserList from '../models/user.module.js'
 import mongoose from 'mongoose'
 
 dotenv.config()
@@ -20,10 +20,10 @@ mongoose.connect(process.env.MONGO_DB,
   });
 
 const userList = [{
-	name: "Alexsandra",
+	firstname: "Alexsandra",
 	surname: "Anisina",
 	email: "honey@mail.ru",
-	pass:"123456789",
+	password:"123456789",
 	tel: "89130856872",
 	stydyGroup: [{_id:"5fdb395c8f2c2763b6e43314",_id:"5fdb395c8f2c2763b6e43315"}],
 	gitHub: "https://github.com/HoneyMS",

@@ -7,6 +7,7 @@ import HomePage from './Components/HomePage/HomePage';
 import Project from './Components/Project/Project';
 import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
 import GroupsList from './Components/GroupsList';
+import UsersListInGroup from './Components/UsersListInGroup';
 
 
 
@@ -33,6 +34,9 @@ function App() {
           </Route>
 					<Route path="/groupslist">
             <GroupsList />
+          </Route>
+					<Route path="/students_list_in_group/:id">
+            <UsersListInGroup/>
           </Route>
           <Route path="/">
             <Redirect to="/" />
