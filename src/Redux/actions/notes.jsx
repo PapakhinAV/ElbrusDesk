@@ -10,14 +10,6 @@ export const ParceNews = () => async (dispatch, getState) => {
   const response = await fetch("http://localhost:3000/parthNews")
   const result = await response.json();
   dispatch(TechNewsReducer(result))
-  // console.log(result);
-
-
-
-  //  axios('https://3dnews.ru/news');
-  //  const result = response.data;
-  // console.log(result);
-  // dispatch(TechNewsReducer(result))
 };
 
 export const LoadGroups = (list) => ({
