@@ -11,6 +11,7 @@ const Header = () => {
           <Link to="/Project">О проекте</Link>
           <Link to="/">Выпускники</Link>
           <Link to="/TechNews">Тех новости</Link>
+          <Link to="/groupslist">Группы</Link>
         </nav>
       </div>
       <hr />

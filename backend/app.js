@@ -117,7 +117,7 @@ app.get("/parthNews", async (req, res) => {
   });
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
-  console.log(newAllDada);
+  // console.log(newAllDada);
   res.json({ newAllDada })
 })
 
@@ -128,6 +128,7 @@ app.get('/', checkAuthentication, (req, res) => {
 
 app.get('/groupslist', async (req, res)=>{
 	const groupList = await GroupList.find()
+	console.log(groupList);
 	return res.json(groupList)
  })
  
@@ -137,7 +138,7 @@ app.get('/groupslist', async (req, res)=>{
 	 console.log(idGroup);
 	 if(idGroup){
 		 const listOfPeopleInGroup = await User.findById(idGroup)
-		 console.log(listOfPeopleInGroup);
+		//  console.log(listOfPeopleInGroup);
 		 return res.status(200).json(listOfPeopleInGroup)
 	 }
 	 return res.sendStatus(406)

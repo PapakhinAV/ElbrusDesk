@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
+import GroupsReducer from './grousReducer';
 import TechNewsReducer from './TechNewsReducer';
 
 const rootReducer = combineReducers({
-  news: TechNewsReducer,
+	news: TechNewsReducer,
+	groups: GroupsReducer,
 });
 
 export default rootReducer;

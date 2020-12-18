@@ -6,6 +6,7 @@ import Header from './Components/Header/Header';
 import HomePage from './Components/HomePage/HomePage';
 import Project from './Components/Project/Project';
 import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
+import GroupsList from './Components/GroupsList';
 
 
 
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/Home">
             <HomePage />
+          </Route>
+					<Route path="/groupslist">
+            <GroupsList />
           </Route>
           <Route path="/">
             <Redirect to="/" />
