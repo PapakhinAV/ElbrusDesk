@@ -46,3 +46,7 @@ height: 160px;
   height: 98%;
   margin: 5px;
 }
+
+body {
+  background-color: #fff;
+}
