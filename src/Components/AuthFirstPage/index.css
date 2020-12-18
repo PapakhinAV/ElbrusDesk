@@ -32,6 +32,9 @@ height: 50vh;
   background: url(../img/signin-bg.jpg);
   height: 100vh;
   width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   /* align-items: center;
   justify-content: center;
   display: flex; */
@@ -49,8 +52,35 @@ height: 50vh;
 
 .req {
   color: #fff;
+  font-size: 10px;
+  margin: 30px;
 }
 
-.req span {
+.reqBLue {
+  color: #00EDFF;
+  margin: 30px;
+}
+
+.hYellow {
   color: #ffbc5b;
+}
+
+.pYellow {
+  color: #ffbc5b;
+  margin-bottom: 25px;
+}
+
+.signUpButton {
+  color: #ffbc5b;
+  border-radius: 5px;
+  border: solid 1px #ffbc5b;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.signUpButton:hover {
+  color: #ffbc5b;
+  text-decoration: none;
+  box-shadow: 0px 0px 15px #ffbc5b24;
 }
