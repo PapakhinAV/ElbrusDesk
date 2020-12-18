@@ -28,15 +28,15 @@ const github = ()=>{
             </div>
             <div className="signInForm">
               <div>
+              <h1>// Вход //</h1>
+            <p>Добро пожаловать!<br />
+Для входа укажите свои учетные данные.</p>
                 <SignIn />
               </div>
               <Link className="btn btn-danger button" to="/SignUp">SignUp</Link>
+          <a className="btn btn-primary" href="http://localhost:3000/auth/github">GIT_HUB</a>
             </div>
           </div>
-
-          <Link className="btn btn-danger button" to="/SignUp">SignUp</Link>
-          <a className="btn btn-primary" href="http://localhost:3000/auth/github">GIT_HUB</a>
-          {/* <button onClick={github} type="button" className="btn btn-primary">GIT_HUB</button> */}
 
         </div>
       </div>

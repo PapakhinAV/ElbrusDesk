@@ -1,6 +1,12 @@
-/* body{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-} */
+/* @import url('./fonts/RF-Rostin-Bold.ttf');
+@import url('./fonts/RF-Rostin-Light.ttf'); */
+
+@font-face{font-family:'RF Rostin'; src:url('./fonts/RF-Rostin-Regular.ttf')}
+
+body{
+  font-family: 'RF Rostin', sans-serif!important;
+}
+
+
+
+
