@@ -1,7 +1,7 @@
 import './index.css';
 
-// const Catalog = () => {
+// const Profile = () => {
 //   return (  );
 // }
 
-// export default Catalog;
+// export default Profile;

@@ -22,6 +22,7 @@ router
         email,
         tel,
       });
+      return res.status(200).end();
       //   req.session.user = serializeUser(user);
     } catch (err) {
       console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');

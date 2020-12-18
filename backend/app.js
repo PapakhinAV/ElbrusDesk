@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
 import passport from 'passport';
+import path from 'path'
 
 import GroupList from './src/models/groupList.js'
 import User from './src/models/user.module.js'
@@ -43,12 +44,12 @@ mongoose.connect(process.env.MONGO_DB,
   });
 const MongoStore = mongoStore(session);
 
-const host = 
-app.use(
-  cors({
-    origin: 'http://localhost:3001',
-    credentials: true,
-  }));
+const host =
+  app.use(
+    cors({
+      origin: 'http://localhost:3001',
+      credentials: true,
+    }));
 
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
@@ -100,6 +101,22 @@ function checkAuth(req, res, next) {
 app.use('/user', checkAuth, signinRouter);
 app.use('/user', checkAuth, signupRouter);
 
+app.get('/auth/github',
+  passport.authenticate('github', {
+    scope: ['user:email']
+  }));
+
+  app.get('/auth/github/callback',
+  passport.authenticate('github'), function (req, res) {
+    console.log(req.user);
+    res.redirect('/Home')
+  });
+
+  app.get('/logout', function (req, res) {
+    req.logout();
+    res.sendStatus(200);
+  });
+
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
   const result = response.data;
@@ -117,18 +134,24 @@ app.get("/parthNews", async (req, res) => {
   });
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
-  res.json({ newAllDada })
+  res.json(newAllDada)
+
 })
 
-app.get('/', checkAuthentication, (req, res) => {
-  res.send("Test")
+
+ const root = path.join(process.env.PWD, '../', 'build');
+app.use(express.static(root));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root });
+});
+
+
+
+app.get('/groupslist', async (req, res) => {
+  const groupList = await GroupList.find()
+  return res.json(groupList)
 })
 
-app.get('/groupslist', async (req, res)=>{
-	const groupList = await GroupList.find()
-	return res.json(groupList)
- })
- 
  
  app.get('/students_list_in_group/:id', async (req, res)=>{
 	 let idGroup = req.params.id
@@ -141,6 +164,7 @@ app.get('/groupslist', async (req, res)=>{
 	 }
 	 return res.sendStatus(406)
  })
+
 
 
 app.listen(PORT, () => {
