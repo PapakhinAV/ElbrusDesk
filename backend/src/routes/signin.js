@@ -10,8 +10,8 @@ router
   .post(
     passport.authenticate('local'),
     function (req, res) {
-      // console.log(req.user);
-      res.sendStatus(200);
+      console.log(req.user);
+      res.json(req.user._id);
     });
 
 export default router
