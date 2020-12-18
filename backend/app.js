@@ -109,7 +109,7 @@ app.get('/auth/github',
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
     console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", req.user);
-    res.redirect('/Home')
+    res.redirect(`/Home/${req.user.id}`)
   });
 
 app.get('/logout', function (req, res) {
