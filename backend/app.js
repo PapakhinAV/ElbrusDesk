@@ -43,12 +43,12 @@ mongoose.connect(process.env.MONGO_DB,
   });
 const MongoStore = mongoStore(session);
 
-const host = 
-app.use(
-  cors({
-    origin: 'http://localhost:3001',
-    credentials: true,
-  }));
+const host =
+  app.use(
+    cors({
+      origin: 'http://localhost:3001',
+      credentials: true,
+    }));
 
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
@@ -117,29 +117,29 @@ app.get("/parthNews", async (req, res) => {
   });
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
-  res.json({ newAllDada })
+  res.json(newAllDada)
 })
 
 app.get('/', checkAuthentication, (req, res) => {
   res.send("Test")
 })
 
-app.get('/groupslist', async (req, res)=>{
-	const groupList = await GroupList.find()
-	return res.json(groupList)
- })
- 
- 
- app.get('/students_list_in_group/:id', async (req, res)=>{
-	 let idGroup = req.params.id
-	 console.log(idGroup);
-	 if(idGroup){
-		 const listOfPeopleInGroup = await User.findById(idGroup)
-		//  console.log(listOfPeopleInGroup);
-		 return res.status(200).json(listOfPeopleInGroup)
-	 }
-	 return res.sendStatus(406)
- })
+app.get('/groupslist', async (req, res) => {
+  const groupList = await GroupList.find()
+  return res.json(groupList)
+})
+
+
+app.get('/students_list_in_group/:id', async (req, res) => {
+  let idGroup = req.params.id
+  console.log(idGroup);
+  if (idGroup) {
+    const listOfPeopleInGroup = await User.findById(idGroup)
+    //  console.log(listOfPeopleInGroup);
+    return res.status(200).json(listOfPeopleInGroup)
+  }
+  return res.sendStatus(406)
+})
 
 
 app.listen(PORT, () => {
