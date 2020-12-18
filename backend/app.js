@@ -106,16 +106,21 @@ app.get('/auth/github',
     scope: ['user:email']
   }));
 
-  app.get('/auth/github/callback',
+app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
     console.log(req.user);
     res.redirect('/Home')
   });
 
-  app.get('/logout', function (req, res) {
-    req.logout();
-    res.sendStatus(200);
-  });
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.sendStatus(200);
+});
+
+app.get('/groupslist', async (req, res) => {
+  const groupList = await GroupList.find()
+  return res.json(groupList)
+})
 
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
@@ -140,36 +145,27 @@ app.get("/parthNews", async (req, res) => {
 
 
 
+app.get('/students_list_in_group/:id', async (req, res) => {
+  let idGroup = req.params.id
+  console.log(idGroup);
 
-
-app.get('/groupslist', async (req, res) => {
-  const groupList = await GroupList.find()
-  return res.json(groupList)
+  if (idGroup) {
+    const listOfPeopleInGroup = await User.find({ stydyGroup: [idGroup] })
+    console.log(listOfPeopleInGroup);
+    return res.status(200).json(listOfPeopleInGroup)
+  }
+  return res.sendStatus(406)
 })
 
 
-app.get('/students_list_in_group/:id', async (req, res)=>{
-  let idGroup = req.params.id
-	 console.log(idGroup);
-	 
-	 if(idGroup){
-     const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
-		 console.log(listOfPeopleInGroup);
-		 return res.status(200).json(listOfPeopleInGroup)
-	 }
-	 return res.sendStatus(406)
-  })
-  
-  
-  
-  app.listen(PORT, () => {
-    console.log('Server has been started on port ', PORT)
-  })
-  
-
   //root необходимо опустить в самый конец файла чтоб не было конфликтов 
-  const root = path.join(process.env.PWD, '../', 'build');
-  app.use(express.static(root));
-  app.get('*', (req, res) => {
-   res.sendFile('index.html', { root });
-  });
+const root = path.join(process.env.PWD, '../', 'build');
+app.use(express.static(root));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root });
+});
+
+app.listen(PORT, () => {
+  console.log('Server has been started on port ', PORT)
+})
+
