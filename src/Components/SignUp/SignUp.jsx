@@ -13,7 +13,7 @@ const SignUp = () => {
         credentials: 'include'
       })
       if (res.status === 401) {
-        history.push('/main/questions')
+        history.push('/Home')
       }
     })()
   }, [])
@@ -43,11 +43,13 @@ const SignUp = () => {
       credentials: 'include'
     });
 
-    if (response.status === 401) {
+    if (response.status === 200) {
 
       history.push('/user/signin')
-
-    }
+    } 
+    //  else {
+    //   history.push('/user/signin')
+    // }
   }
 
 

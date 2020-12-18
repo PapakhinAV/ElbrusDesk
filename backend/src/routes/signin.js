@@ -10,6 +10,7 @@ router
   .post(
     passport.authenticate('local'),
     function (req, res) {
+      // console.log(req.user);
       res.sendStatus(200);
     });
 
