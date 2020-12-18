@@ -1,8 +1,8 @@
 import * as TYPES from '../types/notes';
 
-const TechNewsReducer = (state = [], action) => {
+const GroupsReducer = (state = '', action) => {
   switch (action.type) {
-    case TYPES.ADD_NEWS:
+    case TYPES.ADD_GROUPS:
       return (action.payload);
 
     default:
@@ -10,4 +10,4 @@ const TechNewsReducer = (state = [], action) => {
   }
 };
 
-export default TechNewsReducer;
+export default GroupsReducer;
