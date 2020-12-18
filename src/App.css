@@ -2,11 +2,22 @@
 @import url('./fonts/RF-Rostin-Light.ttf'); */
 
 @font-face{font-family:'RF Rostin'; src:url('./fonts/RF-Rostin-Regular.ttf')}
+@font-face{font-family:'RF Rostin Bold'; src:url('./fonts/RF-Rostin-Bold.ttf')}
+@font-face{font-family:'RF Rostin Light'; src:url('./fonts/RF-Rostin-Light.ttf')}
 
 body{
-  font-family: 'RF Rostin', sans-serif!important;
+  font-family: 'RF Rostin Light', sans-serif!important;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RF Rostin Bold', sans-serif!important;
 
+}
 
+.blueSymbols {
+  color: #00EDFF;
+}
 
+.req span {
+  color: #ffbc5b;
+}
