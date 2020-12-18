@@ -7,6 +7,7 @@ const initState = {
 		dateEnd: ''
 	}],
 users: [{
+githubId: '',
 stydyGroup: [],
 social: [],	
 workPlace: [],

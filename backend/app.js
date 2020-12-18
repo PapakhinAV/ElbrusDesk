@@ -148,18 +148,17 @@ app.get('*', (req, res) => {
 
 
 app.get('/groupslist', async (req, res) => {
-  const groupList = await GroupList.find()
+	console.log("Handle grouplist");
+	const groupList = await GroupList.find()
+	console.log(groupList);
   return res.json(groupList)
 })
 
  
  app.get('/students_list_in_group/:id', async (req, res)=>{
 	 let idGroup = req.params.id
-	 console.log(idGroup);
-	 
 	 if(idGroup){
 		 const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
-		 console.log(listOfPeopleInGroup);
 		 return res.status(200).json(listOfPeopleInGroup)
 	 }
 	 return res.sendStatus(406)
