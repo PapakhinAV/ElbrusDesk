@@ -1,22 +1,38 @@
 import * as TYPES from '../types/notes';
-import axios from "axios"
+export const TechNewsReducer = (array) => ({
 
-export const TechNewsReducer = (text) => ({
   type: TYPES.ADD_NEWS,
-  payload: text,
+  payload: array,
 });
 
 export const ParceNews = () => async (dispatch, getState) => {
   console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
-  // const response = await fetch("http://localhost:3000/parthNews", { method: "GET", credentials: "include" })
-  // const result = await response.json();
-  // console.log(result);
-
-
-
-  //  axios('https://3dnews.ru/news');
-  //  const result = response.data;
-  // console.log(result);
-  // dispatch(TechNewsReducer(result))
+  const response = await fetch("http://localhost:3000/parthNews")
+  const result = await response.json();
+  dispatch(TechNewsReducer(result))
 };
 
+
+//for loadGropuList
+export const LoadGroups = (list) => ({
+  type: TYPES.ADD_GROUPS,
+  payload: list,
+})
+
+export const LoadGroupsFromBack = () => (dispatch, getState) => {
+  fetch(`${process.env.REACT_APP_URL}/groupslist`)
+    .then(res => res.json())
+    .then(data => dispatch(LoadGroups(data)))
+}
+
+//for usersList in group
+export const LoadUsersInGroup = (listUsers) => ({
+	type: TYPES.ADD_USERS_LIST,
+  payload: listUsers,
+})
+
+export const LoadUsersFromBack = (id) => (dispatch, getState) => {
+fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+.then(res=> res.json())
+.then(data=> dispatch(LoadUsersInGroup(data)))
+}
