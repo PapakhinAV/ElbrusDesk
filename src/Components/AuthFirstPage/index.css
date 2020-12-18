@@ -25,6 +25,7 @@ height: 50vh;
   justify-content: center;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .bgImg {
