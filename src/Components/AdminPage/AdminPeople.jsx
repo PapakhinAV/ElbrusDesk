@@ -1,8 +1,23 @@
-const AdminPeople = ({ element }) => {
+import style from './index.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from "../../Redux/actions/notes";
+
+
+const AdminPeople = ({ element, setCounter }) => {
+  const dispatch = useDispatch();
+
+  function deletePeople(id) {
+    dispatch(deleteUser(id))
+    setCounter((prev) => prev++)
+
+  }
+
   return (
-    <div>
-      <p>{element.firstname}</p>
-      <button>кнопка</button>
+    <div className={style.people}>
+      <div className={style.peopleNames}>
+        <p>{element.firstname} {element.surname && element.surname}</p>
+      </div>
+      <button type="button" onClick={() => { deletePeople(element._id) }}>Delete</button>
     </div>
   );
 }
