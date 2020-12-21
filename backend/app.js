@@ -128,7 +128,7 @@ app.get('/auth/google/callback',
     res.redirect(`/Home/${req.user.id}`)
   });
 
-app.get('/logout', function (req, res) {
+app.delete('/logout', function (req, res) {
   req.logout();
   res.sendStatus(200);
 });
@@ -162,16 +162,16 @@ app.get("/parthNews", async (req, res) => {
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
   res.json(newAllDada)
-
 })
 
 //получаем данные для профиля
-app.get('/Homee/:id', async (req, res) => {
+// Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
+app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
     console.log(infoUser, '>>>>>>>>>>>>');
-    return res.status(200).json(infoUser[0])
+    return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
 })
