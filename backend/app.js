@@ -116,6 +116,18 @@ app.get('/auth/github/callback',
     res.redirect(`/Home/${req.user.id}`)
   });
 
+  app.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile']
+  }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google'), function (req, res) {
+    // res.json({id: req.user.id})
+    console.log(req.user.id);
+    res.redirect(`/Home/${req.user.id}`)
+  });
+
 app.get('/logout', function (req, res) {
   req.logout();
   res.sendStatus(200);

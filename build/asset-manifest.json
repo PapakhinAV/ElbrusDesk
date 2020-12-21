@@ -1,5 +1,6 @@
 {
   "files": {
+
     "main.css": "/static/css/main.d16c7bc5.chunk.css",
     "main.js": "/static/js/main.213e9a4b.chunk.js",
     "main.js.map": "/static/js/main.213e9a4b.chunk.js.map",
@@ -10,6 +11,7 @@
     "index.html": "/index.html",
     "static/css/main.d16c7bc5.chunk.css.map": "/static/css/main.d16c7bc5.chunk.css.map",
     "static/js/2.ced7b17f.chunk.js.LICENSE.txt": "/static/js/2.ced7b17f.chunk.js.LICENSE.txt",
+
     "static/media/EBD.cb50a73e.svg": "/static/media/EBD.cb50a73e.svg",
     "static/media/App.css": "/static/media/RF-Rostin-Regular.44d99dd3.ttf",
     "static/media/index.css": "/static/media/signup-bg.2d71b7c2.jpg",
@@ -22,9 +24,10 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8b9ff198.js",
-    "static/js/2.ced7b17f.chunk.js",
-    "static/css/main.d16c7bc5.chunk.css",
-    "static/js/main.213e9a4b.chunk.js"
+    "static/js/2.f656fbd2.chunk.js",
+    "static/css/main.3a58ca7b.chunk.css",
+    "static/js/main.4b6a21fc.chunk.js"
+
   ]
 }
 
