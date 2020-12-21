@@ -42,13 +42,7 @@ const SignIn = () => {
     });
     const result = await response.json()
     if (response.status === 200) {
-      setYes(true)
-      setError('Вы успешно зарегистрированы!')
-      return (
-        setTimeout(() => {
-          history.push(`/Home/${result}`)
-        }, 1000)
-      )
+      history.push(`/Home/${result}`)
     }
     return setError('Повторите вход')
   }
@@ -58,7 +52,7 @@ const SignIn = () => {
       ...inputs, [name]: value,
     })
   }
-  console.log(error);
+  // console.log(error);
 
   const { email, password } = inputs;
 
