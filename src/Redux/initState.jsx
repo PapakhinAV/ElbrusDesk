@@ -2,13 +2,10 @@
 // const initState = {
 // };
 
-
-
-
-
 const initialState = () => {
   const initialValue = {
     news: [],
+    posts: [],
     groups: [{
       name: '',
       city: '',

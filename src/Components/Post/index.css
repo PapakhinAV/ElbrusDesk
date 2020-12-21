@@ -89,3 +89,14 @@
   align-items: center;
   cursor: pointer;
 }
+
+.UserPostTitle {
+  padding-bottom: 0!important;
+  margin-bottom: 0!important;
+  color: #4520ab;
+  font-family:'RF Rostin Bold';
+}
+
+.UserPostText {
+  padding-bottom: 0!important;
+}

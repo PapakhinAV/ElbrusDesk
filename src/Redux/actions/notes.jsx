@@ -15,6 +15,7 @@ export const ParceNews = () => async (dispatch, getState) => {
 };
 
 
+
 //for loadGropuList
 export const LoadGroups = (list) => ({
   type: TYPES.ADD_GROUPS,
@@ -43,4 +44,19 @@ export const LoadUsersFromBack = (id) => (dispatch, getState) => {
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
   payload: id
+})
+
+
+
+
+
+export const UserPosts = () => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
+  const result = await response.json();
+  dispatch(UserPostsReducer(result))
+};
+
+export const UserPostsReducer = (posts) => ({
+  type: TYPES.ADD_POST,
+  payload: posts,
 })

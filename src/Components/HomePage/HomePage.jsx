@@ -11,16 +11,16 @@ import { AddUserID } from '../../Redux/actions/notes';
 
 
 const HomePage = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const params = useParams()
-  console.log(params);
-  useEffect(() => {
-    (() => {
-      dispatch(AddUserID(params.id))
+  // const params = useParams()
+  // console.log(params);
+  // useEffect(() => {
+  //   (() => {
+  //     dispatch(AddUserID(params.id))
 
-    })()
-  }, [])
+  //   })()
+  // }, [])
   return (
       <div className="userMainBlock">
         <div className="userWrap">
