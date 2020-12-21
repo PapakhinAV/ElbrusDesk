@@ -13,26 +13,35 @@ const AdminPage = () => {
 
   const [counter, setCounter] = useState(0)
 
+
+
+  // useEffect(() => {
+  //   (() => {
+
+  //     dispatch(AddInfoForAdmin())
+
+  //   })()
+  // }, [])
+
   useEffect(() => {
     (() => {
-      console.log(counter);
       dispatch(AddInfoForAdmin())
     })()
-  }, [counter])
+  }, [])
 
+  // console.log(counter);
   const store = useSelector((state) => state.adminInfo);
   const allUsers = store.users
   const allGroups = store.groups
 
 
   return (
-
     <div className={style.mainBlock}>
 
       <div className={style.peopleBlock}>
         <div className={style.headBlock}>
         </div>
-        {allUsers.map((element) => <AdminPeople element={element} setCounter={setCounter} />)}
+        {allUsers && allUsers.map((element) => <AdminPeople element={element} setCounter={setCounter} />)}
       </div>
       <div className={style.groupsBlock}>
         <div className={style.headBlock}>
@@ -40,7 +49,7 @@ const AdminPage = () => {
             <button type="button">+ Добавить новую группу</button>
           </div>
         </div>
-        {allGroups.map((element) => <AdminGroups element={element} />)}
+        {allGroups && allGroups.map((element) => <AdminGroups element={element} />)}
       </div>
     </div>
 

@@ -10,24 +10,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddUserID, AddUserInfo } from '../../Redux/actions/notes';
 
 
-
-
 const HomePage = () => {
-
-
-
-
-
-
   const dispatch = useDispatch()
   const params = useParams()
-  console.log(params);
+
   useEffect(() => {
     (() => {
       dispatch(AddUserID(params.id))
-      dispatch(AddUserInfo((params.id)))
+      dispatch(AddUserInfo(params.id))
     })()
   }, [])
+
   const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
   const userInfo = useSelector(state => state.userInfo)
   console.log(userInfo);
@@ -36,7 +29,7 @@ const HomePage = () => {
     <div className="userMainBlock">
       <div className="userWrap">
         <div className="leftColumn">
-          {/* <div className="fotoBlock"><img src={userInfo[0].avatar ? userInfo[0].avatar : foto} alt="userPhoto" /></div> */}
+          <div className="fotoBlock"><img src={userInfo[0].avatar ? userInfo[0].avatar : foto} alt="userPhoto" /></div>
           <div className="userName">
             {
               userInfo.length &&

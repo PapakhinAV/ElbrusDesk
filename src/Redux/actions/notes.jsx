@@ -51,8 +51,6 @@ export const AddUserID = (id) => ({
 
 
 
-
-
 export const UserPosts = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
   const result = await response.json();
@@ -77,7 +75,6 @@ export const AddInfoForAdmin = () => async (dispatch, getState) => {
   console.log(result);
   dispatch(AdminInfoReducer(result))
 }
-
 
 
 

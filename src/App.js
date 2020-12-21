@@ -28,6 +28,9 @@ function App() {
           <Route exact path="/">
             <AuthFirstPage />
           </Route>
+          <Route path="/Home/:id">
+            <HomePage />
+          </Route>
           <Route path="/SignUp">
             <RegPage />
           </Route>
@@ -52,9 +55,6 @@ function App() {
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          {<Route path="/Home/:id">
-            <HomePage />
-          </Route>}
           <Route path="/">
             <Redirect to="/" />
           </Route>
