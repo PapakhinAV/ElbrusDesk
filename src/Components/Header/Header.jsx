@@ -17,6 +17,7 @@ const Header = () => {
             <NavLink activeStyle={{color: "#ffbc5b"}} to="/TechNews">Tech.News</NavLink>
           </nav>
         </div>
+
       </div>
     </>
 

@@ -10,11 +10,15 @@ import ModalAuth from '../ModalAuth/ModalAuth';
 const AuthFirstPage = () => {
   
 const github = ()=>{
-  console.log('>>>>>>');
+  console.log('>>>>>>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>');
   fetch("http://localhost:3000/auth/github", 
   {
     method: 'GET',
-    credentials: 'include'
+    credentials: 'include',
+    headers: {
+
+      'Access-Control-Allow-Origin': 'http://localhost:3000/auth/github/callback',
+    }
   }
   )
   .then(res=>res.json())
@@ -42,6 +46,7 @@ const github = ()=>{
               <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
           <ModalAuth />
           {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */}
+
             </div>
           </div>
         </div>

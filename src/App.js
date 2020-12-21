@@ -38,11 +38,15 @@ function App() {
           <Route path="/groupslist">
             <GroupsList />
           </Route>
-          <Route path="/students_list_in_group">
+
+          <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          <Route path="/Home">
+          <Route path="/Home/:id">
             <HomePage />
+          </Route>
+          <Route path="/">
+            <Redirect to="/" />
           </Route>
           <Route path="/Edit">
             <EditProfile />
