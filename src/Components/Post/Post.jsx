@@ -1,10 +1,26 @@
+import DragFilesPreview from '../DragFilesPreview/DragFilesPreview';
 import './index.css';
 
 const Post = () => {
   return (
     <>
-      <textarea placeholder="Что у вас нового?" name="" id="" cols="75" rows="5"></textarea>
-      <button>ADD</button>
+      <div className="userPostForm">
+        <div className="formWrap">
+        <form className="postForm">
+          <div className="mb-3">
+            <input type="text" className="postTitle" placeholder="Заголовок" />
+          </div>
+          <div className="mb-3">
+            <textarea className="postText" rows="3" placeholder="Хочу рассказать..." />
+          </div>
+          <div className="mb-3 postButtons">
+            {/* <input className="formFiles" type="file" id="formFile" multiple="multiple" /> */}
+            <DragFilesPreview />
+            <button type="submit" className="purpleButton">ПОДЕЛИТЬСЯ</button>
+          </div>
+        </form>
+        </div>
+      </div>
     </>
   );
 }

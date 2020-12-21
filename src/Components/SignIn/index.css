@@ -2,9 +2,6 @@
   display: flex;
   justify-content: center;
 }
-.button{
-  width: 50%;
-}
 
 input {
   background: none;
@@ -15,15 +12,7 @@ input {
   padding: 10px;
   color: #fff;
   outline: none;
-}
-
-.yellowButton {
-  background-color: #ffbc5b;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  color: #4520AB;
-  font-family: 'RF Rostin';
+  margin: 10px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
