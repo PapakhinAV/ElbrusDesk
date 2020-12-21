@@ -34,7 +34,6 @@ const AdminPage = () => {
   const allUsers = store.users
   const allGroups = store.groups
 
-
   return (
     <div className={style.mainBlock}>
 
