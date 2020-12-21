@@ -184,6 +184,14 @@ app.get("/AddInfoForAdmin", async (req, res) => {
   res.json(dataForAdmin)
 })
 
+//Удаление пользователя
+app.get("/deleteUser/:id", async (req, res) => {
+  const id = req.params.id
+  console.log("fetch!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id);
+  await User.findByIdAndDelete(id)
+  res.sendStatus(200)
+})
+
 
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');

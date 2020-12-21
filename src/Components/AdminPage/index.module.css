@@ -22,3 +22,31 @@ margin: 0 1vw;
   border: 1px solid black;
 color: blanchedalmond;
 }
+.people{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  }
+.peopleNames{
+  width: 60%;
+}
+.groupMain{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+   margin: 5px;
+   border-radius: 20px;
+   padding: 10px;
+}
+.groupsNames{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+.groupsFirstColumn{
+  width: 35%;
+}
+.buttonBlock{
+  display: flex;
+  flex-direction: column;
+}
