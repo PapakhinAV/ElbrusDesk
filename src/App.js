@@ -11,9 +11,12 @@ import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 
 import EditProfile from './Components/EditProfile/Profile';
+
 import Wall from './Components/Wall/Wall';
-// import YanMap from './Components/Map/Map';
-// import Footer from './Components/Footer/Footer';
+import YanMap from './Components/Map/Map';
+import Footer from './Components/Footer/Footer';
+import AdminPage from './Components/AdminPage/AdminPage';
+
 // import Footer from './Components/Footer/Footer';
 
 
@@ -29,6 +32,12 @@ function App() {
           </Route>
           <Route path="/SignUp">
             <RegPage />
+          </Route>
+          <Route path="/SignUp">
+            <RegPage />
+          </Route>
+          <Route path="/AdminPage">
+            <AdminPage />
           </Route>
           <Route path="/TechNews">
             <TechNewsPage />

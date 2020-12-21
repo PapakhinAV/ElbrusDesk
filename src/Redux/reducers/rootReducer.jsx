@@ -4,6 +4,8 @@ import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';
 import UserPostsReducer from './UserPostsReducer';
+import InforForAdminReducer from './InforForAdminReducer';
+import AddUserInfoReducer from './AddUserInfoReducer';
 
 
 const rootReducer = combineReducers({
@@ -12,6 +14,9 @@ const rootReducer = combineReducers({
   users: UsersListReducer,
   id: AddUserIDReduser,
   posts: UserPostsReducer,
+	adminInfo: InforForAdminReducer,
+	userInfo: AddUserInfoReducer,
+
 });
 
 export default rootReducer;
