@@ -1,12 +1,11 @@
 import './index.css';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { AddUserID } from '../../Redux/actions/notes';
+import { useSelector } from 'react-redux';
 
 const SignIn = () => {
 
-  const dispatch = useDispatch()
+  const store = useSelector(store => store.id)
 
   const history = useHistory();
   useEffect(() => {
@@ -16,7 +15,7 @@ const SignIn = () => {
         credentials: 'include'
       })
       if (res.status === 401) {
-        history.push('/Home')
+        history.push(`/Home/${store}`)
       }
     })()
   }, [])
@@ -43,12 +42,11 @@ const SignIn = () => {
     });
     const result = await response.json()
     if (response.status === 200) {
-      dispatch(AddUserID(result))
       setYes(true)
       setError('Вы успешно зарегистрированы!')
       return (
         setTimeout(() => {
-          history.push('/Home')
+          history.push(`/Home/${result}`)
         }, 1000)
       )
     }
@@ -67,25 +65,25 @@ const SignIn = () => {
   return (
     <>
 
-    { 
-    !yes ?
-    <form onSubmit={handlerSubmit}>
-      <div className="mb-3">
-        {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
-        <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*"/>
-      </div>
-      <div className="mb-3">
-        {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
-        <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*"/>
-      </div>
-        <div className="req"><span>*</span>Поля обязательные для заполнения</div>
-      <div className="submBut">
-        <button type="submit" className="yellowButton">Войти</button>
-      </div>
-      <div className="reqBLue">Ещё не зарегистрированы?</div>
-    </form> : <div>{error}</div>
-  }
-  </>
+      {
+        !yes ?
+          <form onSubmit={handlerSubmit}>
+            <div className="mb-3">
+              {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+              <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
+            </div>
+            <div className="mb-3">
+              {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+              <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
+            </div>
+            <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+            <div className="submBut">
+              <button type="submit" className="yellowButton">Войти</button>
+            </div>
+            <div className="reqBLue">Ещё не зарегистрированы?</div>
+          </form> : <div>{error}</div>
+      }
+    </>
 
   );
 }
