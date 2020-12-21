@@ -6,6 +6,10 @@ width: 1310px;
 display: flex;
 align-items: center;
 }
+.regMain {
+  display: flex;
+  align-items: center;
+  }
 .signInForm {
 display: flex;
 flex-direction: column;

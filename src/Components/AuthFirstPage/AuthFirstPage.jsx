@@ -6,22 +6,6 @@ import Git from '../img/git-icon.svg'
 
 
 const AuthFirstPage = () => {
-  
-const github = ()=>{
-  console.log('>>>>>>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>');
-  fetch("http://localhost:3000/auth/github", 
-  {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-
-      'Access-Control-Allow-Origin': 'http://localhost:3000/auth/github/callback',
-    }
-  }
-  )
-  .then(res=>res.json())
-  .then(data=>console.log(data))
-}
 
   return (
     <div className="wrapper">
@@ -43,9 +27,14 @@ const github = ()=>{
                 
               </div>
               <Link className="signUpButton" to="/SignUp">Создать аккаунт</Link>
-              {/* <button onClick={github} type="button" class="btn btn-primary"><img src={Git} alt="git-icon"/></button> */}
-
-          <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a>
+<div className="regMain">
+  <div>
+  <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a>
+  </div>
+  <div>
+  <a href="http://localhost:3000/auth/google"><img src={Git} alt="git-icon"/></a>
+  </div>
+</div>
             </div>
           </div>
 
