@@ -23,9 +23,9 @@ const UserMenu = () => {
         <button className="logoutButton">ВЫЙТИ</button>
       </div>
       <hr />
-      <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel && userInfo[0].tel}</p>
-      <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email && userInfo[0].email}</p>
-      <p><strong className="purpleColor">Город: </strong>{userInfo[0].city && userInfo[0].city}</p>
+      <p><strong className="purpleColor">Телефон: </strong>{userInfo[0] && (userInfo[0].tel && userInfo[0].tel)}</p>
+      <p><strong className="purpleColor">Почта: </strong>{userInfo[0] && (userInfo[0].email && userInfo[0].email)}</p>
+      <p><strong className="purpleColor">Город: </strong>{userInfo[0] && (userInfo[0].city && userInfo[0].city)}</p>
       <br />
       <ul>
         <li><img className="social" src={linkedin} alt="linkedin" /></li>
@@ -36,7 +36,7 @@ const UserMenu = () => {
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
         {
-          userInfo[0].stydyGroup.length ? userInfo[0].stydyGroup.map((el) => (
+          (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
             <li key={el._id}>{el.name}</li>
           )) :
             <li >Добавьте группу в которой учились</li>

@@ -31,17 +31,17 @@ const AuthFirstPage = () => {
               <Link className="signUpButton" to="/SignUp">Создать аккаунт</Link>
               <div className="regMain">
 
-              <div>
-              <a href="http://localhost:3000/auth/google"><img src={Google} alt="git-icon"/></a>
+                <div>
+                  <a href="http://localhost:3000/auth/google"><img src={Google} alt="git-icon" /></a>
+                </div>
+                <div>
+                  <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon" /></a>
+                </div>
               </div>
-              <div>
-              <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a>
-              </div>
-            </div>
 
-<Link className="signButton" to="/SignUp">Создать аккаунт</Link>
-          <ModalAuth />
-          {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */} -->
+              <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
+              {/* <ModalAuth /> */}
+              {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */}
             </div>
           </div>
         </div>

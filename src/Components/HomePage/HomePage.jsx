@@ -29,7 +29,7 @@ const HomePage = () => {
     <div className="userMainBlock">
       <div className="userWrap">
         <div className="leftColumn">
-          <div className="fotoBlock"><img src={userInfo[0].avatar ? userInfo[0].avatar : foto} alt="userPhoto" /></div>
+          <div className="fotoBlock"><img src={(userInfo[0] && userInfo[0].avatar) ? userInfo[0].avatar : foto} alt="userPhoto" /></div>
           <div className="userName">
             {
               userInfo.length &&
