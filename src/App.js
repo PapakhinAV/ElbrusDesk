@@ -11,6 +11,8 @@ import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 
 import EditProfile from './Components/EditProfile/Profile';
+
+import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
@@ -50,18 +52,24 @@ function App() {
           <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          <Route path="/Home/:id">
+          {/* <Route path="/Home/:id">
+            <HomePage />
+          </Route> */}
+          <Route path="/Home/">
             <HomePage />
           </Route>
           <Route path="/">
             <Redirect to="/" />
           </Route>
-          <Route path="/Edit">
+          <Route path="/Edit:id">
             <EditProfile />
           </Route>
-          <Route path="/Map">
-            <YanMap />
+          <Route path="/postlist">
+            <Wall />
           </Route>
+          {/* <Route path="/Map">
+            <YanMap />
+          </Route> */}
           {/* <Route path="/">
             <Redirect to="/" />
           </Route> */}

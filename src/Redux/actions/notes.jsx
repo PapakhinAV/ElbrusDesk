@@ -18,6 +18,7 @@ export const ParceNews = () => async (dispatch, getState) => {
 };
 
 
+
 //for loadGropuList
 export const LoadGroups = (list) => ({
   type: TYPES.ADD_GROUPS,
@@ -48,6 +49,20 @@ export const AddUserID = (id) => ({
   payload: id
 })
 
+
+
+
+
+export const UserPosts = () => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
+  const result = await response.json();
+  dispatch(UserPostsReducer(result))
+};
+
+export const UserPostsReducer = (posts) => ({
+  type: TYPES.ADD_POST,
+  payload: posts,
+})
 
 //добавление информации для администратора
 
@@ -91,3 +106,4 @@ export const AddUserInfo = (id) => (dispatch, getState) => {
     .then(data => dispatch(LoadUserInfo(data)))
 
 }
+

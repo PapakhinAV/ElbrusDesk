@@ -8,6 +8,7 @@ import passport from 'passport';
 import path from 'path'
 
 import GroupList from './src/models/groupList.js'
+import PostList from './src/models/postList.js'
 import User from './src/models/user.module.js'
 
 //Для парсинга новостей
@@ -125,11 +126,10 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
-app.get('/groupslist', async (req, res) => {
-	console.log("Handle grouplist");
-	const groupList = await GroupList.find()
-	console.log(groupList);
-  return res.json(groupList)
+
+app.get('/postlist', async (req, res) => {
+  const postList = await PostList.find()
+  return res.json(postList)
 })
 
 app.get("/parthNews", async (req, res) => {
