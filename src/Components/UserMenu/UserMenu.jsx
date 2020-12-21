@@ -17,7 +17,7 @@ const userInfo = useSelector(state=>state.userInfo);
   return (
     <div className="userMenu">
       <div className="userButtons">
-        <Link to="/Edit">
+        <Link to="/:id/Edit">
       <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
       </Link>
       <button className="logoutButton">ВЫЙТИ</button>

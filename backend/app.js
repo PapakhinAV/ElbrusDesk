@@ -169,7 +169,7 @@ app.get('/Home/:id', async (req, res) => {
  app.get('/students_list_in_group/:id', async (req, res)=>{
 	 let idGroup = req.params.id
 	 if(idGroup){
-		 const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
+		 const listOfPeopleInGroup = await User.find({stydyGroup: idGroup}).populate('stydyGroup')
 		 return res.status(200).json(listOfPeopleInGroup)
 	 }
 	 return res.sendStatus(406)
