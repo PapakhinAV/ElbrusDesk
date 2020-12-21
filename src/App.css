@@ -1,5 +1,8 @@
 /* @import url('./fonts/RF-Rostin-Bold.ttf');
 @import url('./fonts/RF-Rostin-Light.ttf'); */
+button {
+  outline: none;
+}
 
 @font-face{font-family:'RF Rostin'; src:url('./fonts/RF-Rostin-Regular.ttf')}
 @font-face{font-family:'RF Rostin Bold'; src:url('./fonts/RF-Rostin-Bold.ttf')}
@@ -7,17 +10,169 @@
 
 body{
   font-family: 'RF Rostin Light', sans-serif!important;
+  font-size:18px;
+  background-color: #4520AB;
+}
+
+p {
+  margin-bottom: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'RF Rostin Bold', sans-serif!important;
+}
 
+strong {
+  font-family: 'RF Rostin Bold', sans-serif!important;
+}
+
+/* p {} */
+
+.blockWrapper {
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 50px 0;
+  background-color: #E6E6E6;
 }
 
 .blueSymbols {
   color: #00EDFF;
 }
 
+.yellowSymbols {
+  color: #ffbc5b;
+}
+
 .req span {
   color: #ffbc5b;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d2d1d1;
+  /* border-radius: 5px; */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background-color:  #aaaaaa; 
+  border: 2px solid #d2d1d1;
+  height: 100px;
+}
+
+.footer {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p{
+  color: #ffbc5b;
+  margin: 0;
+}
+
+.signButton {
+  color: #ffbc5b;
+  border-radius: 5px;
+  border: solid 1px #ffbc5b;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  outline: none!important;
+  box-shadow: none;
+  background-color: none;
+}
+
+
+/* 
+.signSocialButton {
+  color: #ffbc5b;
+  border-radius: 5px;
+  border: solid 1px #ffbc5b;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  outline: none!important;
+  box-shadow: none;
+} */
+
+
+.signButton:hover {
+  border: solid 1px #4520AB;
+  font-family: 'RF Rostin';
+  box-shadow: none;
+
+  color: #4520AB;
+  background: #00EDFF;
+  text-decoration: none;
+  /* box-shadow: 0px 0px 15px #ffbc5b24; */
+  outline: none!important;
+}
+
+
+.yellowButton {
+  background-color: #ffbc5b;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #4520AB;
+  font-family: 'RF Rostin';
+}
+
+.yellowButton:hover {
+  box-shadow: 0 0 20px #ffbc5b;
+  transition: box-shadow 1s ease-in-out;
+}
+
+
+.purpleButton {
+  background-color: #4520AB;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #ffbc5b;
+  font-family: 'RF Rostin';
+  outline: none;
+  box-shadow: none;
+
+}
+
+.logoutButton {
+  background-color: #ffbc5b;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #4520AB;
+  font-family: 'RF Rostin';
+  outline: none;
+}
+
+#firstButton {
+  margin-right: 15px;
+}
+
+.purpleColor {
+  color: #4520AB;
+}
+
+.animals {
+  height: 50px;
+  
+}
+
+input {
+  outline: none;
+}
+
+button.close {
+  outline: none;
+}
+
+.btn.focus, .btn:focus {
+  box-shadow: none;
 }

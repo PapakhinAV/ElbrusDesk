@@ -1,20 +1,23 @@
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import Logo from '../img/EBD.svg'
 
 const Header = () => {
   return (
     <>
       <div className="mainBlock">
-        <nav className="header">
-          <Link to="/">Temp link</Link>
-          <Link to="/Home">Temp Home</Link>
-          <Link to="/Project">О проекте</Link>
-          <Link to="/">Выпускники</Link>
-          <Link to="/TechNews">Тех новости</Link>
-          <Link to="/groupslist">Группы</Link>
-        </nav>
+        <div className="menuWrap">
+          <div className="menuLogoBlock"><Link to="/"><img className="logoMenu" src={Logo} alt="logoMenu" /></Link></div>
+          <nav className="header">
+            {/* <NavLink activeStyle={{color: "#ffbc5b"}} to="/">Temp NavLink</NavLink> */}
+            <NavLink activeStyle={{color: "#ffbc5b"}} to="/Home">Моя страница</NavLink>
+            <NavLink activeStyle={{color: "#ffbc5b"}} to="/Project">О проекте</NavLink>
+            {/* <NavLink activeStyle={{color: "#ffbc5b"}} to="/">Выпускники</NavLink> */}
+            <NavLink activeStyle={{color: "#ffbc5b"}} to="/groupslist">Эльбрусовцы</NavLink>
+            <NavLink activeStyle={{color: "#ffbc5b"}} to="/TechNews">Tech.News</NavLink>
+          </nav>
+        </div>
       </div>
-      <hr />
     </>
 
   );
