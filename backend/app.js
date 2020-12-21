@@ -112,7 +112,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-
+console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -124,7 +124,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google'), function (req, res) {
     // res.json({id: req.user.id})
-    console.log(req.user.id);
+    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -166,12 +166,12 @@ app.get("/parthNews", async (req, res) => {
 })
 
 //получаем данные для профиля
-app.get('/Home/:id', async (req, res) => {
+app.get('/Homee/:id', async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    console.log(infoUser);
-    return res.status(200).json(infoUser)
+    console.log(infoUser, '>>>>>>>>>>>>');
+    return res.status(200).json(infoUser[0])
   }
   return res.sendStatus(406)
 })
