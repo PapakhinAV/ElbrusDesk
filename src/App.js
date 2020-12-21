@@ -28,6 +28,9 @@ function App() {
           <Route exact path="/">
             <AuthFirstPage />
           </Route>
+          <Route path="/Home/:id">
+            <HomePage />
+          </Route>
           <Route path="/SignUp">
             <RegPage />
           </Route>
@@ -49,23 +52,20 @@ function App() {
           <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          	 <Route exact path="/Edit/:id">
+          <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          {<Route path="/Home/:id">
-            <HomePage />
-          </Route>}
-				   <Route path="/">
+          <Route path="/">
             <Redirect to="/" />
           </Route>
           <Route path="/Map">
             <YanMap />
- </Route>
-                    <Route path="/postlist">
+          </Route>
+          <Route path="/postlist">
             <Wall />
 
           </Route>
-       
+
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}

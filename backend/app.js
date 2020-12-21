@@ -116,7 +116,7 @@ app.get('/auth/github/callback',
     res.redirect(`/Home/${req.user.id}`)
   });
 
-  app.get('/auth/google',
+app.get('/auth/google',
   passport.authenticate('google', {
     scope: ['profile']
   }));
@@ -164,7 +164,7 @@ app.get("/parthNews", async (req, res) => {
   res.json(newAllDada)
 
 })
- 
+
 //получаем данные для профиля
 app.get('/Home/:id', async (req, res) => {
   let idUser = req.params.id
@@ -176,20 +176,20 @@ app.get('/Home/:id', async (req, res) => {
   return res.sendStatus(406)
 })
 
-app.post('/:id/Edit', async (req, res)=>{
+app.post('/:id/Edit', async (req, res) => {
   let idUserEdit = req.params.id
-	let {firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk} = req.body
-	console.log(idUserEdit, firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk); 
+  let { firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk } = req.body
+  console.log(idUserEdit, firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk);
 })
- 
- app.get('/students_list_in_group/:id', async (req, res)=>{
-	 let idGroup = req.params.id
-	 if(idGroup){
-		 const listOfPeopleInGroup = await User.find({stydyGroup: idGroup}).populate('stydyGroup')
-		 return res.status(200).json(listOfPeopleInGroup)
-	 }
-	 return res.sendStatus(406)
- })
+
+app.get('/students_list_in_group/:id', async (req, res) => {
+  let idGroup = req.params.id
+  if (idGroup) {
+    const listOfPeopleInGroup = await User.find({ stydyGroup: idGroup }).populate('stydyGroup')
+    return res.status(200).json(listOfPeopleInGroup)
+  }
+  return res.sendStatus(406)
+})
 
 
 //запрос данных для администратора
