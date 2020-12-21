@@ -10,7 +10,7 @@ import GroupsList from './Components/GroupsList';
 import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 
-import EditProfile from './Components/EditProfile/Profile';
+import EditProfile from './Components/EditProfile';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
@@ -49,12 +49,13 @@ function App() {
           <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          <Route path="/Home/:id">
-            <HomePage />
-          </Route>
-					 <Route exact path="Home/:id/Edit">
+          	 <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
+					<Route path="/Home/:id">
+            <HomePage />
+          </Route>
+				
           <Route path="/">
             <Redirect to="/" />
           </Route>
