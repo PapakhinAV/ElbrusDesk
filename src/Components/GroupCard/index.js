@@ -26,9 +26,11 @@ function GroupCard({ groupList }) {
                   </div>
                   <div className="groupInfo">
                     <div>
-                      <h5 className="groupHeader">Орлы-2020</h5>
-                      <p className="city">Москва</p>
-                      <Link className="purpleButton" to={`/students_list_in_group/#`}>Подробнее</Link>
+                      <h5 className="groupHeader">{el.name}</h5>
+                      <p className="city">{el.city}</p>
+                      <p>{el.dateStart}</p>
+                      <p>{el.dateEnd}</p>
+                      <Link className="purpleButton" to={`/students_list_in_group/${el._id}`}>Подробнее</Link>
                     </div>
                   </div>
                 </div>

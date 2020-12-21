@@ -9,9 +9,7 @@ import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
 import GroupsList from './Components/GroupsList';
 import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
-
-import EditProfile from './Components/EditProfile/Profile';
-
+import EditProfile from './Components/EditProfile';
 import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
@@ -48,31 +46,26 @@ function App() {
           <Route path="/groupslist">
             <GroupsList />
           </Route>
-
           <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          {/* <Route path="/Home/:id">
-            <HomePage />
-          </Route> */}
-          <Route path="/Home/">
-            <HomePage />
-          </Route>
-          <Route path="/">
-            <Redirect to="/" />
-          </Route>
-          <Route path="/Edit:id">
+          	 <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/postlist">
-            <Wall />
-          </Route>
-          {/* <Route path="/Map">
-            <YanMap />
-          </Route> */}
-          {/* <Route path="/">
+          {<Route path="/Home/:id">
+            <HomePage />
+          </Route>}
+				   <Route path="/">
             <Redirect to="/" />
-          </Route> */}
+          </Route>
+          <Route path="/Map">
+            <YanMap />
+ </Route>
+                    <Route path="/postlist">
+            <Wall />
+
+          </Route>
+       
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}
