@@ -23,6 +23,7 @@ import fetch from "node-fetch";
 
 
 dotenv.config()
+
 const app = express();
 
 
@@ -124,6 +125,13 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
+app.get('/groupslist', async (req, res) => {
+	console.log("Handle grouplist");
+	const groupList = await GroupList.find()
+	console.log(groupList);
+  return res.json(groupList)
+})
+
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
   const result = response.data;
@@ -157,17 +165,16 @@ app.get('/Home/:id', async (req, res) => {
 })
 
 
-app.get('/students_list_in_group/:id', async (req, res) => {
-  let idGroup = req.params.id
-  console.log(idGroup);
+ 
+ app.get('/students_list_in_group/:id', async (req, res)=>{
+	 let idGroup = req.params.id
+	 if(idGroup){
+		 const listOfPeopleInGroup = await User.find({stydyGroup: [idGroup]})
+		 return res.status(200).json(listOfPeopleInGroup)
+	 }
+	 return res.sendStatus(406)
+ })
 
-  if (idGroup) {
-    const listOfPeopleInGroup = await User.find({ stydyGroup: [idGroup] })
-    console.log(listOfPeopleInGroup);
-    return res.status(200).json(listOfPeopleInGroup)
-  }
-  return res.sendStatus(406)
-})
 
 //запрос данных для администратора
 app.get("/AddInfoForAdmin", async (req, res) => {
