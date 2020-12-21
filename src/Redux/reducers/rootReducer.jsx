@@ -4,6 +4,7 @@ import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';
 import InforForAdminReducer from './InforForAdminReducer';
+import AddUserInfoReducer from './AddUserInfoReducer';
 
 
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   users: UsersListReducer,
   id: AddUserIDReduser,
-  adminInfo: InforForAdminReducer
+	adminInfo: InforForAdminReducer,
+	userInfo: AddUserInfoReducer,
 });
 
 export default rootReducer;
