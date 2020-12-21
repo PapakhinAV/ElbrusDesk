@@ -3,8 +3,10 @@ import * as TYPES from '../types/notes';
 // import dotenv from 'dotenv'
 // dotenv.config()
 
-export const TechNewsReducer = (array) => ({
 
+
+export const TechNewsReducer = (array) => ({
+	
   type: TYPES.ADD_NEWS,
   payload: array,
 });
@@ -64,7 +66,6 @@ export const AddInfoForAdmin = () => async (dispatch, getState) => {
 
 
 
-
 // Удаление пользователя
 export const deleteUserReducer = (id) => ({
   type: TYPES.DELETE_USER,
@@ -77,4 +78,16 @@ export const deleteUser = (id) => async (dispatch, getState) => {
   if (response.status === 200) {
     dispatch(deleteUserReducer(id))
   }
+}
+//добавление инфы юзера в профиль
+export const LoadUserInfo = (userInfo) => ({
+  type: TYPES.ADD_USER_INFO,
+  payload: userInfo,
+})
+
+export const AddUserInfo = (id) => (dispatch, getState) => {
+  fetch(`${process.env.REACT_APP_URL}/Home/${id}`)
+    .then(res => res.json())
+    .then(data => dispatch(LoadUserInfo(data)))
+
 }
