@@ -16,7 +16,7 @@ const Wall = () => {
   }, [])
 
   const store = useSelector((state) => state.posts);
-  console.log("store", store);
+  // console.log("store", store);
 
 
   return (
