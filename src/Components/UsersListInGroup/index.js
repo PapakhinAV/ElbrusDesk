@@ -18,32 +18,21 @@ useEffect(() => {
 }, [])
 
 const userOne = useSelector(state=> state.users)
-console.log(userOne);
+
+let nameOfGroup = userOne[0].stydyGroup.filter(el=> (el._id === id))
 
 	return (
 		<>
-    <div className="blockWrapper">
+    <div  className="blockWrapper">
       <div className="groupBody">
 
       <div className="groupHeader">
           <h1><span className="yellowSymbols">//</span> Эльбрусовцы <span className="yellowSymbols">//</span></h1>
         </div>
         <div className="groupHeader">
-          <h2>Волки <span className="yellowSymbols">?</span> 2020 <span className="yellowSymbols">:</span> Москва</h2>
+          <h2>{nameOfGroup[0].name} <span className="yellowSymbols">?</span>{nameOfGroup[0].dateEnd}<span className="yellowSymbols">:</span>{nameOfGroup[0].city}</h2>
         </div>
-
       <div className="groupListWrap">
-
-      
-
-
-        {/* <div key={el._id} className="card" style={{ width: '18rem' }}>
-          <div className="card-body">
-            <h5 className="card-title">{el.firstname}</h5>
-            <p className="card-text">{el.email}</p>
-          </div>
-					</div> */}
-
 		<div>
       {
         userOne && userOne.map(el=>(
@@ -55,7 +44,7 @@ console.log(userOne);
             </div>
             <div className="groupInfo">
               <div>
-              <Link to={`/students_list_in_group/`}><h5 className="userHeader">{el.firstname}</h5></Link>
+              <Link to={`/students_list_in_group/`}><h5 className="userHeader">{el.firstname + el.surname}</h5></Link>
               </div>
             </div>
           </div>
@@ -63,9 +52,7 @@ console.log(userOne);
 				))
 					}
 					</div>
-
 </div></div>
-
 </div>
     </>
 	)
