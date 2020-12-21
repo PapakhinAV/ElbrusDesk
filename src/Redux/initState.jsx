@@ -32,6 +32,7 @@ const initialState = () => {
       birthday: ''
     }],
     id: "",
+    adminInfo: {},
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }

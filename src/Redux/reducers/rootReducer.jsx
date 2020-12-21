@@ -3,6 +3,7 @@ import GroupsReducer from './grousReducer';
 import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';
+import InforForAdminReducer from './InforForAdminReducer';
 
 
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   users: UsersListReducer,
   id: AddUserIDReduser,
+  adminInfo: InforForAdminReducer
 });
 
 export default rootReducer;

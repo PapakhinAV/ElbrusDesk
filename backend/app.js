@@ -19,6 +19,9 @@ import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
 import fetch from "node-fetch";
+
+
+
 dotenv.config()
 const app = express();
 
@@ -154,6 +157,14 @@ app.get('/students_list_in_group/:id', async (req, res) => {
     return res.status(200).json(listOfPeopleInGroup)
   }
   return res.sendStatus(406)
+})
+
+//запрос данных для администратора
+app.get("/AddInfoForAdmin", async (req, res) => {
+  const allUsers = await User.find()
+  const allGroups = await GroupList.find()
+  const dataForAdmin = { users: allUsers, groups: allGroups }
+  res.json(dataForAdmin)
 })
 
 

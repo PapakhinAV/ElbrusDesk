@@ -44,3 +44,18 @@ export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
   payload: id
 })
+
+
+//добавление информации для администратора
+
+export const AdminInfoReducer = (object) => ({
+  type: TYPES.ADD_INFO_FOR_ADMIN,
+  payload: object,
+});
+
+
+export const AddInfoForAdmin = () => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
+  const result = await response.json()
+  dispatch(AdminInfoReducer(result))
+}
