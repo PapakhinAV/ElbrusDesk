@@ -1,52 +1,82 @@
-.MainBlock{
-  width: 80vw;
-  border: solid black 1px;
-  height: 80vh;
+.userMainBlock{
+  /* width: 100vw; */
+  background-color: #E6E6E6;
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  min-width: 1300px;
-  justify-content: space-between;
+  justify-content: center;
+  /* background: chartreuse; */
+  /* flex-direction: row; */
+  /* min-width: 1300px; */
+  /* justify-content: space-between; */
 }
+
+.userName {
+  padding: 25px;
+  text-align: center;
+}
+
+.userName h1 {
+  color: #4520AB;
+  
+}
+
+.userWrap {
+  width: 1310px;
+  display: flex;
+}
+
 .leftColumn{
-  border: solid black 1px;
-width: 30%;
-margin: 5px;
-display: flex;
-flex-direction: column;
-min-width: 255px;
-align-items: center;}
-.fotoBlock{
-  border: solid black 1px;
+  /* border: solid black 1px; */
+  width: 30%;
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+/* min-width: 255px; */
+  align-items: center;
+}
+
+.fotoBlock img{
+  /* border: solid black 1px; */
 height: 250px;
 width: 250px;
 margin-top: 5px;
+border-radius: 100%;
 }
 .userMenuBlock{
-  border: solid black 1px;
-  width: 95%;
-  height: 80%;
-  margin: 5px;
+  text-align: center;
 }
 .rightColumn{
-  border: solid black 1px;
+  /* border: solid black 1px; */
 width: 70%;
-margin: 5px;
+margin: 50px 0;
 display: flex;
 flex-direction: column;
-align-items: center;}
-.newPostBlock{
-  border: solid black 1px;
-  margin: 5px;
-  width: 98%;
-height: 160px;
-}
-.wallBlock{
-  border: solid black 1px;
-  width: 98%;
-  height: 98%;
-  margin: 5px;
+margin-left: 50px;
+/* align-items: center; */
 }
 
-body {
-  background-color: #fff;
+.rightColumn input {
+  margin: 0;
+  border: none;
+}
+
+.rightColumn textarea {
+  border: none;
+}
+
+.newPostBlock{
+  /* border: solid black 1px; */
+  margin-bottom: 50px;
+}
+.wallBlock{
+  /* border: solid black 1px; */
+  width: 100%;
+  height: 100%;
+  /* margin: 5px; */
+}
+
+.userPostForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

@@ -7,6 +7,7 @@ const UserSchema = mongoose.Schema({
   surname: String,
   email: String,
   password: String,
+  admin: Boolean,
   tel: String,
   stydyGroup: [{
     type: mongoose.Types.ObjectId,

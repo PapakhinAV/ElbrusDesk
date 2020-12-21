@@ -16,13 +16,16 @@ const TechNewsPage = () => {
     })()
   }, [])
   const store = useSelector((state) => state.news);
+  // const store = ['']
   console.log("store", store);
 
 
 
   return (
     <div className="newsPage">
-        
+      <div className="newsHeader">
+          <h1><span className="yellowSymbols">//</span> Tech.News <span className="yellowSymbols">//</span></h1>
+        </div>
       {store.map((element, index) => <TechNews index={index} key={element[0]} value={element} />)}
     </div>
   );

@@ -8,6 +8,7 @@ import passport from 'passport';
 import path from 'path'
 
 import GroupList from './src/models/groupList.js'
+import PostList from './src/models/postList.js'
 import User from './src/models/user.module.js'
 
 //Для парсинга новостей
@@ -19,7 +20,11 @@ import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
 import fetch from "node-fetch";
+
+
+
 dotenv.config()
+
 const app = express();
 
 
@@ -107,7 +112,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    // res.json({id: req.user.id})
+
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -133,6 +138,12 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
+
+app.get('/postlist', async (req, res) => {
+  const postList = await PostList.find()
+  return res.json(postList)
+})
+
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
   const result = response.data;
@@ -153,19 +164,48 @@ app.get("/parthNews", async (req, res) => {
   res.json(newAllDada)
 
 })
-
-
-
-app.get('/students_list_in_group/:id', async (req, res) => {
-  let idGroup = req.params.id
-  console.log(idGroup);
-
-  if (idGroup) {
-    const listOfPeopleInGroup = await User.find({ stydyGroup: [idGroup] })
-    console.log(listOfPeopleInGroup);
-    return res.status(200).json(listOfPeopleInGroup)
+ 
+//получаем данные для профиля
+app.get('/Home/:id', async (req, res) => {
+  let idUser = req.params.id
+  if (idUser) {
+    const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
+    console.log(infoUser);
+    return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
+})
+
+app.post('/:id/Edit', async (req, res)=>{
+  let idUserEdit = req.params.id
+	let {firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk} = req.body
+	console.log(idUserEdit, firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk); 
+})
+ 
+ app.get('/students_list_in_group/:id', async (req, res)=>{
+	 let idGroup = req.params.id
+	 if(idGroup){
+		 const listOfPeopleInGroup = await User.find({stydyGroup: idGroup}).populate('stydyGroup')
+		 return res.status(200).json(listOfPeopleInGroup)
+	 }
+	 return res.sendStatus(406)
+ })
+
+
+//запрос данных для администратора
+app.get("/AddInfoForAdmin", async (req, res) => {
+  const allUsers = await User.find()
+  const allGroups = await GroupList.find()
+  const dataForAdmin = { users: allUsers, groups: allGroups }
+  res.json(dataForAdmin)
+})
+
+//Удаление пользователя
+app.get("/deleteUser/:id", async (req, res) => {
+  const id = req.params.id
+  console.log("fetch!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id);
+  await User.findByIdAndDelete(id)
+  res.sendStatus(200)
 })
 
 
