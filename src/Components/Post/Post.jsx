@@ -1,7 +1,7 @@
 import DragFilesPreview from '../DragFilesPreview/DragFilesPreview';
 import './index.css';
 
-const Post = () => {
+const Post = ({ title, text, img }) => {
   return (
     <>
       <div className="userPostForm">

@@ -8,6 +8,7 @@ import passport from 'passport';
 import path from 'path'
 
 import GroupList from './src/models/groupList.js'
+import PostList from './src/models/postList.js'
 import User from './src/models/user.module.js'
 
 //Для парсинга новостей
@@ -115,6 +116,18 @@ app.get('/auth/github/callback',
     res.redirect(`/Home/${req.user.id}`)
   });
 
+  app.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile']
+  }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google'), function (req, res) {
+    // res.json({id: req.user.id})
+    console.log(req.user.id);
+    res.redirect(`/Home/${req.user.id}`)
+  });
+
 app.get('/logout', function (req, res) {
   req.logout();
   res.sendStatus(200);
@@ -125,11 +138,10 @@ app.get('/groupslist', async (req, res) => {
   return res.json(groupList)
 })
 
-app.get('/groupslist', async (req, res) => {
-	console.log("Handle grouplist");
-	const groupList = await GroupList.find()
-	console.log(groupList);
-  return res.json(groupList)
+
+app.get('/postlist', async (req, res) => {
+  const postList = await PostList.find()
+  return res.json(postList)
 })
 
 app.get("/parthNews", async (req, res) => {
@@ -186,6 +198,14 @@ app.get("/AddInfoForAdmin", async (req, res) => {
   const allGroups = await GroupList.find()
   const dataForAdmin = { users: allUsers, groups: allGroups }
   res.json(dataForAdmin)
+})
+
+//Удаление пользователя
+app.get("/deleteUser/:id", async (req, res) => {
+  const id = req.params.id
+  console.log("fetch!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id);
+  await User.findByIdAndDelete(id)
+  res.sendStatus(200)
 })
 
 
