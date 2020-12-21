@@ -6,7 +6,7 @@ import * as TYPES from '../types/notes';
 
 
 export const TechNewsReducer = (array) => ({
-	
+
   type: TYPES.ADD_NEWS,
   payload: array,
 });
@@ -94,6 +94,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     dispatch(deleteUserReducer(id))
   }
 }
+
 //добавление инфы юзера в профиль
 export const LoadUserInfo = (userInfo) => ({
   type: TYPES.ADD_USER_INFO,
