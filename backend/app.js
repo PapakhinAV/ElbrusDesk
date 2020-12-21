@@ -144,7 +144,17 @@ app.get("/parthNews", async (req, res) => {
   res.json(newAllDada)
 
 })
-
+ 
+//получаем данные для профиля
+app.get('/Home/:id', async (req, res) => {
+  let idUser = req.params.id
+  if (idUser) {
+    const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
+    console.log(infoUser);
+    return res.status(200).json(infoUser)
+  }
+  return res.sendStatus(406)
+})
 
 
 app.get('/students_list_in_group/:id', async (req, res) => {

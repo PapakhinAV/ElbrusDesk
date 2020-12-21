@@ -59,3 +59,16 @@ export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const result = await response.json()
   dispatch(AdminInfoReducer(result))
 }
+
+
+//добавление инфы юзера в профиль
+export const LoadUserInfo = (userInfo) => ({
+  type: TYPES.ADD_USER_INFO,
+  payload: userInfo,
+})
+
+export const AddUserInfo = (id) => (dispatch, getState) => {
+  fetch(`${process.env.REACT_APP_URL}/Home/${id}`)
+    .then(res => res.json())
+    .then(data => dispatch(LoadUserInfo(data)))
+}
