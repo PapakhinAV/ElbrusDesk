@@ -6,10 +6,10 @@ import GroupCard from '../GroupCard'
 function GroupsList() {
 const dispatch = useDispatch()
 useEffect(() => {
-	(() => {
 		dispatch(LoadGroupsFromBack())
-	})()
 }, [])
+
+
 
 const groupList = useSelector(state=> state.groups)
 console.log(groupList);

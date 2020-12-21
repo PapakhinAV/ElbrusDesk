@@ -164,10 +164,10 @@ app.get('/Home/:id', async (req, res) => {
   return res.sendStatus(406)
 })
 
-app.post('/:id/Edit', async (req, res)=>{
+app.post('/Edit/:id', async (req, res)=>{
   let idUserEdit = req.params.id
-	let {firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk} = req.body
-	console.log(idUserEdit, firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk); 
+	let {firstname, surname, tel} = req.body
+	console.log(firstname, surname, tel); 
 })
  
  app.get('/students_list_in_group/:id', async (req, res)=>{

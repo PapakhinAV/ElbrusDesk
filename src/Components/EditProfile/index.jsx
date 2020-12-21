@@ -5,7 +5,7 @@ import foto from '../img/volkov.jpg'
 import AnimatedMulti from '../MultiSelect/MultiSelect';
 import { useHistory, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+
 
 const EditProfile = () => {
 
@@ -37,13 +37,15 @@ const [inputs, setInputs] = useState({
 
 async function handleSubmit(event){
 	event.preventDefault();
-const res = await fetch(`${process.env.REACT_APP_URL}/${id}/Edit`, {
+const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 		method: "POST",
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			inputs	
+			firstname,
+			surname,
+			tel	
 		})
 	})
 	if(res.status === 200){
@@ -62,11 +64,14 @@ const res = await fetch(`${process.env.REACT_APP_URL}/${id}/Edit`, {
 // 	setVk(e.target.value.vk)
 // }
 
-const handleChange = (e)=>{
-	setInputs(e.target.value.firstname)
+function handleChange({target : {name, value}}){
+	setInputs({
+			...inputs,
+			[name]: value
+		})
 }
 
-
+const { firstname, surname, tel } = inputs;
 console.log(inputs);
   return (
     <>
@@ -94,15 +99,15 @@ console.log(inputs);
 
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Имя</label>
-                    <input type="text" name='firstname' className="form-control editProfileInput" onChange={handleChange} value={inputs} />
+                    <input type="text" name='firstname' className="form-control editProfileInput" onChange={handleChange} value={firstname} />
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Фамилия</label>
-                    <input type="text" className="form-control editProfileInput" onChange={handleChange} value={inputs.surname} />
+                    <input type="text" name="surname" className="form-control editProfileInput" onChange={handleChange} value={surname} />
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Телефон</label>
-                    <input type="text" className="form-control editProfileInput" onChange={handleChange} value={inputs.tel} />
+                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} />
                   </div>
                 </div>
                 <div className="row">

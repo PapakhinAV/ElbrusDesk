@@ -17,13 +17,13 @@ const userInfo = useSelector(state=>state.userInfo);
   return (
     <div className="userMenu">
       <div className="userButtons">
-        <Link to="/:id/Edit">
+        <Link to="/Edit/:id">
       <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
       </Link>
       <button className="logoutButton">ВЫЙТИ</button>
       </div>
       <hr />
-				<p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel &&  userInfo[0].tel}</p>
+			<p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel &&  userInfo[0].tel}</p>
       <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email && userInfo[0].email}</p>
       <p><strong className="purpleColor">Город: </strong>{userInfo[0].city && userInfo[0].city}</p>
       <br />

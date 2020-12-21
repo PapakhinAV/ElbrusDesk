@@ -15,18 +15,21 @@ import { AddUserID, AddUserInfo } from '../../Redux/actions/notes';
 const HomePage = () => {
   const dispatch = useDispatch()
   const params = useParams()
-  console.log(params);
+	console.log(params);
+	
   useEffect(() => {
-    (() => {
 			dispatch(AddUserID(params.id))
-			dispatch(AddUserInfo((params.id)))
-    })()
+			dispatch(AddUserInfo(params.id))
 	}, [])
-	const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
+
+
+
+const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
 const userInfo = useSelector(state=> state.userInfo)
 console.log(userInfo);
 
   return (
+
       <div className="userMainBlock">
         <div className="userWrap">
         <div className="leftColumn">

@@ -44,7 +44,7 @@ export const LoadUsersFromBack = (id) => (dispatch, getState) => {
 
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
-  payload: id
+  payload: id,
 })
 
 
