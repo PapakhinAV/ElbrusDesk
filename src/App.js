@@ -55,17 +55,15 @@ function App() {
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/">
-            <Redirect to="/" />
-          </Route>
           <Route path="/Map">
             <YanMap />
           </Route>
           <Route path="/postlist">
             <Wall />
-
           </Route>
-
+          <Route path="/">
+            <Redirect to="/" />
+          </Route>
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}
