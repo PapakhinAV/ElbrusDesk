@@ -15,7 +15,7 @@ const groupList = useSelector(state=> state.groups)
 
 	return (
 		<>
-		{ groupList.length && <GroupCard groupList={groupList}/>}
+		{ groupList && <GroupCard groupList={groupList}/>}
 			</>
 	)
 }
