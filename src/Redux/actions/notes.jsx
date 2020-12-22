@@ -30,7 +30,7 @@ export const LoadStatusElbrus = (stat) => ({
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   console.log(response.status);
-  if(response.status === 401){
+  if (response.status === 401) {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
@@ -48,8 +48,8 @@ export const LoadUsersInGroup = (listUsers) => ({
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-		.then(res => res.json())
-		.then(data =>dispatch(LoadUsersInGroup(data)))
+    .then(res => res.json())
+    .then(data => dispatch(LoadUsersInGroup(data)))
 }
 
 export const AddUserID = (id) => ({
@@ -67,8 +67,8 @@ export const ShowAllPostsReducer = (posts) => ({
   payload: posts,
 })
 
-export const UserPosts = () => async (dispatch, getState) => {
-  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
+export const UserPosts = (id) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
   const result = await response.json();
   dispatch(ShowAllPostsReducer(result))
 };
@@ -86,22 +86,22 @@ export const UserPosts = () => async (dispatch, getState) => {
 export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
   payload: newpost
-// <!--   payload: { title, text } -->
+  // <!--   payload: { title, text } -->
 
 })
 
 // export const AddNewPost = (title, text) => ({
-export const AddNewPost = (title, text) => async (dispatch, getState) => {
-const response = await fetch('/newpost', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({title, text})
-})
-if (response.status === 200){
-  dispatch(NewPost({title, text}))
-}
+export const AddNewPost = (title, text, id) => async (dispatch, getState) => {
+  const response = await fetch(`/newpost/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title, text })
+  })
+  if (response.status === 200) {
+    dispatch(NewPost({ title, text }))
+  }
 }
 
 //добавление информации для администратора

@@ -2,19 +2,22 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { UserPosts } from "../../Redux/actions/notes"
+import { useParams } from 'react-router-dom';
 // import Post from '../Post/Post'
 
 const WallUserPage = () => {
 
   const dispatch = useDispatch();
-
+  // const id = (useSelector((state) => state.id));
+  const { id } = useParams()
+  console.log(id);
   useEffect(() => {
     (() => {
-      dispatch(UserPosts())
+      dispatch(UserPosts(id))
     })()
   }, [])
 
-  const posts = useSelector((state) => state.allposts);
+  const posts = (useSelector((state) => state.allposts));
 
   // const posts = [
   //   {
