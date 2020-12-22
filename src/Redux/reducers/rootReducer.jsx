@@ -6,8 +6,10 @@ import AddUserIDReduser from './AddUserIDReduser';
 import UserPostsReducer from './UserPostsReducer';
 import InforForAdminReducer from './InforForAdminReducer';
 import AddUserInfoReducer from './AddUserInfoReducer';
+import ShowAllPostsReducer from './ShowAllPostsReducer';
 import AddElbrusStatus from './AddElbrusStatus';
 // import NewPostReducer from './NewPostReducer';
+
 
 
 const rootReducer = combineReducers({
@@ -15,9 +17,10 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   users: UsersListReducer,
   id: AddUserIDReduser,
-  posts: UserPostsReducer,
 	adminInfo: InforForAdminReducer,
   userInfo: AddUserInfoReducer,
+  posts: UserPostsReducer,
+  allposts: ShowAllPostsReducer,
   elbrusStatus: AddElbrusStatus,
   // newpost: NewPostReducer,
 });
