@@ -38,7 +38,7 @@ const AuthFirstPage = () => {
   </div>
 </div>
 
-<!--               <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
+            <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
           <ModalAuth />
           {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */} -->
             </div>
