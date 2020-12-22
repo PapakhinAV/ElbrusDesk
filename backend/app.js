@@ -143,22 +143,25 @@ app.get('/groupslist', checkAuthentication, async (req, res) => {
 })
 
 
-app.get('/postlist', async (req, res) => {
-  const postList = await PostList.find()
+app.get('/postlist/:id', async (req, res) => {
+  const id = req.params.id
+  const postList = await PostList.find({ authorID: id })
   return res.json(postList)
 })
 
 
 
-app.post('/newpost', async (req, res) => {
+app.post('/newpost/:id', async (req, res) => {
   // console.log(req.body);
   // console.log('!)@&*#&(*#&*(#(*');
+  const id = req.params.id
   const { title, text } = req.body;
 
   // console.log('Заголовок: ', title, 'Текст: ', text );
   const addNewPost = new PostList({
     title: title,
     text: text,
+    authorID: id
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
@@ -168,18 +171,18 @@ app.post('/newpost', async (req, res) => {
   await user.save()
   res.sendStatus(200)
 
-//   console.log('Заголовок: ', title, 'Текст: ', text);
-//   try {
-//     const newuserpost = await PostList.create({
-//       title,
-//       text,
-//     });
-//     console.log(newuserpost);
-//     return res.status(200).end();
-//   } catch (err) {
-//     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-//     return res.status(401).end();
-//   }
+  //   console.log('Заголовок: ', title, 'Текст: ', text);
+  //   try {
+  //     const newuserpost = await PostList.create({
+  //       title,
+  //       text,
+  //     });
+  //     console.log(newuserpost);
+  //     return res.status(200).end();
+  //   } catch (err) {
+  //     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+  //     return res.status(401).end();
+  //   }
   // return res.end();
 
 }
@@ -223,74 +226,74 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   return res.sendStatus(406)
 })
 
-app.post('/Edit/:id', async (req, res)=>{
-	let idUserEdit = req.params.id
-		let userOne = await User.findById({_id: `${idUserEdit}`})
-	let {	firstname,
-		surname,
-		tel,
-		city,
-		telegram,
-		gitHub,
-		linkidIn,
-		instagram,
-		vk} = req.body
-		if(firstname ||
-			surname ||
-			tel ||
-			city ||
-			telegram ||
-			gitHub ||
-			linkidIn ||
-			instagram ||
-			vk){
-  if(firstname){
-		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
-			res.status(200)
-	})
-	}
-	if(surname){
-		await User.findByIdAndUpdate(idUserEdit, {surname: surname }, function(err, surname){
-			res.status(200)
-	})
-	}
-	if(tel){
-		await User.findByIdAndUpdate(idUserEdit, {tel: tel }, function(err, tel){
-			res.status(200)
-	})
-	}
-	if(city){
-		await User.findByIdAndUpdate(idUserEdit, {city: city }, function(err, city){
-			res.status(200)
-	})
-	}
-	if(telegram || linkidIn || instagram || vk){
+app.post('/Edit/:id', async (req, res) => {
+  let idUserEdit = req.params.id
+  let userOne = await User.findById({ _id: `${idUserEdit}` })
+  let { firstname,
+    surname,
+    tel,
+    city,
+    telegram,
+    gitHub,
+    linkidIn,
+    instagram,
+    vk } = req.body
+  if (firstname ||
+    surname ||
+    tel ||
+    city ||
+    telegram ||
+    gitHub ||
+    linkidIn ||
+    instagram ||
+    vk) {
+    if (firstname) {
+      await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
+        res.status(200)
+      })
+    }
+    if (surname) {
+      await User.findByIdAndUpdate(idUserEdit, { surname: surname }, function (err, surname) {
+        res.status(200)
+      })
+    }
+    if (tel) {
+      await User.findByIdAndUpdate(idUserEdit, { tel: tel }, function (err, tel) {
+        res.status(200)
+      })
+    }
+    if (city) {
+      await User.findByIdAndUpdate(idUserEdit, { city: city }, function (err, city) {
+        res.status(200)
+      })
+    }
+    if (telegram || linkidIn || instagram || vk) {
 
-	if(telegram){
-		userOne.social.push(`${telegram}`)
-	}
-	if(linkidIn){
-		userOne.social.push(`${linkidIn}`)
-	}
-	if(instagram){
-		userOne.social.push(`${instagram}`)
-	}
-	if(vk){
-		userOne.social.push(`${vk}`)
-	}
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	if(gitHub){
-		userOne.social.push(`${gitHub}`)
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	res.sendStatus(200)
-}
-	res.sendStatus(406)
+      if (telegram) {
+        userOne.social.push(`${telegram}`)
+      }
+      if (linkidIn) {
+        userOne.social.push(`${linkidIn}`)
+      }
+      if (instagram) {
+        userOne.social.push(`${instagram}`)
+      }
+      if (vk) {
+        userOne.social.push(`${vk}`)
+      }
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    if (gitHub) {
+      userOne.social.push(`${gitHub}`)
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    res.sendStatus(200)
+  }
+  res.sendStatus(406)
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {

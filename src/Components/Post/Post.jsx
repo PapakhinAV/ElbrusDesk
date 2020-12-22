@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 // import { NewPost } from "../../Redux/actions/notes"
 import { AddNewPost } from "../../Redux/actions/notes"
 import DragFilesPreview from '../DragFilesPreview/DragFilesPreview';
@@ -10,11 +10,13 @@ const Post = () => {
   const [postTitle, setPostTitle] = useState('')
   const [postText, setPostText] = useState('')
 
+
   const dispatch = useDispatch()
+  const id = (useSelector((state) => state.id));
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(AddNewPost(postTitle.trim(), postText.trim()))
+    dispatch(AddNewPost(postTitle.trim(), postText.trim(), id))
     setPostTitle('');
     setPostText('')
   }
