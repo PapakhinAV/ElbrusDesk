@@ -5,6 +5,9 @@ const AdminGroups = ({ element }) => {
   return (
     <div className={style.groupMain}>
       <div className={style.groupsNames}>
+        <div>
+          <img width="100" height="100" src={element.avatar} alt="" />
+        </div>
         <div className={style.groupsFirstColumn}>
           <p>{element.city}</p>
           <p>{element.name}</p>

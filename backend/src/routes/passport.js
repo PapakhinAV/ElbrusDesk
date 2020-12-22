@@ -72,7 +72,7 @@ function Passport(passport) {
         console.log(profile);
 
         if (!googleuser) {
-          googleuser = new User({ googleId: profile.id, firstname: profile.name.givenName, surname: profile.name.familyName });
+          googleuser = new User({ googleId: profile.id, firstname: profile.name.givenName, surname: profile.name.familyName, admin: false, });
           await googleuser.save();
           // console.log(googleuser, 'user new');
         }
