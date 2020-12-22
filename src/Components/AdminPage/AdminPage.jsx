@@ -4,6 +4,7 @@ import { AddInfoForAdmin } from "../../Redux/actions/notes"
 import { useEffect, useState } from 'react';
 import AdminPeople from "./AdminPeople"
 import AdminGroups from "./AdminGroups"
+import { Link } from 'react-router-dom';
 
 
 
@@ -35,7 +36,8 @@ const AdminPage = () => {
       <div className={style.groupsBlock}>
         <div className={style.headBlock}>
           <div>
-            <button type="button">+ Добавить новую группу</button>
+            <Link to="/AdminCreateGroup"> <button>+ Добавить новую группу</button></Link>
+
           </div>
         </div>
         {allGroups && allGroups.map((element) => <AdminGroups element={element} />)}

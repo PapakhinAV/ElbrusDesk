@@ -116,7 +116,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-console.log(req.user.id);
+    console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -137,7 +137,7 @@ app.delete('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
-app.get('/groupslist', async (req, res) => {
+app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })
@@ -154,6 +154,7 @@ app.post('/newpost', async (req, res) => {
   // console.log(req.body);
   // console.log('!)@&*#&(*#&*(#(*');
   const { title, text } = req.body;
+
   // console.log('Заголовок: ', title, 'Текст: ', text );
   const addNewPost = new PostList({
     title: title,
@@ -166,6 +167,21 @@ app.post('/newpost', async (req, res) => {
   user.post.push(addNewPost._id)
   await user.save()
   res.sendStatus(200)
+
+//   console.log('Заголовок: ', title, 'Текст: ', text);
+//   try {
+//     const newuserpost = await PostList.create({
+//       title,
+//       text,
+//     });
+//     console.log(newuserpost);
+//     return res.status(200).end();
+//   } catch (err) {
+//     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+//     return res.status(401).end();
+//   }
+  // return res.end();
+
 }
 );
 
@@ -196,7 +212,7 @@ app.get("/parthNews", async (req, res) => {
 // Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
 app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 
-// app.get('/Homee/:id', async (req, res) => {
+  // app.get('/Homee/:id', async (req, res) => {
 
   let idUser = req.params.id
   if (idUser) {
@@ -207,10 +223,74 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   return res.sendStatus(406)
 })
 
-app.post('/:id/Edit', async (req, res) => {
-  let idUserEdit = req.params.id
-  let { firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk } = req.body
-  console.log(idUserEdit, firstname, surname, tel, city, email, linkidIn, gitHub, instagram, vk);
+app.post('/Edit/:id', async (req, res)=>{
+	let idUserEdit = req.params.id
+		let userOne = await User.findById({_id: `${idUserEdit}`})
+	let {	firstname,
+		surname,
+		tel,
+		city,
+		telegram,
+		gitHub,
+		linkidIn,
+		instagram,
+		vk} = req.body
+		if(firstname ||
+			surname ||
+			tel ||
+			city ||
+			telegram ||
+			gitHub ||
+			linkidIn ||
+			instagram ||
+			vk){
+  if(firstname){
+		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
+			res.status(200)
+	})
+	}
+	if(surname){
+		await User.findByIdAndUpdate(idUserEdit, {surname: surname }, function(err, surname){
+			res.status(200)
+	})
+	}
+	if(tel){
+		await User.findByIdAndUpdate(idUserEdit, {tel: tel }, function(err, tel){
+			res.status(200)
+	})
+	}
+	if(city){
+		await User.findByIdAndUpdate(idUserEdit, {city: city }, function(err, city){
+			res.status(200)
+	})
+	}
+	if(telegram || linkidIn || instagram || vk){
+
+	if(telegram){
+		userOne.social.push(`${telegram}`)
+	}
+	if(linkidIn){
+		userOne.social.push(`${linkidIn}`)
+	}
+	if(instagram){
+		userOne.social.push(`${instagram}`)
+	}
+	if(vk){
+		userOne.social.push(`${vk}`)
+	}
+		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
+			res.status(200)
+	})
+	}
+	if(gitHub){
+		userOne.social.push(`${gitHub}`)
+		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
+			res.status(200)
+	})
+	}
+	res.sendStatus(200)
+}
+	res.sendStatus(406)
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {
@@ -234,11 +314,58 @@ app.get("/AddInfoForAdmin", async (req, res) => {
 //Удаление пользователя
 app.get("/deleteUser/:id", async (req, res) => {
   const id = req.params.id
-  console.log("fetch!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id);
   await User.findByIdAndDelete(id)
   res.sendStatus(200)
 })
 
+//Удаление группы
+app.get("/deleteGroup/:id", async (req, res) => {
+  const id = req.params.id
+  await GroupList.findByIdAndDelete(id)
+  res.sendStatus(200)
+})
+
+//Добавление новой группы
+
+app.post("/addNewGroup", async (req, res) => {
+  const { name, city, avatar, dateStart, dateEnd } = req.body
+  if (name.trim()) {
+    const addGroup = new GroupList({
+      name,
+      city,
+      avatar,
+      dateStart,
+      dateEnd,
+    })
+    await addGroup.save()
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
+})
+
+//Редактирование группы
+//Поиск:
+app.get("/editGroup/:id", async (req, res) => {
+  const id = req.params.id
+  const EditDataGroup = await GroupList.findById(id)
+  res.json(EditDataGroup)
+})
+//Сохранение:
+
+app.post("/editGroup", async (req, res) => {
+  const { name, city, avatar, dateStart, dateEnd } = req.body.newGroup
+  if (name.trim()) {
+    let curentGroup = await GroupList.findById(req.body.id)
+    curentGroup.name = name
+    curentGroup.city = city
+    curentGroup.avatar = avatar
+    curentGroup.dateStart = dateStart
+    curentGroup.dateEnd = dateEnd
+    await curentGroup.save()
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
+})
 
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
