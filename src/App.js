@@ -9,8 +9,8 @@ import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
 import GroupsList from './Components/GroupsList';
 import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
-
 import EditProfile from './Components/EditProfile';
+import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
@@ -52,19 +52,20 @@ function App() {
           	 <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-					<Route path="/Home/:id">
+          {<Route path="/Home/:id">
             <HomePage />
-          </Route>
-				
-          <Route path="/">
+          </Route>}
+				   <Route path="/">
             <Redirect to="/" />
           </Route>
           <Route path="/Map">
             <YanMap />
+ </Route>
+                    <Route path="/postlist">
+            <Wall />
+
           </Route>
-          {/* <Route path="/">
-            <Redirect to="/" />
-          </Route> */}
+       
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}

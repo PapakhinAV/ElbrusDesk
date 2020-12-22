@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import * as TYPES from '../types/notes';
 // import dotenv from 'dotenv'
 // dotenv.config()
@@ -15,6 +16,7 @@ export const ParceNews = () => async (dispatch, getState) => {
   const result = await response.json();
   dispatch(TechNewsReducer(result))
 };
+
 
 
 //for loadGropuList
@@ -48,6 +50,20 @@ export const AddUserID = (id) => ({
 })
 
 
+
+
+
+export const UserPosts = () => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
+  const result = await response.json();
+  dispatch(UserPostsReducer(result))
+};
+
+export const UserPostsReducer = (posts) => ({
+  type: TYPES.ADD_POST,
+  payload: posts,
+})
+
 //добавление информации для администратора
 
 export const AdminInfoReducer = (object) => ({
@@ -55,14 +71,29 @@ export const AdminInfoReducer = (object) => ({
   payload: object,
 });
 
-
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
+  console.log(result);
   dispatch(AdminInfoReducer(result))
 }
 
 
+
+
+// Удаление пользователя
+export const deleteUserReducer = (id) => ({
+  type: TYPES.DELETE_USER,
+  payload: id,
+});
+
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/deleteUser/${id}`)
+  if (response.status === 200) {
+    dispatch(deleteUserReducer(id))
+  }
+}
 //добавление инфы юзера в профиль
 export const LoadUserInfo = (userInfo) => ({
   type: TYPES.ADD_USER_INFO,
@@ -73,4 +104,6 @@ export const AddUserInfo = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/Home/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
+
 }
+

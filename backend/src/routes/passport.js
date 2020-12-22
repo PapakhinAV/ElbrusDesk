@@ -1,5 +1,6 @@
 import passportLocal from 'passport-local';
 import passportGithub2 from 'passport-github2';
+import passportGoogle20 from 'passport-google-oauth20';
 import User from '../models/user.module.js';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
@@ -7,6 +8,8 @@ dotenv.config();
 
 const LocalStrategy = passportLocal.Strategy;
 const GitHubStrategy = passportGithub2.Strategy;
+const GoogleStrategy = passportGoogle20.Strategy;
+
 function Passport(passport) {
   passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -54,6 +57,31 @@ function Passport(passport) {
       });
     }
   ));
+
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL
+  },
+    function (accessToken, refreshToken, profile, done) {
+      // asynchronous verification, for effect...
+      process.nextTick(async function () {
+
+        let googleuser = await User.findOne({ googleId: profile.id });
+        console.log(googleuser, 'user exists');
+        // console.log(profile);
+
+        if (!googleuser) {
+          googleuser = new User({ googleId: profile.id, firstname: profile.username });
+          await googleuser.save();
+          // console.log(googleuser, 'user new');
+        }
+
+        return done(null, googleuser);
+      });
+    }
+  ));
+
   //Записывает юзера в сессию по id
   passport.serializeUser(function (user, done) {
     done(null, user.id);
