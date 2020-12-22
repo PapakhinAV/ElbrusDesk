@@ -15,9 +15,11 @@ import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
+import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
+
+
 
 // import Footer from './Components/Footer/Footer';
-
 
 
 function App() {
@@ -37,6 +39,9 @@ function App() {
           </Route>
           <Route path="/TechNews">
             <TechNewsPage />
+          </Route>
+          <Route path="/AdminCreateGroup">
+            <AdminCreateGroup />
           </Route>
           <Route path="/Project">
             <Project />
@@ -60,8 +65,7 @@ function App() {
             <Wall />
           </Route>
 
-    // почему не Homee? на бэке поменял на такую ручку
-    
+
           <Route path="/Home/:id">
             <HomePage />
           </Route>
