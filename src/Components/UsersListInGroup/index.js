@@ -14,7 +14,6 @@ function UsersListInGroup() {
   useEffect(() => {
     (() => {
 			dispatch(LoadUsersFromBack(id))
-	
     })()
   }, [])
 
@@ -22,7 +21,7 @@ function UsersListInGroup() {
 	let groupInfoOne = groupInfo.filter(el => (el._id === id))
 	
 	const peopleList = useSelector(state => state.users)
-console.log(peopleList[0]._id);
+
   return (
     <>
       <div className="blockWrapper">

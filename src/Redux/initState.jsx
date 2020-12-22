@@ -48,7 +48,8 @@ const initialState = () => {
       city: '',
       linkidIn: '',
       birthday: ''
-		},
+    },
+    elbrusStatus: false
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }
