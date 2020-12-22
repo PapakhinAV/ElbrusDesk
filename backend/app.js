@@ -116,7 +116,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-console.log(req.user.id);
+    console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -153,7 +153,7 @@ app.get('/postlist', async (req, res) => {
 app.post('/newpost', async (req, res) => {
   console.log('!)@&*#&(*#&*(#(*');
   const { title, text } = req.body;
-  console.log('Заголовок: ', title, 'Текст: ', text );
+  console.log('Заголовок: ', title, 'Текст: ', text);
   try {
     const newuserpost = await PostList.create({
       title,
@@ -196,7 +196,7 @@ app.get("/parthNews", async (req, res) => {
 // Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
 app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 
-// app.get('/Homee/:id', async (req, res) => {
+  // app.get('/Homee/:id', async (req, res) => {
 
   let idUser = req.params.id
   if (idUser) {
@@ -298,11 +298,58 @@ app.get("/AddInfoForAdmin", async (req, res) => {
 //Удаление пользователя
 app.get("/deleteUser/:id", async (req, res) => {
   const id = req.params.id
-  console.log("fetch!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id);
   await User.findByIdAndDelete(id)
   res.sendStatus(200)
 })
 
+//Удаление группы
+app.get("/deleteGroup/:id", async (req, res) => {
+  const id = req.params.id
+  await GroupList.findByIdAndDelete(id)
+  res.sendStatus(200)
+})
+
+//Добавление новой группы
+
+app.post("/addNewGroup", async (req, res) => {
+  const { name, city, avatar, dateStart, dateEnd } = req.body
+  if (name.trim()) {
+    const addGroup = new GroupList({
+      name,
+      city,
+      avatar,
+      dateStart,
+      dateEnd,
+    })
+    await addGroup.save()
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
+})
+
+//Редактирование группы
+//Поиск:
+app.get("/editGroup/:id", async (req, res) => {
+  const id = req.params.id
+  const EditDataGroup = await GroupList.findById(id)
+  res.json(EditDataGroup)
+})
+//Сохранение:
+
+app.post("/editGroup", async (req, res) => {
+  const { name, city, avatar, dateStart, dateEnd } = req.body.newGroup
+  if (name.trim()) {
+    let curentGroup = await GroupList.findById(req.body.id)
+    curentGroup.name = name
+    curentGroup.city = city
+    curentGroup.avatar = avatar
+    curentGroup.dateStart = dateStart
+    curentGroup.dateEnd = dateEnd
+    await curentGroup.save()
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
+})
 
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');

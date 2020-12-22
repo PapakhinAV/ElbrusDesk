@@ -1,10 +1,22 @@
 import style from './index.module.css';
-
+import { useDispatch } from 'react-redux';
+import { deleteGroup } from "../../Redux/actions/notes"
+import { Link } from 'react-router-dom';
 
 const AdminGroups = ({ element }) => {
+  const dispatch = useDispatch();
+
+  function deleteCurentGroup(id) {
+
+    dispatch(deleteGroup(id))
+
+  }
   return (
     <div className={style.groupMain}>
       <div className={style.groupsNames}>
+        <div>
+          <img width="100" height="100" src={element.avatar} alt="" />
+        </div>
         <div className={style.groupsFirstColumn}>
           <p>{element.city}</p>
           <p>{element.name}</p>
@@ -15,8 +27,8 @@ const AdminGroups = ({ element }) => {
         </div>
       </div>
       <div className={style.buttonBlock}>
-        <button>Редактировать</button>
-        <button>Удалить</button>
+        <Link to={`/AdminEditGroup/${element._id}`}><button>Редактировать</button></Link>
+        <button type="button" onClick={() => { deleteCurentGroup(element._id) }}>Удалить</button>
       </div>
     </div>
   );
