@@ -1,5 +1,4 @@
 import './index.css';
-// import TechNews from "../TechNews/TechNews"
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { UserPosts } from "../../Redux/actions/notes"
@@ -15,14 +14,19 @@ const Wall = () => {
     })()
   }, [])
 
-  const store = useSelector((state) => state.posts);
-  // console.log("store", store);
+  const posts = useSelector((state) => state.allposts);
 
+  // const posts = [
+  //   {
+  //     title: 'fkdjfklsdjkfjds',
+  //     text: 'jfkcdshjkhdsjhfjkdshfjksd'
+  //   }
+  // ]
 
   return (
     <div className="wall">
       <div userPostDiv>
-        {store.map(el => (
+        {posts.map(el => (
           <p key={el.id}>
             <img className="postImgs" src={el.img} alt='картинка' />
             <p className="UserPostTitle">

@@ -6,9 +6,6 @@ const initialState = () => {
   const initialValue = {
     news: [],
     posts: [],
-    // newpost: [{
-    //   title: '',
-    // }],
     groups: [{
       name: '',
       city: '',

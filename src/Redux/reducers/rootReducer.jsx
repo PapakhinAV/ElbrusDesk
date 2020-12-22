@@ -6,7 +6,7 @@ import AddUserIDReduser from './AddUserIDReduser';
 import UserPostsReducer from './UserPostsReducer';
 import InforForAdminReducer from './InforForAdminReducer';
 import AddUserInfoReducer from './AddUserInfoReducer';
-// import NewPostReducer from './NewPostReducer';
+import ShowAllPostsReducer from './ShowAllPostsReducer';
 
 
 const rootReducer = combineReducers({
@@ -14,10 +14,11 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   users: UsersListReducer,
   id: AddUserIDReduser,
-  posts: UserPostsReducer,
 	adminInfo: InforForAdminReducer,
   userInfo: AddUserInfoReducer,
-  // newpost: NewPostReducer,
+
+  posts: UserPostsReducer,
+  allposts: ShowAllPostsReducer,
 });
 
 export default rootReducer;

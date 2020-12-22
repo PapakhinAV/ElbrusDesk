@@ -151,21 +151,21 @@ app.get('/postlist', async (req, res) => {
 
 
 app.post('/newpost', async (req, res) => {
-  console.log('!)@&*#&(*#&*(#(*');
+  // console.log(req.body);
+  // console.log('!)@&*#&(*#&*(#(*');
   const { title, text } = req.body;
-  console.log('Заголовок: ', title, 'Текст: ', text );
-  try {
-    const newuserpost = await PostList.create({
-      title,
-      text,
-    });
-    console.log(newuserpost);
-    return res.status(200).end();
-  } catch (err) {
-    console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-    return res.status(401).end();
-  }
-  // return res.end();
+  // console.log('Заголовок: ', title, 'Текст: ', text );
+  const addNewPost = new PostList({
+    title: title,
+    text: text,
+  })
+  await addNewPost.save()
+  const sessionUser = req.user.id;
+  console.log(addNewPost._id);
+  let user = await User.findById(sessionUser);
+  user.post.push(addNewPost._id)
+  await user.save()
+  res.sendStatus(200)
 }
 );
 

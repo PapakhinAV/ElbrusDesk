@@ -1,15 +1,12 @@
-import * as TYPES from '../types/notes';
+// import * as TYPES from '../types/notes';
 
-const UserPostsReducer = (state = [], action) => {
-  switch (action.type) {
-    case TYPES.ADD_NEW_POST:
-      return [...state, action.payload]
+// const UserPostsReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case TYPES.ADD_NEW_POST:
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
 
-      // (action.payload);
-
-    default:
-      return state;
-  }
-};
-
-export default UserPostsReducer;
+// export default UserPostsReducer;

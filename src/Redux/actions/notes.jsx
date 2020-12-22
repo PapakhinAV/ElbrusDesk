@@ -3,8 +3,6 @@ import * as TYPES from '../types/notes';
 // import dotenv from 'dotenv'
 // dotenv.config()
 
-
-
 export const TechNewsReducer = (array) => ({
 
   type: TYPES.ADD_NEWS,
@@ -17,8 +15,6 @@ export const ParceNews = () => async (dispatch, getState) => {
   dispatch(TechNewsReducer(result))
 };
 
-
-
 //for loadGropuList
 export const LoadGroups = (list) => ({
   type: TYPES.ADD_GROUPS,
@@ -26,7 +22,6 @@ export const LoadGroups = (list) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   const result = await response.json()
   dispatch(LoadGroups(result))
@@ -54,24 +49,39 @@ export const DeleteUserID = (id) => ({
   payload: id
 })
 
+export const ShowAllPostsReducer = (posts) => ({
+  type: TYPES.SHOW_ALL_POSTS,
+  payload: posts,
+})
+
 export const UserPosts = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
   const result = await response.json();
-  dispatch(UserPostsReducer(result))
+  dispatch(ShowAllPostsReducer(result))
 };
 
-export const UserPostsReducer = (title, text) => ({
-  type: TYPES.ADD_POST,
-  payload: {title, text },
-})
 
 
-export const NewPost = (title, text) => ({
+
+
+export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
-    payload: {title, text }
+  payload: newpost
 })
 
-
+// export const AddNewPost = (title, text) => ({
+export const AddNewPost = (title, text) => async (dispatch, getState) => {
+const response = await fetch('/newpost', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({title, text})
+})
+if (response.status === 200){
+  dispatch(NewPost({title, text}))
+}
+}
 
 //добавление информации для администратора
 
@@ -87,14 +97,11 @@ export const AddInfoForAdmin = () => async (dispatch, getState) => {
   dispatch(AdminInfoReducer(result))
 }
 
-
-
 // Удаление пользователя
 export const deleteUserReducer = (id) => ({
   type: TYPES.DELETE_USER,
   payload: id,
 });
-
 
 export const deleteUser = (id) => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/deleteUser/${id}`)
@@ -114,6 +121,5 @@ export const AddUserInfo = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
-
 }
 
