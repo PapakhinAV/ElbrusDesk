@@ -10,6 +10,7 @@ const initialState = () => {
     //   title: '',
     // }],
     groups: [{
+			_id: '',
       name: '',
       city: '',
       avatar: '',
