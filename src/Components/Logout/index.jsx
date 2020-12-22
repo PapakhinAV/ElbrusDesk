@@ -16,7 +16,7 @@ const Logout = ()=>{
                 dispatch(DeleteUserID(''))
                 dispatch(LoadGroups([]))
                 dispatch(LoadStatusElbrus(false))
-                localStorage.setItem('redux', '')
+                localStorage.removeItem('redux')
               history.push('/')
             }
           })()
