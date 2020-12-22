@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux';
+
 import * as TYPES from '../types/notes';
+
 // import dotenv from 'dotenv'
 // dotenv.config()
 
@@ -31,7 +32,6 @@ export const LoadStatusElbrus = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   console.log(response.status);
   if(response.status === 401){
@@ -52,13 +52,13 @@ export const LoadUsersInGroup = (listUsers) => ({
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-    .then(res => res.json())
-    .then(data => dispatch(LoadUsersInGroup(data)))
+		.then(res => res.json())
+		.then(data =>dispatch(LoadUsersInGroup(data)))
 }
 
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
-  payload: id
+  payload: id,
 })
 
 export const DeleteUserID = (id) => ({
@@ -74,13 +74,13 @@ export const UserPosts = () => async (dispatch, getState) => {
 
 export const UserPostsReducer = (title, text) => ({
   type: TYPES.ADD_POST,
-  payload: {title, text },
+  payload: { title, text },
 })
 
 
 export const NewPost = (title, text) => ({
   type: TYPES.ADD_NEW_POST,
-    payload: {title, text }
+  payload: { title, text }
 })
 
 
@@ -95,7 +95,6 @@ export const AdminInfoReducer = (object) => ({
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
-  console.log(result);
   dispatch(AdminInfoReducer(result))
 }
 
@@ -129,3 +128,39 @@ export const AddUserInfo = (id) => (dispatch, getState) => {
 
 }
 
+//Добавление группы
+export const addNewGroup = (newGroup) => async (dispatch, getState) => {
+  await fetch('/addNewGroup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newGroup)
+  });
+}
+
+// Удаление Группы
+export const deleteGrouReducer = (id) => ({
+  type: TYPES.DELETE_GROUP,
+  payload: id,
+});
+
+
+export const deleteGroup = (id) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/deleteGroup/${id}`)
+  if (response.status === 200) {
+    dispatch(deleteGrouReducer(id))
+  }
+}
+
+//Редактирование (сохранение группы)
+
+export const editGroup = ({ newGroup, id }) => async (dispatch, getState) => {
+  await fetch('/editGroup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ newGroup, id })
+  });
+}

@@ -6,7 +6,10 @@ const InforForAdminReducer = (state = {}, action) => {
       return (action.payload);
     case TYPES.DELETE_USER:
       return ({ ...state, users: state.users.filter((element) => element._id !== action.payload) }
-      )
+      );
+    case TYPES.DELETE_GROUP:
+      return ({ ...state, groups: state.groups.filter((element) => element._id !== action.payload) }
+      );
     default:
       return state;
   }

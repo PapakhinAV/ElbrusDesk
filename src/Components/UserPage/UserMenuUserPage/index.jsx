@@ -2,27 +2,20 @@ import './index.css';
 // import raccoon from '../img/animals/raccoon.svg'
 // import wolf from '../img/animals/wolf.svg'
 // import fox from '../img/animals/fox.svg'
-import git from '../img/git.svg'
-import vk from '../img/vk.svg'
-import linkedin from '../img/linkedin.svg'
-import tg from '../img/tg.svg'
+import git from '../../img/git.svg'
+import vk from '../../img/vk.svg'
+import linkedin from '../../img/linkedin.svg'
+import tg from '../../img/tg.svg'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-const UserMenu = () => {
-
-  const userInfo = useSelector(state => state.userInfo);
-
+const UserMenuUserPage = () => {
 	const {id} = useParams()
+  const userInfo = useSelector(state => state.users).filter(el=> el._id === id)
+console.log(userInfo);
   return (
     <div className="userMenu">
-      <div className="userButtons">
-        <Link to={`/Edit/${id}`}>
-          <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
-        </Link>
-        <button className="logoutButton">ВЫЙТИ</button>
-      </div>
       <hr />
       <p><strong className="purpleColor">Телефон: </strong>{userInfo[0] && (userInfo[0].tel && userInfo[0].tel)}</p>
       <p><strong className="purpleColor">Почта: </strong>{userInfo[0] && (userInfo[0].email && userInfo[0].email)}</p>
@@ -37,11 +30,9 @@ const UserMenu = () => {
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
         {
-          (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
+          (userInfo[0] && userInfo[0].stydyGroup.length) && userInfo[0].stydyGroup.map((el) => (
 						<Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{el.name}</li></Link>
-          )) :
-            <li >Добавьте группу в которой учились</li>
-
+          )) 
         }
       </ul>
       <hr />
@@ -50,4 +41,4 @@ const UserMenu = () => {
   );
 }
 
-export default UserMenu;
+export default UserMenuUserPage;

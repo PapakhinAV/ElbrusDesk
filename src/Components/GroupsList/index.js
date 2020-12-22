@@ -15,13 +15,13 @@ useEffect(() => {
 		history.push('/')
 	}
 	(() => {
+
 		dispatch(LoadGroupsFromBack())
-	})()
 }, [])
 
 
 const groupList = useSelector(state=> state.groups)
-console.log(groupList);
+
 	return (
 		<>
 		{ groupList.length && <GroupCard groupList={groupList}/>}
