@@ -6,27 +6,28 @@ import { useHistory } from 'react-router-dom';
 import GroupCard from '../GroupCard'
 
 function GroupsList() {
-	const status = useSelector(store=>store.elbrusStatus)
-	console.log(status);
-const history = useHistory()
-const dispatch = useDispatch()
-useEffect(() => {
-	if(status===false){
-		history.push('/')
-	}
-	(() => {
+  const status = useSelector(store => store.elbrusStatus)
+  console.log(status);
+  const history = useHistory()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (status === false) {
+      history.push('/')
+    }
+    (() => {
+      dispatch(LoadGroupsFromBack())
+    })()
+  }, [])
 
-		dispatch(LoadGroupsFromBack())
-}, [])
 
+  const groupList = useSelector(state => state.groups)
 
-const groupList = useSelector(state=> state.groups)
+  return (
+    <>
+      { groupList.length && <GroupCard groupList={groupList} />}
+    </>
+  )
 
-	return (
-		<>
-		{ groupList.length && <GroupCard groupList={groupList}/>}
-			</>
-	)
 }
 
 export default GroupsList
