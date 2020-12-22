@@ -15,6 +15,7 @@ import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
+import UserPage from './Components/UserPage';
 
 // import Footer from './Components/Footer/Footer';
 
@@ -64,6 +65,10 @@ function App() {
     
           <Route path="/Home/:id">
             <HomePage />
+          </Route>
+
+          <Route path="/user_page/:id">
+            <UserPage />
           </Route>
           <Route path="/">
             <Redirect to="/" />

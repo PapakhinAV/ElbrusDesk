@@ -22,7 +22,7 @@ function UsersListInGroup() {
 	let groupInfoOne = groupInfo.filter(el => (el._id === id))
 	
 	const peopleList = useSelector(state => state.users)
-
+console.log(peopleList[0]._id);
   return (
     <>
       <div className="blockWrapper">
@@ -38,20 +38,20 @@ function UsersListInGroup() {
             <div>
               {
                 peopleList.length ? peopleList.map(el => (
-                 <div> <div ey={el._id} className="groupCardWrap">
+                 <div ey={el._id} className="groupCardWrap">
                     <div className="group">
                       <div className="groupAvatar">
-											{ el.avatar ? <img src={`${el.avatar}`} className="card-img" alt="..." /> :
-											<img src={groupInfoOne[0].avatar} className="card-img" alt="..." />
+											{ el.avatar ? <img width="250px" height="250px" src={`${el.avatar}`} className="card-img" alt="..." /> :
+											<img width="250px" height="250px" src={groupInfoOne[0].avatar} className="card-img" alt="..." />
 											 	}
                       </div>
                       <div className="groupInfo">
                         <div>
-                          <Link to={`/students_list_in_group/`}><h5 className="userHeader">{el.firstname + el.surname}</h5></Link>
+                          <Link to={`/user_page/${el._id}`}><h5 className="userHeader">{el.firstname + el.surname}</h5></Link>
                         </div>
                       </div>
                     </div>
-                  </div></div>
+                  </div>
                 )):
 								<div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div>
               }
