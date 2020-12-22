@@ -4,7 +4,7 @@ import Post from "../Post/Post"
 import Wall from "../Wall/Wall"
 
 // import foto from '../img/volkov.jpg'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddUserID, AddUserInfo } from '../../Redux/actions/notes';
@@ -13,11 +13,18 @@ import { AddUserID, AddUserInfo } from '../../Redux/actions/notes';
 const HomePage = () => {
   const dispatch = useDispatch()
   const params = useParams()
+  const history = useHistory();
+
 
   useEffect(() => {
-    (() => {
-      dispatch(AddUserID(params.id))
-      dispatch(AddUserInfo(params.id))
+    (async() => {
+      const response = await fetch(`${process.env.REACT_APP_URL}/Homee/${params.id}`)
+      if(response.status===200){
+        dispatch(AddUserID(params.id))
+        dispatch(AddUserInfo(params.id))
+      } else {
+        history.push('/')
+      }
     })()
   }, [])
 

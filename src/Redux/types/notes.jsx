@@ -8,4 +8,4 @@ export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const ADD_INFO_FOR_ADMIN = "ADD_INFO_FOR_ADMIN"
 export const DELETE_USER = "DELETE_USER"
 export const ADD_USER_INFO = "ADD_USER_INFO"
-
+export const DELETE_USER_ID = "DELETE_USER_ID"

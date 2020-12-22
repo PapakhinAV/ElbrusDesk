@@ -69,10 +69,10 @@ function Passport(passport) {
 
         let googleuser = await User.findOne({ googleId: profile.id });
         console.log(googleuser, 'user exists');
-        // console.log(profile);
+        console.log(profile);
 
         if (!googleuser) {
-          googleuser = new User({ googleId: profile.id, firstname: profile.username });
+          googleuser = new User({ googleId: profile.id, firstname: profile.name.givenName, surname: profile.name.familyName });
           await googleuser.save();
           // console.log(googleuser, 'user new');
         }

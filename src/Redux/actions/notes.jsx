@@ -49,6 +49,10 @@ export const AddUserID = (id) => ({
   payload: id
 })
 
+export const DeleteUserID = (id) => ({
+  type: TYPES.DELETE_USER_ID,
+  payload: id
+})
 
 export const UserPosts = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
@@ -105,8 +109,9 @@ export const LoadUserInfo = (userInfo) => ({
   payload: userInfo,
 })
 
+//Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
-  fetch(`${process.env.REACT_APP_URL}/Home/${id}`)
+  fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
 

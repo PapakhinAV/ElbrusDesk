@@ -13,16 +13,6 @@ const AdminPage = () => {
 
   const [counter, setCounter] = useState(0)
 
-
-
-  // useEffect(() => {
-  //   (() => {
-
-  //     dispatch(AddInfoForAdmin())
-
-  //   })()
-  // }, [])
-
   useEffect(() => {
     (() => {
       dispatch(AddInfoForAdmin())

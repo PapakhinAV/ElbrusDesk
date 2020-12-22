@@ -26,10 +26,12 @@ const ModalAuth = (props) => {
           {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon" /></a> */}
           <div className="regMain">
 
-<div>
+
+<div style={{margin: "10px"}}>
   <a href="http://localhost:3000/auth/google"><img src={Google} alt="git-icon" /></a>
 </div>
-<div>
+<div style={{margin: "10px"}}>
+
   <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon" /></a>
 </div>
 </div>
