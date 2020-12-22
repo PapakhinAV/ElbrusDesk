@@ -7,7 +7,7 @@ import Wall from "../Wall/Wall"
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddUserID, AddUserInfo } from '../../Redux/actions/notes';
+import { AddUserID, AddUserInfo , LoadStatusElbrus} from '../../Redux/actions/notes';
 
 
 const HomePage = () => {
@@ -20,6 +20,7 @@ const HomePage = () => {
     (async() => {
       const response = await fetch(`${process.env.REACT_APP_URL}/Homee/${params.id}`)
       if(response.status===200){
+        dispatch(LoadStatusElbrus(true))
         dispatch(AddUserID(params.id))
         dispatch(AddUserInfo(params.id))
       } else {

@@ -9,5 +9,7 @@ export const ADD_INFO_FOR_ADMIN = "ADD_INFO_FOR_ADMIN"
 export const DELETE_USER = "DELETE_USER"
 export const ADD_USER_INFO = "ADD_USER_INFO"
 export const DELETE_USER_ID = "DELETE_USER_ID"
+export const ADD_STATUS = "ADD_STATUS"
 export const ADD_NEW_GROUP = "ADD_NEW_GROUP"
 export const DELETE_GROUP = "DELETE_GROUP"
+
