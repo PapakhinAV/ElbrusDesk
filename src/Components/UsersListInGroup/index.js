@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { LoadUsersFromBack } from '../../Redux/actions/notes';
 import { Link } from "react-router-dom";
-import volkov from '../img/volkov.jpg'
+// import volkov from '../img/volkov.jpg'
 
 
 function UsersListInGroup() {
@@ -14,13 +14,14 @@ function UsersListInGroup() {
   useEffect(() => {
     (() => {
 			dispatch(LoadUsersFromBack(id))
+	
     })()
   }, [])
 
   const groupInfo = useSelector(state => state.groups)
 	let groupInfoOne = groupInfo.filter(el => (el._id === id))
 	
-	
+	const peopleList = useSelector(state => state.users)
 
   return (
     <>
@@ -36,12 +37,13 @@ function UsersListInGroup() {
           <div className="groupListWrap">
             <div>
               {
-                groupInfoOne.length ? groupInfoOne.map(el => (
-                  <div ey={el._id} className="groupCardWrap">
+                peopleList.length ? peopleList.map(el => (
+                 <div> <div ey={el._id} className="groupCardWrap">
                     <div className="group">
                       <div className="groupAvatar">
-                        <img src={`${el.avatar}`} className="card-img" alt="..." />
-                        <img src={volkov} className="card-img" alt="..." />
+											{ el.avatar ? <img src={`${el.avatar}`} className="card-img" alt="..." /> :
+											<img src={groupInfoOne[0].avatar} className="card-img" alt="..." />
+											 	}
                       </div>
                       <div className="groupInfo">
                         <div>
@@ -49,9 +51,9 @@ function UsersListInGroup() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div></div>
                 )):
-								<div><h1>Ещё нет зарегестрированных эльюрусовцев в этой группе.</h1></div>
+								<div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div>
               }
             </div>
           </div></div>
