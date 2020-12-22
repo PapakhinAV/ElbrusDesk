@@ -1,10 +1,13 @@
 import './index.css';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { LoadStatusElbrus } from '../../Redux/actions/notes'
+
 
 const SignIn = () => {
-
+  
+  const dispatch = useDispatch()
   const store = useSelector(store => store.id)
 
   const history = useHistory();
@@ -42,6 +45,7 @@ const SignIn = () => {
     });
     const result = await response.json()
     if (response.status === 200) {
+      dispatch(LoadStatusElbrus(true))
       history.push(`/Home/${result}`)
     }
     return setError('Повторите вход')

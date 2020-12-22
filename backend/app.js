@@ -137,7 +137,7 @@ app.delete('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
-app.get('/groupslist', async (req, res) => {
+app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })

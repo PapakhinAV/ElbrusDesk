@@ -5,6 +5,7 @@ import * as TYPES from '../types/notes';
 
 
 
+
 export const TechNewsReducer = (array) => ({
 
   type: TYPES.ADD_NEWS,
@@ -24,12 +25,23 @@ export const LoadGroups = (list) => ({
   type: TYPES.ADD_GROUPS,
   payload: list,
 })
+export const LoadStatusElbrus = (stat) => ({
+  type: TYPES.ADD_STATUS,
+  payload: stat,
+})
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
   // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
-  const result = await response.json()
-  dispatch(LoadGroups(result))
+  console.log(response.status);
+  if(response.status === 401){
+    dispatch(LoadGroups([]))
+    dispatch(LoadStatusElbrus(false))
+  } else {
+    dispatch(LoadStatusElbrus(true))
+    const result = await response.json()
+    dispatch(LoadGroups(result))
+  }
 }
 
 //for usersList in group
