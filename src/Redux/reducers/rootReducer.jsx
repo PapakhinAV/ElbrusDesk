@@ -3,7 +3,7 @@ import GroupsReducer from './grousReducer';
 import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';
-import UserPostsReducer from './UserPostsReducer';
+// import UserPostsReducer from './UserPostsReducer';
 import InforForAdminReducer from './InforForAdminReducer';
 import AddUserInfoReducer from './AddUserInfoReducer';
 import ShowAllPostsReducer from './ShowAllPostsReducer';
@@ -16,8 +16,7 @@ const rootReducer = combineReducers({
   id: AddUserIDReduser,
 	adminInfo: InforForAdminReducer,
   userInfo: AddUserInfoReducer,
-
-  posts: UserPostsReducer,
+  // posts: UserPostsReducer,
   allposts: ShowAllPostsReducer,
 });
 
