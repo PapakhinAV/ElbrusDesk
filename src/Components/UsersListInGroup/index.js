@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { LoadUsersFromBack } from '../../Redux/actions/notes';
 import { Link } from "react-router-dom";
-import volkov from '../img/volkov.jpg'
+// import volkov from '../img/volkov.jpg'
 
 
 function UsersListInGroup() {
@@ -13,13 +13,14 @@ function UsersListInGroup() {
   const dispatch = useDispatch()
   useEffect(() => {
     (() => {
-      dispatch(LoadUsersFromBack(id))
+			dispatch(LoadUsersFromBack(id))
     })()
   }, [])
 
-  const userOne = useSelector(state => state.users)
-
-  let nameOfGroup = userOne[0].stydyGroup.filter(el => (el._id === id))
+  const groupInfo = useSelector(state => state.groups)
+	let groupInfoOne = groupInfo.filter(el => (el._id === id))
+	
+	const peopleList = useSelector(state => state.users)
 
   return (
     <>
@@ -30,26 +31,28 @@ function UsersListInGroup() {
             <h1><span className="yellowSymbols">//</span> Эльбрусовцы <span className="yellowSymbols">//</span></h1>
           </div>
           <div className="groupHeader">
-            <h2>{nameOfGroup[0].name} <span className="yellowSymbols">?</span>{nameOfGroup[0].dateEnd}<span className="yellowSymbols">:</span>{nameOfGroup[0].city}</h2>
+            <h2>{groupInfoOne && groupInfoOne[0].name} <span className="yellowSymbols">?</span> {groupInfoOne[0].dateEnd}<span className="yellowSymbols">:</span>{groupInfoOne[0].city}</h2>
           </div>
           <div className="groupListWrap">
             <div>
               {
-                userOne && userOne.map(el => (
-                  <div ey={el._id} className="groupCardWrap">
+                peopleList.length ? peopleList.map(el => (
+                 <div ey={el._id} className="groupCardWrap">
                     <div className="group">
                       <div className="groupAvatar">
-                        <img src={`${el.avatar}`} className="card-img" alt="..." />
-                        <img src={volkov} className="card-img" alt="..." />
+											{ el.avatar ? <img width="250px" height="250px" src={`${el.avatar}`} className="card-img" alt="..." /> :
+											<img width="250px" height="250px" src={groupInfoOne[0].avatar} className="card-img" alt="..." />
+											 	}
                       </div>
                       <div className="groupInfo">
                         <div>
-                          <Link to={`/students_list_in_group/`}><h5 className="userHeader">{el.firstname + el.surname}</h5></Link>
+                          <Link to={`/user_page/${el._id}`}><h5 className="userHeader">{el.firstname + el.surname}</h5></Link>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))
+                )):
+								<div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div>
               }
             </div>
           </div></div>

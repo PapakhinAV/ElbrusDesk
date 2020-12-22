@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { UserPosts } from "../../Redux/actions/notes"
 // import Post from '../Post/Post'
 
-const Wall = () => {
+const WallUserPage = () => {
 
   const dispatch = useDispatch();
 
@@ -42,4 +42,4 @@ const Wall = () => {
   );
 }
 
-export default Wall;
+export default WallUserPage;

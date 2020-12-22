@@ -7,6 +7,7 @@ const initialState = () => {
     news: [],
     posts: [],
     groups: [{
+			_id: '',
       name: '',
       city: '',
       avatar: '',
@@ -44,7 +45,8 @@ const initialState = () => {
       city: '',
       linkidIn: '',
       birthday: ''
-		},
+    },
+    elbrusStatus: false
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }
