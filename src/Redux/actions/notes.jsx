@@ -41,7 +41,8 @@ export const LoadUsersInGroup = (listUsers) => ({
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
     .then(res => res.json())
-    .then(data => dispatch(LoadUsersInGroup(data)))
+		.then(data =>
+			data && dispatch(LoadUsersInGroup(data)))
 }
 
 export const AddUserID = (id) => ({

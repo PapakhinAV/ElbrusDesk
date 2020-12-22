@@ -13,13 +13,14 @@ function UsersListInGroup() {
   const dispatch = useDispatch()
   useEffect(() => {
     (() => {
-      dispatch(LoadUsersFromBack(id))
+			dispatch(LoadUsersFromBack(id))
     })()
   }, [])
 
-  const userOne = useSelector(state => state.users)
-
-  let nameOfGroup = userOne[0].stydyGroup.filter(el => (el._id === id))
+  const groupInfo = useSelector(state => state.groups)
+	let groupInfoOne = groupInfo.filter(el => (el._id === id))
+	
+	
 
   return (
     <>
@@ -30,12 +31,12 @@ function UsersListInGroup() {
             <h1><span className="yellowSymbols">//</span> Эльбрусовцы <span className="yellowSymbols">//</span></h1>
           </div>
           <div className="groupHeader">
-            <h2>{nameOfGroup[0].name} <span className="yellowSymbols">?</span>{nameOfGroup[0].dateEnd}<span className="yellowSymbols">:</span>{nameOfGroup[0].city}</h2>
+            <h2>{groupInfoOne && groupInfoOne[0].name} <span className="yellowSymbols">?</span> {groupInfoOne[0].dateEnd}<span className="yellowSymbols">:</span>{groupInfoOne[0].city}</h2>
           </div>
           <div className="groupListWrap">
             <div>
               {
-                userOne && userOne.map(el => (
+                groupInfoOne.length ? groupInfoOne.map(el => (
                   <div ey={el._id} className="groupCardWrap">
                     <div className="group">
                       <div className="groupAvatar">
@@ -49,7 +50,8 @@ function UsersListInGroup() {
                       </div>
                     </div>
                   </div>
-                ))
+                )):
+								<div><h1>Ещё нет зарегестрированных эльюрусовцев в этой группе.</h1></div>
               }
             </div>
           </div></div>

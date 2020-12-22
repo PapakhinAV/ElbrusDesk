@@ -6,7 +6,7 @@ import git from '../img/git.svg'
 import vk from '../img/vk.svg'
 import linkedin from '../img/linkedin.svg'
 import tg from '../img/tg.svg'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -14,10 +14,11 @@ const UserMenu = () => {
 
   const userInfo = useSelector(state => state.userInfo);
 
+	const {id} = useParams()
   return (
     <div className="userMenu">
       <div className="userButtons">
-        <Link to="/Edit/:id">
+        <Link to={`/Edit/${id}`}>
           <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
         </Link>
         <button className="logoutButton">ВЫЙТИ</button>

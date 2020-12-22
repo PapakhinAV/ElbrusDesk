@@ -12,7 +12,7 @@ useEffect(() => {
 
 
 const groupList = useSelector(state=> state.groups)
-console.log(groupList);
+
 	return (
 		<>
 		{ groupList.length && <GroupCard groupList={groupList}/>}

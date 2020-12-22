@@ -208,9 +208,74 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 })
 
 app.post('/Edit/:id', async (req, res)=>{
-  let idUserEdit = req.params.id
-	let {firstname, surname, tel} = req.body
-	console.log(firstname, surname, tel); 
+	let idUserEdit = req.params.id
+		let userOne = await User.findById({_id: `${idUserEdit}`})
+	let {	firstname,
+		surname,
+		tel,
+		city,
+		telegram,
+		gitHub,
+		linkidIn,
+		instagram,
+		vk} = req.body
+		if(firstname ||
+			surname ||
+			tel ||
+			city ||
+			telegram ||
+			gitHub ||
+			linkidIn ||
+			instagram ||
+			vk){
+  if(firstname){
+		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
+			res.status(200)
+	})
+	}
+	if(surname){
+		await User.findByIdAndUpdate(idUserEdit, {surname: surname }, function(err, surname){
+			res.status(200)
+	})
+	}
+	if(tel){
+		await User.findByIdAndUpdate(idUserEdit, {tel: tel }, function(err, tel){
+			res.status(200)
+	})
+	}
+	if(city){
+		await User.findByIdAndUpdate(idUserEdit, {city: city }, function(err, city){
+			res.status(200)
+	})
+	}
+	if(telegram || linkidIn || instagram || vk){
+
+	if(telegram){
+		userOne.social.push(`${telegram}`)
+	}
+	if(linkidIn){
+		userOne.social.push(`${linkidIn}`)
+	}
+	if(instagram){
+		userOne.social.push(`${instagram}`)
+	}
+	if(vk){
+		userOne.social.push(`${vk}`)
+	}
+		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
+			res.status(200)
+	})
+	}
+	if(gitHub){
+		userOne.social.push(`${gitHub}`)
+		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
+			res.status(200)
+	})
+	}
+	res.sendStatus(200)
+}
+	res.sendStatus(406)
+})
 
 app.get('/students_list_in_group/:id', async (req, res) => {
   let idGroup = req.params.id
