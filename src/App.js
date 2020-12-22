@@ -16,6 +16,7 @@ import YanMap from './Components/Map/Map';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
+import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
 
 
 
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path="/AdminCreateGroup">
             <AdminCreateGroup />
+          </Route>
+          <Route path="/AdminEditGroup/:id">
+            <AdminEditGroup />
           </Route>
           <Route path="/Project">
             <Project />

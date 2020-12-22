@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import style from './index.module.css';
 import { useDispatch } from 'react-redux';
-import { addNewGroup } from "../../Redux/actions/notes"
-import { useHistory } from 'react-router-dom';
+import { editGroup } from "../../Redux/actions/notes"
+import { useHistory, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const AdminCreateGroup = () => {
+const AdminEditGroup = () => {
   const history = useHistory()
   const dispatch = useDispatch();
 
@@ -15,9 +16,27 @@ const AdminCreateGroup = () => {
     dateStart: "",
     dateEnd: ""
   })
+  const params = useParams()
+  const id = params.id;
+
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/editGroup/${id}`)
+      const result = await response.json()
+      setNewGroup({
+        name: result.name,
+        city: result.city,
+        avatar: result.avatar,
+        dateStart: result.dateStart,
+        dateEnd: result.dateStart
+      })
+    })()
+  }, [])
+
   function saveGroup(event) {
     event.preventDefault()
-    dispatch(addNewGroup(newGroup))
+    dispatch(editGroup({ newGroup, id }))
     setTimeout(() => {
       history.push("/AdminPage")
     }, 500);
@@ -32,7 +51,7 @@ const AdminCreateGroup = () => {
 
   return (
     <div className={style.groupMain}>
-      <form onSubmit={saveGroup} >
+      <form onSubmit={saveGroup}>
         <input type="text" onChange={handleChange} value={newGroup.name} name="name" placeholder="Введине название группы" />
         <input type="text" onChange={handleChange} value={newGroup.city} name="city" placeholder="Введине город" />
         <input type="text" onChange={handleChange} value={newGroup.avatar} name="avatar" placeholder="Введине ссылку на аватар группы" />
@@ -44,4 +63,4 @@ const AdminCreateGroup = () => {
   );
 }
 
-export default AdminCreateGroup;
+export default AdminEditGroup;
