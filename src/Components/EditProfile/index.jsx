@@ -5,6 +5,7 @@ import foto from '../img/volkov.jpg'
 import AnimatedMulti from '../MultiSelect/MultiSelect';
 import { useHistory, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 const EditProfile = () => {
@@ -21,7 +22,7 @@ const [inputs, setInputs] = useState({
 	gitHub: "",
 	linkidIn: "",
 	instagram: "",
-	vk: ""
+	vk: "",
 })
 
 async function handleSubmit(event){
@@ -59,8 +60,10 @@ function handleChange({target : {name, value}}){
 		})
 }
 
-const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk } = inputs;
-console.log(inputs);
+const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
+
+const forPlaceholder = useSelector(state=> state.userInfo)
+
   return (
     <>
       <div className="blockWrapper">
@@ -77,7 +80,7 @@ console.log(inputs);
             <form onSubmit={handleSubmit}>
               <div className="container">
                 <div className="row">
-                  <div className="col-sm">email
+                  <div className="col-sm">{forPlaceholder[0].email}
                     <label class="form-label labelEditBold">Группа(ы)/Год обучения</label>
                     <AnimatedMulti />
                   </div>
@@ -87,43 +90,43 @@ console.log(inputs);
 
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Имя</label>
-                    <input type="text" name='firstname' className="form-control editProfileInput" onChange={handleChange} value={firstname} />
+                    <input type="text" name='firstname' className="form-control editProfileInput" onChange={handleChange} value={firstname} placeholder={`${forPlaceholder[0].firstname}`}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Фамилия</label>
-                    <input type="text" name="surname" className="form-control editProfileInput" onChange={handleChange} value={surname} />
+                    <input type="text" name="surname" className="form-control editProfileInput" onChange={handleChange} value={surname} placeholder={`${forPlaceholder[0].surname}`}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Телефон</label>
-                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} />
+                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} placeholder={forPlaceholder[0].tel ? `${forPlaceholder[0].tel}` : "Введите номер телефона"}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Город</label>
-                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} />
+                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} placeholder={forPlaceholder[0].city ? `${forPlaceholder[0].city}` : "Введите город в котором проживаете"}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Telegram</label>
-                    <input type="text" name="telegram"  className="form-control editProfileInput" onChange={handleChange} value={telegram} />
+                    <input type="text" name="telegram"  className="form-control editProfileInput" onChange={handleChange} value={telegram} placeholder={forPlaceholder[0].telegram ? `${forPlaceholder[0].telegram}` : ""}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">GitHub</label>
-                    <input type="text" name="gitHub" className="form-control editProfileInput" onChange={handleChange} value={gitHub} />
+                    <input type="text" name="gitHub" className="form-control editProfileInput" onChange={handleChange} value={gitHub} placeholder={forPlaceholder[0].gitHub ? `${forPlaceholder[0].gitHub}` : ""}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm">
                     <label class="form-label labelEditBold">LinkedIn</label>
-                    <input type="text" name="linkidIn" className="form-control editProfileInput" onChange={handleChange} value={linkidIn}  />
+                    <input type="text" name="linkidIn" className="form-control editProfileInput" onChange={handleChange} value={linkidIn}  placeholder={forPlaceholder[0].linkidIn ? `${forPlaceholder[0].linkidIn}` : ""}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Instagram</label>
-                    <input type="text" name="instagram" className="form-control editProfileInput" onChange={handleChange} value={instagram}/>
+                    <input type="text" name="instagram" className="form-control editProfileInput" onChange={handleChange} value={instagram} placeholder={forPlaceholder[0].instagram ? `${forPlaceholder[0].instagram}` : ""}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">VK</label>
-                    <input type="text" name="vk" className="form-control editProfileInput" onChange={handleChange} value={vk}/>
+                    <input type="text" name="vk" className="form-control editProfileInput" onChange={handleChange} value={vk} placeholder={forPlaceholder[0].vk ? `${forPlaceholder[0].vk}` : ""}/>
                   </div>
                 </div>
                 <div className="row">
