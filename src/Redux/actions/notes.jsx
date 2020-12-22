@@ -6,7 +6,7 @@ import * as TYPES from '../types/notes';
 
 
 export const TechNewsReducer = (array) => ({
-	
+
   type: TYPES.ADD_NEWS,
   payload: array,
 });
@@ -49,9 +49,10 @@ export const AddUserID = (id) => ({
   payload: id,
 })
 
-
-
-
+export const DeleteUserID = (id) => ({
+  type: TYPES.DELETE_USER_ID,
+  payload: id
+})
 
 export const UserPosts = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
@@ -59,10 +60,18 @@ export const UserPosts = () => async (dispatch, getState) => {
   dispatch(UserPostsReducer(result))
 };
 
-export const UserPostsReducer = (posts) => ({
+export const UserPostsReducer = (title, text) => ({
   type: TYPES.ADD_POST,
-  payload: posts,
+  payload: {title, text },
 })
+
+
+export const NewPost = (title, text) => ({
+  type: TYPES.ADD_NEW_POST,
+    payload: {title, text }
+})
+
+
 
 //добавление информации для администратора
 
@@ -80,7 +89,6 @@ export const AddInfoForAdmin = () => async (dispatch, getState) => {
 
 
 
-
 // Удаление пользователя
 export const deleteUserReducer = (id) => ({
   type: TYPES.DELETE_USER,
@@ -94,14 +102,16 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     dispatch(deleteUserReducer(id))
   }
 }
+
 //добавление инфы юзера в профиль
 export const LoadUserInfo = (userInfo) => ({
   type: TYPES.ADD_USER_INFO,
   payload: userInfo,
 })
 
+//Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
-  fetch(`${process.env.REACT_APP_URL}/Home/${id}`)
+  fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
 

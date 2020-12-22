@@ -10,12 +10,15 @@ import path from 'path'
 import GroupList from './src/models/groupList.js'
 import PostList from './src/models/postList.js'
 import User from './src/models/user.module.js'
+// import NewPost from './src/models/postList'
+
 
 //Для парсинга новостей
 import axios from "axios"
 import cheerio from "cheerio"
 
 // Импорт маршрутов.
+// import newpostRouter from './src/routes/newpost.js';
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
@@ -102,6 +105,7 @@ function checkAuth(req, res, next) {
 }
 
 // Подключаем импортированные маршруты с определенным url префиксом.
+// app.use('/newpost', newpostRouter)
 app.use('/user', checkAuth, signinRouter);
 app.use('/user', checkAuth, signupRouter);
 
@@ -112,11 +116,11 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-
+console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
-  app.get('/auth/google',
+app.get('/auth/google',
   passport.authenticate('google', {
     scope: ['profile']
   }));
@@ -124,11 +128,11 @@ app.get('/auth/github/callback',
 app.get('/auth/google/callback',
   passport.authenticate('google'), function (req, res) {
     // res.json({id: req.user.id})
-    console.log(req.user.id);
+    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
-app.get('/logout', function (req, res) {
+app.delete('/logout', function (req, res) {
   req.logout();
   res.sendStatus(200);
 });
@@ -143,6 +147,29 @@ app.get('/postlist', async (req, res) => {
   const postList = await PostList.find()
   return res.json(postList)
 })
+
+
+
+app.post('/newpost', async (req, res) => {
+  console.log('!)@&*#&(*#&*(#(*');
+  const { title, text } = req.body;
+  console.log('Заголовок: ', title, 'Текст: ', text );
+  try {
+    const newuserpost = await PostList.create({
+      title,
+      text,
+    });
+    console.log(newuserpost);
+    return res.status(200).end();
+  } catch (err) {
+    console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+    return res.status(401).end();
+  }
+  // return res.end();
+}
+);
+
+
 
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
@@ -162,15 +189,19 @@ app.get("/parthNews", async (req, res) => {
   const allData = header.map((element, i) => [element, news[i]]);
   const newAllDada = allData.slice(0, 15);
   res.json(newAllDada)
-
 })
- 
+
 //получаем данные для профиля
-app.get('/Home/:id', async (req, res) => {
+
+// Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
+app.get('/Homee/:id', checkAuthentication, async (req, res) => {
+
+// app.get('/Homee/:id', async (req, res) => {
+
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    console.log(infoUser);
+    console.log(infoUser, '>>>>>>>>>>>>');
     return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
@@ -180,16 +211,15 @@ app.post('/Edit/:id', async (req, res)=>{
   let idUserEdit = req.params.id
 	let {firstname, surname, tel} = req.body
 	console.log(firstname, surname, tel); 
+
+app.get('/students_list_in_group/:id', async (req, res) => {
+  let idGroup = req.params.id
+  if (idGroup) {
+    const listOfPeopleInGroup = await User.find({ stydyGroup: idGroup }).populate('stydyGroup')
+    return res.status(200).json(listOfPeopleInGroup)
+  }
+  return res.sendStatus(406)
 })
- 
- app.get('/students_list_in_group/:id', async (req, res)=>{
-	 let idGroup = req.params.id
-	 if(idGroup){
-		 const listOfPeopleInGroup = await User.find({stydyGroup: idGroup}).populate('stydyGroup')
-		 return res.status(200).json(listOfPeopleInGroup)
-	 }
-	 return res.sendStatus(406)
- })
 
 
 //запрос данных для администратора

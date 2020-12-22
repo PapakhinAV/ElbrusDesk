@@ -3,7 +3,7 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { UserPosts } from "../../Redux/actions/notes"
-import Post from '../Post/Post'
+// import Post from '../Post/Post'
 
 const Wall = () => {
 
@@ -16,7 +16,7 @@ const Wall = () => {
   }, [])
 
   const store = useSelector((state) => state.posts);
-  console.log("store", store);
+  // console.log("store", store);
 
 
   return (

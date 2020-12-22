@@ -7,6 +7,7 @@ import HomePage from './Components/HomePage/HomePage';
 import Project from './Components/Project/Project';
 import TechNewsPage from './Components/TechNewsPage/TechNewsPage';
 import GroupsList from './Components/GroupsList';
+import Logout from './Components/Logout';
 import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 import EditProfile from './Components/EditProfile';
@@ -31,9 +32,6 @@ function App() {
           <Route path="/SignUp">
             <RegPage />
           </Route>
-          <Route path="/SignUp">
-            <RegPage />
-          </Route>
           <Route path="/AdminPage">
             <AdminPage />
           </Route>
@@ -46,26 +44,31 @@ function App() {
           <Route path="/groupslist">
             <GroupsList />
           </Route>
+          <Route path="/logout">
+            <Logout />
+          </Route>
           <Route path="/students_list_in_group/:id">
             <UsersListInGroup />
           </Route>
-          	 <Route exact path="/Edit/:id">
+          <Route exact path="/Edit/:id">
             <EditProfile />
-          </Route>
-          {<Route path="/Home/:id">
-            <HomePage />
-          </Route>}
-				   <Route path="/">
-            <Redirect to="/" />
           </Route>
           <Route path="/Map">
             <YanMap />
- </Route>
-                    <Route path="/postlist">
-            <Wall />
-
           </Route>
-       
+          <Route path="/postlist">
+            <Wall />
+          </Route>
+
+    // почему не Homee? на бэке поменял на такую ручку
+    
+          <Route path="/Home/:id">
+            <HomePage />
+          </Route>
+          <Route path="/">
+            <Redirect to="/" />
+          </Route>
+
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}
