@@ -29,7 +29,6 @@ router
       console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
       return res.status(401).end();
     }
-    return res.end();
   });
 
 // export default router

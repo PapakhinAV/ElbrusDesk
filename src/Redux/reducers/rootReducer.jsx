@@ -6,6 +6,7 @@ import AddUserIDReduser from './AddUserIDReduser';
 import UserPostsReducer from './UserPostsReducer';
 import InforForAdminReducer from './InforForAdminReducer';
 import AddUserInfoReducer from './AddUserInfoReducer';
+// import NewPostReducer from './NewPostReducer';
 
 
 const rootReducer = combineReducers({
@@ -15,8 +16,8 @@ const rootReducer = combineReducers({
   id: AddUserIDReduser,
   posts: UserPostsReducer,
 	adminInfo: InforForAdminReducer,
-	userInfo: AddUserInfoReducer,
-
+  userInfo: AddUserInfoReducer,
+  // newpost: NewPostReducer,
 });
 
 export default rootReducer;

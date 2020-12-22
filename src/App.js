@@ -58,8 +58,10 @@ function App() {
           </Route>
           <Route path="/postlist">
             <Wall />
-
           </Route>
+
+    // почему не Homee? на бэке поменял на такую ручку
+    
           <Route path="/Home/:id">
             <HomePage />
           </Route>

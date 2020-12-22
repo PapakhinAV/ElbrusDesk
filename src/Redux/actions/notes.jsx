@@ -54,17 +54,24 @@ export const DeleteUserID = (id) => ({
   payload: id
 })
 
-
 export const UserPosts = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
   const result = await response.json();
   dispatch(UserPostsReducer(result))
 };
 
-export const UserPostsReducer = (posts) => ({
+export const UserPostsReducer = (title, text) => ({
   type: TYPES.ADD_POST,
-  payload: posts,
+  payload: {title, text },
 })
+
+
+export const NewPost = (title, text) => ({
+  type: TYPES.ADD_NEW_POST,
+    payload: {title, text }
+})
+
+
 
 //добавление информации для администратора
 
