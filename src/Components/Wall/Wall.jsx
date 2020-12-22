@@ -3,7 +3,7 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { UserPosts } from "../../Redux/actions/notes"
-import Post from '../Post/Post'
+// import Post from '../Post/Post'
 
 const Wall = () => {
 

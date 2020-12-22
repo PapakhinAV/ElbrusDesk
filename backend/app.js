@@ -10,12 +10,15 @@ import path from 'path'
 import GroupList from './src/models/groupList.js'
 import PostList from './src/models/postList.js'
 import User from './src/models/user.module.js'
+// import NewPost from './src/models/postList'
+
 
 //Для парсинга новостей
 import axios from "axios"
 import cheerio from "cheerio"
 
 // Импорт маршрутов.
+// import newpostRouter from './src/routes/newpost.js';
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
@@ -102,6 +105,7 @@ function checkAuth(req, res, next) {
 }
 
 // Подключаем импортированные маршруты с определенным url префиксом.
+// app.use('/newpost', newpostRouter)
 app.use('/user', checkAuth, signinRouter);
 app.use('/user', checkAuth, signupRouter);
 
@@ -144,6 +148,29 @@ app.get('/postlist', async (req, res) => {
   return res.json(postList)
 })
 
+
+
+app.post('/newpost', async (req, res) => {
+  console.log('!)@&*#&(*#&*(#(*');
+  const { title, text } = req.body;
+  console.log('Заголовок: ', title, 'Текст: ', text );
+  try {
+    const newuserpost = await PostList.create({
+      title,
+      text,
+    });
+    console.log(newuserpost);
+    return res.status(200).end();
+  } catch (err) {
+    console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+    return res.status(401).end();
+  }
+  // return res.end();
+}
+);
+
+
+
 app.get("/parthNews", async (req, res) => {
   const response = await axios('https://3dnews.ru/news');
   const result = response.data;
@@ -166,7 +193,7 @@ app.get("/parthNews", async (req, res) => {
 })
 
 //получаем данные для профиля
-app.get('/Home/:id', async (req, res) => {
+app.get('/Homee/:id', async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')

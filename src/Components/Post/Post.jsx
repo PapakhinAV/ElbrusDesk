@@ -1,12 +1,42 @@
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { NewPost } from "../../Redux/actions/notes"
 import DragFilesPreview from '../DragFilesPreview/DragFilesPreview';
+import * as TYPES from '../../Redux/types/notes';
 import './index.css';
 
 const Post = ({ title, text, img }) => {
+
+  // const [value, setValue] = useState('')
+
+  // const dispatch = useDispatch()
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault()
+  //   if(value.trim()) {
+  //     dispatch(NewPost(value.trim()))
+  //     setValue('')
+  //   }
+  // }
+
+  
+  const dispatch = useDispatch();
+  function addNewPost(event) {
+    event.preventDefault();
+
+    dispatch({
+      type: TYPES.ADD_NEW_POST, payload: {
+        title: event.target.title,
+        text: event.target.text,
+      }
+    });
+  }
+
   return (
     <>
       <div className="userPostForm">
         <div className="formWrap">
-        <form className="postForm">
+        <form onSubmit={addNewPost} className="postForm">
           <div className="mb-3">
             <input type="text" className="postTitle" placeholder="Заголовок" />
           </div>
