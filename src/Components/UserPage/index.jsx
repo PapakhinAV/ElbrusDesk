@@ -1,5 +1,5 @@
 import './index.css';
-import Post from "../Post/Post"
+
 import Wall from "../Wall/Wall"
 import { useParams } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const UserPage = () => {
         </div>
 
         <div className="rightColumn">
-          <div className="newPostBlock"><Post /></div>
+          
           <div className="wallBlock"><Wall /></div>
         </div>
       </div>
