@@ -6,7 +6,7 @@ import { LoadStatusElbrus } from '../../Redux/actions/notes'
 
 
 const SignIn = () => {
-  
+
   const dispatch = useDispatch()
   const store = useSelector(store => store.id)
 
@@ -27,8 +27,8 @@ const SignIn = () => {
     email: '',
     password: '',
   });
-  const [error, setError] = useState(false)
-  const [yes, setYes] = useState(false)
+  const [error, setError] = useState('')
+  // const [yes, setYes] = useState(false)
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
@@ -43,12 +43,13 @@ const SignIn = () => {
       }),
       credentials: 'include'
     });
-    const result = await response.json()
     if (response.status === 200) {
+      const result = await response.json()
       dispatch(LoadStatusElbrus(true))
       history.push(`/Home/${result}`)
+    } else {
+      setError('Неправильный логин или пароль')
     }
-    return setError('Повторите вход')
   }
 
   function handlerChange({ target: { name, value } }) {
@@ -56,15 +57,12 @@ const SignIn = () => {
       ...inputs, [name]: value,
     })
   }
-  // console.log(error);
+  console.log(error);
 
   const { email, password } = inputs;
 
   return (
     <>
-
-      {
-        !yes ?
           <form onSubmit={handlerSubmit}>
             <div className="mb-3">
               {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
@@ -75,12 +73,12 @@ const SignIn = () => {
               <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
             </div>
             <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+            <div>{error}</div>
             <div className="submBut">
               <button type="submit" className="yellowButton">Войти</button>
             </div>
+          </form>  
             <div className="reqBLue">Ещё не зарегистрированы?</div>
-          </form> : <div>{error}</div>
-      }
     </>
 
   );
