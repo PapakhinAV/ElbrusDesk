@@ -201,7 +201,7 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    console.log(infoUser, '>>>>>>>>>>>>');
+    // console.log(infoUser, '>>>>>>>>>>>>');
     return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
@@ -218,7 +218,7 @@ app.post('/Edit/:id', async (req, res)=>{
 		gitHub,
 		linkidIn,
 		instagram,
-		vk} = req.body
+		vk, selectIdGroup} = req.body
 		if(firstname ||
 			surname ||
 			tel ||
@@ -227,7 +227,7 @@ app.post('/Edit/:id', async (req, res)=>{
 			gitHub ||
 			linkidIn ||
 			instagram ||
-			vk){
+			vk, selectIdGroup){
   if(firstname){
 		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
 			res.status(200)
@@ -272,6 +272,14 @@ app.post('/Edit/:id', async (req, res)=>{
 			res.status(200)
 	})
 	}
+	if(selectIdGroup){
+	selectIdGroup.map(el=>{
+		if(!userOne.stydyGroup.includes(el.value)){
+			userOne.stydyGroup.push(el.value)
+		}
+	})
+	await	User.findByIdAndUpdate(idUserEdit, {stydyGroup: userOne.stydyGroup })
+}
 	res.sendStatus(200)
 }
 	res.sendStatus(406)

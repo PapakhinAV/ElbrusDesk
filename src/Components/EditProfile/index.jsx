@@ -4,8 +4,9 @@ import foto from '../img/volkov.jpg'
 // import MultipleSelect from '../MultiSelect/MultiSelect';
 import AnimatedMulti from '../MultiSelect/MultiSelect';
 import { useHistory, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoadGroupsFromBack } from '../../Redux/actions/notes';
 
 
 const EditProfile = () => {
@@ -24,6 +25,7 @@ const [inputs, setInputs] = useState({
 	instagram: "",
 	vk: "",
 })
+const [	selectIdGroup, 	setSelectIdGroup ] = useState('')
 
 async function handleSubmit(event){
 	event.preventDefault();
@@ -41,7 +43,8 @@ const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 			gitHub,
 			linkidIn,
 			instagram,
-			vk
+			vk,
+			selectIdGroup
 		})
 	})
 	if(res.status === 200){
@@ -60,10 +63,24 @@ function handleChange({target : {name, value}}){
 		})
 }
 
+function handleChangeSelect(value){
+	setSelectIdGroup(value);
+}
 const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
 
 const forPlaceholder = useSelector(state=> state.userInfo)
 
+const dispatch = useDispatch()
+useEffect(() => {
+	(() => {
+		dispatch(LoadGroupsFromBack())
+	})()
+}, [])
+const groupOpitons = useSelector(state=> state.groups)
+
+const options =	groupOpitons.length && groupOpitons.map(el=>(
+		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` }
+	))
   return (
     <>
       <div className="blockWrapper">
@@ -82,7 +99,9 @@ const forPlaceholder = useSelector(state=> state.userInfo)
                 <div className="row">
                   <div className="col-sm">{forPlaceholder[0].email}
                     <label class="form-label labelEditBold">Группа(ы)/Год обучения</label>
-                    <AnimatedMulti />
+                    <AnimatedMulti handleChange={handleChangeSelect}
+											options={options}
+										/>
                   </div>
                 </div>
 
