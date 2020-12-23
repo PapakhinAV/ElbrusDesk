@@ -12,7 +12,8 @@ const WallUserPage = () => {
     dispatch(deletePost(id))
   }
   const { id } = useParams()
-
+  const userID = useSelector(state => state.id)
+  const compare = id === userID
   useEffect(() => {
     (() => {
       dispatch(UserPosts(id))
@@ -32,9 +33,10 @@ const WallUserPage = () => {
             </p>
             <p className="UserPostText">
               {el.text}
-            {console.log(el)}
+              {console.log(el)}
             </p>
-            <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>
+            {compare && <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>}
+
           </p>
         ))}
       </div>
