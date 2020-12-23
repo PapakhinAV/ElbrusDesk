@@ -17,9 +17,9 @@ console.log(userInfo);
   return (
     <div className="userMenu">
       <hr />
-      <p><strong className="purpleColor">Телефон: </strong>{userInfo[0] && (userInfo[0].tel && userInfo[0].tel)}</p>
-      <p><strong className="purpleColor">Почта: </strong>{userInfo[0] && (userInfo[0].email && userInfo[0].email)}</p>
-      <p><strong className="purpleColor">Город: </strong>{userInfo[0] && (userInfo[0].city && userInfo[0].city)}</p>
+    {userInfo[0] &&   <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel && userInfo[0].tel}</p>}
+     {userInfo[0] &&  <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email && userInfo[0].email}</p>}
+     {userInfo[0] &&  <p><strong className="purpleColor">Город: </strong>{userInfo[0].city && userInfo[0].city}</p>}
       <br />
       <ul>
         <li><img className="social" src={linkedin} alt="linkedin" /></li>

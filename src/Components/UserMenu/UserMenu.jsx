@@ -33,6 +33,9 @@ const UserMenu = () => {
         <li><img className="social" src={git} alt="git" /></li>
         <li><img className="social" src={tg} alt="tg" /></li>
         <li><img className="social" src={vk} alt="vk" /></li>
+        {
+					userInfo[0] && (<li>{userInfo[0].social && userInfo[0].social}</li>)
+				}
       </ul><br />
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
