@@ -1,9 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// import { NewPost } from "../../Redux/actions/notes"
 import { AddNewPost } from "../../Redux/actions/notes"
 import DragFilesPreview from '../DragFilesPreview/DragFilesPreview';
-// import * as TYPES from '../../Redux/types/notes';
 import './index.css';
 
 const Post = () => {

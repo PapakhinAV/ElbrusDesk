@@ -58,7 +58,6 @@ export const LoadUsersFromBack = (id) => (dispatch, getState) => {
       .then(res => res.json())
       .then(data => dispatch(LoadUsersInGroup(data)))
   }, 500);
-
 }
 
 export const AddUserID = (id) => ({
@@ -84,9 +83,7 @@ export const UserPosts = (id) => async (dispatch, getState) => {
     console.log(result);
     dispatch(ShowAllPostsReducer(result))
   }, 500);
-
 };
-
 
 // Удаление постов
 export const deletePostReducer = (id) => ({
@@ -102,23 +99,22 @@ export const deletePost = (id) => async (dispatch, getState) => {
 }
 
 
-
-
 export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
   payload: newpost
 })
 
-export const AddNewPost = (title, text, id) => async (dispatch, getState) => {
+export const AddNewPost = (title, text, img, id) => async (dispatch, getState) => {
   const response = await fetch(`/newpost/${id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ title, text })
+    body: JSON.stringify({ title, text, img })
   })
+  const _id = await response.json()
   if (response.status === 200) {
-    dispatch(NewPost({ title, text }))
+    dispatch(NewPost({ title, text, img, _id }))
   }
 
 }
