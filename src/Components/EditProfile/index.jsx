@@ -26,6 +26,7 @@ const [inputs, setInputs] = useState({
 	vk: "",
 })
 const [	selectIdGroup, 	setSelectIdGroup ] = useState('')
+const [	selectIdDelete, 	setSelectIdDelete ] = useState('')
 
 async function handleSubmit(event){
 	event.preventDefault();
@@ -44,7 +45,8 @@ const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 			linkidIn,
 			instagram,
 			vk,
-			selectIdGroup
+			selectIdGroup,
+			selectIdDelete
 		})
 	})
 	if(res.status === 200){
@@ -67,6 +69,10 @@ function handleChange({target : {name, value}}){
 function handleChangeSelect(value){
 	setSelectIdGroup(value);
 }
+
+function handleSelectDelete(value){
+	setSelectIdDelete(value);
+}
 const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
 
 const forPlaceholder = useSelector(state=> state.userInfo)
@@ -82,6 +88,15 @@ const groupOpitons = useSelector(state=> state.groups)
 const options =	groupOpitons.length && groupOpitons.map(el=>(
 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` }
 	))
+
+	const deleteGroup = useSelector(state=> state.userInfo[0].stydyGroup)
+	let optionsForDelete=[]
+	if(deleteGroup){
+		optionsForDelete = deleteGroup.length && deleteGroup.map(el=>(
+		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` 
+	}
+	))}
+	console.log(deleteGroup);
   return (
     <>
       <div className="blockWrapper">
@@ -104,6 +119,13 @@ const options =	groupOpitons.length && groupOpitons.map(el=>(
 											options={options}
 										/>
                   </div>
+									<div className="col-sm">
+                    <label class="form-label labelEditBold">Удалить себя из группы</label>
+                    <AnimatedMulti handleChange={handleSelectDelete}
+												options={optionsForDelete}
+										/>
+                  </div>
+								
                 </div>
 
                 <div className="row">

@@ -285,8 +285,8 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub,
     linkidIn,
     instagram,
-		vk, selectIdGroup } = req.body
-		console.log(req.body);
+		vk, selectIdGroup, selectIdDelete } = req.body
+
   if (firstname ||
     surname ||
     tel ||
@@ -295,7 +295,8 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub ||
     linkidIn ||
     instagram ||
-    vk || selectIdGroup) {
+		vk || 
+		selectIdGroup || selectIdDelete) {
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -340,7 +341,7 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { gitHub: gitHub }, function (err, gitHub) {
         res.status(200)
       })
-    }
+		}
     if (selectIdGroup) {
       selectIdGroup.map(el => {
         if (!userOne.stydyGroup.includes(el.value)) {
@@ -348,7 +349,13 @@ app.post('/Edit/:id', async (req, res) => {
         }
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
-    }
+		}
+	// 	if (selectIdDelete) {
+	// 		userOne.stydyGroup.map(el=> (
+	// 			selectIdDelete.map(item =>( item))
+  // ))
+    //   await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+    // }
   return res.sendStatus(200)
   }
   return res.sendStatus(406)
