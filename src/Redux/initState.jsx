@@ -47,7 +47,8 @@ const initialState = () => {
       birthday: ''
     },
     elbrusStatus: false,
-    adminStatus: false
+		adminStatus: false,
+		loader: false
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }
