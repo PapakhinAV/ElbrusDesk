@@ -52,7 +52,8 @@ const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 		history.replace('/')
 	}
 	else if(res.status === 406){
-		alert("Введите изменения.")
+		console.log("Status 406");
+		history.replace('/')
 	}
 }
 
@@ -117,13 +118,13 @@ const options =	groupOpitons.length && groupOpitons.map(el=>(
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Телефон</label>
-                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} placeholder={forPlaceholder[0].tel ? `${forPlaceholder[0].tel}` : "Введите номер телефона"}/>
+                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} placeholder={forPlaceholder[0].tel ? `${forPlaceholder[0].tel}` : ""}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Город</label>
-                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} placeholder={forPlaceholder[0].city ? `${forPlaceholder[0].city}` : "Введите город в котором проживаете"}/>
+                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} placeholder={forPlaceholder[0].city ? `${forPlaceholder[0].city}` : ""}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Telegram</label>

@@ -15,7 +15,9 @@ const UserSchema = mongoose.Schema({
   }],
   gitHub: String,
   linkidIn: String,
-  social: Array,
+	telegram: String,
+	instagram: String,
+	vk: String,
   city: String,
   workPlace: Array,
   post: [{
