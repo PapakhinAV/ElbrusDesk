@@ -21,7 +21,7 @@ router
         password: hashedPassword,
         email,
         tel,
-        admin: true,
+        admin: false,
       });
       return res.status(200).end();
       //   req.session.user = serializeUser(user);
