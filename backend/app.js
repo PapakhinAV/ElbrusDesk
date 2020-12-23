@@ -22,15 +22,18 @@ import cheerio from "cheerio"
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
-import fetch from "node-fetch";
 
+
+import fileUpload from 'express-fileupload';
 
 
 dotenv.config()
 
 const app = express();
 
-
+app.use(express.static('public')); //to access the files in public folder
+// app.use(cors()); // it enables all cors requests
+app.use(fileUpload());
 
 const PORT = process.env.PORT ?? 0
 
@@ -59,8 +62,14 @@ const host =
       credentials: true,
     }));
 
+
+
+
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
 app.use(express.urlencoded({ extended: true }))
@@ -87,13 +96,12 @@ passports(passport);
 
 // Подключение middleware, который проверяет аунтифицирован пользователь на данной ручке или нет
 function checkAuthentication(req, res, next) {
-  console.log(req.isAuthenticated())
+  // console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     return next()
   } else {
     res.sendStatus(401)
   }
-
 }
 
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
@@ -116,7 +124,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -137,6 +145,32 @@ app.delete('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
+
+
+
+
+app.post('/upload', (req, res) => {
+
+  if (!req.files) {
+      return res.status(500).send({ msg: "file is not found" })
+  }
+      // accessing the file
+  const myFile = req.files.file;
+
+  //  mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+      if (err) {
+          console.log(err)
+          return res.status(500).send({ msg: "Error occured" });
+      }
+      // returing the response with file path and name
+      return res.send({name: myFile.name, path: `/${myFile.name}`});
+  });
+})
+
+
+
+
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
@@ -145,45 +179,32 @@ app.get('/groupslist', checkAuthentication, async (req, res) => {
 
 app.get('/postlist', async (req, res) => {
   const postList = await PostList.find()
+  // postList.reverse()
   return res.json(postList)
 })
 
-
-
 app.post('/newpost', async (req, res) => {
-  // console.log(req.body);
-  // console.log('!)@&*#&(*#&*(#(*');
   const { title, text } = req.body;
-
-  // console.log('Заголовок: ', title, 'Текст: ', text );
   const addNewPost = new PostList({
     title: title,
     text: text,
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
-  console.log(addNewPost._id);
   let user = await User.findById(sessionUser);
   user.post.push(addNewPost._id)
   await user.save()
   res.sendStatus(200)
-
-//   console.log('Заголовок: ', title, 'Текст: ', text);
-//   try {
-//     const newuserpost = await PostList.create({
-//       title,
-//       text,
-//     });
-//     console.log(newuserpost);
-//     return res.status(200).end();
-//   } catch (err) {
-//     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-//     return res.status(401).end();
-//   }
-  // return res.end();
-
 }
 );
+
+//Удаление постов
+app.get("/deletePost/:id", async (req, res) => {
+  const id = req.params.id
+  await PostList.findByIdAndDelete(id)
+  res.sendStatus(200)
+  await User.filter((el) => (el._id !== id))
+})
 
 
 
@@ -217,80 +238,80 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    console.log(infoUser, '>>>>>>>>>>>>');
+    // console.log(infoUser, '>>>>>>>>>>>>');
     return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
 })
 
-app.post('/Edit/:id', async (req, res)=>{
-	let idUserEdit = req.params.id
-		let userOne = await User.findById({_id: `${idUserEdit}`})
-	let {	firstname,
-		surname,
-		tel,
-		city,
-		telegram,
-		gitHub,
-		linkidIn,
-		instagram,
-		vk} = req.body
-		if(firstname ||
-			surname ||
-			tel ||
-			city ||
-			telegram ||
-			gitHub ||
-			linkidIn ||
-			instagram ||
-			vk){
-  if(firstname){
-		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
-			res.status(200)
-	})
-	}
-	if(surname){
-		await User.findByIdAndUpdate(idUserEdit, {surname: surname }, function(err, surname){
-			res.status(200)
-	})
-	}
-	if(tel){
-		await User.findByIdAndUpdate(idUserEdit, {tel: tel }, function(err, tel){
-			res.status(200)
-	})
-	}
-	if(city){
-		await User.findByIdAndUpdate(idUserEdit, {city: city }, function(err, city){
-			res.status(200)
-	})
-	}
-	if(telegram || linkidIn || instagram || vk){
+app.post('/Edit/:id', async (req, res) => {
+  let idUserEdit = req.params.id
+  let userOne = await User.findById({ _id: `${idUserEdit}` })
+  let { firstname,
+    surname,
+    tel,
+    city,
+    telegram,
+    gitHub,
+    linkidIn,
+    instagram,
+    vk } = req.body
+  if (firstname ||
+    surname ||
+    tel ||
+    city ||
+    telegram ||
+    gitHub ||
+    linkidIn ||
+    instagram ||
+    vk) {
+    if (firstname) {
+      await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
+        res.status(200)
+      })
+    }
+    if (surname) {
+      await User.findByIdAndUpdate(idUserEdit, { surname: surname }, function (err, surname) {
+        res.status(200)
+      })
+    }
+    if (tel) {
+      await User.findByIdAndUpdate(idUserEdit, { tel: tel }, function (err, tel) {
+        res.status(200)
+      })
+    }
+    if (city) {
+      await User.findByIdAndUpdate(idUserEdit, { city: city }, function (err, city) {
+        res.status(200)
+      })
+    }
+    if (telegram || linkidIn || instagram || vk) {
 
-	if(telegram){
-		userOne.social.push(`${telegram}`)
-	}
-	if(linkidIn){
-		userOne.social.push(`${linkidIn}`)
-	}
-	if(instagram){
-		userOne.social.push(`${instagram}`)
-	}
-	if(vk){
-		userOne.social.push(`${vk}`)
-	}
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	if(gitHub){
-		userOne.social.push(`${gitHub}`)
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	res.sendStatus(200)
-}
-	res.sendStatus(406)
+      if (telegram) {
+        userOne.social.push(`${telegram}`)
+      }
+      if (linkidIn) {
+        userOne.social.push(`${linkidIn}`)
+      }
+      if (instagram) {
+        userOne.social.push(`${instagram}`)
+      }
+      if (vk) {
+        userOne.social.push(`${vk}`)
+      }
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    if (gitHub) {
+      userOne.social.push(`${gitHub}`)
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    res.sendStatus(200)
+  }
+  res.sendStatus(406)
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {
