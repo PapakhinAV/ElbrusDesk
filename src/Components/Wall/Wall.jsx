@@ -25,17 +25,17 @@ const WallUserPage = () => {
     <div className="wall">
       <div userPostDiv>
         {posts.map(el => (
-          <div key={el._id}>
-            {el.img && <img className="postImgs" src={el.img} alt='картинка' />}
+          <p key={el._id}>
+            {el.img && <img width="600" className="postImgs" src={`/${el.img}`} alt='картинка' />}
             <p className="UserPostTitle">
               {el.title}
             </p>
             <p className="UserPostText">
               {el.text}
+            {console.log(el)}
             </p>
-            <p>{el._id}</p>
-            <button type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ</button>
-          </div>
+            <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>
+          </p>
         ))}
       </div>
     </div>

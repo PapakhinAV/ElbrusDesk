@@ -157,7 +157,7 @@ app.post('/upload', (req, res) => {
   }
   // accessing the file
   const myFile = req.files.file;
-
+  console.log(myFile);
   //  mv() method places the file inside public directory
   myFile.mv(`${process.env.PWD}/public/${myFile.name}`, function (err) {
     if (err) {
@@ -189,7 +189,7 @@ app.post('/newpost/:id', async (req, res) => {
   const addNewPost = new PostList({
     title: title,
     text: text,
-    img,
+    img: img,
     authorID: id,
   })
   await addNewPost.save()

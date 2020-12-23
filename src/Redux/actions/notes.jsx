@@ -105,7 +105,7 @@ export const NewPost = (newpost) => ({
   payload: newpost
 })
 
-export const AddNewPost = (title, text, img, id) => async (dispatch, getState) => {
+export const AddNewPost = (title, text, id, img) => async (dispatch, getState) => {
   const response = await fetch(`/newpost/${id}`, {
     method: 'POST',
     headers: {
@@ -115,7 +115,7 @@ export const AddNewPost = (title, text, img, id) => async (dispatch, getState) =
   })
   const _id = await response.json()
   if (response.status === 200) {
-    dispatch(NewPost({ title, text, img, _id }))
+    dispatch(NewPost({ title, text, _id, img }))
   }
 
 }
