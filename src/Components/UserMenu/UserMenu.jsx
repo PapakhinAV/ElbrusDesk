@@ -21,7 +21,7 @@ const UserMenu = () => {
         <Link to={`/Edit/${id}`}>
           <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
         </Link>
-        <button className="logoutButton">ВЫЙТИ</button>
+        <Link to="/logout"><button className="logoutButton">ВЫЙТИ</button></Link>
       </div>
       <hr />
       {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}

@@ -42,14 +42,15 @@ const HomePage = () => {
           <div className="userName">
             {
               userInfo.length &&
-              <h1><span className="yellowSymbols">//</span>{userInfo[0].firstname}  {userInfo[0].surname}<span className="yellowSymbols">//</span></h1>
+              <h1><span className="yellowSymbols">{'//'}{' '}</span>{userInfo[0].firstname}{' '}{userInfo[0].surname}<span className="yellowSymbols">{' '}{'//'}</span></h1>
             }
           </div>
           <div className="userMenuBlock"><UserMenu /></div>
         </div>
 
         <div className="rightColumn">
-          <AddFiles />
+        {/* <AddFiles /> */}
+
 
           <div className="newPostBlock"><Post /></div>
           <div className="wallBlock"><Wall /></div>
