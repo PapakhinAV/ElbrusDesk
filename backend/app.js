@@ -229,11 +229,31 @@ app.get("/parthNews", async (req, res) => {
     const newsBody = $(element).text();
     news.push(newsBody);
   });
-  const allData = header.map((element, i) => [element, news[i]]);
+
+  // const allData = header.map((element, i) => [element, news[i]]);
+
+  const allData = []
+  header.map((element, i) => {
+    if (!element.split().toString().match(/.*3DNews.*/)
+      &&
+      !news[i].split().toString().match(/.*3DNews.*/)) {
+      allData.push([element, news[i]])
+    }
+  });
   const newAllDada = allData.slice(0, 15);
   res.json(newAllDada)
 })
 
+// const allData = []
+//   header.map((element, i) => {
+//     if (!element.split(" ").includes(["3DNews"])) {
+//       console.log(element.split(" "));
+//       allData.push([element, news[i]])
+//     }
+//   });
+//   console.log(allData);
+//   const newAllDada = allData.slice(0, 15);
+//   res.json(newAllDada)
 //получаем данные для профиля
 
 // Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
