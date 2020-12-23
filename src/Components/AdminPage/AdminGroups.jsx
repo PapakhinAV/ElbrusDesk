@@ -11,6 +11,7 @@ const AdminGroups = ({ element }) => {
     dispatch(deleteGroup(id))
 
   }
+  
   return (
     <div className={style.groupMain}>
       <div className={style.groupsNames}>

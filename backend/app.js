@@ -22,15 +22,18 @@ import cheerio from "cheerio"
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
-import fetch from "node-fetch";
 
+
+import fileUpload from 'express-fileupload';
 
 
 dotenv.config()
 
 const app = express();
 
-
+app.use(express.static('public')); //to access the files in public folder
+// app.use(cors()); // it enables all cors requests
+app.use(fileUpload());
 
 const PORT = process.env.PORT ?? 0
 
@@ -59,8 +62,14 @@ const host =
       credentials: true,
     }));
 
+
+
+
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
 app.use(express.urlencoded({ extended: true }))
@@ -87,13 +96,12 @@ passports(passport);
 
 // Подключение middleware, который проверяет аунтифицирован пользователь на данной ручке или нет
 function checkAuthentication(req, res, next) {
-  console.log(req.isAuthenticated())
+  // console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     return next()
   } else {
     res.sendStatus(401)
   }
-
 }
 
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
@@ -116,7 +124,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -137,11 +145,46 @@ app.delete('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
+
+
+
+
+app.post('/upload', (req, res) => {
+
+  if (!req.files) {
+      return res.status(500).send({ msg: "file is not found" })
+  }
+      // accessing the file
+  const myFile = req.files.file;
+
+  //  mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+      if (err) {
+          console.log(err)
+          return res.status(500).send({ msg: "Error occured" });
+      }
+      // returing the response with file path and name
+      return res.send({name: myFile.name, path: `/${myFile.name}`});
+  });
+})
+
+
+
+
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })
 
+
+
+// app.get('/postlist', async (req, res) => {
+//   const postList = await PostList.find()
+//   // postList.reverse()
+//   return res.json(postList)
+// })
+
+// app.post('/newpost', async (req, res) => {
 
 app.get('/postlist/:id', async (req, res) => {
   const id = req.params.id
@@ -149,15 +192,12 @@ app.get('/postlist/:id', async (req, res) => {
   return res.json(postList)
 })
 
-
-
 app.post('/newpost/:id', async (req, res) => {
   // console.log(req.body);
   // console.log('!)@&*#&(*#&*(#(*');
   const id = req.params.id
-  const { title, text } = req.body;
 
-  // console.log('Заголовок: ', title, 'Текст: ', text );
+  const { title, text } = req.body;
   const addNewPost = new PostList({
     title: title,
     text: text,
@@ -165,7 +205,6 @@ app.post('/newpost/:id', async (req, res) => {
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
-  console.log(addNewPost._id);
   let user = await User.findById(sessionUser);
   user.post.push(addNewPost._id)
   await user.save()
@@ -187,6 +226,14 @@ app.post('/newpost/:id', async (req, res) => {
 
 }
 );
+
+//Удаление постов
+app.get("/deletePost/:id", async (req, res) => {
+  const id = req.params.id
+  await PostList.findByIdAndDelete(id)
+  res.sendStatus(200)
+  await User.filter((el) => (el._id !== id))
+})
 
 
 

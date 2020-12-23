@@ -88,11 +88,18 @@ export const UserPosts = (id) => async (dispatch, getState) => {
 };
 
 
-// <!-- export const UserPostsReducer = (title, text) => ({
-//   type: TYPES.ADD_POST,
-//   payload: { title, text },
-// }) -->
+// Удаление постов
+export const deletePostReducer = (id) => ({
+  type: TYPES.DELETE_POST,
+  payload: id,
+});
 
+export const deletePost = (id) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/deletePost/${id}`)
+  if (response.status === 200) {
+    dispatch(deletePostReducer(id))
+  }
+}
 
 
 
@@ -100,11 +107,8 @@ export const UserPosts = (id) => async (dispatch, getState) => {
 export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
   payload: newpost
-  // <!--   payload: { title, text } -->
-
 })
 
-// export const AddNewPost = (title, text) => ({
 export const AddNewPost = (title, text, id) => async (dispatch, getState) => {
   const response = await fetch(`/newpost/${id}`, {
     method: 'POST',
@@ -116,6 +120,7 @@ export const AddNewPost = (title, text, id) => async (dispatch, getState) => {
   if (response.status === 200) {
     dispatch(NewPost({ title, text }))
   }
+
 }
 
 //добавление информации для администратора
