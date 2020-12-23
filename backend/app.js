@@ -152,19 +152,19 @@ app.delete('/logout', function (req, res) {
 app.post('/upload', (req, res) => {
 
   if (!req.files) {
-      return res.status(500).send({ msg: "file is not found" })
+    return res.status(500).send({ msg: "file is not found" })
   }
-      // accessing the file
+  // accessing the file
   const myFile = req.files.file;
 
   //  mv() method places the file inside public directory
   myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
-      if (err) {
-          console.log(err)
-          return res.status(500).send({ msg: "Error occured" });
-      }
-      // returing the response with file path and name
-      return res.send({name: myFile.name, path: `/${myFile.name}`});
+    if (err) {
+      console.log(err)
+      return res.status(500).send({ msg: "Error occured" });
+    }
+    // returing the response with file path and name
+    return res.send({ name: myFile.name, path: `/${myFile.name}` });
   });
 })
 
@@ -274,82 +274,82 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 })
 
 
-app.post('/Edit/:id', async (req, res)=>{
-	let idUserEdit = req.params.id
-		let userOne = await User.findById({_id: `${idUserEdit}`})
-	let {	firstname,
-		surname,
-		tel,
-		city,
-		telegram,
-		gitHub,
-		linkidIn,
-		instagram,
-		vk, selectIdGroup} = req.body
-		if(firstname ||
-			surname ||
-			tel ||
-			city ||
-			telegram ||
-			gitHub ||
-			linkidIn ||
-			instagram ||
-			vk, selectIdGroup){
-  if(firstname){
-		await User.findByIdAndUpdate(idUserEdit, {firstname: firstname}, function(err, firstname){
-			res.status(200)
-	})
-	}
-	if(surname){
-		await User.findByIdAndUpdate(idUserEdit, {surname: surname }, function(err, surname){
-			res.status(200)
-	})
-	}
-	if(tel){
-		await User.findByIdAndUpdate(idUserEdit, {tel: tel }, function(err, tel){
-			res.status(200)
-	})
-	}
-	if(city){
-		await User.findByIdAndUpdate(idUserEdit, {city: city }, function(err, city){
-			res.status(200)
-	})
-	}
-	if(telegram || linkidIn || instagram || vk){
+app.post('/Edit/:id', async (req, res) => {
+  let idUserEdit = req.params.id
+  let userOne = await User.findById({ _id: `${idUserEdit}` })
+  let { firstname,
+    surname,
+    tel,
+    city,
+    telegram,
+    gitHub,
+    linkidIn,
+    instagram,
+    vk, selectIdGroup } = req.body
+  if (firstname ||
+    surname ||
+    tel ||
+    city ||
+    telegram ||
+    gitHub ||
+    linkidIn ||
+    instagram ||
+    vk, selectIdGroup) {
+    if (firstname) {
+      await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
+        res.status(200)
+      })
+    }
+    if (surname) {
+      await User.findByIdAndUpdate(idUserEdit, { surname: surname }, function (err, surname) {
+        res.status(200)
+      })
+    }
+    if (tel) {
+      await User.findByIdAndUpdate(idUserEdit, { tel: tel }, function (err, tel) {
+        res.status(200)
+      })
+    }
+    if (city) {
+      await User.findByIdAndUpdate(idUserEdit, { city: city }, function (err, city) {
+        res.status(200)
+      })
+    }
+    if (telegram || linkidIn || instagram || vk) {
 
-	if(telegram){
-		userOne.social.push(`${telegram}`)
-	}
-	if(linkidIn){
-		userOne.social.push(`${linkidIn}`)
-	}
-	if(instagram){
-		userOne.social.push(`${instagram}`)
-	}
-	if(vk){
-		userOne.social.push(`${vk}`)
-	}
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	if(gitHub){
-		userOne.social.push(`${gitHub}`)
-		await User.findByIdAndUpdate(idUserEdit, {social: userOne.social }, function(err, userOne){
-			res.status(200)
-	})
-	}
-	if(selectIdGroup){
-	selectIdGroup.map(el=>{
-		if(!userOne.stydyGroup.includes(el.value)){
-			userOne.stydyGroup.push(el.value)
-		}
-	})
-	await	User.findByIdAndUpdate(idUserEdit, {stydyGroup: userOne.stydyGroup })
-}
-	res.sendStatus(200)
-}
-	res.sendStatus(406)
+      if (telegram) {
+        userOne.social.push(`${telegram}`)
+      }
+      if (linkidIn) {
+        userOne.social.push(`${linkidIn}`)
+      }
+      if (instagram) {
+        userOne.social.push(`${instagram}`)
+      }
+      if (vk) {
+        userOne.social.push(`${vk}`)
+      }
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    if (gitHub) {
+      userOne.social.push(`${gitHub}`)
+      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+        res.status(200)
+      })
+    }
+    if (selectIdGroup) {
+      selectIdGroup.map(el => {
+        if (!userOne.stydyGroup.includes(el.value)) {
+          userOne.stydyGroup.push(el.value)
+        }
+      })
+      await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+    }
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
 
 })
 
@@ -368,7 +368,7 @@ app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
   console.log('>>>>>>>>>>>>>>', req.user.admin);
   const allUsers = await User.find()
   const allGroups = await GroupList.find()
-  const dataForAdmin = {admin: req.user.admin, users: allUsers, groups: allGroups }
+  const dataForAdmin = { admin: req.user.admin, users: allUsers, groups: allGroups }
   res.json(dataForAdmin)
 })
 
