@@ -2,23 +2,24 @@ import './index.css';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { LoadStatusElbrus } from '../../Redux/actions/notes'
+import { LoadStatusElbrus, LoadStatusAdmin } from '../../Redux/actions/notes'
 
 
 const SignIn = () => {
-  
+
   const dispatch = useDispatch()
-  const store = useSelector(store => store.id)
 
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      let res = await fetch("http://localhost:3000/user/signin", {
+      let response = await fetch("http://localhost:3000/user/signin", {
         method: 'GET',
         credentials: 'include'
       })
-      if (res.status === 401) {
-        history.push(`/Home/${store}`)
+      const result = await response.json()
+console.log(result);
+      if (response.status === 401) {
+        history.push(`/Home/${result}`)
       }
     })()
   }, [])
@@ -27,8 +28,8 @@ const SignIn = () => {
     email: '',
     password: '',
   });
-  const [error, setError] = useState(false)
-  const [yes, setYes] = useState(false)
+  const [error, setError] = useState('')
+  // const [yes, setYes] = useState(false)
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
@@ -43,12 +44,19 @@ const SignIn = () => {
       }),
       credentials: 'include'
     });
-    const result = await response.json()
     if (response.status === 200) {
-      dispatch(LoadStatusElbrus(true))
-      history.push(`/Home/${result}`)
+      const result = await response.json()
+      console.log('>>>>>>>>>>>>>>',result);
+      if(result.admin!==true){
+        dispatch(LoadStatusElbrus(true))
+        history.push(`/Home/${result.id}`)
+      } else{
+        dispatch(LoadStatusAdmin(true))
+        history.push(`/Home/${result.id}`)
+      }
+    } else {
+      setError('Неправильный логин или пароль')
     }
-    return setError('Повторите вход')
   }
 
   function handlerChange({ target: { name, value } }) {
@@ -62,9 +70,6 @@ const SignIn = () => {
 
   return (
     <>
-
-      {
-        !yes ?
           <form onSubmit={handlerSubmit}>
             <div className="mb-3">
               {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
@@ -75,12 +80,12 @@ const SignIn = () => {
               <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
             </div>
             <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+            <div>{error}</div>
             <div className="submBut">
               <button type="submit" className="yellowButton">Войти</button>
             </div>
+          </form>  
             <div className="reqBLue">Ещё не зарегистрированы?</div>
-          </form> : <div>{error}</div>
-      }
     </>
 
   );

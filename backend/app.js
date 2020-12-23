@@ -99,7 +99,7 @@ function checkAuthentication(req, res, next) {
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.sendStatus(401)
+    return res.status(401).json(req.user._id)
   }
   else next()
 }
@@ -220,7 +220,7 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    console.log(infoUser, '>>>>>>>>>>>>');
+    // console.log(infoUser, '>>>>>>>>>>>>');
     return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
@@ -307,10 +307,11 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 
 
 //запрос данных для администратора
-app.get("/AddInfoForAdmin", async (req, res) => {
+app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
+  console.log('>>>>>>>>>>>>>>', req.user.admin);
   const allUsers = await User.find()
   const allGroups = await GroupList.find()
-  const dataForAdmin = { users: allUsers, groups: allGroups }
+  const dataForAdmin = {admin: req.user.admin, users: allUsers, groups: allGroups }
   res.json(dataForAdmin)
 })
 

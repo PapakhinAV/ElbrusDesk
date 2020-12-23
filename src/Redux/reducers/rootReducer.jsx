@@ -8,6 +8,8 @@ import InforForAdminReducer from './InforForAdminReducer';
 import AddUserInfoReducer from './AddUserInfoReducer';
 import ShowAllPostsReducer from './ShowAllPostsReducer';
 import AddElbrusStatus from './AddElbrusStatus';
+import AddAdminStatus from './AddAdminStatus';
+
 // import NewPostReducer from './NewPostReducer';
 
 
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
   posts: UserPostsReducer,
   allposts: ShowAllPostsReducer,
   elbrusStatus: AddElbrusStatus,
+  adminStatus: AddAdminStatus,
   // newpost: NewPostReducer,
 });
 
