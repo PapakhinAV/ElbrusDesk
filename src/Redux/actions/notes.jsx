@@ -80,6 +80,7 @@ export const UserPosts = (id) => async (dispatch, getState) => {
   setTimeout(async () => {
     const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
     const result = await response.json();
+    result.reverse()
     console.log(result);
     dispatch(ShowAllPostsReducer(result))
   }, 500);
@@ -129,7 +130,7 @@ export const AdminInfoReducer = (object) => ({
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
-  if(result.admin===true){
+  if (result.admin === true) {
     dispatch(AdminInfoReducer(result))
     dispatch(LoadStatusAdmin(true))
   } else {
