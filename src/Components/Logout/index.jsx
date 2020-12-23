@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { DeleteUserID, LoadStatusElbrus, LoadGroups } from '../../Redux/actions/notes';
+import { DeleteUserID, LoadStatusElbrus, LoadGroups, LoadStatusAdmin, LoadUserInfo } from '../../Redux/actions/notes';
 import { useDispatch } from 'react-redux';
 
 const Logout = ()=>{
@@ -13,10 +13,13 @@ const Logout = ()=>{
               credentials: 'include'
             });
             if (response.status === 200) {
+                dispatch(LoadUserInfo(''))
                 dispatch(DeleteUserID(''))
                 dispatch(LoadGroups([]))
                 dispatch(LoadStatusElbrus(false))
+                dispatch(LoadStatusAdmin(false))
                 localStorage.removeItem('redux')
+              history.push('/TechNews')
               history.push('/')
             }
           })()

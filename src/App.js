@@ -18,6 +18,7 @@ import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
 import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
+import AddFiles from './Components/AddFiles/AddFiles';
 
 
 

@@ -5,8 +5,6 @@ import * as TYPES from '../types/notes';
 // dotenv.config()
 
 
-
-
 export const TechNewsReducer = (array) => ({
 
   type: TYPES.ADD_NEWS,
@@ -19,8 +17,6 @@ export const ParceNews = () => async (dispatch, getState) => {
   dispatch(TechNewsReducer(result))
 };
 
-
-
 //for loadGropuList
 export const LoadGroups = (list) => ({
   type: TYPES.ADD_GROUPS,
@@ -31,10 +27,15 @@ export const LoadStatusElbrus = (stat) => ({
   payload: stat,
 })
 
+export const LoadStatusAdmin = (stat) => ({
+  type: TYPES.ADD_STATUS_ADMIN,
+  payload: stat,
+})
+
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   console.log(response.status);
-  if(response.status === 401){
+  if (response.status === 401) {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
@@ -51,9 +52,13 @@ export const LoadUsersInGroup = (listUsers) => ({
 })
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
-  fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-		.then(res => res.json())
-		.then(data =>dispatch(LoadUsersInGroup(data)))
+  dispatch(LoadUsersInGroup([]))
+  setTimeout(() => {
+    fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+      .then(res => res.json())
+      .then(data => dispatch(LoadUsersInGroup(data)))
+  }, 500);
+
 }
 
 export const AddUserID = (id) => ({
@@ -66,24 +71,57 @@ export const DeleteUserID = (id) => ({
   payload: id
 })
 
-export const UserPosts = () => async (dispatch, getState) => {
-  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
-  const result = await response.json();
-  dispatch(UserPostsReducer(result))
+export const ShowAllPostsReducer = (posts) => ({
+  type: TYPES.SHOW_ALL_POSTS,
+  payload: posts,
+})
+
+export const UserPosts = (id) => async (dispatch, getState) => {
+  dispatch(ShowAllPostsReducer([]))
+  setTimeout(async () => {
+    const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
+    const result = await response.json();
+    console.log(result);
+    dispatch(ShowAllPostsReducer(result))
+  }, 500);
+
 };
 
-export const UserPostsReducer = (title, text) => ({
-  type: TYPES.ADD_POST,
-  payload: { title, text },
-})
+
+// Удаление постов
+export const deletePostReducer = (id) => ({
+  type: TYPES.DELETE_POST,
+  payload: id,
+});
+
+export const deletePost = (id) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/deletePost/${id}`)
+  if (response.status === 200) {
+    dispatch(deletePostReducer(id))
+  }
+}
 
 
-export const NewPost = (title, text) => ({
+
+
+export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
-  payload: { title, text }
+  payload: newpost
 })
 
+export const AddNewPost = (title, text, id) => async (dispatch, getState) => {
+  const response = await fetch(`/newpost/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title, text })
+  })
+  if (response.status === 200) {
+    dispatch(NewPost({ title, text }))
+  }
 
+}
 
 //добавление информации для администратора
 
@@ -95,17 +133,19 @@ export const AdminInfoReducer = (object) => ({
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
-  dispatch(AdminInfoReducer(result))
+  if(result.admin===true){
+    dispatch(AdminInfoReducer(result))
+    dispatch(LoadStatusAdmin(true))
+  } else {
+    dispatch(LoadStatusAdmin(false))
+  }
 }
-
-
 
 // Удаление пользователя
 export const deleteUserReducer = (id) => ({
   type: TYPES.DELETE_USER,
   payload: id,
 });
-
 
 export const deleteUser = (id) => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/deleteUser/${id}`)
@@ -125,7 +165,6 @@ export const AddUserInfo = (id) => (dispatch, getState) => {
   fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
-
 }
 
 //Добавление группы

@@ -22,15 +22,18 @@ import cheerio from "cheerio"
 import signinRouter from './src/routes/signin.js';
 import signupRouter from './src/routes/signup.js';
 import passports from './src/routes/passport.js';
-import fetch from "node-fetch";
 
+
+import fileUpload from 'express-fileupload';
 
 
 dotenv.config()
 
 const app = express();
 
-
+app.use(express.static('public')); //to access the files in public folder
+// app.use(cors()); // it enables all cors requests
+app.use(fileUpload());
 
 const PORT = process.env.PORT ?? 0
 
@@ -59,8 +62,14 @@ const host =
       credentials: true,
     }));
 
+
+
+
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
 app.use(express.urlencoded({ extended: true }))
@@ -87,19 +96,18 @@ passports(passport);
 
 // Подключение middleware, который проверяет аунтифицирован пользователь на данной ручке или нет
 function checkAuthentication(req, res, next) {
-  console.log(req.isAuthenticated())
+  // console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     return next()
   } else {
     res.sendStatus(401)
   }
-
 }
 
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.sendStatus(401)
+    return res.status(401).json(req.user._id)
   }
   else next()
 }
@@ -116,7 +124,7 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -137,37 +145,95 @@ app.delete('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
+
+
+
+
+app.post('/upload', (req, res) => {
+
+  if (!req.files) {
+      return res.status(500).send({ msg: "file is not found" })
+  }
+      // accessing the file
+  const myFile = req.files.file;
+
+  //  mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+      if (err) {
+          console.log(err)
+          return res.status(500).send({ msg: "Error occured" });
+      }
+      // returing the response with file path and name
+      return res.send({name: myFile.name, path: `/${myFile.name}`});
+  });
+})
+
+
+
+
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })
 
 
-app.get('/postlist', async (req, res) => {
-  const postList = await PostList.find()
+
+// app.get('/postlist', async (req, res) => {
+//   const postList = await PostList.find()
+//   // postList.reverse()
+//   return res.json(postList)
+// })
+
+// app.post('/newpost', async (req, res) => {
+
+app.get('/postlist/:id', async (req, res) => {
+  const id = req.params.id
+  const postList = await PostList.find({ authorID: id })
   return res.json(postList)
 })
 
+app.post('/newpost/:id', async (req, res) => {
+  // console.log(req.body);
+  // console.log('!)@&*#&(*#&*(#(*');
+  const id = req.params.id
 
-
-app.post('/newpost', async (req, res) => {
-  console.log('!)@&*#&(*#&*(#(*');
   const { title, text } = req.body;
-  console.log('Заголовок: ', title, 'Текст: ', text);
-  try {
-    const newuserpost = await PostList.create({
-      title,
-      text,
-    });
-    console.log(newuserpost);
-    return res.status(200).end();
-  } catch (err) {
-    console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-    return res.status(401).end();
-  }
+  const addNewPost = new PostList({
+    title: title,
+    text: text,
+    authorID: id
+  })
+  await addNewPost.save()
+  const sessionUser = req.user.id;
+  let user = await User.findById(sessionUser);
+  user.post.push(addNewPost._id)
+  await user.save()
+  res.sendStatus(200)
+
+  //   console.log('Заголовок: ', title, 'Текст: ', text);
+  //   try {
+  //     const newuserpost = await PostList.create({
+  //       title,
+  //       text,
+  //     });
+  //     console.log(newuserpost);
+  //     return res.status(200).end();
+  //   } catch (err) {
+  //     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+  //     return res.status(401).end();
+  //   }
   // return res.end();
+
 }
 );
+
+//Удаление постов
+app.get("/deletePost/:id", async (req, res) => {
+  const id = req.params.id
+  await PostList.findByIdAndDelete(id)
+  res.sendStatus(200)
+  await User.filter((el) => (el._id !== id))
+})
 
 
 
@@ -206,6 +272,7 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   }
   return res.sendStatus(406)
 })
+
 
 app.post('/Edit/:id', async (req, res)=>{
 	let idUserEdit = req.params.id
@@ -283,6 +350,7 @@ app.post('/Edit/:id', async (req, res)=>{
 	res.sendStatus(200)
 }
 	res.sendStatus(406)
+
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {
@@ -296,10 +364,11 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 
 
 //запрос данных для администратора
-app.get("/AddInfoForAdmin", async (req, res) => {
+app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
+  console.log('>>>>>>>>>>>>>>', req.user.admin);
   const allUsers = await User.find()
   const allGroups = await GroupList.find()
-  const dataForAdmin = { users: allUsers, groups: allGroups }
+  const dataForAdmin = {admin: req.user.admin, users: allUsers, groups: allGroups }
   res.json(dataForAdmin)
 })
 

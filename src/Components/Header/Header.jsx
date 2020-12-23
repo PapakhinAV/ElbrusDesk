@@ -3,28 +3,46 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from '../img/EBD.svg'
 // import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import { useSelector } from 'react-redux';
+
 
 const Header = () => {
+  const user = useSelector(store=>store.userInfo)
+  const admin = useSelector(store=>store.adminStatus)
   return (
     <>
       <div className="mainBlock">
         <div className="menuWrap">
           <div className="menuLogoBlock"><Link to="/Home"><img className="logoMenu" src={Logo} alt="logoMenu" /></Link></div>
           <nav className="header">
-            {/* <NavLink activeStyle={{color: "#ffbc5b"}} to="/">Temp NavLink</NavLink> */}
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/AdminPage">Admin</NavLink>
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
-            {/* <NavLink activeStyle={{color: "#ffbc5b"}} to="/">Выпускники</NavLink> */}
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Эльбрусовцы</NavLink>
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
-            <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink>
-          </nav>
+            {user && user ?
+              (admin && admin?
+                <>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/AdminPage">Admin</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Эльбрусовцы</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink>
+                </>
+                :
+                <>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Эльбрусовцы</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink>
+                </>)
+                :
+                <>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
+                </>
+            }
+            </nav>
         </div>
-
       </div>
     </>
-
   );
 }
 

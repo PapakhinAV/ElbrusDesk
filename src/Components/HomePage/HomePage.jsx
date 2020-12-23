@@ -8,6 +8,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddUserID, AddUserInfo , LoadStatusElbrus} from '../../Redux/actions/notes';
+import AddFiles from '../AddFiles/AddFiles';
 
 
 const HomePage = () => {
@@ -48,6 +49,8 @@ const HomePage = () => {
         </div>
 
         <div className="rightColumn">
+        <AddFiles />
+
           <div className="newPostBlock"><Post /></div>
           <div className="wallBlock"><Wall /></div>
         </div>

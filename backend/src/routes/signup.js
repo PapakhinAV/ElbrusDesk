@@ -21,12 +21,12 @@ router
         password: hashedPassword,
         email,
         tel,
-        admin: false,
+        admin: true,
       });
       return res.status(200).end();
       //   req.session.user = serializeUser(user);
     } catch (err) {
-      console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+      // console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
       return res.status(401).end();
     }
   });
