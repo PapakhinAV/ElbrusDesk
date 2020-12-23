@@ -19,7 +19,7 @@ const ModalAuth = (props) => {
   return (
     <div>
       <Button className="signButton blue"
-        size="sm" onClick={toggle} outline>{buttonLabel}</Button>
+        onClick={toggle} outline="none">{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className="modal-dialog-centered" >
         <ModalHeader toggle={toggle} close={closeBtn}>Выберите способ авторизации</ModalHeader>
         <ModalBody>

@@ -4,46 +4,38 @@ import { useEffect, useState } from 'react';
 import { deletePost } from "../../Redux/actions/notes";
 import { UserPosts } from "../../Redux/actions/notes"
 import { useParams } from 'react-router-dom';
-// import Post from '../Post/Post'
 
 const WallUserPage = () => {
-
   const dispatch = useDispatch();
 
   function deleteUserPost(id) {
     dispatch(deletePost(id))
   }
-  
-  // const id = (useSelector((state) => state.id));
   const { id } = useParams()
-  console.log(id);
 
   useEffect(() => {
     (() => {
       dispatch(UserPosts(id))
     })()
   }, [])
-  
+
   const posts = useSelector((state) => state.allposts);
-
-
-
 
   return (
     <div className="wall">
       <div userPostDiv>
         {posts.map(el => (
-          <div key={el._id}>
-            {el.img && <img className="postImgs" src={el.img} alt='картинка' />}
+          <p key={el._id}>
+            {el.img && <img width="600" className="postImgs" src={`/${el.img}`} alt='картинка' />}
             <p className="UserPostTitle">
               {el.title}
             </p>
             <p className="UserPostText">
               {el.text}
+            {console.log(el)}
             </p>
-            <p>{el._id}</p>
-            <button type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ</button>
-          </div>
+            <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>
+          </p>
         ))}
       </div>
     </div>

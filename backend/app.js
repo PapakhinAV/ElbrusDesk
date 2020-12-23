@@ -68,7 +68,8 @@ const host =
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, 'public')));
+// console.log(path.join(process.env.pwd, 'public'), '!!!!!!!!!!!!!!!!!!!!!!');
+app.use(express.static(path.join(process.env.PWD, 'public')));
 
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
@@ -148,7 +149,7 @@ app.delete('/logout', function (req, res) {
 
 
 
-
+// Загрузка файлов на бэк
 app.post('/upload', (req, res) => {
 
   if (!req.files) {
@@ -156,9 +157,9 @@ app.post('/upload', (req, res) => {
   }
   // accessing the file
   const myFile = req.files.file;
-
+  console.log(myFile);
   //  mv() method places the file inside public directory
-  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+  myFile.mv(`${process.env.PWD}/public/${myFile.name}`, function (err) {
     if (err) {
       console.log(err)
       return res.status(500).send({ msg: "Error occured" });
@@ -170,21 +171,11 @@ app.post('/upload', (req, res) => {
 
 
 
-
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })
 
-
-
-// app.get('/postlist', async (req, res) => {
-//   const postList = await PostList.find()
-//   // postList.reverse()
-//   return res.json(postList)
-// })
-
-// app.post('/newpost', async (req, res) => {
 
 app.get('/postlist/:id', async (req, res) => {
   const id = req.params.id
@@ -193,36 +184,20 @@ app.get('/postlist/:id', async (req, res) => {
 })
 
 app.post('/newpost/:id', async (req, res) => {
-  // console.log(req.body);
-  // console.log('!)@&*#&(*#&*(#(*');
-  const id = req.params.id
-
-  const { title, text } = req.body;
+  const id = req.params.id;
+  const { title, text, img } = req.body;
   const addNewPost = new PostList({
     title: title,
     text: text,
-    authorID: id
+    img: img,
+    authorID: id,
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
   let user = await User.findById(sessionUser);
   user.post.push(addNewPost._id)
   await user.save()
-  res.sendStatus(200)
-
-  //   console.log('Заголовок: ', title, 'Текст: ', text);
-  //   try {
-  //     const newuserpost = await PostList.create({
-  //       title,
-  //       text,
-  //     });
-  //     console.log(newuserpost);
-  //     return res.status(200).end();
-  //   } catch (err) {
-  //     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-  //     return res.status(401).end();
-  //   }
-  // return res.end();
+  res.json(addNewPost._id)
 
 }
 );
@@ -231,8 +206,10 @@ app.post('/newpost/:id', async (req, res) => {
 app.get("/deletePost/:id", async (req, res) => {
   const id = req.params.id
   await PostList.findByIdAndDelete(id)
+  const user = await User.findOne({ post: id })
+  user.post = user.post.filter((el) => el.toString() !== id)
+  await user.save()
   res.sendStatus(200)
-  await User.filter((el) => (el._id !== id))
 })
 
 
@@ -252,11 +229,31 @@ app.get("/parthNews", async (req, res) => {
     const newsBody = $(element).text();
     news.push(newsBody);
   });
-  const allData = header.map((element, i) => [element, news[i]]);
+
+  // const allData = header.map((element, i) => [element, news[i]]);
+
+  const allData = []
+  header.map((element, i) => {
+    if (!element.split().toString().match(/.*3DNews.*/)
+      &&
+      !news[i].split().toString().match(/.*3DNews.*/)) {
+      allData.push([element, news[i]])
+    }
+  });
   const newAllDada = allData.slice(0, 15);
   res.json(newAllDada)
 })
 
+// const allData = []
+//   header.map((element, i) => {
+//     if (!element.split(" ").includes(["3DNews"])) {
+//       console.log(element.split(" "));
+//       allData.push([element, news[i]])
+//     }
+//   });
+//   console.log(allData);
+//   const newAllDada = allData.slice(0, 15);
+//   res.json(newAllDada)
 //получаем данные для профиля
 
 // Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
@@ -285,9 +282,21 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub,
     linkidIn,
     instagram,
-		vk, selectIdGroup, selectIdDelete } = req.body
+    email,
+    vk, selectIdGroup, selectIdDelete } = req.body
 
-  if (firstname || surname || tel ||  city ||  telegram ||  gitHub ||  linkidIn ||  instagram ||	vk ||	selectIdGroup || selectIdDelete) {
+
+  if (firstname ||
+    surname ||
+    email ||
+    tel ||
+    city ||
+    telegram ||
+    gitHub ||
+    linkidIn ||
+    instagram ||
+    vk ||
+    selectIdGroup || selectIdDelete) {
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -297,9 +306,17 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { surname: surname }, function (err, surname) {
         res.status(200)
       })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { surname: "" }, function (err, surname) {
+        res.status(200)
+      })
     }
     if (tel) {
       await User.findByIdAndUpdate(idUserEdit, { tel: tel }, function (err, tel) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { tel: "" }, function (err, tel) {
         res.status(200)
       })
     }
@@ -307,32 +324,67 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { city: city }, function (err, city) {
         res.status(200)
       })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { city: "" }, function (err, city) {
+        res.status(200)
+      })
     }
-    if (telegram || linkidIn || instagram || vk) {
-      if (telegram) {
-				await User.findByIdAndUpdate(idUserEdit, { telegram: telegram }, function (err, telegram) {
-					res.status(200)
-				})
-      }
-      if (linkidIn) {
-        await User.findByIdAndUpdate(idUserEdit, { linkidIn: linkidIn }, function (err, linkidIn) {
-					res.status(200)
-				})
-      }
-      if (instagram) {
-				await User.findByIdAndUpdate(idUserEdit, { instagram: instagram }, function (err, instagram) {
-					res.status(200)
-				})      }
-      if (vk) {
-				await User.findByIdAndUpdate(idUserEdit, { vk: vk }, function (err, vk) {
-					res.status(200)
-				})      }
+
+    if (telegram) {
+      await User.findByIdAndUpdate(idUserEdit, { telegram: telegram }, function (err, telegram) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { telegram: "" }, function (err, telegram) {
+        res.status(200)
+      })
     }
+    if (linkidIn) {
+      await User.findByIdAndUpdate(idUserEdit, { linkidIn: linkidIn }, function (err, linkidIn) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { linkidIn: "" }, function (err, linkidIn) {
+        res.status(200)
+      })
+    }
+    if (instagram) {
+      await User.findByIdAndUpdate(idUserEdit, { instagram: instagram }, function (err, instagram) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { instagram: "" }, function (err, instagram) {
+        res.status(200)
+      })
+    }
+    if (vk) {
+      await User.findByIdAndUpdate(idUserEdit, { vk: vk }, function (err, vk) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { vk: "" }, function (err, vk) {
+        res.status(200)
+      })
+    }
+
     if (gitHub) {
       await User.findByIdAndUpdate(idUserEdit, { gitHub: gitHub }, function (err, gitHub) {
         res.status(200)
       })
-		}
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { gitHub: "" }, function (err, gitHub) {
+        res.status(200)
+      })
+    }
+    if (email) {
+      await User.findByIdAndUpdate(idUserEdit, { email: email }, function (err, email) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { email: "" }, function (err, gitHub) {
+        res.status(200)
+      })
+    }
     if (selectIdGroup) {
       selectIdGroup.map(el => {
         if (!userOne.stydyGroup.includes(el.value)) {
@@ -340,6 +392,7 @@ app.post('/Edit/:id', async (req, res) => {
         }
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+
 		}
 		if (selectIdDelete) {	
 			selectIdDelete.forEach( async (element)=>{
@@ -348,6 +401,7 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
     }
   return res.sendStatus(200)
+
   }
   return res.sendStatus(406)
 })

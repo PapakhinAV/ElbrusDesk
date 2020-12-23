@@ -92,11 +92,20 @@
 
 .UserPostTitle {
   padding-bottom: 0!important;
-  margin-bottom: 0!important;
+  margin-bottom: 20px!important;
   color: #4520ab;
   font-family:'RF Rostin Bold';
+  font-size: 25px;
+}
+
+.UserPostImage {
+
+}
+
+.UserPostButton {
 }
 
 .UserPostText {
   padding-bottom: 0!important;
+  margin-bottom: 20px!important;
 }
