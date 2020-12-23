@@ -2,23 +2,24 @@ import './index.css';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { LoadStatusElbrus } from '../../Redux/actions/notes'
+import { LoadStatusElbrus, LoadStatusAdmin } from '../../Redux/actions/notes'
 
 
 const SignIn = () => {
 
   const dispatch = useDispatch()
-  const store = useSelector(store => store.id)
 
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      let res = await fetch("http://localhost:3000/user/signin", {
+      let response = await fetch("http://localhost:3000/user/signin", {
         method: 'GET',
         credentials: 'include'
       })
-      if (res.status === 401) {
-        history.push(`/Home/${store}`)
+      const result = await response.json()
+console.log(result);
+      if (response.status === 401) {
+        history.push(`/Home/${result}`)
       }
     })()
   }, [])
@@ -45,8 +46,14 @@ const SignIn = () => {
     });
     if (response.status === 200) {
       const result = await response.json()
-      dispatch(LoadStatusElbrus(true))
-      history.push(`/Home/${result}`)
+      console.log('>>>>>>>>>>>>>>',result);
+      if(result.admin!==true){
+        dispatch(LoadStatusElbrus(true))
+        history.push(`/Home/${result.id}`)
+      } else{
+        dispatch(LoadStatusAdmin(true))
+        history.push(`/Home/${result.id}`)
+      }
     } else {
       setError('Неправильный логин или пароль')
     }
@@ -57,7 +64,7 @@ const SignIn = () => {
       ...inputs, [name]: value,
     })
   }
-  console.log(error);
+  // console.log(error);
 
   const { email, password } = inputs;
 

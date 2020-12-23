@@ -1,5 +1,6 @@
 import style from './index.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { AddInfoForAdmin } from "../../Redux/actions/notes"
 import { useEffect, useState } from 'react';
 import AdminPeople from "./AdminPeople"
@@ -10,11 +11,17 @@ import { Link } from 'react-router-dom';
 
 
 const AdminPage = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [counter, setCounter] = useState(0)
+  const status = useSelector((state) => state.adminStatus);
+
 
   useEffect(() => {
+    if (status === false) {
+      history.push('/')
+    }
     (() => {
       dispatch(AddInfoForAdmin())
     })()

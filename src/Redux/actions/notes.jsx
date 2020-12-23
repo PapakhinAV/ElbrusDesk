@@ -27,6 +27,11 @@ export const LoadStatusElbrus = (stat) => ({
   payload: stat,
 })
 
+export const LoadStatusAdmin = (stat) => ({
+  type: TYPES.ADD_STATUS_ADMIN,
+  payload: stat,
+})
+
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   console.log(response.status);
@@ -114,7 +119,12 @@ export const AdminInfoReducer = (object) => ({
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
-  dispatch(AdminInfoReducer(result))
+  if(result.admin===true){
+    dispatch(AdminInfoReducer(result))
+    dispatch(LoadStatusAdmin(true))
+  } else {
+    dispatch(LoadStatusAdmin(false))
+  }
 }
 
 // Удаление пользователя
