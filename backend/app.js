@@ -207,12 +207,8 @@ app.get("/deletePost/:id", async (req, res) => {
   const id = req.params.id
   await PostList.findByIdAndDelete(id)
   const user = await User.findOne({ post: id })
-  console.log(id);
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-  console.log(user)
   user.post = user.post.filter((el) => el.toString() !== id)
   await user.save()
-  console.log(user.post);
   res.sendStatus(200)
 })
 
