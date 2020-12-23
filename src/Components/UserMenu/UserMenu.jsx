@@ -14,7 +14,7 @@ const UserMenu = () => {
 
   const userInfo = useSelector(state => state.userInfo);
 
-	const {id} = useParams()
+  const { id } = useParams()
   return (
     <div className="userMenu">
       <div className="userButtons">
@@ -24,24 +24,32 @@ const UserMenu = () => {
         <Link to="/logout"><button className="logoutButton">ВЫЙТИ</button></Link>
       </div>
       <hr />
-      <p><strong className="purpleColor">Телефон: </strong>{userInfo[0] && (userInfo[0].tel && userInfo[0].tel)}</p>
-      <p><strong className="purpleColor">Почта: </strong>{userInfo[0] && (userInfo[0].email && userInfo[0].email)}</p>
-      <p><strong className="purpleColor">Город: </strong>{userInfo[0] && (userInfo[0].city && userInfo[0].city)}</p>
+      {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
+      {userInfo[0] && (userInfo[0].email && <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email}</p>)}
+      {userInfo[0] && (userInfo[0].city && <p><strong className="purpleColor">Город: </strong>{userInfo[0].city}</p>)}
       <br />
       <ul>
-        <li><img className="social" src={linkedin} alt="linkedin" /></li>
-        <li><img className="social" src={git} alt="git" /></li>
-        <li><img className="social" src={tg} alt="tg" /></li>
-        <li><img className="social" src={vk} alt="vk" /></li>
-        {
-					userInfo[0] && (<li>{userInfo[0].social && userInfo[0].social}</li>)
-				}
+
+
+
+
+        {userInfo[0] && (userInfo[0].linkidIn && <a target="_blank" href={`https://linkedin.com/in/${userInfo[0].linkidIn}`}><li><img className="social" src={linkedin} alt="linkedin" /></li></a>)}
+
+        {userInfo[0] && (userInfo[0].gitHub && <a target="_blank" href={`https://github.com/${userInfo[0].gitHub}`}><li><img className="social" src={git} alt="git" /></li></a>)}
+
+        {userInfo[0] && (userInfo[0].telegram && <a target="_blank" href={`https://t.me/${userInfo[0].telegram}`}><li><img className="social" src={tg} alt="tg" /></li></a>)}
+
+        {userInfo[0] && (userInfo[0].vk && <a target="_blank" href={`https://vk.com/${userInfo[0].vk}`}><li><img className="social" src={vk} alt="vk" /></li></a>)}
+
+        {userInfo[0] && (userInfo[0].instagram && <a target="_blank" href={`https://www.instagram.com/${userInfo[0].instagram}/?hl=ru/`}><li><img width="30" className="social" src={"https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png"} alt="instagram" /></li></a>)}
+
+
       </ul><br />
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
-						<Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{el.name}</li></Link>
+            <Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{el.name}</li></Link>
           )) :
             <li >Добавьте группу в которой учились</li>
 
@@ -49,7 +57,7 @@ const UserMenu = () => {
       </ul>
       <hr />
       {/* <p>Optional buttons (if it's your page):</p> */}
-    </div>
+    </div >
   );
 }
 

@@ -229,11 +229,31 @@ app.get("/parthNews", async (req, res) => {
     const newsBody = $(element).text();
     news.push(newsBody);
   });
-  const allData = header.map((element, i) => [element, news[i]]);
+
+  // const allData = header.map((element, i) => [element, news[i]]);
+
+  const allData = []
+  header.map((element, i) => {
+    if (!element.split().toString().match(/.*3DNews.*/)
+      &&
+      !news[i].split().toString().match(/.*3DNews.*/)) {
+      allData.push([element, news[i]])
+    }
+  });
   const newAllDada = allData.slice(0, 15);
   res.json(newAllDada)
 })
 
+// const allData = []
+//   header.map((element, i) => {
+//     if (!element.split(" ").includes(["3DNews"])) {
+//       console.log(element.split(" "));
+//       allData.push([element, news[i]])
+//     }
+//   });
+//   console.log(allData);
+//   const newAllDada = allData.slice(0, 15);
+//   res.json(newAllDada)
 //получаем данные для профиля
 
 // Поменял на /homee, потому что redirect на 128 строке попадает сразу на 170 и выдает json на фронте
@@ -262,16 +282,20 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub,
     linkidIn,
     instagram,
-    vk, selectIdGroup } = req.body
+    email,
+    vk, selectIdGroup, selectIdDelete } = req.body
+
   if (firstname ||
     surname ||
+    email ||
     tel ||
     city ||
     telegram ||
     gitHub ||
     linkidIn ||
     instagram ||
-    vk, selectIdGroup) {
+    vk ||
+    selectIdGroup || selectIdDelete) {
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -281,9 +305,17 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { surname: surname }, function (err, surname) {
         res.status(200)
       })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { surname: "" }, function (err, surname) {
+        res.status(200)
+      })
     }
     if (tel) {
       await User.findByIdAndUpdate(idUserEdit, { tel: tel }, function (err, tel) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { tel: "" }, function (err, tel) {
         res.status(200)
       })
     }
@@ -291,28 +323,64 @@ app.post('/Edit/:id', async (req, res) => {
       await User.findByIdAndUpdate(idUserEdit, { city: city }, function (err, city) {
         res.status(200)
       })
-    }
-    if (telegram || linkidIn || instagram || vk) {
-
-      if (telegram) {
-        userOne.social.push(`${telegram}`)
-      }
-      if (linkidIn) {
-        userOne.social.push(`${linkidIn}`)
-      }
-      if (instagram) {
-        userOne.social.push(`${instagram}`)
-      }
-      if (vk) {
-        userOne.social.push(`${vk}`)
-      }
-      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { city: "" }, function (err, city) {
         res.status(200)
       })
     }
+
+    if (telegram) {
+      await User.findByIdAndUpdate(idUserEdit, { telegram: telegram }, function (err, telegram) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { telegram: "" }, function (err, telegram) {
+        res.status(200)
+      })
+    }
+    if (linkidIn) {
+      await User.findByIdAndUpdate(idUserEdit, { linkidIn: linkidIn }, function (err, linkidIn) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { linkidIn: "" }, function (err, linkidIn) {
+        res.status(200)
+      })
+    }
+    if (instagram) {
+      await User.findByIdAndUpdate(idUserEdit, { instagram: instagram }, function (err, instagram) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { instagram: "" }, function (err, instagram) {
+        res.status(200)
+      })
+    }
+    if (vk) {
+      await User.findByIdAndUpdate(idUserEdit, { vk: vk }, function (err, vk) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { vk: "" }, function (err, vk) {
+        res.status(200)
+      })
+    }
+
     if (gitHub) {
-      userOne.social.push(`${gitHub}`)
-      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+      await User.findByIdAndUpdate(idUserEdit, { gitHub: gitHub }, function (err, gitHub) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { gitHub: "" }, function (err, gitHub) {
+        res.status(200)
+      })
+    }
+    if (email) {
+      await User.findByIdAndUpdate(idUserEdit, { email: email }, function (err, email) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { email: "" }, function (err, gitHub) {
         res.status(200)
       })
     }
@@ -324,10 +392,15 @@ app.post('/Edit/:id', async (req, res) => {
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
     }
+    // 	if (selectIdDelete) {
+    // 		userOne.stydyGroup.map(el=> (
+    // 			selectIdDelete.map(item =>( item))
+    // ))
+    //   await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+    // }
     return res.sendStatus(200)
   }
   return res.sendStatus(406)
-
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {

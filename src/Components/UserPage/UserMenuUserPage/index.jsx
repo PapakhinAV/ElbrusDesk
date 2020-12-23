@@ -17,15 +17,18 @@ console.log(userInfo);
   return (
     <div className="userMenu">
       <hr />
-    {userInfo[0] &&   <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel && userInfo[0].tel}</p>}
-     {userInfo[0] &&  <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email && userInfo[0].email}</p>}
-     {userInfo[0] &&  <p><strong className="purpleColor">Город: </strong>{userInfo[0].city && userInfo[0].city}</p>}
+		{userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
+    {userInfo[0] && (userInfo[0].email &&  <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email}</p>)}
+    {userInfo[0] && (userInfo[0].city &&  <p><strong className="purpleColor">Город: </strong>{userInfo[0].city}</p>)}
       <br />
       <ul>
-        <li><img className="social" src={linkedin} alt="linkedin" /></li>
-        <li><img className="social" src={git} alt="git" /></li>
-        <li><img className="social" src={tg} alt="tg" /></li>
-        <li><img className="social" src={vk} alt="vk" /></li>
+			{userInfo[0] && (userInfo[0].linkidIn && <Link to={userInfo[0].linkidIn}><li><img className="social" src={linkedin} alt="linkedin" /></li>{userInfo[0].linkidIn}</Link>)}
+			
+			{userInfo[0] && (userInfo[0].gitHub && <Link to={userInfo[0].gitHub}><li><img className="social" src={git} alt="git" /></li>{userInfo[0].gitHub}</Link>)}
+		
+			{userInfo[0] && (userInfo[0].telegram && <Link to={userInfo[0].telegram}><li><img className="social" src={tg} alt="tg" /></li>{userInfo[0].telegram}</Link>)}
+			
+			{userInfo[0] && (userInfo[0].vk && <Link to={userInfo[0].vk}><li><img className="social" src={vk} alt="vk" /></li>{userInfo[0].vk}</Link>)}	
       </ul><br />
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
