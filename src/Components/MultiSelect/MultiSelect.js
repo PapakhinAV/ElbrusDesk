@@ -1,7 +1,4 @@
-// import './index.css'
 
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 

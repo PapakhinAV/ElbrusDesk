@@ -26,6 +26,7 @@ const [inputs, setInputs] = useState({
 	vk: "",
 })
 const [	selectIdGroup, 	setSelectIdGroup ] = useState('')
+const [	selectIdDelete, 	setSelectIdDelete ] = useState('')
 
 async function handleSubmit(event){
 	event.preventDefault();
@@ -44,7 +45,8 @@ const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 			linkidIn,
 			instagram,
 			vk,
-			selectIdGroup
+			selectIdGroup,
+			selectIdDelete
 		})
 	})
 	if(res.status === 200){
@@ -52,7 +54,8 @@ const res = await fetch(`${process.env.REACT_APP_URL}/Edit/${id}`, {
 		history.replace('/')
 	}
 	else if(res.status === 406){
-		alert("Введите изменения.")
+		console.log("Status 406");
+		history.replace('/')
 	}
 }
 
@@ -65,6 +68,10 @@ function handleChange({target : {name, value}}){
 
 function handleChangeSelect(value){
 	setSelectIdGroup(value);
+}
+
+function handleSelectDelete(value){
+	setSelectIdDelete(value);
 }
 const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
 
@@ -81,6 +88,15 @@ const groupOpitons = useSelector(state=> state.groups)
 const options =	groupOpitons.length && groupOpitons.map(el=>(
 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` }
 	))
+
+	const deleteGroup = useSelector(state=> state.userInfo[0].stydyGroup)
+	let optionsForDelete=[]
+	if(deleteGroup){
+		optionsForDelete = deleteGroup.length && deleteGroup.map(el=>(
+		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` 
+	}
+	))}
+	console.log(deleteGroup);
   return (
     <>
       <div className="blockWrapper">
@@ -103,6 +119,13 @@ const options =	groupOpitons.length && groupOpitons.map(el=>(
 											options={options}
 										/>
                   </div>
+									<div className="col-sm">
+                    <label class="form-label labelEditBold">Удалить себя из группы</label>
+                    <AnimatedMulti handleChange={handleSelectDelete}
+												options={optionsForDelete}
+										/>
+                  </div>
+								
                 </div>
 
                 <div className="row">
@@ -117,13 +140,13 @@ const options =	groupOpitons.length && groupOpitons.map(el=>(
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Телефон</label>
-                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} placeholder={forPlaceholder[0].tel ? `${forPlaceholder[0].tel}` : "Введите номер телефона"}/>
+                    <input type="text" name="tel" className="form-control editProfileInput" onChange={handleChange} value={tel} placeholder={forPlaceholder[0].tel ? `${forPlaceholder[0].tel}` : ""}/>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Город</label>
-                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} placeholder={forPlaceholder[0].city ? `${forPlaceholder[0].city}` : "Введите город в котором проживаете"}/>
+                    <input type="text" name="city"  className="form-control editProfileInput" onChange={handleChange} value={city} placeholder={forPlaceholder[0].city ? `${forPlaceholder[0].city}` : ""}/>
                   </div>
                   <div className="col-sm">
                     <label class="form-label labelEditBold">Telegram</label>

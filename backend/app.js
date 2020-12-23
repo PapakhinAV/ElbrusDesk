@@ -282,7 +282,8 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub,
     linkidIn,
     instagram,
-    vk, selectIdGroup } = req.body
+		vk, selectIdGroup, selectIdDelete } = req.body
+
   if (firstname ||
     surname ||
     tel ||
@@ -291,7 +292,8 @@ app.post('/Edit/:id', async (req, res) => {
     gitHub ||
     linkidIn ||
     instagram ||
-    vk, selectIdGroup) {
+		vk || 
+		selectIdGroup || selectIdDelete) {
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -313,29 +315,30 @@ app.post('/Edit/:id', async (req, res) => {
       })
     }
     if (telegram || linkidIn || instagram || vk) {
-
       if (telegram) {
-        userOne.social.push(`${telegram}`)
+				await User.findByIdAndUpdate(idUserEdit, { telegram: telegram }, function (err, telegram) {
+					res.status(200)
+				})
       }
       if (linkidIn) {
-        userOne.social.push(`${linkidIn}`)
+        await User.findByIdAndUpdate(idUserEdit, { linkidIn: linkidIn }, function (err, linkidIn) {
+					res.status(200)
+				})
       }
       if (instagram) {
-        userOne.social.push(`${instagram}`)
-      }
+				await User.findByIdAndUpdate(idUserEdit, { instagram: instagram }, function (err, instagram) {
+					res.status(200)
+				})      }
       if (vk) {
-        userOne.social.push(`${vk}`)
-      }
-      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
-        res.status(200)
-      })
+				await User.findByIdAndUpdate(idUserEdit, { vk: vk }, function (err, vk) {
+					res.status(200)
+				})      }
     }
     if (gitHub) {
-      userOne.social.push(`${gitHub}`)
-      await User.findByIdAndUpdate(idUserEdit, { social: userOne.social }, function (err, userOne) {
+      await User.findByIdAndUpdate(idUserEdit, { gitHub: gitHub }, function (err, gitHub) {
         res.status(200)
       })
-    }
+		}
     if (selectIdGroup) {
       selectIdGroup.map(el => {
         if (!userOne.stydyGroup.includes(el.value)) {
@@ -343,11 +346,16 @@ app.post('/Edit/:id', async (req, res) => {
         }
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
-    }
-    return res.sendStatus(200)
+		}
+	// 	if (selectIdDelete) {
+	// 		userOne.stydyGroup.map(el=> (
+	// 			selectIdDelete.map(item =>( item))
+  // ))
+    //   await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+    // }
+  return res.sendStatus(200)
   }
   return res.sendStatus(406)
-
 })
 
 app.get('/students_list_in_group/:id', async (req, res) => {
