@@ -1,6 +1,6 @@
 
 import * as TYPES from '../types/notes';
-
+import { hide, show } from './loader'
 // import dotenv from 'dotenv'
 // dotenv.config()
 
@@ -33,15 +33,17 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
+		dispatch(show())
+	const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   console.log(response.status);
   if (response.status === 401) {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
-    dispatch(LoadStatusElbrus(true))
-    const result = await response.json()
-    dispatch(LoadGroups(result))
+		dispatch(LoadStatusElbrus(true))
+		const result = await response.json()
+		dispatch(hide())
+		dispatch(LoadGroups(result))
   }
 }
 
@@ -52,12 +54,14 @@ export const LoadUsersInGroup = (listUsers) => ({
 })
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
+	dispatch(show())
   dispatch(LoadUsersInGroup([]))
-  setTimeout(() => {
     fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
       .then(res => res.json())
       .then(data => dispatch(LoadUsersInGroup(data)))
-  }, 500);
+
+			dispatch(hide())
+
 }
 
 export const AddUserID = (id) => ({
@@ -77,13 +81,14 @@ export const ShowAllPostsReducer = (posts) => ({
 
 export const UserPosts = (id) => async (dispatch, getState) => {
   dispatch(ShowAllPostsReducer([]))
-  setTimeout(async () => {
+  dispatch(show())
     const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
     const result = await response.json();
     result.reverse()
     console.log(result);
     dispatch(ShowAllPostsReducer(result))
-  }, 500);
+		dispatch(hide())
+
 };
 
 // Удаление постов
@@ -159,9 +164,11 @@ export const LoadUserInfo = (userInfo) => ({
 
 //Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
-  fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
+  dispatch(show())
+	fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
-    .then(data => dispatch(LoadUserInfo(data)))
+		.then(data => dispatch(LoadUserInfo(data)))
+		dispatch(hide())
 }
 
 //Добавление группы

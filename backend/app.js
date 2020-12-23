@@ -285,6 +285,7 @@ app.post('/Edit/:id', async (req, res) => {
     email,
     vk, selectIdGroup, selectIdDelete } = req.body
 
+
   if (firstname ||
     surname ||
     email ||
@@ -391,14 +392,16 @@ app.post('/Edit/:id', async (req, res) => {
         }
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+
+		}
+		if (selectIdDelete) {	
+			selectIdDelete.forEach( async (element)=>{
+				userOne.stydyGroup = userOne.stydyGroup.filter((el)=>el.toString()!==element.value)	
+						})	
+      await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
     }
-    // 	if (selectIdDelete) {
-    // 		userOne.stydyGroup.map(el=> (
-    // 			selectIdDelete.map(item =>( item))
-    // ))
-    //   await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
-    // }
-    return res.sendStatus(200)
+  return res.sendStatus(200)
+
   }
   return res.sendStatus(406)
 })

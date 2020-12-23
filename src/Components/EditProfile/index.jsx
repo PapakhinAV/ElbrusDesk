@@ -63,6 +63,35 @@ const EditProfile = () => {
     }
   }
 
+
+        
+// function handleSelectDelete(value){
+// 	setSelectIdDelete(value);
+// }
+// const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
+
+// const forPlaceholder = useSelector(state=> state.userInfo)
+
+// const dispatch = useDispatch()
+// useEffect(() => {
+// 	(() => {
+// 		dispatch(LoadGroupsFromBack())
+// 	})()
+// }, [])
+// const groupOpitons = useSelector(state=> state.groups)
+
+// const options =	groupOpitons.length && groupOpitons.map(el=>(
+// 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` }
+// 	))
+
+// 	const deleteGroup = useSelector(state=> state.userInfo[0].stydyGroup)
+// 	let optionsForDelete=[]
+// 	if(deleteGroup){
+// 		optionsForDelete = deleteGroup.length && deleteGroup.map(el=>(
+// 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` 
+// 	}
+// 	))}
+
   function handleChange({ target: { name, value } }) {
     setInputs({
       ...inputs,
@@ -103,6 +132,7 @@ const EditProfile = () => {
     ))
   }
   console.log(deleteGroup);
+//>>>>>>> dev
   return (
     <>
       <div className="blockWrapper">
