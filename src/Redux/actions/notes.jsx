@@ -47,9 +47,13 @@ export const LoadUsersInGroup = (listUsers) => ({
 })
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
-  fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-    .then(res => res.json())
-    .then(data => dispatch(LoadUsersInGroup(data)))
+  dispatch(LoadUsersInGroup([]))
+  setTimeout(() => {
+    fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+      .then(res => res.json())
+      .then(data => dispatch(LoadUsersInGroup(data)))
+  }, 500);
+
 }
 
 export const AddUserID = (id) => ({
@@ -68,9 +72,14 @@ export const ShowAllPostsReducer = (posts) => ({
 })
 
 export const UserPosts = (id) => async (dispatch, getState) => {
-  const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
-  const result = await response.json();
-  dispatch(ShowAllPostsReducer(result))
+  dispatch(ShowAllPostsReducer([]))
+  setTimeout(async () => {
+    const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
+    const result = await response.json();
+    console.log(result);
+    dispatch(ShowAllPostsReducer(result))
+  }, 500);
+
 };
 
 
