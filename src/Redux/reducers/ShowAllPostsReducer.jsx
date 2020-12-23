@@ -12,13 +12,6 @@ const ShowAllPostsReducer = (state = [], action) => {
       console.log(...state, 'fkdsnfjkndsjkfnjksndjfnsjdnfjsdnjk');
       return ([...state].filter(el => el._id !== action.payload));
 
-    // case TYPES.DELETE_POST: {
-    //   const {id} = action.payload;
-    //   return {
-    //     allposts : [...state.allposts].filter(item => item.id !== id)
-    //   }
-    // }
-
     default:
       return state;
   }

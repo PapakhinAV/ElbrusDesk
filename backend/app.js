@@ -68,7 +68,8 @@ const host =
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, 'public')));
+// console.log(path.join(process.env.pwd, 'public'), '!!!!!!!!!!!!!!!!!!!!!!');
+app.use(express.static(path.join(process.env.PWD, 'public')));
 
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
@@ -148,7 +149,7 @@ app.delete('/logout', function (req, res) {
 
 
 
-
+// Загрузка файлов на бэк
 app.post('/upload', (req, res) => {
 
   if (!req.files) {
@@ -158,7 +159,7 @@ app.post('/upload', (req, res) => {
   const myFile = req.files.file;
 
   //  mv() method places the file inside public directory
-  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+  myFile.mv(`${process.env.PWD}/public/${myFile.name}`, function (err) {
     if (err) {
       console.log(err)
       return res.status(500).send({ msg: "Error occured" });
@@ -170,21 +171,11 @@ app.post('/upload', (req, res) => {
 
 
 
-
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
   return res.json(groupList)
 })
 
-
-
-// app.get('/postlist', async (req, res) => {
-//   const postList = await PostList.find()
-//   // postList.reverse()
-//   return res.json(postList)
-// })
-
-// app.post('/newpost', async (req, res) => {
 
 app.get('/postlist/:id', async (req, res) => {
   const id = req.params.id
@@ -193,36 +184,20 @@ app.get('/postlist/:id', async (req, res) => {
 })
 
 app.post('/newpost/:id', async (req, res) => {
-  // console.log(req.body);
-  // console.log('!)@&*#&(*#&*(#(*');
-  const id = req.params.id
-
-  const { title, text } = req.body;
+  const id = req.params.id;
+  const { title, text, img } = req.body;
   const addNewPost = new PostList({
     title: title,
     text: text,
-    authorID: id
+    img,
+    authorID: id,
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
   let user = await User.findById(sessionUser);
   user.post.push(addNewPost._id)
   await user.save()
-  res.sendStatus(200)
-
-  //   console.log('Заголовок: ', title, 'Текст: ', text);
-  //   try {
-  //     const newuserpost = await PostList.create({
-  //       title,
-  //       text,
-  //     });
-  //     console.log(newuserpost);
-  //     return res.status(200).end();
-  //   } catch (err) {
-  //     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-  //     return res.status(401).end();
-  //   }
-  // return res.end();
+  res.json(addNewPost._id)
 
 }
 );

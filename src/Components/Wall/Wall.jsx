@@ -4,17 +4,13 @@ import { useEffect, useState } from 'react';
 import { deletePost } from "../../Redux/actions/notes";
 import { UserPosts } from "../../Redux/actions/notes"
 import { useParams } from 'react-router-dom';
-// import Post from '../Post/Post'
 
 const WallUserPage = () => {
-
   const dispatch = useDispatch();
 
   function deleteUserPost(id) {
     dispatch(deletePost(id))
   }
-
-  // const id = (useSelector((state) => state.id));
   const { id } = useParams()
 
   useEffect(() => {
@@ -24,9 +20,6 @@ const WallUserPage = () => {
   }, [])
 
   const posts = useSelector((state) => state.allposts);
-
-
-
 
   return (
     <div className="wall">
