@@ -13,4 +13,6 @@ export const ADD_STATUS = "ADD_STATUS"
 export const ADD_NEW_GROUP = "ADD_NEW_GROUP"
 export const DELETE_GROUP = "DELETE_GROUP"
 export const DELETE_POST = "DELETE_POST"
+export const ADD_STATUS_ADMIN = "ADD_STATUS_ADMIN"
+
 

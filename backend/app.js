@@ -107,7 +107,7 @@ function checkAuthentication(req, res, next) {
 // Подключение middleware, который не позволяет аунтифицированному пользователю переходить на страницу(ручку) регистрации и входа в систему
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.sendStatus(401)
+    return res.status(401).json(req.user._id)
   }
   else next()
 }
@@ -177,17 +177,31 @@ app.get('/groupslist', checkAuthentication, async (req, res) => {
 })
 
 
-app.get('/postlist', async (req, res) => {
-  const postList = await PostList.find()
-  // postList.reverse()
+
+// app.get('/postlist', async (req, res) => {
+//   const postList = await PostList.find()
+//   // postList.reverse()
+//   return res.json(postList)
+// })
+
+// app.post('/newpost', async (req, res) => {
+
+app.get('/postlist/:id', async (req, res) => {
+  const id = req.params.id
+  const postList = await PostList.find({ authorID: id })
   return res.json(postList)
 })
 
-app.post('/newpost', async (req, res) => {
+app.post('/newpost/:id', async (req, res) => {
+  // console.log(req.body);
+  // console.log('!)@&*#&(*#&*(#(*');
+  const id = req.params.id
+
   const { title, text } = req.body;
   const addNewPost = new PostList({
     title: title,
     text: text,
+    authorID: id
   })
   await addNewPost.save()
   const sessionUser = req.user.id;
@@ -195,6 +209,21 @@ app.post('/newpost', async (req, res) => {
   user.post.push(addNewPost._id)
   await user.save()
   res.sendStatus(200)
+
+  //   console.log('Заголовок: ', title, 'Текст: ', text);
+  //   try {
+  //     const newuserpost = await PostList.create({
+  //       title,
+  //       text,
+  //     });
+  //     console.log(newuserpost);
+  //     return res.status(200).end();
+  //   } catch (err) {
+  //     console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
+  //     return res.status(401).end();
+  //   }
+  // return res.end();
+
 }
 );
 
@@ -325,10 +354,11 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 
 
 //запрос данных для администратора
-app.get("/AddInfoForAdmin", async (req, res) => {
+app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
+  console.log('>>>>>>>>>>>>>>', req.user.admin);
   const allUsers = await User.find()
   const allGroups = await GroupList.find()
-  const dataForAdmin = { users: allUsers, groups: allGroups }
+  const dataForAdmin = {admin: req.user.admin, users: allUsers, groups: allGroups }
   res.json(dataForAdmin)
 })
 

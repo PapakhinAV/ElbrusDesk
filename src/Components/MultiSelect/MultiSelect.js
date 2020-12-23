@@ -1,9 +1,9 @@
 // import './index.css'
 
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-
 
 
 
@@ -33,7 +33,7 @@ const colourStyles = {
     border: 'none',
     boxShadow: 'none',
   }),
-  
+
 
 };
 
@@ -41,6 +41,7 @@ export default function AnimatedMulti() {
 
   return (
     <Select
+
       closeMenuOnSelect={false}
       components={animatedComponents}
       isMulti

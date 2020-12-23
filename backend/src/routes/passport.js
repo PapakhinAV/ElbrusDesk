@@ -43,7 +43,7 @@ function Passport(passport) {
       process.nextTick(async function () {
 
         let gituser = await User.findOne({ githubId: profile.id });
-        console.log(gituser, 'user exists');
+        // console.log(gituser, 'user exists');
         // console.log(profile);
 
         if (!gituser) {
@@ -52,7 +52,7 @@ function Passport(passport) {
           // console.log(gituser, 'user new');
         }
 
-        console.log(gituser);
+        // console.log(gituser);
         return done(null, gituser);
       });
     }
@@ -69,7 +69,7 @@ function Passport(passport) {
 
         let googleuser = await User.findOne({ googleId: profile.id });
         console.log(googleuser, 'user exists');
-        console.log(profile);
+        // console.log(profile);
 
         if (!googleuser) {
           googleuser = new User({ googleId: profile.id, firstname: profile.name.givenName, surname: profile.name.familyName, admin: false, });
