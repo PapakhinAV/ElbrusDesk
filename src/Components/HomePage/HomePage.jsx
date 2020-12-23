@@ -7,7 +7,7 @@ import Wall from "../Wall/Wall"
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddUserID, AddUserInfo , LoadStatusElbrus} from '../../Redux/actions/notes';
+import { AddUserID, AddUserInfo, LoadStatusElbrus } from '../../Redux/actions/notes';
 import AddFiles from '../AddFiles/AddFiles';
 
 
@@ -18,9 +18,9 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const response = await fetch(`${process.env.REACT_APP_URL}/Homee/${params.id}`)
-      if(response.status===200){
+      if (response.status === 200) {
         dispatch(LoadStatusElbrus(true))
         dispatch(AddUserID(params.id))
         dispatch(AddUserInfo(params.id))
@@ -49,7 +49,7 @@ const HomePage = () => {
         </div>
 
         <div className="rightColumn">
-        <AddFiles />
+          <AddFiles />
 
           <div className="newPostBlock"><Post /></div>
           <div className="wallBlock"><Wall /></div>
