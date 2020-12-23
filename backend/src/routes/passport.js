@@ -47,7 +47,7 @@ function Passport(passport) {
         // console.log(profile);
 
         if (!gituser) {
-          gituser = new User({ githubId: profile.id, firstname: profile.username, admin: false });
+          gituser = new User({ githubId: profile.id, firstname: profile.username, gitHub: profile.username, admin: false });
           await gituser.save();
           // console.log(gituser, 'user new');
         }

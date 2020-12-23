@@ -85,34 +85,21 @@ strong {
   text-transform: uppercase;
   margin-bottom: 25px;
   outline: none!important;
-  box-shadow: none;
-  background-color: none;
+  /* box-shadow: none; */
+  font-size: 18px;
 }
 
 
-/* 
-.signSocialButton {
-  color: #ffbc5b;
-  border-radius: 5px;
-  border: solid 1px #ffbc5b;
-  padding: 10px 25px;
-  text-transform: uppercase;
-  margin-bottom: 25px;
-  outline: none!important;
-  box-shadow: none;
-} */
-
-
 .signButton:hover {
-  border: solid 1px #4520AB;
+  border: solid 1px #00EDFF;
   font-family: 'RF Rostin';
-  box-shadow: none;
-
+  /* box-shadow: none; */
   color: #4520AB;
   background: #00EDFF;
   text-decoration: none;
-  /* box-shadow: 0px 0px 15px #ffbc5b24; */
   outline: none!important;
+  box-shadow: 0 0 20px #00EDFF;
+  transition: box-shadow 1s ease-in-out;
 }
 
 
@@ -130,6 +117,11 @@ strong {
   transition: box-shadow 1s ease-in-out;
 }
 
+.yellowButton:active {
+  box-shadow: none;
+  border: none!important;
+}
+
 
 .purpleButton {
   background-color: #4520AB;
@@ -140,7 +132,6 @@ strong {
   font-family: 'RF Rostin';
   outline: none;
   box-shadow: none;
-
 }
 
 .logoutButton {
@@ -176,4 +167,11 @@ button.close {
 
 .btn.focus, .btn:focus {
   box-shadow: none;
+}
+
+.btn-outline-secondary:active {
+  background-color: #00EDFF!important;
+  border-color: #00EDFF!important;
+  box-shadow: none!important;
+  color: #4520AB!important;
 }
