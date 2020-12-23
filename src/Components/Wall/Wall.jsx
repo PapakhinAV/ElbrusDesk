@@ -13,17 +13,16 @@ const WallUserPage = () => {
   function deleteUserPost(id) {
     dispatch(deletePost(id))
   }
-  
+
   // const id = (useSelector((state) => state.id));
   const { id } = useParams()
-  console.log(id);
 
   useEffect(() => {
     (() => {
       dispatch(UserPosts(id))
     })()
   }, [])
-  
+
   const posts = useSelector((state) => state.allposts);
 
 
