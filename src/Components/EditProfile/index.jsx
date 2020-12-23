@@ -96,7 +96,6 @@ const options =	groupOpitons.length && groupOpitons.map(el=>(
 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` 
 	}
 	))}
-	console.log(deleteGroup);
   return (
     <>
       <div className="blockWrapper">

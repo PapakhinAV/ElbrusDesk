@@ -287,16 +287,7 @@ app.post('/Edit/:id', async (req, res) => {
     instagram,
 		vk, selectIdGroup, selectIdDelete } = req.body
 
-  if (firstname ||
-    surname ||
-    tel ||
-    city ||
-    telegram ||
-    gitHub ||
-    linkidIn ||
-    instagram ||
-		vk || 
-		selectIdGroup || selectIdDelete) {
+  if (firstname || surname || tel ||  city ||  telegram ||  gitHub ||  linkidIn ||  instagram ||	vk ||	selectIdGroup || selectIdDelete) {
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -350,12 +341,12 @@ app.post('/Edit/:id', async (req, res) => {
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
 		}
-	// 	if (selectIdDelete) {
-	// 		userOne.stydyGroup.map(el=> (
-	// 			selectIdDelete.map(item =>( item))
-  // ))
-    //   await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
-    // }
+		if (selectIdDelete) {	
+			selectIdDelete.forEach( async (element)=>{
+				userOne.stydyGroup = userOne.stydyGroup.filter((el)=>el.toString()!==element.value)	
+						})	
+      await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
+    }
   return res.sendStatus(200)
   }
   return res.sendStatus(406)
