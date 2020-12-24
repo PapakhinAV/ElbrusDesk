@@ -221,3 +221,26 @@ export const loadAllCoordinatse = () => async (dispatch, getState) => {
   const result = await response.json()
   dispatch(saveUsersPositions(result))
 }
+
+
+
+//Получение данных о геолокации пользователя
+export const saveUserPos = (Array) => ({
+  type: TYPES.ADD_USER_POS,
+  payload: Array,
+});
+
+
+export const addUserPosition = ({latitude, longitude, userId}) => async (dispatch, getState) => {
+	console.log(latitude, longitude, userId);
+	const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({latitude, longitude, userId})
+  })
+  const result = await response.json()
+  dispatch(saveUserPos(result))
+}
+
