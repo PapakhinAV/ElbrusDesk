@@ -10,10 +10,10 @@ const Post = () => {
   const [postText, setPostText] = useState('')
 
   const [file, setFile] = useState(''); // storing the uploaded file
+  const el = useRef(); // accesing input element
   // storing the recived file from backend
   const [data, getFile] = useState({ name: "", path: "" });
   const [progress, setProgess] = useState(0); // progess bar
-  const el = useRef(); // accesing input element
 
 
   const dispatch = useDispatch()
@@ -23,7 +23,8 @@ const Post = () => {
     e.preventDefault()
     dispatch(AddNewPost(postTitle.trim(), postText.trim(), id, file.name))
     setPostTitle('');
-    setPostText('')
+    setPostText('');
+    setFile('')
   }
 
 
