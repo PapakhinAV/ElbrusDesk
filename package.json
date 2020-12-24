@@ -31,7 +31,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "use-position": "0.0.8",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
     "yandex-map-react": "^1.1.1"
   },
   "scripts": {
