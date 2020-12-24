@@ -19,7 +19,7 @@ import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
 import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
 import AddFiles from './Components/AddFiles/AddFiles';
-import Loader from './Components/Loader'
+
 
 
 // import Footer from './Components/Footer/Footer';
@@ -27,10 +27,11 @@ import Loader from './Components/Loader'
 
 function App() {
   return (
-    <>
+    <>	
+		
       <BrowserRouter>
         <Header />
-				<Loader />
+			
         <Switch>
           <Route exact path="/">
             <AuthFirstPage />
