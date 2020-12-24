@@ -33,7 +33,6 @@ const WallUserPage = () => {
             </p>
             <p className="UserPostText">
               {el.text}
-              {console.log(el)}
             </p>
             {compare && <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>}
 

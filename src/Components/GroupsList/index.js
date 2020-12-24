@@ -7,7 +7,6 @@ import GroupCard from '../GroupCard'
 
 function GroupsList() {
   const status = useSelector(store => store.elbrusStatus)
-  console.log(status);
   const history = useHistory()
   const dispatch = useDispatch()
   useEffect(() => {

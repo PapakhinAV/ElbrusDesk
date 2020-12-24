@@ -49,8 +49,9 @@ const initialState = () => {
       img: '',
     },
     elbrusStatus: false,
-		adminStatus: false,
-		loader: false
+    adminStatus: false,
+    loader: false,
+    positions: [],
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }

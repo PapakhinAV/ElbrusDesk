@@ -1,11 +1,14 @@
 import './index.css';
 import { Link} from 'react-router-dom';
 import SignIn from "../SignIn/SignIn"
-import Logo from '../img/EBD.svg'
+import Logo from '../img/cd-logo.svg'
 // import Git from '../img/git-icon.svg'
 // import Google from '../img/google-icon.svg'
 // import Footer from '../Footer/Footer';
 import ModalAuth from '../ModalAuth/ModalAuth';
+import Footer from '../Footer/Footer';
+
+
 
 
 const AuthFirstPage = () => {
@@ -36,6 +39,7 @@ const AuthFirstPage = () => {
             </div>
           </div>
         </div>
+          <Footer />
       </div>
     </div>
   );

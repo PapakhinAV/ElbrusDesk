@@ -1,7 +1,8 @@
 import './index.css';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../img/EBD.svg'
-
+import Logo from '../img/cd-icon.svg'
+// import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useSelector } from 'react-redux';
 
 
@@ -12,7 +13,7 @@ const Header = () => {
     <>
       <div className="mainBlock">
         <div className="menuWrap">
-          <div className="menuLogoBlock"><Link to="/Home"><img className="logoMenu" src={Logo} alt="logoMenu" /></Link></div>
+          <div className="menuLogoBlock"><img className="logoMenu" src={Logo} alt="logoMenu" /></div>
           <nav className="header">
             {user && user ?
               (admin && admin ?

@@ -27,7 +27,6 @@ const AdminPage = () => {
     })()
   }, [])
 
-  // console.log(counter);
   const store = useSelector((state) => state.adminInfo);
   const allUsers = store.users
   const allGroups = store.groups
@@ -37,6 +36,7 @@ const AdminPage = () => {
 
       <div className={style.peopleBlock}>
         <div className={style.headBlock}>
+        <h1 className="hYellow"><span className="blueSymbols">{"<"}{" "}</span>Com.Members<span className="blueSymbols">{" "}{"/>"}</span></h1>
         </div>
         {allUsers && allUsers.map((element) => <AdminPeople element={element} setCounter={setCounter} />)}
       </div>
@@ -44,7 +44,6 @@ const AdminPage = () => {
         <div className={style.headBlock}>
           <div>
             <Link to="/AdminCreateGroup"> <button>+ Добавить новую группу</button></Link>
-
           </div>
         </div>
         {allGroups && allGroups.map((element) => <AdminGroups element={element} />)}
