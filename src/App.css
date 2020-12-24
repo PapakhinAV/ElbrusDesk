@@ -102,6 +102,10 @@ strong {
   transition: box-shadow 1s ease-in-out;
 }
 
+.yellowButton:focus {
+  outline: none;
+} 
+
 
 .yellowButton {
   background-color: #ffbc5b;
@@ -132,6 +136,10 @@ strong {
   font-family: 'RF Rostin';
   outline: none;
   box-shadow: none;
+}
+
+.purpleButton:focus {
+  outline: none;
 }
 
 .logoutButton {

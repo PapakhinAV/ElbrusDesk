@@ -22,16 +22,18 @@ const Header = () => {
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">COM.MEMBERS</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
+                  <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
+
                 </>
                 :
                 <>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">COM.MEMBERS</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
+                  {/* <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink> */}
+                  <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
                 </>)
               :
               <>

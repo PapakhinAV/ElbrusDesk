@@ -30,7 +30,7 @@ const HomePage = () => {
     })()
   }, [])
 
-  const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
+  const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const userInfo = useSelector(state => state.userInfo)
   console.log(userInfo);
   // console.log(userInfo[0].img);

@@ -8,6 +8,10 @@ import linkedin from '../img/linkedin.svg'
 import tg from '../img/tg.svg'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// import bears from '../../Components/img/animals/bears.jpeg'
+// import foxs from '../../Components/img/animals/foxs.jpeg'
+// import raccons from '../../Components/img/animals/raccoons.jpeg'
+// import wolfs from '../../Components/img/animals/wolfs.jpeg'
 
 
 const UserMenu = () => {
@@ -19,10 +23,8 @@ const UserMenu = () => {
     <div className="userMenu">
       <div className="userButtons">
         <Link to={`/Edit/${id}`}>
-          <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
+          <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ ПРОФИЛЬ</button>
         </Link>
-				
-        <Link to="/logout"><button className="logoutButton">ВЫЙТИ</button></Link>
       </div>
       <hr />
       {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
