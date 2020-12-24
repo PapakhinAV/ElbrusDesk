@@ -9,6 +9,7 @@ const UserSchema = mongoose.Schema({
   password: String,
   admin: Boolean,
   tel: String,
+  img: String,
   stydyGroup: [{
     type: mongoose.Types.ObjectId,
     ref: 'GroupList',
