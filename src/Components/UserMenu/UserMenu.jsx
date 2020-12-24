@@ -27,6 +27,8 @@ const UserMenu = () => {
       {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
       {userInfo[0] && (userInfo[0].email && <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email}</p>)}
       {userInfo[0] && (userInfo[0].city && <p><strong className="purpleColor">Город: </strong>{userInfo[0].city}</p>)}
+      {userInfo[0] && (userInfo[0].work && <p><strong className="purpleColor">Место работы: </strong>{userInfo[0].work}</p>)}
+
       <br />
       <ul>
 
@@ -49,7 +51,12 @@ const UserMenu = () => {
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
-            <Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{el.name}</li></Link>
+            <Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{
+              <span>
+                <div>{el.name}</div>
+                <div>{el.dateEnd.slice(0, 4)}</div>
+              </span>
+            }</li></Link>
           )) :
             <li >Добавьте группу в которой учились</li>
 

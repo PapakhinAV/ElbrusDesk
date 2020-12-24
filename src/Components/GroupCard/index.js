@@ -10,7 +10,8 @@ import { Link } from "react-router-dom"
 
 function GroupCard({ groupList }) {
 
-
+  // const date = new Date(el.dateEnd)
+  console.log();
   return (
     <>
 
@@ -19,22 +20,22 @@ function GroupCard({ groupList }) {
 
         {
           groupList && groupList.map(el => (
-              <div key={el._id} className="groupCardWrap">
-                <div className="group">
-                  <div className="groupAvatar">
-                    <img src={`${el.avatar}`} className="card-img" alt="..." />
-                  </div>
-                  <div className="groupInfo">
-                    <div>
-                      <h5 className="groupHeader">{el.name}</h5>
-                      <p className="city">{el.city}</p>
-                      <p>{el.dateStart}</p>
-                      <p>{el.dateEnd}</p>
-                      <Link className="purpleButton" to={`/students_list_in_group/${el._id}`}>Подробнее</Link>
-                    </div>
+            <div key={el._id} className="groupCardWrap">
+              <div className="group">
+                <div className="groupAvatar">
+                  <img src={`${el.avatar}`} className="card-img" alt="..." />
+                </div>
+                <div className="groupInfo">
+                  <div>
+                    <h5 className="groupHeader">{el.name}</h5>
+                    <p className="city">{el.city}</p>
+                    {/* <p>{el.dateStart}</p> */}
+                    <p>{el.dateEnd.slice(0, 4)}</p>
+                    <Link className="purpleButton" to={`/students_list_in_group/${el._id}`}>Подробнее</Link>
                   </div>
                 </div>
               </div>
+            </div>
           ))
         }
       </div>

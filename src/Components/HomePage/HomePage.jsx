@@ -33,6 +33,8 @@ const HomePage = () => {
   const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
   const userInfo = useSelector(state => state.userInfo)
   console.log(userInfo);
+  // console.log(userInfo[0].img);
+
 
   return (
     <div className="userMainBlock">

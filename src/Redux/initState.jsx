@@ -15,6 +15,7 @@ const initialState = () => {
       dateEnd: ''
     }],
     users: [{
+      img: '',
       stydyGroup: [],
       social: [],
       workPlace: [],
@@ -44,7 +45,8 @@ const initialState = () => {
       gitHub: '',
       city: '',
       linkidIn: '',
-      birthday: ''
+      birthday: '',
+      img: '',
     },
     elbrusStatus: false,
 		adminStatus: false,

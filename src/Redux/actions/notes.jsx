@@ -33,9 +33,8 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-		dispatch(show())
-	const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
-  console.log(response.status);
+  dispatch(show())
+  const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   if (response.status === 401) {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
@@ -164,11 +163,11 @@ export const LoadUserInfo = (userInfo) => ({
 
 //Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
-	dispatch(show())
-	fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
+  dispatch(show())
+  fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
-		.then(data => dispatch(LoadUserInfo(data)))
-		dispatch(hide())
+    .then(data => dispatch(LoadUserInfo(data)))
+  dispatch(hide())
 }
 
 //Добавление группы

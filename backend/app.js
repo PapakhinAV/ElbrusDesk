@@ -169,10 +169,37 @@ app.post('/upload', (req, res) => {
   });
 })
 
+// Загрузка фото юзера
+app.post('/userPic/:id', async (req, res) => {
+  const userId = req.params.id;
+  // console.log(req.files);
+  if (!req.files) {
+    return res.status(500).send({ msg: "file is not found" })
+  }
+  const myFile = req.files.file;
+  let user = await User.findById(userId);
+  user.img = "";
+  console.log("user)))))))))))", user);
+  console.log("FIiiiiiiiile", myFile.name);
+  user.img = myFile.name;
+  console.log("FIiiiiiiiileNEWWEWWEWEWEEWEWEWEWE", myFile.name);
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!user", user.img);
+  console.log("user)))))))))))", user);
+  await user.save()
+  myFile.mv(`${process.env.PWD}/public/userPic/${myFile.name}`, function (err) {
+    if (err) {
+      console.log(err)
+      return res.status(500).send({ msg: "Error occured" });
+    }
+    return res.send({ name: myFile.name, path: `/userPic/${myFile.name}` });
+  });
+})
+
 
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
+  console.log(groupList);
   return res.json(groupList)
 })
 
@@ -234,10 +261,12 @@ app.get("/parthNews", async (req, res) => {
 
   const allData = []
   header.map((element, i) => {
-    if (!element.split().toString().match(/.*3DNews.*/)
-      &&
-      !news[i].split().toString().match(/.*3DNews.*/)) {
-      allData.push([element, news[i]])
+    if (element && news[i]) {
+      if (!element.split().toString().match(/.*3DNews.*/)
+        &&
+        !news[i].split().toString().match(/.*3DNews.*/)) {
+        allData.push([element, news[i]])
+      }
     }
   });
   const newAllDada = allData.slice(0, 15);
@@ -274,7 +303,8 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 app.post('/Edit/:id', async (req, res) => {
   let idUserEdit = req.params.id
   let userOne = await User.findById({ _id: `${idUserEdit}` })
-  let { firstname,
+  let { img,
+    firstname,
     surname,
     tel,
     city,
@@ -283,12 +313,15 @@ app.post('/Edit/:id', async (req, res) => {
     linkidIn,
     instagram,
     email,
+    work,
     vk, selectIdGroup, selectIdDelete } = req.body
 
 
-  if (firstname ||
+  if (img ||
+    firstname ||
     surname ||
     email ||
+    work ||
     tel ||
     city ||
     telegram ||
@@ -297,6 +330,15 @@ app.post('/Edit/:id', async (req, res) => {
     instagram ||
     vk ||
     selectIdGroup || selectIdDelete) {
+    if (img) {
+      await User.findByIdAndUpdate(idUserEdit, { img: img }, function (err, img) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { img: "" }, function (err, img) {
+        res.status(200)
+      })
+    }
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)
@@ -329,7 +371,6 @@ app.post('/Edit/:id', async (req, res) => {
         res.status(200)
       })
     }
-
     if (telegram) {
       await User.findByIdAndUpdate(idUserEdit, { telegram: telegram }, function (err, telegram) {
         res.status(200)
@@ -385,6 +426,15 @@ app.post('/Edit/:id', async (req, res) => {
         res.status(200)
       })
     }
+    if (work) {
+      await User.findByIdAndUpdate(idUserEdit, { work: work }, function (err, work) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { work: "" }, function (err, work) {
+        res.status(200)
+      })
+    }
     if (selectIdGroup) {
       selectIdGroup.map(el => {
         if (!userOne.stydyGroup.includes(el.value)) {
@@ -393,14 +443,14 @@ app.post('/Edit/:id', async (req, res) => {
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
 
-		}
-		if (selectIdDelete) {	
-			selectIdDelete.forEach( async (element)=>{
-				userOne.stydyGroup = userOne.stydyGroup.filter((el)=>el.toString()!==element.value)	
-						})	
+    }
+    if (selectIdDelete) {
+      selectIdDelete.forEach(async (element) => {
+        userOne.stydyGroup = userOne.stydyGroup.filter((el) => el.toString() !== element.value)
+      })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
     }
-  return res.sendStatus(200)
+    return res.sendStatus(200)
 
   }
   return res.sendStatus(406)
