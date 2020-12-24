@@ -33,6 +33,7 @@ const AdminPage = () => {
 
   return (
     <div className={style.mainBlock}>
+    <div className={style.adminWrap}>
 
       <div className={style.peopleBlock}>
         <div className={style.headBlock}>
@@ -48,6 +49,7 @@ const AdminPage = () => {
         </div>
         {allGroups && allGroups.map((element) => <AdminGroups element={element} />)}
       </div>
+    </div>
     </div>
 
   );

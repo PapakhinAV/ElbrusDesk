@@ -109,6 +109,24 @@ strong {
   outline: none;
 } 
 
+.MuiFab-primary {
+  background-color: #00EDFF!important;
+  color: #4520AB!important;
+}
+
+.MuiFab-primary:hover {
+  background-color: #ffbc5b!important;
+  color: #4520AB!important;
+}
+
+.MuiFab-primary:active {
+  background-color: #ffbc5b!important;
+  color: #4520AB!important;
+}
+
+.MuiSpeedDialAction-fab {
+  /* transition: none!important; */
+}
 
 .yellowButton {
   background-color: #ffbc5b;
@@ -209,3 +227,41 @@ button.close {
   0% {opacity:0;}
   100% {opacity:1;}
   }
+
+  .slide {
+    width: 100%;
+  }
+
+  .MuiStepLabel-label {
+    font-family: "RF Rostin Bold"!important;
+    font-size: 16px!important;
+    color: #fff!important;
+  }
+
+ .MuiStepLabel-active {
+    font-family: "RF Rostin Bold"!important;
+    text-transform: uppercase!important;
+    font-size: 20px!important;
+    color: #ffbc5b!important;
+  }
+
+  .MuiStepper-alternativeLabel {
+    background-color: #4520ab!important;
+  }
+
+  .MuiStepConnector-line {
+    border-color: #3d1e94!important;
+  }
+
+  .MuiStepIcon-active {
+    color: #ffbc5b!important;
+  }
+
+  .MuiStepIcon-text {
+    fill: #4520ab!important;
+    font-family: "RF Rostin Bold"!important;
+  }
+
+.MuiStepIcon-completed {
+  color: rgba(0, 0, 0, 0.38)!important;
+}
