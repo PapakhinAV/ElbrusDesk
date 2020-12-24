@@ -4,21 +4,25 @@ import YanMap from "../YanMap/YanMap"
 import { addUserPosition, loadAllCoordinatse } from "../../Redux/actions/notes"
 import { useState } from "react";
 import { usePosition } from 'use-position';
+import { useHistory } from "react-router-dom";
 
 
 
 const YanPage = () => {
   const dispatch = useDispatch()
-  const poz = useSelector(state => state.positions)
-  const [positions, setPositions] = useState(poz)
-
-
   useEffect(() => {
     (() => {
       dispatch(loadAllCoordinatse())
     })()
   }, [])
+  const poz = useSelector(state => state.positions)
+  setTimeout(() => {
+    setPositions(poz)
+  }, 500);
+  const [positions, setPositions] = useState([])
 
+
+  const history = useHistory()
 
 
   const watch = true;
@@ -32,6 +36,10 @@ const YanPage = () => {
 
   function handleTakePosition() {
     dispatch(addUserPosition({ latitude, longitude, userId }))
+    setTimeout(() => {
+      history.push("/YanPage")
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }, 500);
   }
 
 
