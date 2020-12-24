@@ -17,7 +17,6 @@ function Passport(passport) {
     function (email, password, done) {
 
       User.findOne({ email }, function (err, user) {
-        // console.log(user)
         if (err) { return done(err); }
         if (!user) { return done(null, false); }
         bcrypt.compare(password, user.password, (err, result) => {
@@ -25,7 +24,6 @@ function Passport(passport) {
           if (result) {
             return done(null, user)
           } else {
-            console.log('fail')
             return done(null, false)
           }
         })
@@ -43,16 +41,11 @@ function Passport(passport) {
       process.nextTick(async function () {
 
         let gituser = await User.findOne({ githubId: profile.id });
-        // console.log(gituser, 'user exists');
-        // console.log(profile);
 
         if (!gituser) {
           gituser = new User({ githubId: profile.id, firstname: profile.username, gitHub: profile.username, admin: false });
           await gituser.save();
-          // console.log(gituser, 'user new');
         }
-
-        // console.log(gituser);
         return done(null, gituser);
       });
     }
@@ -68,13 +61,10 @@ function Passport(passport) {
       process.nextTick(async function () {
 
         let googleuser = await User.findOne({ googleId: profile.id });
-        console.log(googleuser, 'user exists');
-        // console.log(profile);
 
         if (!googleuser) {
           googleuser = new User({ googleId: profile.id, firstname: profile.name.givenName, surname: profile.name.familyName, admin: false, });
           await googleuser.save();
-          // console.log(googleuser, 'user new');
         }
 
         return done(null, googleuser);
