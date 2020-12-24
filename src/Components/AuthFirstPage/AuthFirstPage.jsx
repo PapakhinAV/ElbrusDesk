@@ -2,13 +2,7 @@ import './index.css';
 import { Link} from 'react-router-dom';
 import SignIn from "../SignIn/SignIn"
 import Logo from '../img/cd-logo.svg'
-// import Git from '../img/git-icon.svg'
-// import Google from '../img/google-icon.svg'
-// import Footer from '../Footer/Footer';
-import ModalAuth from '../ModalAuth/ModalAuth';
-import Footer from '../Footer/Footer';
-
-
+import SpeedDials from '../SimpleSpeedDial/SimpleSpeedDial';
 
 
 const AuthFirstPage = () => {
@@ -34,12 +28,13 @@ const AuthFirstPage = () => {
               {/* <Link className="signUpButton" to="/SignUp">Создать аккаунт</Link> */}
 
               <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
-              <ModalAuth />
+              {/* <ModalAuth /> */}
+              <SpeedDials />
               {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */}
             </div>
           </div>
         </div>
-          <Footer />
+          {/* <Footer /> */}
       </div>
     </div>
   );

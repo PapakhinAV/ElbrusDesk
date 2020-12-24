@@ -1,13 +1,19 @@
 .mainBlock{
-      /* height: 90vh; */
-    /* width: 98vw; */
-    display: flex;
-    /* flex-direction: row; */
+  display: flex;
     justify-content: space-around;
-    /* border: 1px solid #000; */
-    margin: 0 1vw;
+    /* margin: 0; */
+    /* padding: 0; */
     color: #fff;
+    height: 88vh;
+    width: 100%;
 }
+
+.adminWrap{
+  width: 1310px;
+  display: flex;
+  justify-content: center;
+}
+
 .peopleBlock{
   /* border: 1px solid black; */
   width: 48%;
@@ -15,7 +21,7 @@
 }
 .groupsBlock{
   /* border: 1px solid black; */
-  width: 49%;
+  width: 50%;
   overflow-y: auto;
 }
 .headBlock{
