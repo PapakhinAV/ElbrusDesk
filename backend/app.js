@@ -512,6 +512,17 @@ app.get("/loadAllCoordinatse", async (req, res) => {
   res.json(curentUsers)
 })
 
+app.post("/YanPage", async (req, res) => {
+	const {latitude, longitude, userId} = req.body
+  if (latitude && longitude && userId) {
+		await User.findByIdAndUpdate(userId, { position: {lat: latitude, lon: longitude }, function (err, position) {
+		return	res.sendStatus(200)
+		}})}
+return		res.sendStatus(406)
+})
+
+
+
 
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');

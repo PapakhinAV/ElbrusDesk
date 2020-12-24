@@ -51,7 +51,8 @@ const initialState = () => {
     elbrusStatus: false,
     adminStatus: false,
     loader: false,
-    positions: [],
+		positions: [],
+		positionUser: [],
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }

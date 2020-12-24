@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import YanMap from "../YanMap/YanMap"
-import { loadAllCoordinatse } from "../../Redux/actions/notes"
+import { addUserPosition, loadAllCoordinatse } from "../../Redux/actions/notes"
 import { useState } from "react";
-
+import { usePosition } from 'use-position';
 
 
 
@@ -12,6 +12,7 @@ const YanPage = () => {
   const poz = useSelector(state => state.positions)
   const [positions, setPositions] = useState(poz)
 
+
   useEffect(() => {
     (() => {
       dispatch(loadAllCoordinatse())
@@ -19,12 +20,28 @@ const YanPage = () => {
   }, [])
 
 
+
+	const watch = true;
+  const {
+    latitude,
+    longitude
+	} = usePosition(watch);
+	
+console.log(latitude, longitude);
+
+const userId = useSelector(state => state.userInfo[0]._id)
+
+function handleTakePosition(){
+dispatch(addUserPosition({latitude, longitude, userId}))
+}
+
+
   return (
     <div>
       <div>
         <YanMap positions={positions} />
       </div>
-      <button>Добавить свою позицию</button>
+      <button onClick={handleTakePosition}>Добавить свою позицию</button>
     </div>
 
   );
