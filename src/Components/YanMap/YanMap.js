@@ -1,21 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Map, Marker, MarkerLayout } from 'yandex-map-react';
+import { Link } from 'react-router-dom';
+// import { Map, Marker, MarkerLayout } from 'yandex-map-react';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 export default function ContactMap({ positions }) {
+  const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
 
   return (
-    <Map onAPIAvailable={function () { console.log('API loaded'); }} center={[55.754734, 37.583314]} zoom={10} controls={['zoomControl', 'fullscreenControl']}>
-      {positions.map((element) => <Marker lat={element.lat} lon={element.lon}>
-        <MarkerLayout>
-          <div style={{ borderRadius: '20px', padding: "5px", backgroundColor: "white", fontWeight: "bolder", border: "solid red 2px" }}>
-            <div>{element.firstname}</div>
-            <div> {element.surname} </div>
-          </div>
-        </MarkerLayout>
-      </Marker>
-      )}
-    </Map>
+    <YMaps
+      query={{
+        ns: 'use-load-option',
+        load:
+          'Map,Placemark,control.ZoomControl,control.FullscreenControl,geoObject.addon.balloon',
+      }}>
+      <Map width="80%" height="600px"
+        defaultState={{
+          center: [55.75, 37.57],
+          zoom: 3,
+          controls: ['zoomControl', 'fullscreenControl'],
+        }}>
+        <div>
+          {positions.map((element) => {
+            console.log(element);
+            return < Placemark
+              defaultGeometry={[element.lat, element.lon]}
+              // {element.img ? /userPic/element.img : foto}
+              // `<img src="img/cinema.jpg" height="150" width="200"> <br /> `
+              properties={{
+                balloonContentBody: element.img ? `<img src="/userPic/${element.img}" height="150"> <br /> ` +
+                  `<b><a target="_blank" " href = "/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>` :
+                  `<img src="${foto}" height="150"> <br /> ` +
+                  `<b><a target="_blank" " href = "/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
+              }} />
+          })
+          }
+        </div>
+
+      </Map>
+
+    </YMaps>
+
+
+
   );
 
 }
