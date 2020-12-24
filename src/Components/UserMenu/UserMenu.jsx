@@ -21,6 +21,7 @@ const UserMenu = () => {
         <Link to={`/Edit/${id}`}>
           <button id="firstButton" className="purpleButton">РЕДАКТИРОВАТЬ</button>
         </Link>
+				
         <Link to="/logout"><button className="logoutButton">ВЫЙТИ</button></Link>
       </div>
       <hr />
@@ -69,3 +70,5 @@ const UserMenu = () => {
 }
 
 export default UserMenu;
+
+

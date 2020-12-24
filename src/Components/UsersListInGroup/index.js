@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { LoadUsersFromBack } from '../../Redux/actions/notes';
 import { Link } from "react-router-dom";
-import { PermContactCalendarSharp } from '@material-ui/icons';
+import Loader from '../Loader';
+// import { PermContactCalendarSharp } from '@material-ui/icons';
+import './index.css';
 
 
 function UsersListInGroup() {
 
   const { id } = useParams();
 
-  const dispatch = useDispatch()
+	const dispatch = useDispatch()
+	
   useEffect(() => {
     (() => {
       dispatch(LoadUsersFromBack(id))
@@ -24,17 +27,19 @@ function UsersListInGroup() {
 
   return (
     <>
+		
       <div className="blockWrapper">
         <div className="groupBody">
-
+				
           <div className="groupHeader">
+					
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
           <div className="groupHeader">
             {groupInfoOne[0] && (<h2>{groupInfoOne[0].name && groupInfoOne[0].name}<span className="yellowSymbols">?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
-          </div>
+          </div><Loader/>
           <div className="groupListWrap">
-            <div>
+            
               {
                 peopleList.length ? peopleList.map(el => (
                   <div ey={el._id} className="groupCardWrap">
@@ -51,10 +56,10 @@ function UsersListInGroup() {
                       </div>
                     </div>
                   </div>
-                )) :
-                  <div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div>
+                )): <div></div>
+               
               }
-            </div>
+            
           </div></div>
       </div>
     </>
@@ -62,3 +67,5 @@ function UsersListInGroup() {
 }
 
 export default UsersListInGroup
+
+  //  {/* <div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div> */}
