@@ -509,17 +509,22 @@ app.get("/loadAllCoordinatse", async (req, res) => {
   const users = await User.find()
   const usersWithPosition = users.filter((element) => element.position) //add lat
   const curentUsers = usersWithPosition.map((element) => ({ img: element.img, userId: element._id, firstname: element.firstname, surname: element.surname, lat: element.position.lat, lon: element.position.lon }))
-  console.log(curentUsers);
   res.json(curentUsers)
 })
 
 app.post("/YanPage", async (req, res) => {
-	const {latitude, longitude, userId} = req.body
+  const { latitude, longitude, userId } = req.body
   if (latitude && longitude && userId) {
-		await User.findByIdAndUpdate(userId, { position: {lat: latitude, lon: longitude }, function (err, position) {
-		return	res.sendStatus(200)
-		}})}
-return		res.sendStatus(406)
+    const temp = await User.findOne({ _id: userId })
+    console.log(temp);
+    await User.findByIdAndUpdate(userId, {
+      position: { lat: latitude, lon: longitude }, function(err, position) {
+        return res.sendStatus(200)
+      }
+    })
+    return res.sendStatus(200)
+  }
+  return res.sendStatus(406)
 })
 
 

@@ -22,7 +22,6 @@ export default function ContactMap({ positions }) {
         }}>
         <div>
           {positions.map((element) => {
-            console.log(element);
             return < Placemark
               defaultGeometry={[element.lat, element.lon]}
               // {element.img ? /userPic/element.img : foto}
@@ -38,6 +37,7 @@ export default function ContactMap({ positions }) {
         </div>
 
       </Map>
+
 
     </YMaps>
 
