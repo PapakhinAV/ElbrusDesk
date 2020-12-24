@@ -1,5 +1,5 @@
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import { useState, useEffect } from 'react';
 import { usePosition } from 'use-position';
 // function usePosition ()  {
@@ -41,11 +41,11 @@ function Emap() {
 	const watch = true;
   const {
     latitude,
-    longitude,
-    speed,
-    timestamp,
-    accuracy,
-    error,
+    longitude
+    // speed,
+    // timestamp,
+    // accuracy,
+    // error,
   } = usePosition(watch);
 
 	return (
@@ -64,7 +64,7 @@ function Emap() {
 			}}
 		>
 			<Placemark
-				defaultGeometry={[55.75, 37.57]}
+				defaultGeometry={[latitude, longitude]}
 				properties={{
 					balloonContentBody:
 						'This is balloon loaded by the Yandex.Maps API module system',
