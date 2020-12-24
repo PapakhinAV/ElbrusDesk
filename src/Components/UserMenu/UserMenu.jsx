@@ -36,8 +36,6 @@ const UserMenu = () => {
       <ul>
 
 
-
-
         {userInfo[0] && (userInfo[0].linkidIn && <a target="_blank" href={`https://linkedin.com/in/${userInfo[0].linkidIn}`}><li><img className="social" src={linkedin} alt="linkedin" /></li></a>)}
 
         {userInfo[0] && (userInfo[0].gitHub && <a target="_blank" href={`https://github.com/${userInfo[0].gitHub}`}><li><img className="social" src={git} alt="git" /></li></a>)}
@@ -49,17 +47,20 @@ const UserMenu = () => {
         {userInfo[0] && (userInfo[0].instagram && <a target="_blank" href={`https://www.instagram.com/${userInfo[0].instagram}/?hl=ru/`}><li><img width="30" className="social" src={"https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png"} alt="instagram" /></li></a>)}
 
 
-      </ul><br />
+      </ul>
+
       <p><strong className="purpleColor">Группы: </strong></p>
+<div className="userGroupListAvatars"></div>
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
-            <Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{
-              <span>
-                <div>{el.name}</div>
-                <div>{el.dateEnd.slice(0, 4)}</div>
-              </span>
-            }</li></Link>
+            <Link to={`/students_list_in_group/${el._id}`}>
+              <li className="animalsLi" key={el._id}>
+                <img class="animalsPic" src={`${el.avatar}`} alt="groupimg" />
+                
+                {/* <div>{el.name}</div>
+                <div>{el.dateEnd.slice(0, 4)}</div> */}
+            </li></Link>
           )) :
             <li >Добавьте группу в которой учились</li>
 

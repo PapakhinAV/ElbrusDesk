@@ -53,7 +53,7 @@ const SignIn = () => {
         history.push(`/Home/${result.id}`)
       }
     } else {
-      setError('Неправильный логин или пароль')
+      setError('!! Неправильный логин или пароль !!')
     }
   }
 
@@ -67,7 +67,26 @@ const SignIn = () => {
 
   return (
     <>
-      <form onSubmit={handlerSubmit}>
+
+          <form onSubmit={handlerSubmit}>
+            <div className="mb-3">
+              {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+              <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
+            </div>
+            <div className="mb-3">
+              {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+              <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
+            </div>
+            <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+            <div className="error">{error}</div>
+            <div className="submBut">
+              <button type="submit" className="yellowButton">Войти</button>
+            </div>
+          </form>  
+            <div className="reqBLue">Ещё не зарегистрированы?</div>
+
+        
+<!--       <form onSubmit={handlerSubmit}>
         <div className="mb-3">
           {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
           <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
@@ -82,7 +101,8 @@ const SignIn = () => {
           <button type="submit" className="yellowButton">Войти</button>
         </div>
       </form>
-      <div className="reqBLue">Ещё не зарегистрированы?</div>
+      <div className="reqBLue">Ещё не зарегистрированы?</div> -->
+
     </>
 
   );

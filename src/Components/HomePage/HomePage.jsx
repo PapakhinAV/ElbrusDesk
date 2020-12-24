@@ -32,6 +32,7 @@ const HomePage = () => {
 
   const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const userInfo = useSelector(state => state.userInfo)
+
   return (
     <div className="userMainBlock">
       <div className="userWrap">
@@ -47,7 +48,6 @@ const HomePage = () => {
         </div>
 
         <div className="rightColumn">
-          {/* <AddFiles /> */}
 
 
           <div className="newPostBlock"><Post /></div>
