@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css';
 import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux';
 
 
 /* #cardMain {
@@ -9,7 +10,7 @@ import { Link } from "react-router-dom"
 // id={style.cardMain}
 
 function GroupCard({ groupList }) {
-
+  const userId = useSelector(state => state.id)
   // const date = new Date(el.dateEnd)
   return (
     <>
