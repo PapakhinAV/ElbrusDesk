@@ -23,6 +23,7 @@ const Header = () => {
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/YanPage">Карта</NavLink>
                   <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
 
                 </>
@@ -32,6 +33,7 @@ const Header = () => {
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/YanPage">Карта</NavLink>
                   {/* <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink> */}
                   <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
                 </>)
