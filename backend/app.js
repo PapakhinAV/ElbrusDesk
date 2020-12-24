@@ -508,7 +508,8 @@ app.post("/editGroup", async (req, res) => {
 app.get("/loadAllCoordinatse", async (req, res) => {
   const users = await User.find()
   const usersWithPosition = users.filter((element) => element.position) //add lat
-  const curentUsers = usersWithPosition.map((element) => ({ firstname: element.firstname, surname: element.surname, lat: element.position.lat, lon: element.position.lon }))
+  const curentUsers = usersWithPosition.map((element) => ({ img: element.img, userId: element._id, firstname: element.firstname, surname: element.surname, lat: element.position.lat, lon: element.position.lon }))
+  console.log(curentUsers);
   res.json(curentUsers)
 })
 
