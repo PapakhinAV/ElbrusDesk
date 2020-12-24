@@ -32,11 +32,12 @@ function UsersListInGroup() {
         <div className="groupBody">
 				
           <div className="groupHeader">
+					
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
           <div className="groupHeader">
             {groupInfoOne[0] && (<h2>{groupInfoOne[0].name && groupInfoOne[0].name}<span className="yellowSymbols">?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
-          </div>
+          </div><Loader/>
           <div className="groupListWrap">
             
               {
@@ -55,7 +56,7 @@ function UsersListInGroup() {
                       </div>
                     </div>
                   </div>
-                )) : <Loader/>
+                )): <div></div>
                
               }
             
