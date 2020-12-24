@@ -21,19 +21,18 @@ const YanPage = () => {
 
 
 
-	const watch = true;
+  const watch = true;
   const {
     latitude,
     longitude
-	} = usePosition(watch);
-	
-console.log(latitude, longitude);
+  } = usePosition(watch);
 
-const userId = useSelector(state => state.userInfo[0]._id)
 
-function handleTakePosition(){
-dispatch(addUserPosition({latitude, longitude, userId}))
-}
+  const userId = useSelector(state => state.userInfo[0]._id)
+
+  function handleTakePosition() {
+    dispatch(addUserPosition({ latitude, longitude, userId }))
+  }
 
 
   return (
