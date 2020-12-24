@@ -28,8 +28,8 @@ const AdminGroups = ({ element }) => {
         </div>
       </div>
       <div className={style.buttonBlock}>
-        <Link to={`/AdminEditGroup/${element._id}`}><button>Редактировать</button></Link>
-        <button type="button" onClick={() => { deleteCurentGroup(element._id) }}>Удалить</button>
+        <Link to={`/AdminEditGroup/${element._id}`}><button className="bluewButton">Редактировать группу</button></Link>
+        <button className="yellowButton" type="button" onClick={() => { deleteCurentGroup(element._id) }}>Удалить</button>
       </div>
     </div>
   );

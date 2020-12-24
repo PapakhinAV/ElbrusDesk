@@ -171,7 +171,7 @@ const EditProfile = () => {
       })
     }).catch(err => console.log(err))
   }
-  const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
+  const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const profileFoto = useSelector(state => state.userInfo[0].img)
   console.log(profileFoto);
 

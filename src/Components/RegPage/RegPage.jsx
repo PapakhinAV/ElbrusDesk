@@ -1,7 +1,7 @@
 import './index.css';
 import { Link } from 'react-router-dom';
 // import SignIn from "../SignIn/SignIn"
-import Logo from '../img/EBD.svg'
+import Logo from '../img/cd-logo.svg'
 import Git from '../img/git-icon.svg'
 import SignUp from '../SignUp/SignUp';
 
