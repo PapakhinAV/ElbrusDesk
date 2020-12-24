@@ -68,25 +68,7 @@ const SignIn = () => {
   return (
     <>
 
-          <form onSubmit={handlerSubmit}>
-            <div className="mb-3">
-              {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
-              <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
-            </div>
-            <div className="mb-3">
-              {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
-              <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
-            </div>
-            <div className="req"><span>*</span>Поля обязательные для заполнения</div>
-            <div className="error">{error}</div>
-            <div className="submBut">
-              <button type="submit" className="yellowButton">Войти</button>
-            </div>
-          </form>  
-            <div className="reqBLue">Ещё не зарегистрированы?</div>
-
-        
-<!--       <form onSubmit={handlerSubmit}>
+      <form onSubmit={handlerSubmit}>
         <div className="mb-3">
           {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
           <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
@@ -96,12 +78,15 @@ const SignIn = () => {
           <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
         </div>
         <div className="req"><span>*</span>Поля обязательные для заполнения</div>
-        <div>{error}</div>
+        <div className="error">{error}</div>
         <div className="submBut">
           <button type="submit" className="yellowButton">Войти</button>
         </div>
       </form>
-      <div className="reqBLue">Ещё не зарегистрированы?</div> -->
+      <div className="reqBLue">Ещё не зарегистрированы?</div>
+
+
+
 
     </>
 
@@ -109,3 +94,24 @@ const SignIn = () => {
 }
 
 export default SignIn;
+
+
+
+
+
+// {/* <form onSubmit={handlerSubmit}>
+// <div className="mb-3">
+//   {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+//   <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
+// </div>
+// <div className="mb-3">
+//   {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+//   <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
+// </div>
+// <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+// <div>{error}</div>
+// <div className="submBut">
+//   <button type="submit" className="yellowButton">Войти</button>
+// </div>
+// </form>
+// <div className="reqBLue">Ещё не зарегистрированы?</div>  */}
