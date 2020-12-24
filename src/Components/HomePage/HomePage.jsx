@@ -8,7 +8,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddUserID, AddUserInfo, LoadStatusElbrus } from '../../Redux/actions/notes';
-import AddFiles from '../AddFiles/AddFiles';
+import { hide, show } from '../../Redux/actions/loader';
+import Loader from '../Loader';
+
 
 
 const HomePage = () => {
@@ -17,25 +19,34 @@ const HomePage = () => {
   const history = useHistory();
 
 
-  useEffect(() => {
+  useEffect( () => {
+	
     (async () => {
-      const response = await fetch(`${process.env.REACT_APP_URL}/Homee/${params.id}`)
+			 	dispatch(show())
+				 setTimeout(async() => {	
+			 const response = await fetch(`${process.env.REACT_APP_URL}/Homee/${params.id}`)
       if (response.status === 200) {
         dispatch(LoadStatusElbrus(true))
         dispatch(AddUserID(params.id))
-        dispatch(AddUserInfo(params.id))
+				dispatch(AddUserInfo(params.id))
+				dispatch(hide())
       } else {
         history.push('/')
       }
-    })()
+		}, 500);
+		})()
+		
   }, [])
 
   const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const userInfo = useSelector(state => state.userInfo)
 
   return (
+		
     <div className="userMainBlock">
-      <div className="userWrap">
+		
+		{ userInfo[0] ? 
+		<div className="userWrap">
         <div className="leftColumn">
           <div className="fotoBlock"><img src={userInfo[0] ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
           <div className="userName">
@@ -49,11 +60,11 @@ const HomePage = () => {
 
         <div className="rightColumn">
 
-
           <div className="newPostBlock"><Post /></div>
           <div className="wallBlock"><Wall /></div>
         </div>
-      </div>
+      </div> : <Loader/> 
+		}
     </div>
   );
 }

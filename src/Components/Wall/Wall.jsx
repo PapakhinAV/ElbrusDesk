@@ -1,6 +1,6 @@
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { deletePost } from "../../Redux/actions/notes";
 import { UserPosts } from "../../Redux/actions/notes"
 import { useParams } from 'react-router-dom';

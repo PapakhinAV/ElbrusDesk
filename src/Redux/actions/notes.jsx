@@ -62,7 +62,6 @@ export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
     dispatch(LoadUsersInGroup(users))
     dispatch(hide())
   }, 500);
-
 }
 
 export const AddUserID = (id) => ({

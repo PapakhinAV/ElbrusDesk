@@ -1,7 +1,4 @@
 import './index.css';
-import foto from '../img/volkov.jpg'
-// import SelectOptions from '../MultiSelect/MultiSelect';
-// import MultipleSelect from '../MultiSelect/MultiSelect';
 import AnimatedMulti from '../MultiSelect/MultiSelect';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
@@ -66,35 +63,6 @@ const EditProfile = () => {
     }
   }
 
-
-
-  // function handleSelectDelete(value){
-  // 	setSelectIdDelete(value);
-  // }
-  // const { firstname, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk} = inputs;
-
-  // const forPlaceholder = useSelector(state=> state.userInfo)
-
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  // 	(() => {
-  // 		dispatch(LoadGroupsFromBack())
-  // 	})()
-  // }, [])
-  // const groupOpitons = useSelector(state=> state.groups)
-
-  // const options =	groupOpitons.length && groupOpitons.map(el=>(
-  // 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` }
-  // 	))
-
-  // 	const deleteGroup = useSelector(state=> state.userInfo[0].stydyGroup)
-  // 	let optionsForDelete=[]
-  // 	if(deleteGroup){
-  // 		optionsForDelete = deleteGroup.length && deleteGroup.map(el=>(
-  // 		{ value: `${el._id}`, label: `${el.name} ➟ ${el.city} ➟ ${el.dateEnd}` 
-  // 	}
-  // 	))}
-
   function handleChange({ target: { name, value } }) {
     setInputs({
       ...inputs,
@@ -111,8 +79,6 @@ const EditProfile = () => {
   }
 
   const { firstname, email, work, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk } = inputs;
-
-  const forPlaceholder = useSelector(state => state.userInfo)
 
   const dispatch = useDispatch()
   useEffect(() => {

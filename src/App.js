@@ -18,7 +18,8 @@ import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
 import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
-import AddFiles from './Components/AddFiles/AddFiles';
+import Emap from './Components/Emap';
+
 
 
 
@@ -30,8 +31,9 @@ function App() {
     <>
 
       <BrowserRouter>
-        <Header />
 
+       <Header />
+		
         <Switch>
           <Route exact path="/">
             <AuthFirstPage />
@@ -72,6 +74,11 @@ function App() {
           <Route path="/postlist">
             <Wall />
           </Route>
+					
+					<Route path="/map2">
+            <Emap />
+          </Route>
+
           <Route path="/Home/:id">
             <HomePage />
           </Route>

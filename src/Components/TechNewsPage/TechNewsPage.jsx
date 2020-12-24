@@ -1,7 +1,7 @@
 import './index.css';
 import TechNews from "../TechNews/TechNews"
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { ParceNews } from "../../Redux/actions/notes"
 
 const TechNewsPage = () => {

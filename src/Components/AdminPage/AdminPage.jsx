@@ -1,6 +1,6 @@
 import style from './index.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { AddInfoForAdmin } from "../../Redux/actions/notes"
 import { useEffect, useState } from 'react';
 import AdminPeople from "./AdminPeople"
