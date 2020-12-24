@@ -33,17 +33,16 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-		dispatch(show())
-	const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
-  console.log(response.status);
+  dispatch(show())
+  const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   if (response.status === 401) {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
-		dispatch(LoadStatusElbrus(true))
-		const result = await response.json()
-		dispatch(hide())
-		dispatch(LoadGroups(result))
+    dispatch(LoadStatusElbrus(true))
+    const result = await response.json()
+    dispatch(hide())
+    dispatch(LoadGroups(result))
   }
 }
 
@@ -54,13 +53,13 @@ export const LoadUsersInGroup = (listUsers) => ({
 })
 
 export const LoadUsersFromBack = (id) => (dispatch, getState) => {
-	dispatch(show())
+  dispatch(show())
   dispatch(LoadUsersInGroup([]))
-    fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-      .then(res => res.json())
-      .then(data => dispatch(LoadUsersInGroup(data)))
+  fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+    .then(res => res.json())
+    .then(data => dispatch(LoadUsersInGroup(data)))
 
-			dispatch(hide())
+  dispatch(hide())
 
 }
 
@@ -82,12 +81,12 @@ export const ShowAllPostsReducer = (posts) => ({
 export const UserPosts = (id) => async (dispatch, getState) => {
   dispatch(ShowAllPostsReducer([]))
   dispatch(show())
-    const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
-    const result = await response.json();
-    result.reverse()
-    console.log(result);
-    dispatch(ShowAllPostsReducer(result))
-		dispatch(hide())
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
+  const result = await response.json();
+  result.reverse()
+  console.log(result);
+  dispatch(ShowAllPostsReducer(result))
+  dispatch(hide())
 
 };
 
@@ -165,10 +164,10 @@ export const LoadUserInfo = (userInfo) => ({
 //Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
   dispatch(show())
-	fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
+  fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
-		.then(data => dispatch(LoadUserInfo(data)))
-		dispatch(hide())
+    .then(data => dispatch(LoadUserInfo(data)))
+  dispatch(hide())
 }
 
 //Добавление группы

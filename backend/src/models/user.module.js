@@ -16,9 +16,9 @@ const UserSchema = mongoose.Schema({
   }],
   gitHub: String,
   linkidIn: String,
-	telegram: String,
-	instagram: String,
-	vk: String,
+  telegram: String,
+  instagram: String,
+  vk: String,
   city: String,
   workPlace: Array,
   post: [{
@@ -27,6 +27,7 @@ const UserSchema = mongoose.Schema({
   }],
   avatar: String,
   birthday: String,
+  work: String,
 })
 
 export default mongoose.model('User', UserSchema)

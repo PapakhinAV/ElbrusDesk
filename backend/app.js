@@ -199,6 +199,7 @@ app.post('/userPic/:id', async (req, res) => {
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
+  console.log(groupList);
   return res.json(groupList)
 })
 
@@ -310,6 +311,7 @@ app.post('/Edit/:id', async (req, res) => {
     linkidIn,
     instagram,
     email,
+    work,
     vk, selectIdGroup, selectIdDelete } = req.body
 
 
@@ -317,6 +319,7 @@ app.post('/Edit/:id', async (req, res) => {
     firstname ||
     surname ||
     email ||
+    work ||
     tel ||
     city ||
     telegram ||
@@ -421,6 +424,15 @@ app.post('/Edit/:id', async (req, res) => {
         res.status(200)
       })
     }
+    if (work) {
+      await User.findByIdAndUpdate(idUserEdit, { work: work }, function (err, work) {
+        res.status(200)
+      })
+    } else {
+      await User.findByIdAndUpdate(idUserEdit, { work: "" }, function (err, work) {
+        res.status(200)
+      })
+    }
     if (selectIdGroup) {
       selectIdGroup.map(el => {
         if (!userOne.stydyGroup.includes(el.value)) {
@@ -429,14 +441,14 @@ app.post('/Edit/:id', async (req, res) => {
       })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
 
-		}
-		if (selectIdDelete) {	
-			selectIdDelete.forEach( async (element)=>{
-				userOne.stydyGroup = userOne.stydyGroup.filter((el)=>el.toString()!==element.value)	
-						})	
+    }
+    if (selectIdDelete) {
+      selectIdDelete.forEach(async (element) => {
+        userOne.stydyGroup = userOne.stydyGroup.filter((el) => el.toString() !== element.value)
+      })
       await User.findByIdAndUpdate(idUserEdit, { stydyGroup: userOne.stydyGroup })
     }
-  return res.sendStatus(200)
+    return res.sendStatus(200)
 
   }
   return res.sendStatus(406)
