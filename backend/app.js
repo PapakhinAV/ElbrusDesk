@@ -261,10 +261,12 @@ app.get("/parthNews", async (req, res) => {
 
   const allData = []
   header.map((element, i) => {
-    if (!element.split().toString().match(/.*3DNews.*/)
-      &&
-      !news[i].split().toString().match(/.*3DNews.*/)) {
-      allData.push([element, news[i]])
+    if (element && news[i]) {
+      if (!element.split().toString().match(/.*3DNews.*/)
+        &&
+        !news[i].split().toString().match(/.*3DNews.*/)) {
+        allData.push([element, news[i]])
+      }
     }
   });
   const newAllDada = allData.slice(0, 15);
