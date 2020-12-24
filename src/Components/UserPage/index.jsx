@@ -1,17 +1,20 @@
 import './index.css';
 
 import Wall from "../Wall/Wall"
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import UserMenuUserPage from './UserMenuUserPage';
 
 
 const UserPage = () => {
-  const {id} = useParams()
+  const history = useHistory()
+  const { id } = useParams()
+  const curentUser = useSelector(state => state.id)
+  if (id === curentUser) { history.push(`/Home/${curentUser}`) }
 
   const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
-  const userInfo = useSelector(state => state.users).filter(el=> el._id === id)
+  const userInfo = useSelector(state => state.users).filter(el => el._id === id)
 
   // const userPageInfo = userInfo
   return (
@@ -29,7 +32,7 @@ const UserPage = () => {
         </div>
 
         <div className="rightColumn">
-          
+
           <div className="wallBlock"><Wall /></div>
         </div>
       </div>

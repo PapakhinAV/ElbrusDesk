@@ -52,6 +52,7 @@ export const LoadUsersInGroup = (listUsers) => ({
   payload: listUsers,
 })
 
+
 export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
   dispatch(show())
   dispatch(LoadUsersInGroup([]))
