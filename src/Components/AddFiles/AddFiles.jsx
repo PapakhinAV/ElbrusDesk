@@ -12,7 +12,6 @@ function AddFile() {
   const handleChange = (e) => {
     setProgess(0)
     const file = e.target.files[0]; // accessing file
-    console.log(file);
     setFile(file); // storing file
   }
 
@@ -26,7 +25,6 @@ function AddFile() {
         setProgess(progress);
       }
     }).then(res => {
-      console.log(res);
       getFile({
         name: res.data.name,
         path: 'http://localhost:3000' + res.data.path

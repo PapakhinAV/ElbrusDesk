@@ -31,7 +31,6 @@ const Post = () => {
   const handleChange = (e) => {
     setProgess(0)
     const file = e.target.files[0]; // accessing file
-    console.log('!!!!!!!!!!!!!!!!!!!!!!', file);
     setFile(file); // storing file
   }
 
@@ -45,7 +44,6 @@ const Post = () => {
         setProgess(progress);
       }
     }).then(res => {
-      console.log('@@@@@@@@@@@@@@@@@@', res);
       getFile({
         name: res.data.name,
         path: 'http://localhost:3000' + res.data.path
@@ -67,14 +65,14 @@ const Post = () => {
             <div className="mb-3 postButtons">
               {/* <DragFilesPreview /> */}
               <div className="file-upload">
-              <input type="file" ref={el} onChange={handleChange} />
-              {/* <div className="progessBar" style={{ width: progress }}>
+                <input type="file" ref={el} onChange={handleChange} />
+                {/* <div className="progessBar" style={{ width: progress }}>
           {progress}
         </div> */}
               </div>
               <button onClick={uploadFile} type="submit" className="purpleButton">ПОДЕЛИТЬСЯ</button>
               <hr />
-        {/* {data.path && <img src={data.path} alt={data.name} />} */}
+              {/* {data.path && <img src={data.path} alt={data.name} />} */}
 
             </div>
           </form>

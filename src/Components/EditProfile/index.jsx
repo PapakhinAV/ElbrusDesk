@@ -59,11 +59,9 @@ const EditProfile = () => {
       })
     })
     if (res.status === 200) {
-      // console.log('status 200 пришло');
       history.replace('/')
     }
     else if (res.status === 406) {
-      // console.log("Status 406");
       history.replace('/')
     }
   }
@@ -138,10 +136,6 @@ const EditProfile = () => {
     ))
   }
 
-  // console.log(deleteGroup);
-
-
-
   const [file, setFile] = useState({}); // storing the uploaded file
   const el = useRef(); // accesing input element
   const [data, getFile] = useState({ name: "", path: "" });
@@ -152,7 +146,6 @@ const EditProfile = () => {
     const file = e.target.files[0]; // accessing file
     setFile(file); // storing file
   }
-  console.log('!!!!!!!!!!!!!!!!!!!!!!', file);
 
   const uploadFile = () => {
     const formData = new FormData();
@@ -164,7 +157,6 @@ const EditProfile = () => {
       //   setProgess(progress);
       // }
     }).then(res => {
-      console.log('@@@@@@@@@@@@@@@@@@', res);
       getFile({
         name: res.data.name,
         path: 'http://localhost:3000' + res.data.path
@@ -173,8 +165,6 @@ const EditProfile = () => {
   }
   const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const profileFoto = useSelector(state => state.userInfo[0].img)
-  console.log(profileFoto);
-
   return (
     <>
       <div className="blockWrapper">

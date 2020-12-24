@@ -12,7 +12,7 @@ import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 import EditProfile from './Components/EditProfile';
 import Wall from './Components/Wall/Wall';
-import YanMap from './Components/Map/Map';
+import YanPage from './Components/YanPage/YanPage';
 import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
@@ -27,11 +27,11 @@ import AddFiles from './Components/AddFiles/AddFiles';
 
 function App() {
   return (
-    <>	
-		
+    <>
+
       <BrowserRouter>
         <Header />
-			
+
         <Switch>
           <Route exact path="/">
             <AuthFirstPage />
@@ -66,25 +66,21 @@ function App() {
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/Map">
-            <YanMap />
+          <Route path="/YanPage">
+            <YanPage />
           </Route>
           <Route path="/postlist">
             <Wall />
           </Route>
-
-
           <Route path="/Home/:id">
             <HomePage />
           </Route>
-
           <Route path="/user_page/:id">
             <UserPage />
           </Route>
           <Route path="/">
             <Redirect to="/" />
           </Route>
-
         </Switch>
       </BrowserRouter>
       {/* <Footer /> */}

@@ -27,7 +27,6 @@ const AdminPage = () => {
     })()
   }, [])
 
-  // console.log(counter);
   const store = useSelector((state) => state.adminInfo);
   const allUsers = store.users
   const allGroups = store.groups
