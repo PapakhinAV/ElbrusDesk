@@ -13,12 +13,13 @@ import RegPage from './Components/RegPage/RegPage';
 import EditProfile from './Components/EditProfile';
 import Wall from './Components/Wall/Wall';
 import YanMap from './Components/Map/Map';
-import Footer from './Components/Footer/Footer';
+
 import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
 import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
-import AddFiles from './Components/AddFiles/AddFiles';
+import Emap from './Components/Emap';
+
 
 
 
@@ -30,7 +31,7 @@ function App() {
     <>	
 		
       <BrowserRouter>
-        <Header />
+       <Header />
 			
         <Switch>
           <Route exact path="/">
@@ -72,7 +73,11 @@ function App() {
           <Route path="/postlist">
             <Wall />
           </Route>
-
+					
+					<Route path="/map2">
+            <Emap />
+          </Route>
+					
 
           <Route path="/Home/:id">
             <HomePage />

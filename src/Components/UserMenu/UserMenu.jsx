@@ -66,7 +66,6 @@ const UserMenu = () => {
         }
       </ul>
       <hr />
-      {/* <p>Optional buttons (if it's your page):</p> */}
     </div >
   );
 }

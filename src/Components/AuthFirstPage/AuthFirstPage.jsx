@@ -1,5 +1,5 @@
 import './index.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import SignIn from "../SignIn/SignIn"
 import Logo from '../img/EBD.svg'
 // import Git from '../img/git-icon.svg'

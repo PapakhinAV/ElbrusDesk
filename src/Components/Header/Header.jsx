@@ -1,8 +1,7 @@
 import './index.css';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../img/EBD.svg'
-// import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+
 import { useSelector } from 'react-redux';
 
 
