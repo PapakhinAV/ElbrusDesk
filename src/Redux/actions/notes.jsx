@@ -207,3 +207,18 @@ export const editGroup = ({ newGroup, id }) => async (dispatch, getState) => {
     body: JSON.stringify({ newGroup, id })
   });
 }
+
+
+
+//Отображение пользователей на карте
+export const saveUsersPositions = (Array) => ({
+  type: TYPES.ADD_USERS_POSITIONS,
+  payload: Array,
+});
+
+
+export const loadAllCoordinatse = () => async (dispatch, getState) => {
+  const response = await fetch('/loadAllCoordinatse')
+  const result = await response.json()
+  dispatch(saveUsersPositions(result))
+}

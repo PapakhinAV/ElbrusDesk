@@ -28,6 +28,7 @@ const UserSchema = mongoose.Schema({
   avatar: String,
   birthday: String,
   work: String,
+  position: Object,
 })
 
 export default mongoose.model('User', UserSchema)
