@@ -170,22 +170,16 @@ app.post('/upload', (req, res) => {
 })
 
 // Загрузка фото юзера
-app.post('/userPic/:id', async (req, res) => {
+app.post('/userPicAdd/:id', async (req, res) => {
   const userId = req.params.id;
-  // console.log(req.files);
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" })
   }
   const myFile = req.files.file;
   let user = await User.findById(userId);
-  user.img = "";
-  console.log("user)))))))))))", user);
-  console.log("FIiiiiiiiile", myFile.name);
   user.img = myFile.name;
-  console.log("FIiiiiiiiileNEWWEWWEWEWEEWEWEWEWE", myFile.name);
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!user", user.img);
-  console.log("user)))))))))))", user);
   await user.save()
+  console.log(user);
   myFile.mv(`${process.env.PWD}/public/userPic/${myFile.name}`, function (err) {
     if (err) {
       console.log(err)
@@ -303,8 +297,7 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
 app.post('/Edit/:id', async (req, res) => {
   let idUserEdit = req.params.id
   let userOne = await User.findById({ _id: `${idUserEdit}` })
-  let { img,
-    firstname,
+  let { firstname,
     surname,
     tel,
     city,
@@ -317,7 +310,7 @@ app.post('/Edit/:id', async (req, res) => {
     vk, selectIdGroup, selectIdDelete } = req.body
 
 
-  if (img ||
+  if (
     firstname ||
     surname ||
     email ||
@@ -330,15 +323,7 @@ app.post('/Edit/:id', async (req, res) => {
     instagram ||
     vk ||
     selectIdGroup || selectIdDelete) {
-    if (img) {
-      await User.findByIdAndUpdate(idUserEdit, { img: img }, function (err, img) {
-        res.status(200)
-      })
-    } else {
-      await User.findByIdAndUpdate(idUserEdit, { img: "" }, function (err, img) {
-        res.status(200)
-      })
-    }
+
     if (firstname) {
       await User.findByIdAndUpdate(idUserEdit, { firstname: firstname }, function (err, firstname) {
         res.status(200)

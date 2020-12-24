@@ -19,7 +19,7 @@ const EditProfile = () => {
   const user = store[0]
 
   const [inputs, setInputs] = useState({
-    img: user.img ? user.img : "",
+    // img: user.img ? user.img : "",
     firstname: user.firstname ? user.firstname : "",
     surname: user.surname ? user.surname : "",
     tel: user.tel ? user.tel : "",
@@ -43,7 +43,6 @@ const EditProfile = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        img,
         firstname,
         surname,
         email,
@@ -113,7 +112,7 @@ const EditProfile = () => {
     setSelectIdDelete(value);
   }
 
-  const { img, firstname, email, work, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk } = inputs;
+  const { firstname, email, work, surname, tel, city, telegram, gitHub, linkidIn, instagram, vk } = inputs;
 
   const forPlaceholder = useSelector(state => state.userInfo)
 
@@ -142,7 +141,7 @@ const EditProfile = () => {
   // console.log(deleteGroup);
 
 
-  
+
   const [file, setFile] = useState({}); // storing the uploaded file
   const el = useRef(); // accesing input element
   const [data, getFile] = useState({ name: "", path: "" });
@@ -158,7 +157,7 @@ const EditProfile = () => {
   const uploadFile = () => {
     const formData = new FormData();
     formData.append('file', file); // appending file
-    axios.post(`http://localhost:3000/userPic/${id}`, formData, {
+    axios.post(`http://localhost:3000/userPicAdd/${id}`, formData, {
       // onUploadProgress: (ProgressEvent) => {
       //   let progress = Math.round(
       //     ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
@@ -173,8 +172,8 @@ const EditProfile = () => {
     }).catch(err => console.log(err))
   }
   const foto = 'https://pondokindahmall.co.id/assets/img/default.png'
-
-
+  const profileFoto = useSelector(state => state.userInfo[0].img)
+  console.log(profileFoto);
 
   return (
     <>
@@ -188,12 +187,12 @@ const EditProfile = () => {
 
           <div className="editPhoto">
             {/* <img src={foto} alt="userPhoto" /> */}
-            {foto && <img src={data.path} alt={data.name} />}
+            {data.path ? <img src={`${data.path}`} alt={data.name} /> : (profileFoto ? <img src={`/userPic/${profileFoto}`} alt={""} /> : <img src={foto} alt={""} />)}
 
             <form>
-            <input ref={el} onChange={picHandleChange} className="userPic" type="file" />
-            <button onClick={uploadFile} type="button" className="purpleButton">ЗАГРУЗИТЬ ФОТО</button>
-            <button className="deletePhoto">УДАЛИТЬ ФОТО</button>
+              <input ref={el} onChange={picHandleChange} className="userPic" type="file" />
+              <button onClick={uploadFile} type="button" className="purpleButton">ЗАГРУЗИТЬ ФОТО</button>
+              <button className="deletePhoto">УДАЛИТЬ ФОТО</button>
             </form>
           </div>
 
