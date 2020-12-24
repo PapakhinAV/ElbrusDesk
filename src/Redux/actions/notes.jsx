@@ -39,10 +39,10 @@ export const LoadGroupsFromBack = () => async (dispatch, getState) => {
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
-		dispatch(LoadStatusElbrus(true))
-		const result = await response.json()
-		dispatch(LoadGroups(result))
-		dispatch(hide())
+    dispatch(LoadStatusElbrus(true))
+    const result = await response.json()
+    dispatch(LoadGroups(result))
+    dispatch(hide())
   }
 }
 
@@ -53,15 +53,15 @@ export const LoadUsersInGroup = (listUsers) => ({
 })
 
 export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
-		dispatch(show())
-		dispatch(LoadUsersInGroup([]))
-		setTimeout(async() => {
-			const response = await fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-		const users = await response.json()
-		dispatch(LoadUsersInGroup(users))
-		dispatch(hide())	
-		}, 3000);
-    
+  dispatch(show())
+  dispatch(LoadUsersInGroup([]))
+  setTimeout(async () => {
+    const response = await fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+    const users = await response.json()
+    dispatch(LoadUsersInGroup(users))
+    dispatch(hide())
+  }, 500);
+
 }
 
 export const AddUserID = (id) => ({
@@ -82,11 +82,11 @@ export const ShowAllPostsReducer = (posts) => ({
 export const UserPosts = (id) => async (dispatch, getState) => {
   dispatch(ShowAllPostsReducer([]))
   dispatch(show())
-    const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
-    const result = await response.json();
-    result.reverse()
-    dispatch(ShowAllPostsReducer(result))
-		dispatch(hide())
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
+  const result = await response.json();
+  result.reverse()
+  dispatch(ShowAllPostsReducer(result))
+  dispatch(hide())
 
 };
 
