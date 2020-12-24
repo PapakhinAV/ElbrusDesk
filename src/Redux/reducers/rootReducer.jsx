@@ -10,6 +10,7 @@ import ShowAllPostsReducer from './ShowAllPostsReducer';
 import AddElbrusStatus from './AddElbrusStatus';
 import AddAdminStatus from './AddAdminStatus';
 import loaderReducer from './loaderReducer';
+import usersPositions from './usersPositions';
 
 // import NewPostReducer from './NewPostReducer';
 
@@ -20,14 +21,15 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   users: UsersListReducer,
   id: AddUserIDReduser,
-	adminInfo: InforForAdminReducer,
+  adminInfo: InforForAdminReducer,
   userInfo: AddUserInfoReducer,
   // posts: UserPostsReducer,
   allposts: ShowAllPostsReducer,
   elbrusStatus: AddElbrusStatus,
-	adminStatus: AddAdminStatus,
-	loader: loaderReducer,
+  adminStatus: AddAdminStatus,
+  loader: loaderReducer,
   // newpost: NewPostReducer,
+  positions: usersPositions,
 });
 
 export default rootReducer;

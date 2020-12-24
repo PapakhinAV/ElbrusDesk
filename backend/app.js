@@ -505,6 +505,14 @@ app.post("/editGroup", async (req, res) => {
   return res.sendStatus(406)
 })
 
+app.get("/loadAllCoordinatse", async (req, res) => {
+  const users = await User.find()
+  const usersWithPosition = users.filter((element) => element.position) //add lat
+  const curentUsers = usersWithPosition.map((element) => ({ firstname: element.firstname, surname: element.surname, lat: element.position.lat, lon: element.position.lon }))
+  res.json(curentUsers)
+})
+
+
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
 app.use(express.static(root));
