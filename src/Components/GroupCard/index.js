@@ -11,7 +11,6 @@ import { Link } from "react-router-dom"
 function GroupCard({ groupList }) {
 
   // const date = new Date(el.dateEnd)
-  console.log();
   return (
     <>
 

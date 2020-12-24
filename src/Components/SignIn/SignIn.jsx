@@ -17,7 +17,6 @@ const SignIn = () => {
         credentials: 'include'
       })
       const result = await response.json()
-console.log(result);
       if (response.status === 401) {
         history.push(`/Home/${result}`)
       }
@@ -46,11 +45,10 @@ console.log(result);
     });
     if (response.status === 200) {
       const result = await response.json()
-      console.log('>>>>>>>>>>>>>>',result);
-      if(result.admin!==true){
+      if (result.admin !== true) {
         dispatch(LoadStatusElbrus(true))
         history.push(`/Home/${result.id}`)
-      } else{
+      } else {
         dispatch(LoadStatusAdmin(true))
         history.push(`/Home/${result.id}`)
       }
@@ -64,28 +62,27 @@ console.log(result);
       ...inputs, [name]: value,
     })
   }
-  // console.log(error);
 
   const { email, password } = inputs;
 
   return (
     <>
-          <form onSubmit={handlerSubmit}>
-            <div className="mb-3">
-              {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
-              <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
-            </div>
-            <div className="mb-3">
-              {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
-              <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
-            </div>
-            <div className="req"><span>*</span>Поля обязательные для заполнения</div>
-            <div>{error}</div>
-            <div className="submBut">
-              <button type="submit" className="yellowButton">Войти</button>
-            </div>
-          </form>  
-            <div className="reqBLue">Ещё не зарегистрированы?</div>
+      <form onSubmit={handlerSubmit}>
+        <div className="mb-3">
+          {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+          <input onChange={handlerChange} type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail*" />
+        </div>
+        <div className="mb-3">
+          {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+          <input onChange={handlerChange} type="password" name="password" id="exampleInputPassword1" placeholder="Пароль*" />
+        </div>
+        <div className="req"><span>*</span>Поля обязательные для заполнения</div>
+        <div>{error}</div>
+        <div className="submBut">
+          <button type="submit" className="yellowButton">Войти</button>
+        </div>
+      </form>
+      <div className="reqBLue">Ещё не зарегистрированы?</div>
     </>
 
   );

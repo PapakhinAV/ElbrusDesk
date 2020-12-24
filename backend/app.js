@@ -68,7 +68,6 @@ const host =
 // Подключение middleware, который парсит JSON от клиента
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
-// console.log(path.join(process.env.pwd, 'public'), '!!!!!!!!!!!!!!!!!!!!!!');
 app.use(express.static(path.join(process.env.PWD, 'public')));
 
 
@@ -97,7 +96,6 @@ passports(passport);
 
 // Подключение middleware, который проверяет аунтифицирован пользователь на данной ручке или нет
 function checkAuthentication(req, res, next) {
-  // console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     return next()
   } else {
@@ -125,7 +123,6 @@ app.get('/auth/github',
 
 app.get('/auth/github/callback',
   passport.authenticate('github'), function (req, res) {
-    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -137,7 +134,6 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google'), function (req, res) {
     // res.json({id: req.user.id})
-    // console.log(req.user.id);
     res.redirect(`/Home/${req.user.id}`)
   });
 
@@ -157,7 +153,6 @@ app.post('/upload', (req, res) => {
   }
   // accessing the file
   const myFile = req.files.file;
-  console.log(myFile);
   //  mv() method places the file inside public directory
   myFile.mv(`${process.env.PWD}/public/${myFile.name}`, function (err) {
     if (err) {
@@ -179,7 +174,6 @@ app.post('/userPicAdd/:id', async (req, res) => {
   let user = await User.findById(userId);
   user.img = myFile.name;
   await user.save()
-  console.log(user);
   myFile.mv(`${process.env.PWD}/public/userPic/${myFile.name}`, function (err) {
     if (err) {
       console.log(err)
@@ -193,7 +187,6 @@ app.post('/userPicAdd/:id', async (req, res) => {
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {
   const groupList = await GroupList.find()
-  console.log(groupList);
   return res.json(groupList)
 })
 
@@ -270,11 +263,9 @@ app.get("/parthNews", async (req, res) => {
 // const allData = []
 //   header.map((element, i) => {
 //     if (!element.split(" ").includes(["3DNews"])) {
-//       console.log(element.split(" "));
 //       allData.push([element, news[i]])
 //     }
 //   });
-//   console.log(allData);
 //   const newAllDada = allData.slice(0, 15);
 //   res.json(newAllDada)
 //получаем данные для профиля
@@ -287,7 +278,6 @@ app.get('/Homee/:id', checkAuthentication, async (req, res) => {
   let idUser = req.params.id
   if (idUser) {
     const infoUser = await User.find({ _id: idUser }).populate('stydyGroup')
-    // console.log(infoUser, '>>>>>>>>>>>>');
     return res.status(200).json(infoUser)
   }
   return res.sendStatus(406)
@@ -453,7 +443,6 @@ app.get('/students_list_in_group/:id', async (req, res) => {
 
 //запрос данных для администратора
 app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
-  console.log('>>>>>>>>>>>>>>', req.user.admin);
   const allUsers = await User.find()
   const allGroups = await GroupList.find()
   const dataForAdmin = { admin: req.user.admin, users: allUsers, groups: allGroups }

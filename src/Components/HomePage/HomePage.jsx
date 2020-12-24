@@ -32,15 +32,11 @@ const HomePage = () => {
 
   const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   const userInfo = useSelector(state => state.userInfo)
-  console.log(userInfo);
-  // console.log(userInfo[0].img);
-
-
   return (
     <div className="userMainBlock">
       <div className="userWrap">
         <div className="leftColumn">
-          <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
+          <div className="fotoBlock"><img src={userInfo[0] ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
           <div className="userName">
             {
               userInfo.length &&
