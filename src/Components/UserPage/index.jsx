@@ -16,6 +16,7 @@ const UserPage = () => {
   const curentUser = useSelector(state => state.id)
   if (id === curentUser) { history.push(`/Home/${curentUser}`) }
 
+
 	const dispatch = useDispatch()
 
   useEffect(() => {
@@ -32,8 +33,9 @@ console.log(userInfo);
 		{ userInfo[0] ? 
       <div className="userWrap">
         <div className="leftColumn">
-          {/* <div className="fotoBlock"><img src={(userInfo[0] && `/userPic/${userInfo[0].img}`) ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div> */}
-          <div className="fotoBlock"><img src={userInfo[0] && (userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto)} alt="userPhoto" /></div>
+
+        <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
+   
           <div className="userName">
             {
               userInfo.length &&

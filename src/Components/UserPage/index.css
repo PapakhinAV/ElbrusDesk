@@ -1,7 +1,7 @@
 .userMainBlock{
   /* width: 100vw; */
   background-color: #E6E6E6;
-  height: 100%;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   /* background: chartreuse; */
