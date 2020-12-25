@@ -66,6 +66,26 @@ export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
   }, 500);
 }
 
+
+//for userInfoPage in group
+export const LoadUserInfoPage = (info) => ({
+  type: TYPES.ADD_USER_PAGE,
+  payload: info,
+})
+
+export const LoadUserPage = (id) => async (dispatch, getState) => {
+  dispatch(show())
+  // dispatch(LoadUserInfoPage([]))
+  // setTimeout(async () => {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
+		const user = await res.json()
+		console.log(user);
+    dispatch(LoadUserInfoPage(user))
+    dispatch(hide())
+  // }, 500);
+}
+
+
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
   payload: id,
