@@ -8,7 +8,7 @@ const Project = () => {
   return (
     <>
       <div className="blockAboutWrapper">
-        <div className="inputMain">
+        <div className="inputMainAbout">
           {/* <div>img</div>
         <div className="input">
           {store}

@@ -44,12 +44,15 @@
   text-align: center;
 }
 
-.card-img {
+.user-card-img {
   /* padding: 25px; */
   height: 250px;
   /* max-height: 250px; */
   display: flex;
   justify-content: center;
+    background-size: 350px!important;
+    background-repeat: no-repeat!important;
+    background-position: 50% 15%!important;
 }
 
 .groupAvatar {

@@ -1,4 +1,6 @@
 
+import { NfcTwoTone } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 import * as TYPES from '../types/notes';
 import { hide, show } from './loader'
 // import dotenv from 'dotenv'
@@ -231,16 +233,18 @@ export const saveUserPos = (Array) => ({
 });
 
 
-export const addUserPosition = ({latitude, longitude, userId}) => async (dispatch, getState) => {
-	console.log(latitude, longitude, userId);
-	const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`,{
+export const addUserPosition = ({ latitude, longitude, userId, store }) => async (dispatch, getState) => {
+  console.log(latitude, longitude, userId);
+  const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({latitude, longitude, userId})
+    body: JSON.stringify({ latitude, longitude, userId })
   })
   const result = await response.json()
-  dispatch(saveUserPos(result))
+  const newStore = store.filter((element) => element.userId !== userId)
+  const resultToRedux = [...newStore, result]
+  dispatch(saveUsersPositions(resultToRedux))
 }
 

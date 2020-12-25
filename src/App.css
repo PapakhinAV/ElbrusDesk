@@ -34,11 +34,12 @@ strong {
 /* p {} */
 
 .blockWrapper {
-  height: 100%;
+  min-height: 90vh;
   justify-content: center;
   display: flex;
   padding: 50px 0;
   background-color: #E6E6E6;
+  align-items: baseline;
 }
 
 .blueSymbols {
@@ -141,7 +142,7 @@ strong {
 }
 
 .yellowButton:hover {
-  box-shadow: 0 0 20px #ffbc5b;
+  box-shadow: 0 0 20px #ffc107;
   transition: box-shadow 1s ease-in-out;
 }
 
@@ -157,7 +158,7 @@ strong {
   border-radius: 5px!important;
   color: #4520AB!important;
   font-family: 'RF Rostin'!important;
-  box-shadow: 0 0 20px #ffbc5b;
+  box-shadow: 0 0 20px #ffc107;
   animation: pulse 2s infinite;
 }
 
@@ -202,7 +203,7 @@ strong {
 }
 
 .purpleButton:hover {
-  box-shadow: 0 0 20px #4520AB!important;
+  box-shadow: 0 0 20px #5d32d4!important;
   transition: box-shadow 1s ease-in-out!important;
 }
 
@@ -333,4 +334,29 @@ h1 {
 
 .iconMenu {
   margin-bottom: 25px;
+}
+
+.rootButton {
+  background-color: #00edff;
+  border: none!important;
+  padding: 10px 30px!important;
+  border-radius: 5px!important;
+  color: #4520ab!important;
+  font-family: "RF Rostin"!important;
+}
+
+.userMail {
+  color: #4520ab;
+    background-color: #ffbc5b;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.userMail:hover {
+  color: #4520ab;
+    background-color: #00edff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #00b8c5!important;
+  transition: box-shadow 1s ease-in-out!important;
 }

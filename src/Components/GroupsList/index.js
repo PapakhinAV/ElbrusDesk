@@ -4,6 +4,7 @@ import { LoadGroupsFromBack} from '../../Redux/actions/notes'
 import { useHistory } from 'react-router-dom';
 
 import GroupCard from '../GroupCard'
+import Loader from '../Loader';
 
 function GroupsList() {
   const status = useSelector(store => store.elbrusStatus)
@@ -23,7 +24,19 @@ function GroupsList() {
 
   return (
     <>
+    <div className="blockWrapper">
+        <div className="groupBody">
+
+          <div className="groupHeader">
+
+            <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
+          </div>
+          <div className="groupHeader">
+            
+          </div><Loader />
+          <div className="groupListWrap">
       { groupList.length && <GroupCard groupList={groupList} />}
+      </div></div></div>
     </>
   )
 
