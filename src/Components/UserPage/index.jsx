@@ -5,7 +5,6 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import UserMenuUserPage from './UserMenuUserPage';
-import Loader from '../Loader';
 
 
 const UserPage = () => {
@@ -17,13 +16,12 @@ const UserPage = () => {
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
   const userInfo = useSelector(state => state.users).filter(el => el._id === id)
 
+  // const userPageInfo = userInfo
   return (
     <div className="userMainBlock">
-		{ userInfo[0] ? 
       <div className="userWrap">
         <div className="leftColumn">
-          {/* <div className="fotoBlock"><img src={(userInfo[0] && `/userPic/${userInfo[0].img}`) ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div> */}
-          <div className="fotoBlock"><img src={userInfo[0] && (userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto)} alt="userPhoto" /></div>
+          <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
           <div className="userName">
             {
               userInfo.length &&
@@ -37,9 +35,8 @@ const UserPage = () => {
 
           <div className="wallBlock"><Wall /></div>
         </div>
-      </div>: <Loader/> }
+      </div>
     </div>
   );
 }
-
 export default UserPage;
