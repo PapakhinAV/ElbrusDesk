@@ -13,17 +13,20 @@ import { LoadUserPage } from '../../Redux/actions/notes';
 const UserPage = () => {
   const history = useHistory()
   const { id } = useParams()
-  const curentUser = useSelector(state => state.id)
-  if (id === curentUser) { history.push(`/Home/${curentUser}`) }
 
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    (() => {
-      dispatch(LoadUserPage(id))
-    })()
+
+    console.log(id);
+    dispatch(LoadUserPage(id))
+
   }, [])
+
+  const curentUser = useSelector(state => state.id)
+  if (id === curentUser) { history.push(`/Home/${curentUser}`) }
+
 
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
   const userInfo = useSelector(state => state.userPage)

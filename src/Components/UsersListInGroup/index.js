@@ -37,7 +37,7 @@ function UsersListInGroup() {
           </div>
           <div className="groupHeader">
             {groupInfoOne[0] && (<h2>{groupInfoOne[0].name && groupInfoOne[0].name}
-            <span className="yellowSymbols"> ?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
+              <span className="yellowSymbols"> ?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
           </div><Loader />
           <div className="groupListWrap">
 
@@ -46,7 +46,7 @@ function UsersListInGroup() {
                 <div ey={el._id} className="groupCardWrap">
                   <div className="group">
                     <div className="groupAvatar">
-                      {el.img && <div style={{background: `url(/userPic/${el.img})`}} className="user-card-img"/>
+                      {el.img && <div style={{ background: `url(/userPic/${el.img})` }} className="user-card-img" />
                       }
                     </div>
                     <div className="groupInfo">

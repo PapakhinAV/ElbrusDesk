@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { DeleteUserID, saveUsersPositions, ShowAllPostsReducer, LoadStatusElbrus, LoadGroups, LoadStatusAdmin, LoadUserInfo, saveUserPos } from '../../Redux/actions/notes';
+import { DeleteUserID, saveUsersPositions, LoadUserInfoPage, LoadUsersInGroup, ShowAllPostsReducer, LoadStatusElbrus, LoadGroups, LoadStatusAdmin, LoadUserInfo, saveUserPos } from '../../Redux/actions/notes';
 import { useDispatch } from 'react-redux';
 
 const Logout = () => {
@@ -21,6 +21,10 @@ const Logout = () => {
         dispatch(saveUserPos([]))
         dispatch(saveUsersPositions([]))
         dispatch(ShowAllPostsReducer([]))
+        dispatch(LoadUsersInGroup([]))
+        dispatch(LoadUserInfoPage({}))
+
+
 
         localStorage.removeItem('redux')
         history.push('/TechNews')
