@@ -158,6 +158,7 @@ strong {
   border-radius: 5px!important;
   color: #4520AB!important;
   font-family: 'RF Rostin'!important;
+
   box-shadow: 0 0 20px #ffc107;
   animation: pulse 2s infinite;
 }
@@ -203,7 +204,9 @@ strong {
 }
 
 .purpleButton:hover {
+
   box-shadow: 0 0 20px #5d32d4!important;
+
   transition: box-shadow 1s ease-in-out!important;
 }
 
@@ -336,6 +339,7 @@ h1 {
   margin-bottom: 25px;
 }
 
+
 .rootButton {
   background-color: #00edff;
   border: none!important;
@@ -360,3 +364,4 @@ h1 {
     box-shadow: 0 0 20px #00b8c5!important;
   transition: box-shadow 1s ease-in-out!important;
 }
+
