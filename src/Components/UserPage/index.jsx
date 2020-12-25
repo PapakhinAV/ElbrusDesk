@@ -12,6 +12,7 @@ import { LoadUserPage } from '../../Redux/actions/notes';
 
 const UserPage = () => {
   const history = useHistory()
+  console.log("11111");
   const { id } = useParams()
 
 
