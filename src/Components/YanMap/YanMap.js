@@ -28,9 +28,9 @@ export default function ContactMap({ positions }) {
               // `<img src="img/cinema.jpg" height="150" width="200"> <br /> `
               properties={{
                 balloonContentBody: element.img ? `<img src="/userPic/${element.img}" height="150"> <br /> ` +
-                  `<b><a target="_blank" " href = "/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>` :
+                  `<b><a target="_blank" href="/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>` :
                   `<img src="${foto}" height="150"> <br /> ` +
-                  `<b><a target="_blank" " href = "/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
+                  `<b><a target="_blank" " href="/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
               }} />
           })
           }
