@@ -11,3 +11,12 @@ align-items: center;
 margin: 10px;
 height: 50vh;
 }
+
+.blockAboutWrapper {
+  display: flex;
+    justify-content: center;
+    background-color: #aaaaaa;
+    /* padding-bottom: 35px;
+    height: 90vh; */
+}
+

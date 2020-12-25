@@ -27,7 +27,7 @@ const WallUserPage = () => {
       <div userPostDiv>
         {posts.map(el => (
           <p key={el._id}>
-            {el.img && <img width="600" className="postImgs" src={`/${el.img}`} alt='картинка' />}
+            {el.img && <img className="postImgs" src={`/${el.img}`} alt='картинка' />}
             <p className="UserPostTitle">
               {el.title}
             </p>

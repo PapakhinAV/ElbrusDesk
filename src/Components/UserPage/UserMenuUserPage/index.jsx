@@ -6,6 +6,7 @@ import git from '../../img/git.svg'
 import vk from '../../img/vk.svg'
 import linkedin from '../../img/linkedin.svg'
 import tg from '../../img/tg.svg'
+import inst from '../../img/inst.svg'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -30,18 +31,26 @@ const UserMenuUserPage = () => {
 
         {userInfo[0] && (userInfo[0].vk && <a target="_blank" href={`https://vk.com/${userInfo[0].vk}`}><li><img className="social" src={vk} alt="vk" /></li></a>)}
 
-        {userInfo[0] && (userInfo[0].instagram && <a target="_blank" href={`https://www.instagram.com/${userInfo[0].instagram}/?hl=ru/`}><li><img width="30" className="social" src={"https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png"} alt="instagram" /></li></a>)}
+        {userInfo[0] && (userInfo[0].instagram && <a target="_blank" href={`https://www.instagram.com/${userInfo[0].instagram}/?hl=ru/`}><li><img width="30" className="social" src={inst} alt="instagram" /></li></a>)}
       </ul><br />
       <p><strong className="purpleColor">Группы: </strong></p>
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) && userInfo[0].stydyGroup.map((el) => (
-            <Link to={`/students_list_in_group/${el._id}`}><li key={el._id}>{
+            <Link to={`/students_list_in_group/${el._id}`}>
+              {/* <li key={el._id}>{
               <span>
                 <div>{el.name}</div>
                 <div>{el.dateEnd.slice(0, 4)}</div>
               </span>
-            }</li></Link>
+            }</li> */}
+            <li className="animalsLi" key={el._id}>
+                <img class="animalsPic" src={`${el.avatar}`} alt="groupimg" />
+                
+                {/* <div>{el.name}</div>
+                <div>{el.dateEnd.slice(0, 4)}</div> */}
+            </li>
+            </Link>
           ))
         }
       </ul>

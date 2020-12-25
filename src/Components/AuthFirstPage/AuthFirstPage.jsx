@@ -16,7 +16,7 @@ const AuthFirstPage = () => {
             </div>
             <div className="signForm">
               <div>
-                <h1 className="hYellow"><span className="blueSymbols">{'<'}</span> Вход <span className="blueSymbols">/{'/>'}</span></h1>
+                <h1 className="hYellow"><span className="blueSymbols">{'<'}</span> Вход <span className="blueSymbols">{'/>'}</span></h1>
                 <p className="pYellow">
                   Добро пожаловать!<br />
                   Для входа укажите свои учетные данные.</p>

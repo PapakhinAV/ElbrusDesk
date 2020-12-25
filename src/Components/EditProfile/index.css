@@ -57,6 +57,7 @@
   background-color: #f0f8ff00;
   padding: 10px 0;
   margin-left: 25px;
+  font-family: 'RF Rostin'!important;
 }
 
 .labelEditBold {
@@ -82,4 +83,9 @@
 
 .editUserForm {
   margin-top: 25px;
+}
+
+.userPic {
+  color: #000;
+  border-bottom: 0;
 }
