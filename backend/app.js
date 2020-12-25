@@ -518,11 +518,13 @@ app.post("/YanPage", async (req, res) => {
     const temp = await User.findOne({ _id: userId })
     console.log(temp);
     await User.findByIdAndUpdate(userId, {
-      position: { lat: latitude, lon: longitude }, function(err, position) {
-        return res.sendStatus(200)
-      }
+      position: { lat: latitude, lon: longitude }
     })
-    return res.sendStatus(200)
+    const users = await User.findOne({ _id: userId })
+    const curentUsers = {
+      img: users.img, userId: users._id, firstname: users.firstname, surname: users.surname, lat: users.position.lat, lon: users.position.lon
+    }
+    return res.json(curentUsers)
   }
   return res.sendStatus(406)
 })
