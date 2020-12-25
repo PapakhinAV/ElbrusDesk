@@ -2,6 +2,7 @@
 @import url('./fonts/RF-Rostin-Light.ttf'); */
 button {
   outline: none;
+  font-family:'RF Rostin Bold'!important;
 }
 
 @font-face{font-family:'RF Rostin'; src:url('./fonts/RF-Rostin-Regular.ttf')}
@@ -59,12 +60,14 @@ strong {
 ::-webkit-scrollbar-track {
   background-color: #d2d1d1;
   /* border-radius: 5px; */
+  border-radius: 7px;
+
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 7px;
   background-color:  #aaaaaa; 
-  border: 2px solid #d2d1d1;
+  border: 4px solid #d2d1d1;
   height: 100px;
 }
 
@@ -129,12 +132,12 @@ strong {
 }
 
 .yellowButton {
-  background-color: #ffbc5b;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  color: #4520AB;
-  font-family: 'RF Rostin';
+  background-color: #ffbc5b!important;
+  border: none!important;
+  padding: 10px 30px!important;
+  border-radius: 5px!important;
+  color: #4520AB!important;
+  font-family: 'RF Rostin'!important;
 }
 
 .yellowButton:hover {
@@ -147,16 +150,60 @@ strong {
   border: none!important;
 }
 
+.yellowPulseButton {
+  background-color: #ffbc5b!important;
+  border: none!important;
+  padding: 10px 30px!important;
+  border-radius: 5px!important;
+  color: #4520AB!important;
+  font-family: 'RF Rostin'!important;
+  box-shadow: 0 0 20px #ffbc5b;
+  animation: pulse 2s infinite;
+}
+
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #ffc107;
+  }
+  70% {
+      -webkit-box-shadow: 0 0 10px 15px rgba(204,169,44,0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 #ffc107;
+    box-shadow: 0 0 0 0 #ffc107;
+  }
+  70% {
+      -moz-box-shadow: 0 0 10px 15px rgba(204,169,44,0);
+      box-shadow: 0 0 10px 15px rgba(204,169,44,0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
 
 .purpleButton {
-  background-color: #4520AB;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  color: #ffbc5b;
-  font-family: 'RF Rostin';
-  outline: none;
-  box-shadow: none;
+  background-color: #4520AB!important;
+  border: none!important;
+  padding: 10px 30px!important;
+  border-radius: 5px!important;
+  color: #ffbc5b!important;
+  font-family: 'RF Rostin'!important;
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+.purpleButton:hover {
+  box-shadow: 0 0 20px #4520AB!important;
+  transition: box-shadow 1s ease-in-out!important;
 }
 
 .purpleButton:focus {
@@ -230,6 +277,7 @@ button.close {
 
   .slide {
     width: 100%;
+    border-radius: 5px;
   }
 
   .MuiStepLabel-label {
@@ -264,4 +312,25 @@ button.close {
 
 .MuiStepIcon-completed {
   color: rgba(0, 0, 0, 0.38)!important;
+}
+
+.MuiStepper-alternativeLabel {
+  border-radius: 0 0 5px 5px!important;
+}
+
+.jss3 {
+  margin-top: 20px!important;
+  margin-bottom: 20px!important;
+}
+
+.MuiStepper-alternativeLabel {
+  height: 120px!important;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.iconMenu {
+  margin-bottom: 25px;
 }

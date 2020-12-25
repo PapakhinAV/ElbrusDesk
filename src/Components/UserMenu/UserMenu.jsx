@@ -33,7 +33,7 @@ const UserMenu = () => {
       {userInfo[0] && (userInfo[0].work && <p><strong className="purpleColor">Место работы: </strong>{userInfo[0].work}</p>)}
 
       <br />
-      <ul>
+      <ul className="iconMenu">
 
 
         {userInfo[0] && (userInfo[0].linkidIn && <a target="_blank" href={`https://linkedin.com/in/${userInfo[0].linkidIn}`}><li><img className="social" src={linkedin} alt="linkedin" /></li></a>)}
@@ -60,7 +60,8 @@ const UserMenu = () => {
                 
                 {/* <div>{el.name}</div>
                 <div>{el.dateEnd.slice(0, 4)}</div> */}
-            </li></Link>
+            </li>
+            </Link>
           )) :
             <li >Добавьте группу в которой учились</li>
 

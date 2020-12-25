@@ -37,10 +37,10 @@
 
 .fotoBlock img{
   /* border: solid black 1px; */
-height: 250px;
+/* height: 250px; */
 width: 250px;
 margin-top: 5px;
-border-radius: 5px;
+border-radius: 100%;
 }
 .userMenuBlock{
   text-align: center;

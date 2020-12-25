@@ -105,7 +105,7 @@ const EditProfile = () => {
   const [file, setFile] = useState({}); // storing the uploaded file
   const el = useRef(); // accesing input element
   const [data, getFile] = useState({ name: "", path: "" });
-  // const [progress, setProgess] = useState(0); // progess bar
+  const [progress, setProgess] = useState(''); // progess bar
 
   const picHandleChange = (e) => {
     // setProgess(0)
@@ -117,11 +117,10 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append('file', file); // appending file
     axios.post(`http://localhost:3000/userPicAdd/${id}`, formData, {
-      // onUploadProgress: (ProgressEvent) => {
-      //   let progress = Math.round(
-      //     ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-      //   setProgess(progress);
-      // }
+      onUploadProgress: (ProgressEvent) => {
+        let progress = '% Успешно! %';
+        setProgess(progress);
+      }
     }).then(res => {
       getFile({
         name: res.data.name,
@@ -129,7 +128,27 @@ const EditProfile = () => {
       })
     }).catch(err => console.log(err))
   }
-  const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+
+  const deleteFile = () => {
+    axios.get(`http://localhost:3000/deleteUserPic/${id}`, {
+      onUploadProgress: (ProgressEvent) => {
+        let deleteAvatar = '% Удалено! %';
+        setProgess(deleteAvatar);
+      }
+    }).then(res => {
+      getFile({
+        name: '',
+        path: foto
+      })
+    });
+  }
+
+  // function deleteUserPhoto(id) {
+  //   dispatch(deletePhoto(id))
+  // }
+
+  const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
+
   const profileFoto = useSelector(state => state.userInfo[0].img)
   return (
     <>
@@ -148,10 +167,12 @@ const EditProfile = () => {
             <form>
               <input ref={el} onChange={picHandleChange} className="userPic" type="file" />
               <button onClick={uploadFile} type="button" className="purpleButton">ЗАГРУЗИТЬ ФОТО</button>
-              <button className="deletePhoto">УДАЛИТЬ ФОТО</button>
+              <button onClick={deleteFile} type="button" className="deletePhoto">УДАЛИТЬ ФОТО</button>
             </form>
+              {/* <div className="progessBar" style={{ width: '100%' }}> */}
+                {/* {progress} */}
+              {/* </div> */}
           </div>
-
 
 
           <div className="editUserForm">

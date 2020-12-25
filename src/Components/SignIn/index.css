@@ -19,3 +19,12 @@ input {
   color: rgba(255, 255, 255, 0.5);
   opacity: 1; /* Firefox */
 }
+
+.file-upload {
+  width: 100%;
+}
+
+.file-upload input {
+  color: rgb(0, 0, 0);
+  font-family:'RF Rostin Bold';
+}

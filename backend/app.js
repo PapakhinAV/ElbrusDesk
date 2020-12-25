@@ -183,6 +183,14 @@ app.post('/userPicAdd/:id', async (req, res) => {
   });
 })
 
+app.get("/deleteUserPic/:id", async (req, res) => {
+  const userId = req.params.id
+  let user = await User.findById(userId);
+  user.img = "";
+  await user.save()
+  res.sendStatus(200);
+})
+
 
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {
@@ -212,7 +220,6 @@ app.post('/newpost/:id', async (req, res) => {
   user.post.push(addNewPost._id)
   await user.save()
   res.json(addNewPost._id)
-
 }
 );
 
