@@ -10,17 +10,12 @@ import { useHistory } from "react-router-dom";
 
 const YanPage = () => {
   const dispatch = useDispatch()
+  const positions = useSelector(state => state.positions)
   useEffect(() => {
     (() => {
       dispatch(loadAllCoordinatse())
     })()
   }, [])
-  const poz = useSelector(state => state.positions)
-  setTimeout(() => {
-    setPositions(poz)
-  }, 500);
-  const [positions, setPositions] = useState([])
-
 
   const history = useHistory()
 
@@ -33,13 +28,15 @@ const YanPage = () => {
 
 
   const userId = useSelector(state => state.userInfo[0]._id)
+  const store = useSelector(state => state.positions)
 
   function handleTakePosition() {
-    dispatch(addUserPosition({ latitude, longitude, userId }))
-    setTimeout(() => {
-      history.push("/YanPage")
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }, 500);
+
+    dispatch(addUserPosition({ latitude, longitude, userId, store }))
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
+    // setTimeout(() => {
+    //   // history.push("/YanPage")
+    // }, 500);
   }
 
 
