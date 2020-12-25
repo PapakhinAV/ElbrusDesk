@@ -14,7 +14,7 @@ export default function ContactMap({ positions }) {
         load:
           'Map,Placemark,control.ZoomControl,control.FullscreenControl,geoObject.addon.balloon',
       }}>
-      <Map width="80%" height="600px"
+      <Map width="100%" height="600px"
         defaultState={{
           center: [55.75, 37.57],
           zoom: 3,

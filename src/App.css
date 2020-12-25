@@ -201,6 +201,7 @@ strong {
   font-family: 'RF Rostin'!important;
   outline: none!important;
   box-shadow: none!important;
+  margin-bottom: 10px;
 }
 
 .purpleButton:hover {
@@ -365,3 +366,26 @@ h1 {
   transition: box-shadow 1s ease-in-out!important;
 }
 
+.ymaps {
+  border-radius: 500px!important;
+  overflow: auto;
+  filter: saturate(2.5);
+}
+
+
+.mapWrap {
+  width: 1310px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    min-height: 600px;
+}
+
+.blockAdminWrapper {
+  height: 90vh;
+  justify-content: center;
+  display: flex;
+  padding: 50px 0;
+  background-color: #e6e6e6;
+}

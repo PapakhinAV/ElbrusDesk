@@ -32,8 +32,8 @@ const AdminPage = () => {
   const allGroups = store.groups
 
   return (
-    <div className={style.mainBlock}>
-    <div className={style.adminWrap}>
+    <div className="blockAdminWrapper">
+        {/* <div className="groupBody"> */}
 
       <div className={style.peopleBlock}>
         <div className={style.headBlock}>
@@ -44,13 +44,13 @@ const AdminPage = () => {
       <div className={style.groupsBlock}>
         <div className={style.headBlock}>
           <div>
-            <Link to="/AdminCreateGroup"> <button>+ Добавить новую группу</button></Link>
+            <Link to="/AdminCreateGroup"> <button className="yellowButton" >+ Добавить новую группу</button></Link>
           </div>
         </div>
         {allGroups && allGroups.map((element) => <AdminGroups element={element} />)}
       </div>
     </div>
-    </div>
+    // </div>
 
   );
 }
