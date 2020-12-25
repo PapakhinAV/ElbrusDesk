@@ -447,6 +447,16 @@ app.get('/students_list_in_group/:id', async (req, res) => {
   return res.sendStatus(406)
 })
 
+app.get('/user_page/:id', async (req, res) => {
+  let idUserPage = req.params.id
+  if (idUserPage) {
+    const infoUserPage = await User.find({ _id: idUserPage }).populate('stydyGroup')
+    return res.json(infoUserPage)
+  }
+  return res.sendStatus(406)
+})
+
+
 
 //запрос данных для администратора
 app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {

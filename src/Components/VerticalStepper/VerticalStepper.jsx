@@ -134,6 +134,7 @@ const useStyles = makeStyles((theme) => ({
 
 function getSteps() {
   return ['Главная', 'О проекте', 'Возможности', 'Трудности', 'Технологии', 'Планы'];
+
 }
 
 function getStepContent(stepIndex) {
@@ -147,8 +148,10 @@ function getStepContent(stepIndex) {
       case 3:
       return <img className="slide" src ={chetiri} alt="slide4" />;
     case 4:
+
       return <img className="slide" src ={shest} alt="slide6" />;
     case 5:
+
       return <img className="slide" src ={sem} alt="slide7" />;
     default:
       return 'Unknown stepIndex';

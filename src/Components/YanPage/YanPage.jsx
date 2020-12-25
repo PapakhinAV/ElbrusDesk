@@ -33,10 +33,7 @@ const YanPage = () => {
   function handleTakePosition() {
 
     dispatch(addUserPosition({ latitude, longitude, userId, store }))
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
-    // setTimeout(() => {
-    //   // history.push("/YanPage")
-    // }, 500);
+
   }
 
 
