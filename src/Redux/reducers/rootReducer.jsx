@@ -11,6 +11,7 @@ import AddElbrusStatus from './AddElbrusStatus';
 import AddAdminStatus from './AddAdminStatus';
 import loaderReducer from './loaderReducer';
 import usersPositions from './usersPositions';
+import AddUserPageReducer from './AddUserPageReducer';
 // import usersPos from './usersPos';
 
 // import NewPostReducer from './NewPostReducer';
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   loader: loaderReducer,
   // newpost: NewPostReducer,
   positions: usersPositions,
-  // positionUser: usersPos,
+	// positionUser: usersPos,
+	userPage: AddUserPageReducer,
 });
 
 export default rootReducer;

@@ -3,8 +3,11 @@ import './index.css';
 import Wall from "../Wall/Wall"
 import { useHistory, useParams } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UserMenuUserPage from './UserMenuUserPage';
+import Loader from '../Loader';
+import { useEffect } from 'react';
+import { LoadUserPage } from '../../Redux/actions/notes';
 
 
 const UserPage = () => {
@@ -13,29 +16,41 @@ const UserPage = () => {
   const curentUser = useSelector(state => state.id)
   if (id === curentUser) { history.push(`/Home/${curentUser}`) }
 
-  const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
-  const userInfo = useSelector(state => state.users).filter(el => el._id === id)
 
-  // const userPageInfo = userInfo
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    (() => {
+      dispatch(LoadUserPage(id))
+    })()
+  }, [])
+
+  const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
+  const userInfo = useSelector(state => state.userPage)
+  console.log(userInfo);
   return (
     <div className="userMainBlock">
       <div className="userWrap">
         <div className="leftColumn">
+
           <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
+
           <div className="userName">
             {
               userInfo.length &&
               <h1><span className="yellowSymbols">{'//'}{' '}</span>{userInfo[0].firstname}{' '}{userInfo[0].surname}<span className="yellowSymbols">{' '}{'//'}</span></h1>
             }
           </div>
-          <div className="userMenuBlock"><UserMenuUserPage /></div>
+          <div className="userMenuBlock"><UserMenuUserPage userInfo={userInfo} /></div>
         </div>
 
         <div className="rightColumn">
 
           <div className="wallBlock"><Wall /></div>
         </div>
-      </div>
+      </div> :
+      <Loader />
+			}
     </div>
   );
 }

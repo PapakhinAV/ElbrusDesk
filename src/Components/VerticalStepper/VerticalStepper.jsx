@@ -103,7 +103,7 @@
 //     </div>
 //   );
 // }
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -133,7 +133,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Главная', 'О проекте', 'Возможности', 'Трудности', 'Команда', 'Технологии', 'Планы'];
+  return ['Главная', 'О проекте', 'Возможности', 'Трудности', 'Технологии', 'Планы'];
+
 }
 
 function getStepContent(stepIndex) {
@@ -147,17 +148,17 @@ function getStepContent(stepIndex) {
       case 3:
       return <img className="slide" src ={chetiri} alt="slide4" />;
     case 4:
-      return <img className="slide" src ={pyat} alt="slide25" />;
-    case 5:
+
       return <img className="slide" src ={shest} alt="slide6" />;
-    case 6:
+    case 5:
+
       return <img className="slide" src ={sem} alt="slide7" />;
     default:
       return 'Unknown stepIndex';
   }
 }
 
-export default function HorizontalLabelPositionBelowStepper() {
+function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -185,14 +186,14 @@ export default function HorizontalLabelPositionBelowStepper() {
       </Stepper>
       <div>
         {activeStep === steps.length ? (
-          <div>
+          <div className="projectButtons">
             <Typography className={classes.instructions}><img className="slide" src ={finish} alt="finish" /></Typography>
             <Button className="yellowButton" onClick={handleReset}>Сбросить</Button>
           </div>
         ) : (
           <div>
             <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
+            <div className="projectButtons">
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
@@ -210,3 +211,6 @@ export default function HorizontalLabelPositionBelowStepper() {
     </div>
   );
 }
+
+export default memo(HorizontalLabelPositionBelowStepper)
+
