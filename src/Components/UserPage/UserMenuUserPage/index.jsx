@@ -11,9 +11,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-const UserMenuUserPage = () => {
-  const { id } = useParams()
-  const userInfo = useSelector(state => state.users).filter(el => el._id === id)
+const UserMenuUserPage = ({userInfo}) => {
+  // const { id } = useParams()
+  // const userInfo = useSelector(state => state.userPage)
   return (
     <div className="userMenu">
       <hr />
