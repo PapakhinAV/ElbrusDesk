@@ -21,7 +21,8 @@ const UserPage = () => {
     <div className="userMainBlock">
       <div className="userWrap">
         <div className="leftColumn">
-        <div className="fotoBlock"><img src={(userInfo[0].img && `/userPic/${userInfo[0].img}`) ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
+          {/* <div className="fotoBlock"><img src={(userInfo[0] && `/userPic/${userInfo[0].img}`) ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div> */}
+          <div className="fotoBlock"><img src={userInfo[0] && (userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto)} alt="userPhoto" /></div>
           <div className="userName">
             {
               userInfo.length &&
