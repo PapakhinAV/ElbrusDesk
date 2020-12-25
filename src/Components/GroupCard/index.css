@@ -60,5 +60,12 @@
 }
 
 .city {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+}
+
+.card-img-group {
+  /* height: auto; */
+  width: 100%;
+    display: flex;
+    justify-content: center;
 }

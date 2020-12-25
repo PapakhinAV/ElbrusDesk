@@ -39,24 +39,33 @@
     flex-direction: row;
     margin: 30px;
     justify-content: center;
-    border-bottom: 1px solid #32177b;
+    border-bottom: 1px solid #cccccc;
     padding-bottom: 10px;
   }
 .peopleNames{
   width: 60%;
+  align-items: center;
+  display: flex;
 }
+
+.peopleNames p{
+  margin-bottom: 0px;
+}
+
 .groupMain{
   display: flex;
   flex-direction: row;
   /* border: 1px solid black; */
    margin: 5px;
-   border-radius: 20px;
+   /* border-radius: 20px; */
    padding: 10px;
+   border-bottom: 1px solid #cccccc;
 }
 .groupsNames{
   width: 60%;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .groupsFirstColumn{
   width: 35%;
@@ -68,4 +77,8 @@
 
 .avatar {
   width: 50px;
+}
+
+h1 {
+  color: #4520ab;
 }

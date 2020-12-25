@@ -41,13 +41,21 @@ const YanPage = () => {
 
 
   return (
-    <div>
-      <div>
+    <>
+    <div className="blockWrapper">
+        <div className="groupBody">
+
+          <div className="groupHeader">
+
+            <h1><span className="yellowSymbols">//</span> Dev.Map <span className="yellowSymbols">//</span></h1>
+          </div>
+          <div className="mapWrap">
         <YanMap positions={positions} />
       </div>
-      <button onClick={handleTakePosition}>Добавить свою позицию</button>
+      <button className="yellowButton" onClick={handleTakePosition}>ЗАЧЕКИНИТЬСЯ НА КАРТЕ</button>
+      </div>
     </div>
-
+</>
   );
 }
 

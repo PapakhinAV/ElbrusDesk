@@ -31,12 +31,10 @@ function GroupsList() {
 
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
-          <div className="groupHeader">
-            
-          </div><Loader />
-          <div className="groupListWrap">
+          {/* <Loader /> */}
+          
       { groupList.length && <GroupCard groupList={groupList} />}
-      </div></div></div>
+      </div></div>
     </>
   )
 
