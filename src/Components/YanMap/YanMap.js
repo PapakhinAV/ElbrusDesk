@@ -22,7 +22,7 @@ export default function ContactMap({ positions }) {
         }}>
         <div>
           {positions.map((element) => {
-            return <> < Placemark
+            return < Placemark
               defaultGeometry={[element.lat, element.lon]}
               // {element.img ? /userPic/element.img : foto}
               // `<img src="img/cinema.jpg" height="150" width="200"> <br /> `
@@ -32,8 +32,8 @@ export default function ContactMap({ positions }) {
                   `<img src="${foto}" height="150"> <br /> ` +
                   `<b><a target="_blank" " href="/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
               }} />
-							<Link to={`/user_page/${element._id}`}>{element.firstname + ` ` + element.surname}</Link>
-</>
+						
+
           })
           }
         </div>
