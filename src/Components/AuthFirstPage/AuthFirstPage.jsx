@@ -1,11 +1,8 @@
 import './index.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import SignIn from "../SignIn/SignIn"
-import Logo from '../img/EBD.svg'
-// import Git from '../img/git-icon.svg'
-// import Google from '../img/google-icon.svg'
-// import Footer from '../Footer/Footer';
-import ModalAuth from '../ModalAuth/ModalAuth';
+import Logo from '../img/cd-logo.svg'
+import SpeedDials from '../SimpleSpeedDial/SimpleSpeedDial';
 
 
 const AuthFirstPage = () => {
@@ -19,7 +16,7 @@ const AuthFirstPage = () => {
             </div>
             <div className="signForm">
               <div>
-                <h1 className="hYellow"><span className="blueSymbols">{'<'}</span> Вход <span className="blueSymbols">/{'/>'}</span></h1>
+                <h1 className="hYellow"><span className="blueSymbols">{'<'}</span> Вход <span className="blueSymbols">{'/>'}</span></h1>
                 <p className="pYellow">
                   Добро пожаловать!<br />
                   Для входа укажите свои учетные данные.</p>
@@ -31,11 +28,13 @@ const AuthFirstPage = () => {
               {/* <Link className="signUpButton" to="/SignUp">Создать аккаунт</Link> */}
 
               <Link className="signButton" to="/SignUp">Создать аккаунт</Link>
-              <ModalAuth />
+              {/* <ModalAuth /> */}
+              <SpeedDials />
               {/* <a href="http://localhost:3000/auth/github"><img src={Git} alt="git-icon"/></a> */}
             </div>
           </div>
         </div>
+          {/* <Footer /> */}
       </div>
     </div>
   );

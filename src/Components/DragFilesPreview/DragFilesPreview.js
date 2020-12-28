@@ -8,7 +8,6 @@ const thumbsContainer = {
   flexWrap: 'wrap',
   marginTop: 16
 };
-
 const thumb = {
   display: 'inline-flex',
   borderRadius: 2,
@@ -20,13 +19,11 @@ const thumb = {
   padding: 4,
   boxSizing: 'border-box'
 };
-
 const thumbInner = {
   display: 'flex',
   minWidth: 0,
   overflow: 'hidden'
 };
-
 const img = {
   display: 'block',
   width: 'auto',
@@ -61,6 +58,8 @@ export default function DragFilesPreview(props) {
     // Make sure to revoke the data uris to avoid memory leaks
     files.forEach(file => URL.revokeObjectURL(file.preview));
   }, [files]);
+
+  
 
   return (
     <section className="dragBlock">

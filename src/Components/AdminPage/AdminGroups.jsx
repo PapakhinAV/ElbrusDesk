@@ -11,6 +11,7 @@ const AdminGroups = ({ element }) => {
     dispatch(deleteGroup(id))
 
   }
+  
   return (
     <div className={style.groupMain}>
       <div className={style.groupsNames}>
@@ -22,13 +23,13 @@ const AdminGroups = ({ element }) => {
           <p>{element.name}</p>
         </div>
         <div>
-          <p>Start: {element.dateStart && element.dateStart}</p>
-          <p>End: {element.dateEnd && element.dateEnd}</p>
+          <p>Год: {element.dateStart.slice(0, 4) && element.dateStart.slice(0, 4)}</p>
+          {/* <p>End: {element.dateEnd && element.dateEnd}</p> */}
         </div>
       </div>
       <div className={style.buttonBlock}>
-        <Link to={`/AdminEditGroup/${element._id}`}><button>Редактировать</button></Link>
-        <button type="button" onClick={() => { deleteCurentGroup(element._id) }}>Удалить</button>
+        <Link to={`/AdminEditGroup/${element._id}`}><button className="purpleButton">Редактировать группу</button></Link>
+        <button className="yellowButton" type="button" onClick={() => { deleteCurentGroup(element._id) }}>Удалить</button>
       </div>
     </div>
   );

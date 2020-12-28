@@ -17,7 +17,7 @@ const AdminPeople = ({ element, setCounter }) => {
       <div className={style.peopleNames}>
         <p>{element.firstname} {element.surname && element.surname}</p>
       </div>
-      <button type="button" onClick={() => { deletePeople(element._id) }}>Delete</button>
+      <button className="yellowButton" type="button" onClick={() => { deletePeople(element._id) }}>Удалить профайл</button>
     </div>
   );
 }

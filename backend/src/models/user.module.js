@@ -9,13 +9,16 @@ const UserSchema = mongoose.Schema({
   password: String,
   admin: Boolean,
   tel: String,
+  img: String,
   stydyGroup: [{
     type: mongoose.Types.ObjectId,
     ref: 'GroupList',
   }],
   gitHub: String,
   linkidIn: String,
-  social: Array,
+  telegram: String,
+  instagram: String,
+  vk: String,
   city: String,
   workPlace: Array,
   post: [{
@@ -24,6 +27,8 @@ const UserSchema = mongoose.Schema({
   }],
   avatar: String,
   birthday: String,
+  work: String,
+  position: Object,
 })
 
 export default mongoose.model('User', UserSchema)

@@ -1,7 +1,7 @@
 .groupListWrap {
   width: 1310px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
   margin-top: 50px;
 }
@@ -60,5 +60,12 @@
 }
 
 .city {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+}
+
+.card-img-group {
+  /* height: auto; */
+  width: 100%;
+    display: flex;
+    justify-content: center;
 }

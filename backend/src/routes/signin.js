@@ -10,8 +10,7 @@ router
   .post(
     passport.authenticate('local'),
     function (req, res) {
-      console.log(req.user);
-      res.json({id:req.user._id, admin:req.user.admin});
+      res.json({ id: req.user._id, admin: req.user.admin });
     });
 
 export default router
