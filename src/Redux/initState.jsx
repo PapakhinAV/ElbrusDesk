@@ -15,7 +15,6 @@ const initialState = () => {
       dateEnd: ''
     }],
     users: [{
-      img: '',
       stydyGroup: [],
       social: [],
       workPlace: [],
@@ -45,30 +44,10 @@ const initialState = () => {
       gitHub: '',
       city: '',
       linkidIn: '',
-      birthday: '',
-      img: '',
-		},
-		userPage: {
-      stydyGroup: [],
-      social: [],
-      workPlace: [],
-      post: [],
-      firstname: '',
-      surname: '',
-      email: '',
-      password: '',
-      tel: '',
-      gitHub: '',
-      city: '',
-      linkidIn: '',
-      birthday: '',
-      img: '',
+      birthday: ''
     },
     elbrusStatus: false,
-    adminStatus: false,
-    loader: false,
-		positions: [],
-		positionUser: [],
+    adminStatus: false
   }
   return JSON.parse(localStorage.getItem('redux')) || initialValue
 }

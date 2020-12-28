@@ -37,7 +37,7 @@ const AdminCreateGroup = () => {
         <input type="text" onChange={handleChange} value={newGroup.city} name="city" placeholder="Введине город" />
         <input type="text" onChange={handleChange} value={newGroup.avatar} name="avatar" placeholder="Введине ссылку на аватар группы" />
         <input type="date" onChange={handleChange} value={newGroup.dateStart} name="dateStart" placeholder="Введине дату начала обучения группы" />
-        <input type="date" onChange={handleChange} value={newGroup.dateEnd} name="dateEnd" placeholder="Введине год обучения" />
+        <input type="date" onChange={handleChange} value={newGroup.dateEnd} name="dateEnd" placeholder="Введине дату окончания обучения группы" />
         <button>Сохранить</button>
       </form>
     </div>

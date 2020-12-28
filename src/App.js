@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthFirstPage from "./Components/AuthFirstPage/AuthFirstPage"
+
 import Header from './Components/Header/Header';
 import HomePage from './Components/HomePage/HomePage';
 import Project from './Components/Project/Project';
@@ -11,13 +12,16 @@ import UsersListInGroup from './Components/UsersListInGroup';
 import RegPage from './Components/RegPage/RegPage';
 import EditProfile from './Components/EditProfile';
 import Wall from './Components/Wall/Wall';
-import YanPage from './Components/YanPage/YanPage';
+import YanMap from './Components/Map/Map';
+import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
 import AdminEditGroup from './Components/AdminPage/AdminEditGroup';
-import Emap from './Components/Emap';
 
+
+
+// import Footer from './Components/Footer/Footer';
 
 
 function App() {
@@ -59,26 +63,28 @@ function App() {
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/YanPage">
-            <YanPage />
+          <Route path="/Map">
+            <YanMap />
           </Route>
           <Route path="/postlist">
             <Wall />
           </Route>
-          <Route path="/map2">
-            <Emap />
-          </Route>
+
+
           <Route path="/Home/:id">
             <HomePage />
           </Route>
+
           <Route path="/user_page/:id">
             <UserPage />
           </Route>
           <Route path="/">
             <Redirect to="/" />
           </Route>
+
         </Switch>
       </BrowserRouter>
+      {/* <Footer /> */}
     </>);
 }
 

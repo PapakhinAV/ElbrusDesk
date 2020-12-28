@@ -1,8 +1,6 @@
 
-import { NfcTwoTone } from '@material-ui/icons';
-import { useSelector } from 'react-redux';
 import * as TYPES from '../types/notes';
-import { hide, show } from './loader'
+
 // import dotenv from 'dotenv'
 // dotenv.config()
 
@@ -35,16 +33,15 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  dispatch(show())
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
-  if (response.status === 401) {
+  console.log(response.status);
+  if(response.status === 401){
     dispatch(LoadGroups([]))
     dispatch(LoadStatusElbrus(false))
   } else {
     dispatch(LoadStatusElbrus(true))
     const result = await response.json()
     dispatch(LoadGroups(result))
-    dispatch(hide())
   }
 }
 
@@ -54,37 +51,11 @@ export const LoadUsersInGroup = (listUsers) => ({
   payload: listUsers,
 })
 
-
-export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
-  dispatch(show())
-  dispatch(LoadUsersInGroup([]))
-  setTimeout(async () => {
-    const response = await fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
-    const users = await response.json()
-    dispatch(LoadUsersInGroup(users))
-    dispatch(hide())
-  }, 500);
+export const LoadUsersFromBack = (id) => (dispatch, getState) => {
+  fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
+		.then(res => res.json())
+		.then(data =>dispatch(LoadUsersInGroup(data)))
 }
-
-
-//for userInfoPage in group
-export const LoadUserInfoPage = (info) => ({
-  type: TYPES.ADD_USER_PAGE,
-  payload: info,
-})
-
-export const LoadUserPage = (id) => async (dispatch, getState) => {
-  dispatch(show())
-  // dispatch(LoadUserInfoPage([]))
-  // setTimeout(async () => {
-    const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
-		const user = await res.json()
-		console.log(user);
-    dispatch(LoadUserInfoPage(user))
-    dispatch(hide())
-  // }, 500);
-}
-
 
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
@@ -101,49 +72,41 @@ export const ShowAllPostsReducer = (posts) => ({
   payload: posts,
 })
 
-export const UserPosts = (id) => async (dispatch, getState) => {
-  dispatch(ShowAllPostsReducer([]))
-  dispatch(show())
-  const response = await fetch(`${process.env.REACT_APP_URL}/postlist/${id}`)
+export const UserPosts = () => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/postlist`)
   const result = await response.json();
-  result.reverse()
   dispatch(ShowAllPostsReducer(result))
-  dispatch(hide())
-
 };
 
-// Удаление постов
-export const deletePostReducer = (id) => ({
-  type: TYPES.DELETE_POST,
-  payload: id,
-});
 
-export const deletePost = (id) => async (dispatch, getState) => {
-  const response = await fetch(`${process.env.REACT_APP_URL}/deletePost/${id}`)
-  if (response.status === 200) {
-    dispatch(deletePostReducer(id))
-  }
-}
+// <!-- export const UserPostsReducer = (title, text) => ({
+//   type: TYPES.ADD_POST,
+//   payload: { title, text },
+// }) -->
+
+
+
 
 
 export const NewPost = (newpost) => ({
   type: TYPES.ADD_NEW_POST,
   payload: newpost
+// <!--   payload: { title, text } -->
+
 })
 
-export const AddNewPost = (title, text, id, img) => async (dispatch, getState) => {
-  const response = await fetch(`/newpost/${id}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title, text, img })
-  })
-  const _id = await response.json()
-  if (response.status === 200) {
-    dispatch(NewPost({ title, text, _id, img }))
-  }
-
+// export const AddNewPost = (title, text) => ({
+export const AddNewPost = (title, text) => async (dispatch, getState) => {
+const response = await fetch('/newpost', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({title, text})
+})
+if (response.status === 200){
+  dispatch(NewPost({title, text}))
+}
 }
 
 //добавление информации для администратора
@@ -156,7 +119,7 @@ export const AdminInfoReducer = (object) => ({
 export const AddInfoForAdmin = () => async (dispatch, getState) => {
   const response = await fetch(`${process.env.REACT_APP_URL}/AddInfoForAdmin`)
   const result = await response.json()
-  if (result.admin === true) {
+  if(result.admin===true){
     dispatch(AdminInfoReducer(result))
     dispatch(LoadStatusAdmin(true))
   } else {
@@ -185,11 +148,9 @@ export const LoadUserInfo = (userInfo) => ({
 
 //Данную логику можно реализовать в компоненте HomePage на 23 24 строке
 export const AddUserInfo = (id) => (dispatch, getState) => {
-  dispatch(show())
   fetch(`${process.env.REACT_APP_URL}/Homee/${id}`)
     .then(res => res.json())
     .then(data => dispatch(LoadUserInfo(data)))
-  dispatch(hide())
 }
 
 //Добавление группы
@@ -228,43 +189,3 @@ export const editGroup = ({ newGroup, id }) => async (dispatch, getState) => {
     body: JSON.stringify({ newGroup, id })
   });
 }
-
-
-
-//Отображение пользователей на карте
-export const saveUsersPositions = (Array) => ({
-  type: TYPES.ADD_USERS_POSITIONS,
-  payload: Array,
-});
-
-
-export const loadAllCoordinatse = () => async (dispatch, getState) => {
-  const response = await fetch('/loadAllCoordinatse')
-  const result = await response.json()
-  dispatch(saveUsersPositions(result))
-}
-
-
-
-//Получение данных о геолокации пользователя
-export const saveUserPos = (Array) => ({
-  type: TYPES.ADD_USER_POS,
-  payload: Array,
-});
-
-
-export const addUserPosition = ({ latitude, longitude, userId, store }) => async (dispatch, getState) => {
-  console.log(latitude, longitude, userId);
-  const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ latitude, longitude, userId })
-  })
-  const result = await response.json()
-  const newStore = store.filter((element) => element.userId !== userId)
-  const resultToRedux = [...newStore, result]
-  dispatch(saveUsersPositions(resultToRedux))
-}
-

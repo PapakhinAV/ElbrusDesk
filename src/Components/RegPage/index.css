@@ -29,8 +29,8 @@ height: 50vh; */
   -o-animation: fadeIn ease 3s;
   -ms-animation: fadeIn ease 3s;
   width: 50%;
-}
 
+}
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}

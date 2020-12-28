@@ -8,7 +8,9 @@ router
   .route('/signup')
   // Регистрация пользователя
   .post(async (req, res) => {
+    console.log('<<<<<<<<<<<<<<<<<<<<<.');
     const { firstname, surname, password, email, tel } = req.body;
+    console.log('Имя: ', firstname, 'Имя: ', surname, 'Имя: ', password, email, tel);
     try {
       // Мы не храним пароль в БД, только его хэш
       const saltRounds = Number(process.env.SALT_ROUNDS ?? 10);
@@ -19,11 +21,12 @@ router
         password: hashedPassword,
         email,
         tel,
-        admin: false,
+        admin: true,
       });
       return res.status(200).end();
       //   req.session.user = serializeUser(user);
     } catch (err) {
+      // console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
       return res.status(401).end();
     }
   });

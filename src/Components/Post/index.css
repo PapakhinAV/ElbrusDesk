@@ -3,7 +3,6 @@
   padding: 0;
   /* width: 100%; */
   margin-top: 25px;
-  font-family: 'RF Rostin'!important;
 }
 .formFiles{
   content: "";
@@ -34,21 +33,20 @@
   border-radius: 5px;
   float: left;
 }
-/* .formFiles:hover::before {
+.formFiles:hover::before {
   border-color: black;
-} */
-/* .formFiles:active {
+}
+.formFiles:active {
   outline: 0;
-} */
-/* .formFiles:active::before {
+}
+.formFiles:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
-} */
+}
 
 .postButtons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px!important;
 }
 
 .postTitle {
@@ -93,19 +91,12 @@
 }
 
 .UserPostTitle {
-  padding: 35px!important;
+  padding-bottom: 0!important;
+  margin-bottom: 0!important;
   color: #4520ab;
   font-family:'RF Rostin Bold';
-  font-size: 25px;
-}
-
-.UserPostImage {
-
-}
-
-.UserPostButton {
 }
 
 .UserPostText {
-  padding: 0 35px!important;
+  padding-bottom: 0!important;
 }

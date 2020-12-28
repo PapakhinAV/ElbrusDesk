@@ -12,18 +12,9 @@
   width: 1310px;
 }
 
-/* .editPhoto img{
+.editPhoto img{
   width: 100px;
   border-radius: 100%;
-} */
-
-.editProfilePhoto{
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  background-size: cover!important;
-  background-position: 50% 15%!important;
-  background-repeat: no-repeat!important;
 }
 
 .editPhoto {
@@ -66,7 +57,6 @@
   background-color: #f0f8ff00;
   padding: 10px 0;
   margin-left: 25px;
-  font-family: 'RF Rostin'!important;
 }
 
 .labelEditBold {
@@ -92,15 +82,4 @@
 
 .editUserForm {
   margin-top: 25px;
-}
-
-.userPic {
-  color: #000;
-  border-bottom: 0;
-  white-space: normal;
-}
-
-.avatarForm {
-  display: flex;
-  align-items: center;
 }

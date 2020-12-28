@@ -65,19 +65,19 @@ const SignUp = () => {
     <div className="blockMain">
       <form onSubmit={handlerSubmit} className="mainFormBlock">
 
-        <input onChange={handlerChange} name="firstname" value={firstname} type="text" aria-describedby="firstnameHelp" placeholder="Имя*" required />
+        <input onChange={handlerChange} name="firstname" value={firstname} type="text" aria-describedby="firstnameHelp" placeholder="Имя*" />
 
-        <input onChange={handlerChange} name="surname" value={surname} type="text" aria-describedby="emailHelp" placeholder="Фамилия*" required />
+        <input onChange={handlerChange} name="surname" value={surname} type="text" aria-describedby="emailHelp" placeholder="Фамилия*" />
 
-        <input onChange={handlerChange} type="email" name="email" value={email} aria-describedby="emailHelp" placeholder="E-mail*" required />
+        <input onChange={handlerChange} type="email" name="email" value={email} aria-describedby="emailHelp" placeholder="E-mail*" />
 
-        <input onChange={handlerChange} name="tel" value={tel} type="tel" id="tel" aria-describedby="emailHelp" placeholder="Телефон*" required />
+        <input onChange={handlerChange} name="tel" value={tel} type="tel" id="tel" aria-describedby="emailHelp" placeholder="Телефон*" />
 
-        <input onChange={handlerChange} name="password" value={password} type="password" placeholder="Пароль*" required />
+        <input onChange={handlerChange} name="password" value={password} type="password" placeholder="Пароль*" />
 
         <div className="req"><span>*</span>Поля обязательные для заполнения</div>
         <div className="submBut">
-          <button type="submit" className="yellowPulseButton">Зарегистрироваться</button>
+          <button type="submit" className="yellowButton">Зарегистрироваться</button>
         </div>
         <div className="reqBLue">Уже есть аккаунт?</div>
       </form>
