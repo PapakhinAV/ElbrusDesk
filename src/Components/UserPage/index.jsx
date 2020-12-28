@@ -34,12 +34,12 @@ console.log(userInfo);
       <div className="userWrap">
         <div className="leftColumn">
 
-        <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div>
-   
+        {/* <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div> */}
+        {<div style={(userInfo[0].img && { background: `url(/userPic/${userInfo[0].img})` }) ? { background: `url(/userPic/${userInfo[0].img})` } : { background: `url(${foto})` }} className="userAvatar" />}
           <div className="userName">
             {
               userInfo.length &&
-              <h1><span className="yellowSymbols">{'//'}{' '}</span>{userInfo[0].firstname}{' '}{userInfo[0].surname}<span className="yellowSymbols">{' '}{'//'}</span></h1>
+              <h1><span className="yellowSymbols">{'//'}{' '}</span>{userInfo[0].firstname}<br/>{userInfo[0].surname}<span className="yellowSymbols">{' '}{'//'}</span></h1>
             }
           </div>
           <div className="userMenuBlock"><UserMenuUserPage userInfo={userInfo}/></div>

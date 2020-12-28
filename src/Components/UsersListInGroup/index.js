@@ -33,7 +33,7 @@ function UsersListInGroup() {
 
           <div className="groupHeader">
 
-            <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
+            <h1><span className="yellowSymbols">{"//"}{" "}</span>COM.MEMBERS<span className="yellowSymbols">{" "}{"//"}</span></h1>
           </div>
           <div className="groupHeader">
             {groupInfoOne[0] && (<h2>{groupInfoOne[0].name && groupInfoOne[0].name}

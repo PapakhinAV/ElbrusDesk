@@ -11,9 +11,9 @@ function GroupsList() {
   const history = useHistory()
   const dispatch = useDispatch()
   useEffect(() => {
-    if (status === false) {
-      history.push('/')
-    }
+    // if (status === false) {
+    //   history.push('/')
+    // }
     (() => {
       dispatch(LoadGroupsFromBack())
     })()
@@ -31,7 +31,7 @@ function GroupsList() {
 
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
-          {/* <Loader /> */}
+          <Loader />
           
       { groupList.length && <GroupCard groupList={groupList} />}
       </div></div>

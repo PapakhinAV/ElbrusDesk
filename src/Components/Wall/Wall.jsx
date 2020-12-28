@@ -5,6 +5,8 @@ import { deletePost } from "../../Redux/actions/notes";
 import { UserPosts } from "../../Redux/actions/notes"
 import { useParams } from 'react-router-dom';
 
+
+
 const WallUserPage = () => {
   const dispatch = useDispatch();
 
@@ -35,9 +37,8 @@ const WallUserPage = () => {
               {el.text}
             </p>
             {compare && <button className="purpleButton UserPostButton" type="button" onClick={() => { deleteUserPost(el._id) }}>УДАЛИТЬ ПОСТ</button>}
-
           </p>
-        ))}
+        ))} 
       </div>
     </div>
   );
