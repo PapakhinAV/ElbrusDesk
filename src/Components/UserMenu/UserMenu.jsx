@@ -50,7 +50,7 @@ const UserMenu = () => {
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
-            <Link to={`/students_list_in_group/${el._id}`}>
+            <Link to={`/students/${el._id}`}>
               <li className="animalsLi" key={el._id}>
                 <img class="animalsPic" src={`${el.avatar}`} alt="groupimg" />
             </li>
