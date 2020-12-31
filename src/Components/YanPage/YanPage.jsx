@@ -27,7 +27,7 @@ const YanPage = () => {
   } = usePosition(watch);
 
 
-  const userId = useSelector(state => state.userInfo[0]._id)
+  const userId = useSelector(state => state.userInfo[0])
   const store = useSelector(state => state.positions)
 
   function handleTakePosition() {

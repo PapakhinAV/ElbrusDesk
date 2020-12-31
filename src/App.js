@@ -47,19 +47,19 @@ function App() {
           <Route path="/Project">
             <Project />
           </Route>
-          <Route path="/groupslist">
+          <Route path="/groups">
             <GroupsList />
           </Route>
           <Route path="/logout">
             <Logout />
           </Route>
-          <Route path="/students_list_in_group/:id">
+          <Route path="/students/:id">
             <UsersListInGroup />
           </Route>
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/YanPage">
+          <Route path="/checkin">
             <YanPage />
           </Route>
           <Route path="/postlist">
@@ -71,7 +71,7 @@ function App() {
           <Route path="/Home/:id">
             <HomePage />
           </Route>
-          <Route path="/user_page/:id">
+          <Route path="/student/:id">
             <UserPage />
           </Route>
           <Route path="/">

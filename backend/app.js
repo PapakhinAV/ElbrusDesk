@@ -31,7 +31,7 @@ dotenv.config()
 
 const app = express();
 
-app.use(express.static('public')); //to access the files in public folder
+// app.use(express.static('public')); //to access the files in public folder
 // app.use(cors()); // it enables all cors requests
 app.use(fileUpload());
 
@@ -69,6 +69,7 @@ const host =
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(process.env.PWD, 'public')));
+// app.use('/*', express.static(path.join(process.env.PWD, '/')));
 
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
@@ -190,7 +191,6 @@ app.get("/deleteUserPic/:id", async (req, res) => {
   await user.save()
   res.sendStatus(200);
 })
-
 
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {

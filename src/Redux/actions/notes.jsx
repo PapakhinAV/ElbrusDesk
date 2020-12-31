@@ -1,5 +1,5 @@
 
-import { NfcTwoTone } from '@material-ui/icons';
+// import { NfcTwoTone } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 import * as TYPES from '../types/notes';
 import { hide, show } from './loader'
@@ -35,7 +35,6 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  dispatch(show())
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   if (response.status === 401) {
     dispatch(LoadGroups([]))
@@ -44,7 +43,7 @@ export const LoadGroupsFromBack = () => async (dispatch, getState) => {
     dispatch(LoadStatusElbrus(true))
     const result = await response.json()
     dispatch(LoadGroups(result))
-    dispatch(hide())
+    // dispatch(hide())
   }
 }
 
@@ -75,14 +74,14 @@ export const LoadUserInfoPage = (info) => ({
 
 export const LoadUserPage = (id) => async (dispatch, getState) => {
   dispatch(show())
-  // dispatch(LoadUserInfoPage([]))
-  // setTimeout(async () => {
+  dispatch(LoadUserInfoPage([]))
+  setTimeout(async () => {
     const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
 		const user = await res.json()
-		console.log(user);
+		// console.log(user);
     dispatch(LoadUserInfoPage(user))
     dispatch(hide())
-  // }, 500);
+  }, 500);
 }
 
 
@@ -109,7 +108,6 @@ export const UserPosts = (id) => async (dispatch, getState) => {
   result.reverse()
   dispatch(ShowAllPostsReducer(result))
   dispatch(hide())
-
 };
 
 // Удаление постов
