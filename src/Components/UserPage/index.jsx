@@ -21,13 +21,15 @@ const UserPage = () => {
 
   useEffect(() => {
     (() => {
+      setTimeout(() => {
       dispatch(LoadUserPage(id))
+    }, 500);
     })()
 	}, [])
 	
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
   const userInfo = useSelector(state => state.userPage)
-console.log(userInfo);
+// console.log(userInfo);
   return (
     <div className="userMainBlock">
 		{ userInfo[0] ? 

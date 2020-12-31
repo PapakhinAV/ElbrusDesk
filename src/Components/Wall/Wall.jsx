@@ -13,6 +13,7 @@ const WallUserPage = () => {
   function deleteUserPost(id) {
     dispatch(deletePost(id))
   }
+  
   const { id } = useParams()
   const userID = useSelector(state => state.id)
   const compare = id === userID

@@ -6,14 +6,14 @@ const initialState = () => {
   const initialValue = {
     news: [],
     posts: [],
-    groups: [{
+    groups: {
       _id: '',
       name: '',
       city: '',
       avatar: '',
       dateStart: '',
       dateEnd: ''
-    }],
+    },
     users: [{
       img: '',
       stydyGroup: [],
