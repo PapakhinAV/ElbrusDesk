@@ -533,7 +533,6 @@ app.post("/YanPage", async (req, res) => {
   const { latitude, longitude, userId } = req.body
   if (latitude && longitude && userId) {
     const temp = await User.findOne({ _id: userId })
-    console.log(temp);
     await User.findByIdAndUpdate(userId, {
       position: { lat: latitude, lon: longitude }
     })

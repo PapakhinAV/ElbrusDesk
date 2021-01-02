@@ -77,8 +77,7 @@ export const LoadUserPage = (id) => async (dispatch, getState) => {
   dispatch(LoadUserInfoPage([]))
   setTimeout(async () => {
     const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
-		const user = await res.json()
-		// console.log(user);
+    const user = await res.json()
     dispatch(LoadUserInfoPage(user))
     dispatch(hide())
   }, 500);
@@ -252,7 +251,6 @@ export const saveUserPos = (Array) => ({
 
 
 export const addUserPosition = ({ latitude, longitude, userId, store }) => async (dispatch, getState) => {
-  console.log(latitude, longitude, userId);
   const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`, {
     method: 'POST',
     headers: {
