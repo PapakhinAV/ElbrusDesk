@@ -546,14 +546,14 @@ app.post("/YanPage", async (req, res) => {
 })
 
 
-
-
 //root необходимо опустить в самый конец файла чтоб не было конфликтов 
 const root = path.join(process.env.PWD, '../', 'build');
 app.use(express.static(root));
 app.get('*', (req, res) => {
   res.sendFile('index.html', { root });
 });
+
+
 
 app.listen(PORT, () => {
   console.log('Server has been started on port ', PORT)

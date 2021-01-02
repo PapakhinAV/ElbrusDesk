@@ -32,8 +32,8 @@ const rootReducer = combineReducers({
   loader: loaderReducer,
   // newpost: NewPostReducer,
   positions: usersPositions,
-	// positionUser: usersPos,
-	userPage: AddUserPageReducer,
+  // positionUser: usersPos,
+  userPage: AddUserPageReducer,
 });
 
 export default rootReducer;

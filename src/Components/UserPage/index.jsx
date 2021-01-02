@@ -27,7 +27,6 @@ const UserPage = () => {
 
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
   const userInfo = useSelector(state => state.userPage)
-
   return (
     <div className="userMainBlock">
       { userInfo[0] && userInfo[0]._id === id ?

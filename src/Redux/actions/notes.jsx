@@ -56,7 +56,7 @@ export const LoadUsersInGroup = (listUsers) => ({
 
 export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
   dispatch(show())
-  dispatch(LoadUsersInGroup([]))
+  // dispatch(LoadUsersInGroup([]))
   setTimeout(async () => {
     const response = await fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
     const users = await response.json()
