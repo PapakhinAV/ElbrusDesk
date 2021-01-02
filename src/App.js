@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthFirstPage from "./Components/AuthFirstPage/AuthFirstPage"
-
 import Header from './Components/Header/Header';
 import HomePage from './Components/HomePage/HomePage';
 import Project from './Components/Project/Project';
@@ -13,7 +12,6 @@ import RegPage from './Components/RegPage/RegPage';
 import EditProfile from './Components/EditProfile';
 import Wall from './Components/Wall/Wall';
 import YanPage from './Components/YanPage/YanPage';
-import Footer from './Components/Footer/Footer';
 import AdminPage from './Components/AdminPage/AdminPage';
 import UserPage from './Components/UserPage';
 import AdminCreateGroup from './Components/AdminPage/AdminCreateGroup';
@@ -22,18 +20,11 @@ import Emap from './Components/Emap';
 
 
 
-
-// import Footer from './Components/Footer/Footer';
-
-
 function App() {
   return (
     <>
-
       <BrowserRouter>
-
-       <Header />
-		
+        <Header />
         <Switch>
           <Route exact path="/">
             <AuthFirstPage />
@@ -56,33 +47,31 @@ function App() {
           <Route path="/Project">
             <Project />
           </Route>
-          <Route path="/groupslist">
+          <Route path="/groups">
             <GroupsList />
           </Route>
           <Route path="/logout">
             <Logout />
           </Route>
-          <Route path="/students_list_in_group/:id">
+          <Route path="/students/:id">
             <UsersListInGroup />
           </Route>
           <Route exact path="/Edit/:id">
             <EditProfile />
           </Route>
-          <Route path="/YanPage">
+          <Route path="/checkin">
             <YanPage />
           </Route>
           <Route path="/postlist">
             <Wall />
           </Route>
-					
-					<Route path="/map2">
+          <Route path="/map2">
             <Emap />
           </Route>
-
           <Route path="/Home/:id">
             <HomePage />
           </Route>
-          <Route path="/user_page/:id">
+          <Route path="/student/:id">
             <UserPage />
           </Route>
           <Route path="/">
@@ -90,7 +79,6 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-      {/* <Footer /> */}
     </>);
 }
 

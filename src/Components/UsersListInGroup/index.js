@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { LoadUsersFromBack } from '../../Redux/actions/notes';
 import { Link } from "react-router-dom";
 import Loader from '../Loader';
-// import { PermContactCalendarSharp } from '@material-ui/icons';
 import './index.css';
 
 
@@ -20,7 +19,10 @@ function UsersListInGroup() {
     })()
   }, [])
 
+
+
   const groupInfo = useSelector(state => state.groups)
+
   let groupInfoOne = groupInfo.filter(el => (el._id === id))
 
   const peopleList = useSelector(state => state.users)
@@ -30,14 +32,13 @@ function UsersListInGroup() {
 
       <div className="blockWrapper">
         <div className="groupBody">
-
           <div className="groupHeader">
-
-            <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
+            <h1><span className="yellowSymbols">{"//"}{" "}
+            </span>COM.MEMBERS<span className="yellowSymbols">{" "}{"//"}</span></h1>
           </div>
           <div className="groupHeader">
             {groupInfoOne[0] && (<h2>{groupInfoOne[0].name && groupInfoOne[0].name}
-            <span className="yellowSymbols"> ?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
+              <span className="yellowSymbols"> ?</span> {groupInfoOne[0].dateEnd.slice(0, 4)} <span className="yellowSymbols">: </span>{groupInfoOne[0].city}</h2>)}
           </div><Loader />
           <div className="groupListWrap">
 
@@ -46,20 +47,18 @@ function UsersListInGroup() {
                 <div ey={el._id} className="groupCardWrap">
                   <div className="group">
                     <div className="groupAvatar">
-                      {el.img && <div style={{background: `url(/userPic/${el.img})`}} className="user-card-img"/>
+                      {el.img && <div style={{ background: `url(/userPic/${el.img})` }} className="user-card-img" />
                       }
                     </div>
                     <div className="groupInfo">
                       <div>
-                        <Link to={`/user_page/${el._id}`}><h5 className="userHeader">{el.firstname + ` ` + el.surname}</h5></Link>
+                        <Link to={`/student/${el._id}`}><h5 className="userHeader">{el.firstname + ` ` + el.surname}</h5></Link>
                       </div>
                     </div>
                   </div>
                 </div>
               )) : <div></div>
-
             }
-
           </div></div>
       </div>
     </>
@@ -68,4 +67,3 @@ function UsersListInGroup() {
 
 export default UsersListInGroup
 
-  //  {/* <div><h3>Ещё нет зарегестрированных эльбрусовцев в этой группе.</h3></div> */}

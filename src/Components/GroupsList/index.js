@@ -31,7 +31,7 @@ function GroupsList() {
 
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
-          {/* <Loader /> */}
+          <Loader />
           
       { groupList.length && <GroupCard groupList={groupList} />}
       </div></div>

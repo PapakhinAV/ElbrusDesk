@@ -10,7 +10,8 @@ const PostSchema = mongoose.Schema({
     required: true
   },
   img: String,
-  authorID: String
+  authorID: String,
+  date: Date,
 })
 
 export default mongoose.model('PostList', PostSchema)

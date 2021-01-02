@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import GroupsReducer from './grousReducer';
+import GroupsReducer from './groupsReducer';
 import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';

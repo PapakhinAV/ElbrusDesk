@@ -30,7 +30,7 @@ export default function ContactMap({ positions }) {
                 balloonContentBody: element.img ? `<img src="/userPic/${element.img}" height="150"> <br /> ` +
                   `<b>${element.firstname} ${element.surname}</b><br>` :
                   `<img src="${foto}" height="150"> <br /> ` +
-                  `<b><a target="_blank" " href="/user_page/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
+                  `<b><a target="_blank" " href="/student/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
               }} />
 						
 
