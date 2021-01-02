@@ -21,22 +21,23 @@ const UserPage = () => {
 
   useEffect(() => {
     (() => {
-      setTimeout(() => {
-        dispatch(LoadUserPage(id))
-      }, 500);
+      // setTimeout(() => {
+      dispatch(LoadUserPage(id))
+      // }, 500);
     })()
   }, [])
 
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
   const userInfo = useSelector(state => state.userPage)
-  // console.log(userInfo);
+  // userInfo[0] && console.log(userInfo[0]._id === id);
+  // userInfo[0] && console.log(id);
+  // userInfo[0] && console.log(userInfo[0]._id);
   return (
     <div className="userMainBlock">
-      { userInfo[0] ?
+      { userInfo[0] && userInfo[0]._id === id ?
         <div className="userWrap">
           <div className="leftColumn">
 
-            {/* <div className="fotoBlock"><img src={userInfo[0].img ? `/userPic/${userInfo[0].img}` : foto} alt="userPhoto" /></div> */}
             {<div style={(userInfo[0].img && { background: `url(/userPic/${userInfo[0].img})` }) ? { background: `url(/userPic/${userInfo[0].img})` } : { background: `url(${foto})` }} className="userAvatar" />}
             <div className="userName">
               {
