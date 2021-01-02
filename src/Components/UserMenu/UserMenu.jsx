@@ -23,7 +23,7 @@ const UserMenu = () => {
       <hr />
       {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
       {userInfo[0] && (userInfo[0].email && <p><strong className="purpleColor">Почта: </strong>
-      <a className="userMail" href={`mailto:${userInfo[0].email}?subject=Писмо от Com.DESK`} target="_blank">{userInfo[0].email}</a>  
+        <a className="userMail" href={`mailto:${userInfo[0].email}?subject=Писмо от Com.DESK`} target="_blank">{userInfo[0].email}</a>
       </p>)}
       {userInfo[0] && (userInfo[0].city && <p><strong className="purpleColor">Город: </strong>{userInfo[0].city}</p>)}
       {userInfo[0] && (userInfo[0].work && <p><strong className="purpleColor">Место работы: </strong>{userInfo[0].work}</p>)}
@@ -46,14 +46,14 @@ const UserMenu = () => {
       </ul>
 
       <p><strong className="purpleColor">Группы: </strong></p>
-<div className="userGroupListAvatars"></div>
+      <div className="userGroupListAvatars"></div>
       <ul>
         {
           (userInfo[0] && userInfo[0].stydyGroup.length) ? userInfo[0].stydyGroup.map((el) => (
-            <Link to={`/students_list_in_group/${el._id}`}>
+            <Link to={`/students/${el._id}`}>
               <li className="animalsLi" key={el._id}>
                 <img class="animalsPic" src={`${el.avatar}`} alt="groupimg" />
-            </li>
+              </li>
             </Link>
           )) :
             <li>Добавьте группу в которой учились</li>
