@@ -143,9 +143,7 @@ const EditProfile = () => {
     });
   }
 
-  // function deleteUserPhoto(id) {
-  //   dispatch(deletePhoto(id))
-  // }
+
 
   const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
 
@@ -158,20 +156,23 @@ const EditProfile = () => {
             <h1><span className="yellowSymbols">{'//'}{' '}</span>Редактировать аккаунт<span className="yellowSymbols">{' '}{'//'}</span></h1>
           </div>
 
-
-
           <div className="editPhoto">
-            {/* <img src={foto} alt="userPhoto" /> */}
-            {data.path ? <img src={`${data.path}`} alt={data.name} /> : (profileFoto ? <img src={`/userPic/${profileFoto}`} alt={""} /> : <img src={foto} alt={""} />)}
 
-            <form>
+            {/* {data.path ? <img src={`${data.path}`} alt={data.name} /> : (profileFoto ? <img src={`/userPic/${profileFoto}`} alt={""} /> : <img src={foto} alt={""} />)} */}
+
+            {data.path ? 
+            <div className="editProfilePhoto" style={{background: `url(${data.path})`}} /> : 
+            (profileFoto ? 
+            <div className="editProfilePhoto" style={{background: `url(/userPic/${profileFoto})`}} /> :  
+            <div className="editProfilePhoto" style={{background: `url(${foto})`}} />)}
+
+
+            <form className="avatarForm">  
               <input ref={el} onChange={picHandleChange} className="userPic" type="file" />
               <button onClick={uploadFile} type="button" className="purpleButton">ЗАГРУЗИТЬ ФОТО</button>
               <button onClick={deleteFile} type="button" className="deletePhoto">УДАЛИТЬ ФОТО</button>
             </form>
-              {/* <div className="progessBar" style={{ width: '100%' }}> */}
-                {/* {progress} */}
-              {/* </div> */}
+
           </div>
 
 

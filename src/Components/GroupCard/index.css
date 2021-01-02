@@ -1,7 +1,7 @@
 .groupListWrap {
   width: 1310px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
   margin-top: 50px;
 }

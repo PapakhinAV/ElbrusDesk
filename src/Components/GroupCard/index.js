@@ -27,7 +27,7 @@ function GroupCard({ groupList }) {
                 </div>
                 <div className="groupInfo">
                   <div>
-                  <Link className="purple" to={`/students_list_in_group/${el._id}`}>  <h5 className="groupHeader">{el.name}</h5>
+                  <Link className="purple" to={`/students/${el._id}`}>  <h5 className="groupHeader">{el.name}</h5>
                     <p className="city">{el.city}</p>
                     {/* <p>{el.dateStart}</p> */}
                     <p>{el.dateEnd.slice(0, 4)}</p></Link>

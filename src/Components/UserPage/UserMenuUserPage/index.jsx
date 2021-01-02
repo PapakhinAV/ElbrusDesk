@@ -1,7 +1,4 @@
 import './index.css';
-// import raccoon from '../img/animals/raccoon.svg'
-// import wolf from '../img/animals/wolf.svg'
-// import fox from '../img/animals/fox.svg'
 import git from '../../img/git.svg'
 import vk from '../../img/vk.svg'
 import linkedin from '../../img/linkedin.svg'
@@ -18,7 +15,11 @@ const UserMenuUserPage = ({userInfo}) => {
     <div className="userMenu">
       <hr />
       {userInfo[0] && (userInfo[0].tel && <p><strong className="purpleColor">Телефон: </strong>{userInfo[0].tel}</p>)}
-      {userInfo[0] && (userInfo[0].email && <p><strong className="purpleColor">Почта: </strong>{userInfo[0].email}</p>)}
+      {userInfo[0] && (userInfo[0].email && <p><strong className="purpleColor">Почта: </strong>
+      
+      <a className="userMail" href={`mailto:${userInfo[0].email}?subject=Писмо от Com.DESK`} target="_blank">{userInfo[0].email}</a>  
+      
+      </p>)}
       {userInfo[0] && (userInfo[0].city && <p><strong className="purpleColor">Город: </strong>{userInfo[0].city}</p>)}
       {userInfo[0] && (userInfo[0].work && <p><strong className="purpleColor">Место работы: </strong>{userInfo[0].work}</p>)}
       <br />

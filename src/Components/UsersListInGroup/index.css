@@ -1,7 +1,7 @@
 .groupListWrap {
   width: 1310px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
   margin-top: 50px;
 }
@@ -12,6 +12,7 @@
   background-color: #fff;
   border-radius: 5px;
   margin-bottom: 50px;
+  margin-right: 3%;
   /* display: flex; */
   /* justify-content: space-around; */
   /* float: left; */
@@ -46,11 +47,11 @@
 
 .user-card-img {
   /* padding: 25px; */
-  height: 250px;
+  height: 350px;
   /* max-height: 250px; */
   display: flex;
   justify-content: center;
-    background-size: 350px!important;
+    background-size: cover!important;
     background-repeat: no-repeat!important;
     background-position: 50% 15%!important;
 }
