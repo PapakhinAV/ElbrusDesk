@@ -23,15 +23,14 @@ function GroupCard({ groupList }) {
             <div key={el._id} className="groupCardWrap">
               <div className="group">
                 <div className="groupAvatar">
-                  <img src={`${el.avatar}`} className="card-img" alt="..." />
+                  <img src={`${el.avatar}`} className="card-img-group" alt="..." />
                 </div>
                 <div className="groupInfo">
                   <div>
-                    <h5 className="groupHeader">{el.name}</h5>
+                  <Link className="purple" to={`/students/${el._id}`}>  <h5 className="groupHeader">{el.name}</h5>
                     <p className="city">{el.city}</p>
                     {/* <p>{el.dateStart}</p> */}
-                    <p>{el.dateEnd.slice(0, 4)}</p>
-                    <Link className="purpleButton" to={`/students_list_in_group/${el._id}`}>Подробнее</Link>
+                    <p>{el.dateEnd.slice(0, 4)}</p></Link>
                   </div>
                 </div>
               </div>

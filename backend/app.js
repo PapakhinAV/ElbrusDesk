@@ -31,7 +31,7 @@ dotenv.config()
 
 const app = express();
 
-app.use(express.static('public')); //to access the files in public folder
+// app.use(express.static('public')); //to access the files in public folder
 // app.use(cors()); // it enables all cors requests
 app.use(fileUpload());
 
@@ -69,6 +69,7 @@ const host =
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(process.env.PWD, 'public')));
+// app.use('/*', express.static(path.join(process.env.PWD, '/')));
 
 
 // Подключение middleware, который парсит СТРОКУ или МАССИВ от клиента
@@ -183,6 +184,13 @@ app.post('/userPicAdd/:id', async (req, res) => {
   });
 })
 
+app.get("/deleteUserPic/:id", async (req, res) => {
+  const userId = req.params.id
+  let user = await User.findById(userId);
+  user.img = "";
+  await user.save()
+  res.sendStatus(200);
+})
 
 
 app.get('/groupslist', checkAuthentication, async (req, res) => {
@@ -212,7 +220,6 @@ app.post('/newpost/:id', async (req, res) => {
   user.post.push(addNewPost._id)
   await user.save()
   res.json(addNewPost._id)
-
 }
 );
 
@@ -440,6 +447,16 @@ app.get('/students_list_in_group/:id', async (req, res) => {
   return res.sendStatus(406)
 })
 
+app.get('/user_page/:id', async (req, res) => {
+  let idUserPage = req.params.id
+  if (idUserPage) {
+    const infoUserPage = await User.find({ _id: idUserPage }).populate('stydyGroup')
+    return res.json(infoUserPage)
+  }
+  return res.sendStatus(406)
+})
+
+
 
 //запрос данных для администратора
 app.get("/AddInfoForAdmin", checkAuthentication, async (req, res) => {
@@ -516,13 +533,14 @@ app.post("/YanPage", async (req, res) => {
   const { latitude, longitude, userId } = req.body
   if (latitude && longitude && userId) {
     const temp = await User.findOne({ _id: userId })
-    console.log(temp);
     await User.findByIdAndUpdate(userId, {
-      position: { lat: latitude, lon: longitude }, function(err, position) {
-        return res.sendStatus(200)
-      }
+      position: { lat: latitude, lon: longitude }
     })
-    return res.sendStatus(200)
+    const users = await User.findOne({ _id: userId })
+    const curentUsers = {
+      img: users.img, userId: users._id, firstname: users.firstname, surname: users.surname, lat: users.position.lat, lon: users.position.lon
+    }
+    return res.json(curentUsers)
   }
   return res.sendStatus(406)
 })

@@ -1,13 +1,13 @@
-import * as TYPES from '../types/notes';
+// import * as TYPES from '../types/notes';
 
-const usersPos = (state = [], action) => {
-  switch (action.type) {
-    case TYPES.ADD_USER_POS:
-      return (action.payload);
-    default:
-      return state;
-  }
-};
+// const usersPos = (state = [], action) => {
+//   switch (action.type) {
+//     case TYPES.ADD_USER_POS:
+//       return (action.payload);
+//     default:
+//       return state;
+//   }
+// };
 
-export default usersPos;
+// export default usersPos;
 

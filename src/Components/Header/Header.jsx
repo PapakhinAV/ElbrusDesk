@@ -18,12 +18,12 @@ const Header = () => {
             {user && user ?
               (admin && admin ?
                 <>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/AdminPage">Admin</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/YanPage">Карта</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groups">Com.Members</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/checkin">Dev.Map</NavLink>
+                  <NavLink className="rootButton" activeStyle={{ color: "#ffbc5b" }} to="/AdminPage">ROOT</NavLink>
                   <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
 
                 </>
@@ -32,15 +32,15 @@ const Header = () => {
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Home">Моя страница</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                   <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groupslist">Com.Members</NavLink>
-                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/YanPage">Карта</NavLink>
-                  {/* <NavLink activeStyle={{ color: "#ffbc5b" }} to="/logout"><ExitToAppRoundedIcon fontSize="large" /></NavLink> */}
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/groups">Com.Members</NavLink>
+                  <NavLink activeStyle={{ color: "#ffbc5b" }} to="/checkin">Dev.Map</NavLink>
                   <Link to="/logout"><button className="yellowButton">ВЫЙТИ</button></Link>
                 </>)
               :
               <>
                 <NavLink activeStyle={{ color: "#ffbc5b" }} to="/Project">О проекте</NavLink>
                 <NavLink activeStyle={{ color: "#ffbc5b" }} to="/TechNews">Tech.News</NavLink>
+                <NavLink className="yellowButton" activeStyle={{ color: "#ffbc5b" }} to="/Home">Вход</NavLink>
               </>
             }
           </nav>

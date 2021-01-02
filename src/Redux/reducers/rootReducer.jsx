@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import GroupsReducer from './grousReducer';
+import GroupsReducer from './groupsReducer';
 import TechNewsReducer from './TechNewsReducer';
 import UsersListReducer from './usersListReducer';
 import AddUserIDReduser from './AddUserIDReduser';
@@ -11,7 +11,8 @@ import AddElbrusStatus from './AddElbrusStatus';
 import AddAdminStatus from './AddAdminStatus';
 import loaderReducer from './loaderReducer';
 import usersPositions from './usersPositions';
-import usersPos from './usersPos';
+import AddUserPageReducer from './AddUserPageReducer';
+// import usersPos from './usersPos';
 
 // import NewPostReducer from './NewPostReducer';
 
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   loader: loaderReducer,
   // newpost: NewPostReducer,
   positions: usersPositions,
-  positionUser: usersPos,
+	// positionUser: usersPos,
+	userPage: AddUserPageReducer,
 });
 
 export default rootReducer;

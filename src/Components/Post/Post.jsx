@@ -38,11 +38,10 @@ const Post = () => {
     const formData = new FormData();
     formData.append('file', file); // appending file
     axios.post('http://localhost:3000/upload', formData, {
-      onUploadProgress: (ProgressEvent) => {
-        let progress = Math.round(
-          ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-        setProgess(progress);
-      }
+      // onUploadProgress: (ProgressEvent) => {
+      //   let progress = 'Добавлено!';
+      //   setProgess(progress);
+      // }
     }).then(res => {
       getFile({
         name: res.data.name,
@@ -65,10 +64,7 @@ const Post = () => {
             <div className="mb-3 postButtons">
               {/* <DragFilesPreview /> */}
               <div className="file-upload">
-                <input type="file" ref={el} onChange={handleChange} />
-                {/* <div className="progessBar" style={{ width: progress }}>
-          {progress}
-        </div> */}
+                <input className="formFiles" type="file" ref={el} onChange={handleChange} />
               </div>
               <button onClick={uploadFile} type="submit" className="purpleButton">ПОДЕЛИТЬСЯ</button>
               <hr />

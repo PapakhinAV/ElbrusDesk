@@ -10,17 +10,12 @@ import { useHistory } from "react-router-dom";
 
 const YanPage = () => {
   const dispatch = useDispatch()
+  const positions = useSelector(state => state.positions)
   useEffect(() => {
     (() => {
       dispatch(loadAllCoordinatse())
     })()
   }, [])
-  const poz = useSelector(state => state.positions)
-  setTimeout(() => {
-    setPositions(poz)
-  }, 500);
-  const [positions, setPositions] = useState([])
-
 
   const history = useHistory()
 
@@ -32,25 +27,32 @@ const YanPage = () => {
   } = usePosition(watch);
 
 
-  const userId = useSelector(state => state.userInfo[0]._id)
+  const userId = useSelector(state => state.userInfo[0])
+  const store = useSelector(state => state.positions)
 
   function handleTakePosition() {
-    dispatch(addUserPosition({ latitude, longitude, userId }))
-    setTimeout(() => {
-      history.push("/YanPage")
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }, 500);
+
+    dispatch(addUserPosition({ latitude, longitude, userId, store }))
+
   }
 
 
   return (
-    <div>
-      <div>
+    <>
+    <div className="blockWrapper">
+        <div className="groupBody">
+
+          <div className="groupHeader">
+
+            <h1><span className="yellowSymbols">//</span> Dev.Map <span className="yellowSymbols">//</span></h1>
+          </div>
+          <div className="mapWrap">
         <YanMap positions={positions} />
       </div>
-      <button onClick={handleTakePosition}>Добавить свою позицию</button>
+      <button className="yellowButton" onClick={handleTakePosition}>ЗАЧЕКИНИТЬСЯ НА КАРТЕ</button>
+      </div>
     </div>
-
+</>
   );
 }
 

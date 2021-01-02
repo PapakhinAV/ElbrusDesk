@@ -105,7 +105,7 @@ const EditProfile = () => {
   const [file, setFile] = useState({}); // storing the uploaded file
   const el = useRef(); // accesing input element
   const [data, getFile] = useState({ name: "", path: "" });
-  // const [progress, setProgess] = useState(0); // progess bar
+  const [progress, setProgess] = useState(''); // progess bar
 
   const picHandleChange = (e) => {
     // setProgess(0)
@@ -117,11 +117,10 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append('file', file); // appending file
     axios.post(`http://localhost:3000/userPicAdd/${id}`, formData, {
-      // onUploadProgress: (ProgressEvent) => {
-      //   let progress = Math.round(
-      //     ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-      //   setProgess(progress);
-      // }
+      onUploadProgress: (ProgressEvent) => {
+        let progress = '% Успешно! %';
+        setProgess(progress);
+      }
     }).then(res => {
       getFile({
         name: res.data.name,
@@ -129,7 +128,25 @@ const EditProfile = () => {
       })
     }).catch(err => console.log(err))
   }
-  const foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+
+  const deleteFile = () => {
+    axios.get(`http://localhost:3000/deleteUserPic/${id}`, {
+      onUploadProgress: (ProgressEvent) => {
+        let deleteAvatar = '% Удалено! %';
+        setProgess(deleteAvatar);
+      }
+    }).then(res => {
+      getFile({
+        name: '',
+        path: foto
+      })
+    });
+  }
+
+
+
+  const foto = 'https://pl4324260.e-naturessunshine.com/images/img-profile.png'
+
   const profileFoto = useSelector(state => state.userInfo[0].img)
   return (
     <>
@@ -139,19 +156,24 @@ const EditProfile = () => {
             <h1><span className="yellowSymbols">{'//'}{' '}</span>Редактировать аккаунт<span className="yellowSymbols">{' '}{'//'}</span></h1>
           </div>
 
-
-
           <div className="editPhoto">
-            {/* <img src={foto} alt="userPhoto" /> */}
-            {data.path ? <img src={`${data.path}`} alt={data.name} /> : (profileFoto ? <img src={`/userPic/${profileFoto}`} alt={""} /> : <img src={foto} alt={""} />)}
 
-            <form>
+            {/* {data.path ? <img src={`${data.path}`} alt={data.name} /> : (profileFoto ? <img src={`/userPic/${profileFoto}`} alt={""} /> : <img src={foto} alt={""} />)} */}
+
+            {data.path ? 
+            <div className="editProfilePhoto" style={{background: `url(${data.path})`}} /> : 
+            (profileFoto ? 
+            <div className="editProfilePhoto" style={{background: `url(/userPic/${profileFoto})`}} /> :  
+            <div className="editProfilePhoto" style={{background: `url(${foto})`}} />)}
+
+
+            <form className="avatarForm">  
               <input ref={el} onChange={picHandleChange} className="userPic" type="file" />
               <button onClick={uploadFile} type="button" className="purpleButton">ЗАГРУЗИТЬ ФОТО</button>
-              <button className="deletePhoto">УДАЛИТЬ ФОТО</button>
+              <button onClick={deleteFile} type="button" className="deletePhoto">УДАЛИТЬ ФОТО</button>
             </form>
-          </div>
 
+          </div>
 
 
           <div className="editUserForm">

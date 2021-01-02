@@ -37,7 +37,7 @@
 
 .fotoBlock img{
   /* border: solid black 1px; */
-height: 250px;
+/* height: 250px; */
 width: 250px;
 margin-top: 5px;
 border-radius: 100%;
@@ -79,4 +79,15 @@ margin-left: 50px;
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.userAvatar{
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+    background-position: 50% 15%!important;
 }

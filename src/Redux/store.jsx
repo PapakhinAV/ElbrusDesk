@@ -10,4 +10,5 @@ const store = createStore(rootReducer, initState(), composeWithDevTools(applyMid
 store.subscribe(() => {
   localStorage.setItem('redux', JSON.stringify(store.getState()))
 })
+
 export default store;

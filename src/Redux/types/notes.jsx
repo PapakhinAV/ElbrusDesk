@@ -16,5 +16,7 @@ export const DELETE_POST = "DELETE_POST"
 export const ADD_STATUS_ADMIN = "ADD_STATUS_ADMIN"
 export const ADD_USERS_POSITIONS = "ADD_USERS_POSITIONS"
 export const ADD_USER_POS = "ADD_USER_POS"
+export const DELETE_PHOTO = "DELETE_PHOTO"
+export const ADD_USER_PAGE = "ADD_USER_PAGE"
 
 

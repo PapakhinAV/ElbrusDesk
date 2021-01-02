@@ -1,7 +1,7 @@
 .userMainBlock{
   /* width: 100vw; */
   background-color: #E6E6E6;
-  height: 100%;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   /* background: chartreuse; */
@@ -37,10 +37,10 @@
 
 .fotoBlock img{
   /* border: solid black 1px; */
-height: 250px;
+/* height: 250px; */
 width: 250px;
 margin-top: 5px;
-border-radius: 5px;
+border-radius: 100%;
 }
 .userMenuBlock{
   text-align: center;

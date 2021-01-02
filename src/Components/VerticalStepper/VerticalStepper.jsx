@@ -103,7 +103,7 @@
 //     </div>
 //   );
 // }
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -113,6 +113,10 @@ import Typography from '@material-ui/core/Typography';
 import odin from '../img/profile/1.jpg'
 import dva from '../img/profile/2.jpg'
 import tri from '../img/profile/3.jpg'
+import chetiri from '../img/profile/4.jpg'
+import pyat from '../img/profile/5.jpg'
+import shest from '../img/profile/6.jpg'
+import sem from '../img/profile/7.jpg'
 import finish from '../img/profile/finish.jpg'
 
 const useStyles = makeStyles((theme) => ({
@@ -129,7 +133,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Главная', 'О приложении', 'Возможности', ];
+  return ['Главная', 'О проекте', 'Возможности', 'Трудности', 'Технологии', 'Планы'];
+
 }
 
 function getStepContent(stepIndex) {
@@ -140,18 +145,20 @@ function getStepContent(stepIndex) {
       return <img className="slide" src ={dva} alt="slide2" />;
     case 2:
       return <img className="slide" src ={tri} alt="slide3" />;
-    //   case 3:
-    //   return <img className="slide" src ={odin} alt="slide1" />;
-    // case 4:
-    //   return <img className="slide" src ={dva} alt="slide2" />;
-    // case 5:
-    //   return <img className="slide" src ={tri} alt="slide3" />;
+      case 3:
+      return <img className="slide" src ={chetiri} alt="slide4" />;
+    case 4:
+
+      return <img className="slide" src ={shest} alt="slide6" />;
+    case 5:
+
+      return <img className="slide" src ={sem} alt="slide7" />;
     default:
       return 'Unknown stepIndex';
   }
 }
 
-export default function HorizontalLabelPositionBelowStepper() {
+function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -179,14 +186,14 @@ export default function HorizontalLabelPositionBelowStepper() {
       </Stepper>
       <div>
         {activeStep === steps.length ? (
-          <div>
+          <div className="projectButtons">
             <Typography className={classes.instructions}><img className="slide" src ={finish} alt="finish" /></Typography>
-            <Button onClick={handleReset}>Сбросить</Button>
+            <Button className="yellowButton" onClick={handleReset}>Сбросить</Button>
           </div>
         ) : (
           <div>
             <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
+            <div className="projectButtons">
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
@@ -194,7 +201,7 @@ export default function HorizontalLabelPositionBelowStepper() {
               >
                 Назад
               </Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
+              <Button className="purpleButton" variant="contained" color="primary" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Конец' : 'Далее'}
               </Button>
             </div>
@@ -204,3 +211,6 @@ export default function HorizontalLabelPositionBelowStepper() {
     </div>
   );
 }
+
+export default memo(HorizontalLabelPositionBelowStepper)
+

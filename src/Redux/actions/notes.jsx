@@ -1,4 +1,6 @@
 
+// import { NfcTwoTone } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 import * as TYPES from '../types/notes';
 import { hide, show } from './loader'
 // import dotenv from 'dotenv'
@@ -33,7 +35,6 @@ export const LoadStatusAdmin = (stat) => ({
 })
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
-  dispatch(show())
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   if (response.status === 401) {
     dispatch(LoadGroups([]))
@@ -42,7 +43,7 @@ export const LoadGroupsFromBack = () => async (dispatch, getState) => {
     dispatch(LoadStatusElbrus(true))
     const result = await response.json()
     dispatch(LoadGroups(result))
-    dispatch(hide())
+    // dispatch(hide())
   }
 }
 
@@ -63,6 +64,25 @@ export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
     dispatch(hide())
   }, 500);
 }
+
+
+//for userInfoPage in group
+export const LoadUserInfoPage = (info) => ({
+  type: TYPES.ADD_USER_PAGE,
+  payload: info,
+})
+
+export const LoadUserPage = (id) => async (dispatch, getState) => {
+  dispatch(show())
+  dispatch(LoadUserInfoPage([]))
+  setTimeout(async () => {
+    const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
+    const user = await res.json()
+    dispatch(LoadUserInfoPage(user))
+    dispatch(hide())
+  }, 500);
+}
+
 
 export const AddUserID = (id) => ({
   type: TYPES.ADD_USER_ID,
@@ -87,7 +107,6 @@ export const UserPosts = (id) => async (dispatch, getState) => {
   result.reverse()
   dispatch(ShowAllPostsReducer(result))
   dispatch(hide())
-
 };
 
 // Удаление постов
@@ -231,16 +250,17 @@ export const saveUserPos = (Array) => ({
 });
 
 
-export const addUserPosition = ({latitude, longitude, userId}) => async (dispatch, getState) => {
-	console.log(latitude, longitude, userId);
-	const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`,{
+export const addUserPosition = ({ latitude, longitude, userId, store }) => async (dispatch, getState) => {
+  const response = await fetch(`${process.env.REACT_APP_URL}/YanPage`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({latitude, longitude, userId})
+    body: JSON.stringify({ latitude, longitude, userId })
   })
   const result = await response.json()
-  dispatch(saveUserPos(result))
+  const newStore = store.filter((element) => element.userId !== userId)
+  const resultToRedux = [...newStore, result]
+  dispatch(saveUsersPositions(resultToRedux))
 }
 

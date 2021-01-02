@@ -7,8 +7,10 @@ const Project = () => {
   // const store = useSelector(store => store.id)
   return (
     <>
-      <div className="blockWrapper">
-        <div className="inputMain">
+      <div className="blockAboutWrapper">
+
+        <div className="inputMainAbout">
+
           {/* <div>img</div>
         <div className="input">
           {store}
