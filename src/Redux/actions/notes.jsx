@@ -73,18 +73,7 @@ export const LoadUserInfoPage = (info) => ({
 })
 
 export const LoadUserPage = (id) => async (dispatch, getState) => {
-  console.log(("!!!!!!!!!!!!!!!!!"));
   dispatch(show())
-<<<<<<< HEAD
-  // dispatch(LoadUserInfoPage([]))
-  // setTimeout(async () => {
-  const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
-  const user = await res.json()
-  console.log(user);
-  dispatch(LoadUserInfoPage(user))
-  dispatch(hide())
-  // }, 500);
-=======
   dispatch(LoadUserInfoPage([]))
   setTimeout(async () => {
     const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
@@ -92,7 +81,6 @@ export const LoadUserPage = (id) => async (dispatch, getState) => {
     dispatch(LoadUserInfoPage(user))
     dispatch(hide())
   }, 500);
->>>>>>> eed3140527340537639ebd5ee6bd07f9ad97fedb
 }
 
 

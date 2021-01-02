@@ -24,15 +24,14 @@ export default function ContactMap({ positions }) {
           {positions.map((element) => {
             return < Placemark
               defaultGeometry={[element.lat, element.lon]}
-              // {element.img ? /userPic/element.img : foto}
-              // `<img src="img/cinema.jpg" height="150" width="200"> <br /> `
               properties={{
                 balloonContentBody: element.img ? `<img src="/userPic/${element.img}" height="150"> <br /> ` +
-                  `<b>${element.firstname} ${element.surname}</b><br>` :
+                  // `<b>${element.firstname} ${element.surname}</b><br>` :
+                  `<b><a style="color:black;  text-decoration: underline; font-size: 15px" target="_blank" href="${process.env.REACT_APP_URL}/student/${element.userId}">${element.firstname} ${element.surname} 🔗</a></b><br>` :
                   `<img src="${foto}" height="150"> <br /> ` +
-                  `<b><a target="_blank" " href="/student/${element.userId}">${element.firstname} ${element.surname}</a></b><br>`
+                  `<b><a style="color:black;  text-decoration: underline; font-size: 15px" target="_blank" href="${process.env.REACT_APP_URL}/student/${element.userId}">${element.firstname} ${element.surname} 🔗</a></b><br>`
               }} />
-						
+
 
           })
           }
