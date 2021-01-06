@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { LoadGroupsFromBack} from '../../Redux/actions/notes'
+import { LoadGroupsFromBack } from '../../Redux/actions/notes'
 import { useHistory } from 'react-router-dom';
 
 import GroupCard from '../GroupCard'
@@ -24,7 +24,7 @@ function GroupsList() {
 
   return (
     <>
-    <div className="blockWrapper">
+      <div className="blockWrapper">
         <div className="groupBody">
 
           <div className="groupHeader">
@@ -32,9 +32,9 @@ function GroupsList() {
             <h1><span className="yellowSymbols">//</span> COM.MEMBERS <span className="yellowSymbols">//</span></h1>
           </div>
           <Loader />
-          
-      { groupList.length && <GroupCard groupList={groupList} />}
-      </div></div>
+
+          {groupList.length && <GroupCard groupList={groupList} />}
+        </div></div>
     </>
   )
 
