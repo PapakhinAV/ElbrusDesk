@@ -33,8 +33,14 @@ export const LoadStatusAdmin = (stat) => ({
   type: TYPES.ADD_STATUS_ADMIN,
   payload: stat,
 })
+//for usersList in group
+export const LoadUsersInGroup = (listUsers) => ({
+  type: TYPES.ADD_USERS_LIST,
+  payload: listUsers,
+})
 
 export const LoadGroupsFromBack = () => async (dispatch, getState) => {
+  dispatch(LoadUsersInGroup([]))
   const response = await fetch(`${process.env.REACT_APP_URL}/groupslist`)
   if (response.status === 401) {
     dispatch(LoadGroups([]))
@@ -47,16 +53,8 @@ export const LoadGroupsFromBack = () => async (dispatch, getState) => {
   }
 }
 
-//for usersList in group
-export const LoadUsersInGroup = (listUsers) => ({
-  type: TYPES.ADD_USERS_LIST,
-  payload: listUsers,
-})
-
-
 export const LoadUsersFromBack = (id) => async (dispatch, getState) => {
   dispatch(show())
-  // dispatch(LoadUsersInGroup([]))
   setTimeout(async () => {
     const response = await fetch(`${process.env.REACT_APP_URL}/students_list_in_group/${id}`)
     const users = await response.json()
