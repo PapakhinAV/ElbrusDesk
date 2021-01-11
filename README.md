@@ -4,7 +4,7 @@
 ### Видео презентация проекта: https://youtu.be/ZWpFWjCn5I8
 ### Команда разработчиков:
 - [Александра М.](https://github.com/AleksandraMakhmutova)
-- [Александер П.](https://github.com/PapakhinAV)
+- [Александр П.](https://github.com/PapakhinAV)
 - [Салман О.](https://github.com/SalmanOsmanov)
 - [Игорь В.](https://github.com/gavriil-volkov)
 ### Приложение возможно использовать как:
