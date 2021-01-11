@@ -139,7 +139,7 @@ app.use("/Edit", EditRouter);
 app.use("/students_list_in_group", students_list_in_groupRouter);
 app.use("/user_page", user_pageRouter);
 //запрос данных для администратора
-app.use("AddInfoForAdmin/", AddInfoForAdminRouter);
+app.use("/AddInfoForAdmin", AddInfoForAdminRouter);
 //Удаление пользователя
 app.use("/deleteUser", deleteUserRouter);
 //Удаление группы
