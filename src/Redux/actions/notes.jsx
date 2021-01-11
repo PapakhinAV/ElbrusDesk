@@ -76,6 +76,7 @@ export const LoadUserPage = (id) => async (dispatch, getState) => {
   setTimeout(async () => {
     const res = await fetch(`${process.env.REACT_APP_URL}/user_page/${id}`)
     const user = await res.json()
+
     dispatch(LoadUserInfoPage(user))
     dispatch(hide())
   }, 500);

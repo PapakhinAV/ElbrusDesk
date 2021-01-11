@@ -1,25 +1,27 @@
-// import express from 'express';
-// import NewPost from '../models/postList';
+import express from 'express';
+import PostList from '../models/postList.js'
+import User from "../models/user.module.js"
 
-// const router = express.Router();
 
-// router
-//   .route('/')
+const router = express.Router();
 
-//   .post(async (req, res) => {
-//     const { title, text } = req.body;
-//     try {
-//       const newuserpost = await NewPost.create({
-//         title,
-//         text,
-//       });
-//       return res.status(200).end();
-//     } catch (err) {
-//       console.error(err, '>>>>>>>>>>>>>>>>>>>>>>>>>');
-//       return res.status(401).end();
-//     }
-//     // return res.end();
-//   }
-//   );
+router.post('/:id', async (req, res) => {
+  const id = req.params.id;
+  const { title, text, img } = req.body;
+  const addNewPost = new PostList({
+    title: title,
+    text: text,
+    img: img,
+    authorID: id,
+  })
+  await addNewPost.save()
+  const sessionUser = req.user.id;
+  let user = await User.findById(sessionUser);
+  user.post.push(addNewPost._id)
+  await user.save()
+  res.json(addNewPost._id)
+}
+);
 
-// export default router
+export default router
+
