@@ -17,7 +17,6 @@ body{
   font-family: 'RF Rostin Light', sans-serif!important;
   font-size:18px;
   background-color: #4520AB;
- 
 }
 
 p {
@@ -299,7 +298,7 @@ button.close {
     color: #ffbc5b!important;
   }
 
-  .MuiStepper-alternativeLabel {
+  .MuiStepper-root {
     background-color: #4520ab!important;
   }
 
@@ -320,17 +319,18 @@ button.close {
   color: rgba(0, 0, 0, 0.38)!important;
 }
 
-.MuiStepper-alternativeLabel {
+.MuiStepper-root {
   border-radius: 0 0 5px 5px!important;
 }
 
 .jss3 {
-  margin-top: 20px!important;
+  /* margin-top: 20px!important; */
   margin-bottom: 20px!important;
 }
 
-.MuiStepper-alternativeLabel {
+.MuiStepper-root {
   height: 120px!important;
+  padding: 0 50px!important;
 }
 
 h1 {
