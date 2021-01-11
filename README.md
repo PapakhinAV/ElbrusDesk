@@ -1,70 +1,80 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# FullStack Корпоративный портал COM.DESK
+## Приложение COM.DESK поможет вам оставаться на связи и следить за успехами своих коллег внутри закрытого комьюнити
+## Стэк - React, Redux, Express, MongoDB
+### Видео презентация проекта: https://youtu.be/ZWpFWjCn5I8
+### Команда разработчиков:
+- [Александра М.](https://github.com/AleksandraMakhmutova)
+- [Александр П.](https://github.com/PapakhinAV)
+- [Салман О.](https://github.com/SalmanOsmanov)
+- [Игорь В.](https://github.com/gavriil-volkov)
+### Приложение возможно использовать как:
+- решение Digital Signage для сенсорного киоска
+- интранет внутри локальной сети
+- социальная сеть
+- закрытый портал
+- блог
+## Для запуска проекта
+- Склонировать проект
+- Инициализировать проект в корневой папке - yarn
+- В папке backend инициализировать проект - npm i
+- В корневой папке создать файл .env (Смотреть внизу README)
+- В папке backend создать файл .env
+- Запустить проект из папки backend - npm start
+- Для запуска приложения используется база MongoDB в Atlas
+- Приложение запустится после билда (дождаться окончания) по адресу localhost:3000
+#
+## Возможности приложения
+### `Регистрация юзера`
+Каждый юзер может зарегистрироваться указав свои данные.
+![screenshot](gifs/Registration.gif)
+#
+### `Авторизация через социальные сети (Passport.JS)`
+- GitHub - Автоматически подтягивается имя пользователи и аккаунт GitHub в профиль юзера
+- Google - Автоматически подтягивается имя пользователи Google в профиль юзера
+*Есть возможность добавить дополнительные сети для авторизации и подтягивать любую открытую информацию в профиль юзера
+![screenshot](gifs/auth.gif)
+#
+### `Редактирование профиля юзера`
+- Добавление/удаление фото
+- Добавление/удаление группы
+- Редактрирование контактных данных
+- Редактирование социальных сетей
+![screenshot](gifs/EditProfile.gif)
+#
+### `Добавление/удаление постов на странице юзера`
+Каждый юзер может добавлять на своей страницы информационные посты. Пост может удалить только юзер разместивший его.
+![screenshot](gifs/Add-and-Delete-Post.gif)
+#
+### `Парсер тех.новостей`
+Парсер подтягивает 15 свежих и актуальных тех. новостей с новстного ресурсаs.
+![screenshot](gifs/TechNews.gif)
+#
+### `Группы`
+Есть возможность распределять юзеров по группам. Выбрать группу или выйти из нее можно в разделе "Редактировать профиль". В группе можно посмотреть всех юзеров которые вступили в нее. На странице юзера нельзя удалить его личные посты и редактировать его данные.
+![screenshot](gifs/Groups.gif)
+#
+### `Отметка юзера на карте по ip (Яндекс API)`
+Каждый юзер может отметить себя на карте. Отметка производится по текущему ip адресу.
+![screenshot](gifs/CheckIn.gif)
+#
+### `Администратор`
+Администратор может удалять юзеров, создавать/редактировать/удалять группы.
+Login: admin@mail.ru
+Password: aaaa
+![screenshot](gifs/Admin.gif)
+#
+## Файл .env (Корневая папка):
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_URL=http://localhost:3000
+#
+## Файл .env (Папка backend):
+PORT=3000
+MONGO_DB='ЗАПРОСИТЬ У АВТОРА'
+HOST:http://localhost:3001
+SECRET:'ЗАПРОСИТЬ У АВТОРА'
+GITHUB_CLIENT_ID = ЗАПРОСИТЬ У АВТОРА
+GITHUB_CLIENT_SECRET = ЗАПРОСИТЬ У АВТОРА
+GITHUB_CALLBACK_URL = /auth/github/callback
+GOOGLE_CLIENT_ID = ЗАПРОСИТЬ У АВТОРА
+GOOGLE_CLIENT_SECRET = ЗАПРОСИТЬ У АВТОРА
+GOOGLE_CALLBACK_URL = /auth/google/callback
